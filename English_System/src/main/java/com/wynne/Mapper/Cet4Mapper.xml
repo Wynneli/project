@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wynne.Dao.Cet4Mapper" >
+  <resultMap id="BaseResultMap" type="com.wynne.Entity.Cet4Custom" >
+    <id column="cet4_id" property="cet4Id" jdbcType="CHAR" />
+    <result column="cet4_vocabulary" property="cet4Vocabulary" jdbcType="VARCHAR" />
+    <result column="cet4_pronunciation" property="cet4Pronunciation" jdbcType="VARCHAR" />
+    <result column="cet4_meaning" property="cet4Meaning" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cet4_id, cet4_vocabulary, cet4_pronunciation, cet4_meaning
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from cet4
+    where cet4_id = #{cet4Id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from cet4
+    where cet4_id = #{cet4Id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wynne.Entity.Cet4Custom" >
+    insert into cet4 (cet4_id, cet4_vocabulary, cet4_pronunciation, 
+      cet4_meaning)
+    values (#{cet4Id,jdbcType=CHAR}, #{cet4Vocabulary,jdbcType=VARCHAR}, #{cet4Pronunciation,jdbcType=VARCHAR}, 
+      #{cet4Meaning,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wynne.Entity.Cet4Custom" >
+    insert into cet4
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cet4Id != null" >
+        cet4_id,
+      </if>
+      <if test="cet4Vocabulary != null" >
+        cet4_vocabulary,
+      </if>
+      <if test="cet4Pronunciation != null" >
+        cet4_pronunciation,
+      </if>
+      <if test="cet4Meaning != null" >
+        cet4_meaning,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cet4Id != null" >
+        #{cet4Id,jdbcType=CHAR},
+      </if>
+      <if test="cet4Vocabulary != null" >
+        #{cet4Vocabulary,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Pronunciation != null" >
+        #{cet4Pronunciation,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Meaning != null" >
+        #{cet4Meaning,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wynne.Entity.Cet4Custom" >
+    update cet4
+    <set >
+      <if test="cet4Vocabulary != null" >
+        cet4_vocabulary = #{cet4Vocabulary,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Pronunciation != null" >
+        cet4_pronunciation = #{cet4Pronunciation,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Meaning != null" >
+        cet4_meaning = #{cet4Meaning,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cet4_id = #{cet4Id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wynne.Entity.Cet4Custom" >
+    update cet4
+    set cet4_vocabulary = #{cet4Vocabulary,jdbcType=VARCHAR},
+      cet4_pronunciation = #{cet4Pronunciation,jdbcType=VARCHAR},
+      cet4_meaning = #{cet4Meaning,jdbcType=VARCHAR}
+    where cet4_id = #{cet4Id,jdbcType=CHAR}
+  </update>
+</mapper>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wynne.Dao.LogMapper" >
+  <resultMap id="BaseResultMap" type="com.wynne.Entity.LogCustom" >
+    <result column="UserId" property="userid" jdbcType="INTEGER" />
+    <result column="UserName" property="username" jdbcType="VARCHAR" />
+    <result column="UserOperate" property="useroperate" jdbcType="VARCHAR" />
+    <result column="Time" property="time" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.wynne.Entity.LogCustom" >
+    insert into log (UserId, UserName, UserOperate, 
+      Time)
+    values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{useroperate,jdbcType=VARCHAR}, 
+      #{time,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wynne.Entity.LogCustom" >
+    insert into log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        UserId,
+      </if>
+      <if test="username != null" >
+        UserName,
+      </if>
+      <if test="useroperate != null" >
+        UserOperate,
+      </if>
+      <if test="time != null" >
+        Time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="useroperate != null" >
+        #{useroperate,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

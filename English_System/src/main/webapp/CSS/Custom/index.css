@@ -1,0 +1,18 @@
+
+.images{width:80%;margin:0 auto;}
+
+.setting_infoshow{margin:8% auto;}
+
+#footer {
+    background: #333;
+    color: #eee;
+    font-size: 11px;
+    padding: 20px;
+}
+ul .unstyled {
+    list-style: none;
+    padding: 0;
+}
+footer h6 {
+    color: white;
+}    
