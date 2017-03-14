@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wynne.Dao.Cet4_Part3AMapper" >
+  <resultMap id="BaseResultMap" type="com.wynne.Entity.Cet4_Part3A" >
+    <id column="cet4_part3A_id" property="cet4Part3aId" jdbcType="VARCHAR" />
+    <result column="cet4_part3A_body" property="cet4Part3aBody" jdbcType="VARCHAR" />
+    <result column="cet4_part3A_comment" property="cet4Part3aComment" jdbcType="VARCHAR" />
+    <result column="cet4_part3A_A" property="cet4Part3aA" jdbcType="VARCHAR" />
+    <result column="cet4_part3A_B" property="cet4Part3aB" jdbcType="VARCHAR" />
+    <result column="cet4_part3A_C" property="cet4Part3aC" jdbcType="VARCHAR" />
+    <result column="cet4_part3A_D" property="cet4Part3aD" jdbcType="VARCHAR" />
+    <result column="cet4_part3A_E" property="cet4Part3aE" jdbcType="VARCHAR" />
+    <result column="cet4_part3A_F" property="cet4Part3aF" jdbcType="VARCHAR" />
+    <result column="cet4_part3A_G" property="cet4Part3aG" jdbcType="VARCHAR" />
+    <result column="cet4_part3A_H" property="cet4Part3aH" jdbcType="VARCHAR" />
+    <result column="cet4_part3A_I" property="cet4Part3aI" jdbcType="VARCHAR" />
+    <result column="cet4_part3A_J" property="cet4Part3aJ" jdbcType="VARCHAR" />
+    <result column="cet4_part3A_K" property="cet4Part3aK" jdbcType="VARCHAR" />
+    <result column="cet4_part3A_L" property="cet4Part3aL" jdbcType="VARCHAR" />
+    <result column="cet4_part3A_M" property="cet4Part3aM" jdbcType="VARCHAR" />
+    <result column="cet4_part3A_N" property="cet4Part3aN" jdbcType="VARCHAR" />
+    <result column="cet4_part3A_O" property="cet4Part3aO" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cet4_part3A_id, cet4_part3A_body, cet4_part3A_comment, cet4_part3A_A, cet4_part3A_B, 
+    cet4_part3A_C, cet4_part3A_D, cet4_part3A_E, cet4_part3A_F, cet4_part3A_G, cet4_part3A_H, 
+    cet4_part3A_I, cet4_part3A_J, cet4_part3A_K, cet4_part3A_L, cet4_part3A_M, cet4_part3A_N, 
+    cet4_part3A_O
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from cet4_part3a
+    where cet4_part3A_id = #{cet4Part3aId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from cet4_part3a
+    where cet4_part3A_id = #{cet4Part3aId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wynne.Entity.Cet4_Part3A" >
+    insert into cet4_part3a (cet4_part3A_id, cet4_part3A_body, cet4_part3A_comment, 
+      cet4_part3A_A, cet4_part3A_B, cet4_part3A_C, 
+      cet4_part3A_D, cet4_part3A_E, cet4_part3A_F, 
+      cet4_part3A_G, cet4_part3A_H, cet4_part3A_I, 
+      cet4_part3A_J, cet4_part3A_K, cet4_part3A_L, 
+      cet4_part3A_M, cet4_part3A_N, cet4_part3A_O
+      )
+    values (#{cet4Part3aId,jdbcType=VARCHAR}, #{cet4Part3aBody,jdbcType=VARCHAR}, #{cet4Part3aComment,jdbcType=VARCHAR}, 
+      #{cet4Part3aA,jdbcType=VARCHAR}, #{cet4Part3aB,jdbcType=VARCHAR}, #{cet4Part3aC,jdbcType=VARCHAR}, 
+      #{cet4Part3aD,jdbcType=VARCHAR}, #{cet4Part3aE,jdbcType=VARCHAR}, #{cet4Part3aF,jdbcType=VARCHAR}, 
+      #{cet4Part3aG,jdbcType=VARCHAR}, #{cet4Part3aH,jdbcType=VARCHAR}, #{cet4Part3aI,jdbcType=VARCHAR}, 
+      #{cet4Part3aJ,jdbcType=VARCHAR}, #{cet4Part3aK,jdbcType=VARCHAR}, #{cet4Part3aL,jdbcType=VARCHAR}, 
+      #{cet4Part3aM,jdbcType=VARCHAR}, #{cet4Part3aN,jdbcType=VARCHAR}, #{cet4Part3aO,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wynne.Entity.Cet4_Part3A" >
+    insert into cet4_part3a
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cet4Part3aId != null" >
+        cet4_part3A_id,
+      </if>
+      <if test="cet4Part3aBody != null" >
+        cet4_part3A_body,
+      </if>
+      <if test="cet4Part3aComment != null" >
+        cet4_part3A_comment,
+      </if>
+      <if test="cet4Part3aA != null" >
+        cet4_part3A_A,
+      </if>
+      <if test="cet4Part3aB != null" >
+        cet4_part3A_B,
+      </if>
+      <if test="cet4Part3aC != null" >
+        cet4_part3A_C,
+      </if>
+      <if test="cet4Part3aD != null" >
+        cet4_part3A_D,
+      </if>
+      <if test="cet4Part3aE != null" >
+        cet4_part3A_E,
+      </if>
+      <if test="cet4Part3aF != null" >
+        cet4_part3A_F,
+      </if>
+      <if test="cet4Part3aG != null" >
+        cet4_part3A_G,
+      </if>
+      <if test="cet4Part3aH != null" >
+        cet4_part3A_H,
+      </if>
+      <if test="cet4Part3aI != null" >
+        cet4_part3A_I,
+      </if>
+      <if test="cet4Part3aJ != null" >
+        cet4_part3A_J,
+      </if>
+      <if test="cet4Part3aK != null" >
+        cet4_part3A_K,
+      </if>
+      <if test="cet4Part3aL != null" >
+        cet4_part3A_L,
+      </if>
+      <if test="cet4Part3aM != null" >
+        cet4_part3A_M,
+      </if>
+      <if test="cet4Part3aN != null" >
+        cet4_part3A_N,
+      </if>
+      <if test="cet4Part3aO != null" >
+        cet4_part3A_O,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cet4Part3aId != null" >
+        #{cet4Part3aId,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aBody != null" >
+        #{cet4Part3aBody,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aComment != null" >
+        #{cet4Part3aComment,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aA != null" >
+        #{cet4Part3aA,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aB != null" >
+        #{cet4Part3aB,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aC != null" >
+        #{cet4Part3aC,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aD != null" >
+        #{cet4Part3aD,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aE != null" >
+        #{cet4Part3aE,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aF != null" >
+        #{cet4Part3aF,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aG != null" >
+        #{cet4Part3aG,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aH != null" >
+        #{cet4Part3aH,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aI != null" >
+        #{cet4Part3aI,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aJ != null" >
+        #{cet4Part3aJ,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aK != null" >
+        #{cet4Part3aK,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aL != null" >
+        #{cet4Part3aL,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aM != null" >
+        #{cet4Part3aM,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aN != null" >
+        #{cet4Part3aN,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aO != null" >
+        #{cet4Part3aO,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wynne.Entity.Cet4_Part3A" >
+    update cet4_part3a
+    <set >
+      <if test="cet4Part3aBody != null" >
+        cet4_part3A_body = #{cet4Part3aBody,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aComment != null" >
+        cet4_part3A_comment = #{cet4Part3aComment,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aA != null" >
+        cet4_part3A_A = #{cet4Part3aA,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aB != null" >
+        cet4_part3A_B = #{cet4Part3aB,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aC != null" >
+        cet4_part3A_C = #{cet4Part3aC,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aD != null" >
+        cet4_part3A_D = #{cet4Part3aD,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aE != null" >
+        cet4_part3A_E = #{cet4Part3aE,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aF != null" >
+        cet4_part3A_F = #{cet4Part3aF,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aG != null" >
+        cet4_part3A_G = #{cet4Part3aG,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aH != null" >
+        cet4_part3A_H = #{cet4Part3aH,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aI != null" >
+        cet4_part3A_I = #{cet4Part3aI,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aJ != null" >
+        cet4_part3A_J = #{cet4Part3aJ,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aK != null" >
+        cet4_part3A_K = #{cet4Part3aK,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aL != null" >
+        cet4_part3A_L = #{cet4Part3aL,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aM != null" >
+        cet4_part3A_M = #{cet4Part3aM,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aN != null" >
+        cet4_part3A_N = #{cet4Part3aN,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part3aO != null" >
+        cet4_part3A_O = #{cet4Part3aO,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cet4_part3A_id = #{cet4Part3aId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wynne.Entity.Cet4_Part3A" >
+    update cet4_part3a
+    set cet4_part3A_body = #{cet4Part3aBody,jdbcType=VARCHAR},
+      cet4_part3A_comment = #{cet4Part3aComment,jdbcType=VARCHAR},
+      cet4_part3A_A = #{cet4Part3aA,jdbcType=VARCHAR},
+      cet4_part3A_B = #{cet4Part3aB,jdbcType=VARCHAR},
+      cet4_part3A_C = #{cet4Part3aC,jdbcType=VARCHAR},
+      cet4_part3A_D = #{cet4Part3aD,jdbcType=VARCHAR},
+      cet4_part3A_E = #{cet4Part3aE,jdbcType=VARCHAR},
+      cet4_part3A_F = #{cet4Part3aF,jdbcType=VARCHAR},
+      cet4_part3A_G = #{cet4Part3aG,jdbcType=VARCHAR},
+      cet4_part3A_H = #{cet4Part3aH,jdbcType=VARCHAR},
+      cet4_part3A_I = #{cet4Part3aI,jdbcType=VARCHAR},
+      cet4_part3A_J = #{cet4Part3aJ,jdbcType=VARCHAR},
+      cet4_part3A_K = #{cet4Part3aK,jdbcType=VARCHAR},
+      cet4_part3A_L = #{cet4Part3aL,jdbcType=VARCHAR},
+      cet4_part3A_M = #{cet4Part3aM,jdbcType=VARCHAR},
+      cet4_part3A_N = #{cet4Part3aN,jdbcType=VARCHAR},
+      cet4_part3A_O = #{cet4Part3aO,jdbcType=VARCHAR}
+    where cet4_part3A_id = #{cet4Part3aId,jdbcType=VARCHAR}
+  </update>
+</mapper>

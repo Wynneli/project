@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wynne.Dao.Cet4_Part3CMapper" >
+  <resultMap id="BaseResultMap" type="com.wynne.Entity.Cet4_Part3C" >
+    <id column="cet4_partC_id" property="cet4PartcId" jdbcType="INTEGER" />
+    <result column="cet4_partC_ids" property="cet4PartcIds" jdbcType="VARCHAR" />
+    <result column="cet4_partC_passage" property="cet4PartcPassage" jdbcType="VARCHAR" />
+    <result column="cet4_partC_article" property="cet4PartcArticle" jdbcType="VARCHAR" />
+    <result column="cet4_partC_question" property="cet4PartcQuestion" jdbcType="VARCHAR" />
+    <result column="cet4_partC_A" property="cet4PartcA" jdbcType="VARCHAR" />
+    <result column="cet4_partC_B" property="cet4PartcB" jdbcType="VARCHAR" />
+    <result column="cet4_partC_C" property="cet4PartcC" jdbcType="VARCHAR" />
+    <result column="cet4_partC_D" property="cet4PartcD" jdbcType="VARCHAR" />
+    <result column="cet4_partC_info" property="cet4PartcInfo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cet4_partC_id, cet4_partC_ids, cet4_partC_passage, cet4_partC_article, cet4_partC_question, 
+    cet4_partC_A, cet4_partC_B, cet4_partC_C, cet4_partC_D, cet4_partC_info
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cet4_part3c
+    where cet4_partC_id = #{cet4PartcId,jdbcType=INTEGER}
+  </select>
+  <select id="selectBycet4PartcIds" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from cet4_part3c
+    where cet4_partC_ids = #{cet4PartcIds,jdbcType=INTEGER} order by cet4_partC_id
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cet4_part3c
+    where cet4_partC_id = #{cet4PartcId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wynne.Entity.Cet4_Part3C" >
+    insert into cet4_part3c (cet4_partC_id, cet4_partC_ids, cet4_partC_passage, 
+      cet4_partC_article, cet4_partC_question, cet4_partC_A, 
+      cet4_partC_B, cet4_partC_C, cet4_partC_D, 
+      cet4_partC_info)
+    values (#{cet4PartcId,jdbcType=INTEGER}, #{cet4PartcIds,jdbcType=VARCHAR}, #{cet4PartcPassage,jdbcType=VARCHAR}, 
+      #{cet4PartcArticle,jdbcType=VARCHAR}, #{cet4PartcQuestion,jdbcType=VARCHAR}, #{cet4PartcA,jdbcType=VARCHAR}, 
+      #{cet4PartcB,jdbcType=VARCHAR}, #{cet4PartcC,jdbcType=VARCHAR}, #{cet4PartcD,jdbcType=VARCHAR}, 
+      #{cet4PartcInfo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wynne.Entity.Cet4_Part3C" >
+    insert into cet4_part3c
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cet4PartcId != null" >
+        cet4_partC_id,
+      </if>
+      <if test="cet4PartcIds != null" >
+        cet4_partC_ids,
+      </if>
+      <if test="cet4PartcPassage != null" >
+        cet4_partC_passage,
+      </if>
+      <if test="cet4PartcArticle != null" >
+        cet4_partC_article,
+      </if>
+      <if test="cet4PartcQuestion != null" >
+        cet4_partC_question,
+      </if>
+      <if test="cet4PartcA != null" >
+        cet4_partC_A,
+      </if>
+      <if test="cet4PartcB != null" >
+        cet4_partC_B,
+      </if>
+      <if test="cet4PartcC != null" >
+        cet4_partC_C,
+      </if>
+      <if test="cet4PartcD != null" >
+        cet4_partC_D,
+      </if>
+      <if test="cet4PartcInfo != null" >
+        cet4_partC_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cet4PartcId != null" >
+        #{cet4PartcId,jdbcType=INTEGER},
+      </if>
+      <if test="cet4PartcIds != null" >
+        #{cet4PartcIds,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4PartcPassage != null" >
+        #{cet4PartcPassage,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4PartcArticle != null" >
+        #{cet4PartcArticle,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4PartcQuestion != null" >
+        #{cet4PartcQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4PartcA != null" >
+        #{cet4PartcA,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4PartcB != null" >
+        #{cet4PartcB,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4PartcC != null" >
+        #{cet4PartcC,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4PartcD != null" >
+        #{cet4PartcD,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4PartcInfo != null" >
+        #{cet4PartcInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wynne.Entity.Cet4_Part3C" >
+    update cet4_part3c
+    <set >
+      <if test="cet4PartcIds != null" >
+        cet4_partC_ids = #{cet4PartcIds,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4PartcPassage != null" >
+        cet4_partC_passage = #{cet4PartcPassage,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4PartcArticle != null" >
+        cet4_partC_article = #{cet4PartcArticle,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4PartcQuestion != null" >
+        cet4_partC_question = #{cet4PartcQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4PartcA != null" >
+        cet4_partC_A = #{cet4PartcA,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4PartcB != null" >
+        cet4_partC_B = #{cet4PartcB,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4PartcC != null" >
+        cet4_partC_C = #{cet4PartcC,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4PartcD != null" >
+        cet4_partC_D = #{cet4PartcD,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4PartcInfo != null" >
+        cet4_partC_info = #{cet4PartcInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cet4_partC_id = #{cet4PartcId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wynne.Entity.Cet4_Part3C" >
+    update cet4_part3c
+    set cet4_partC_ids = #{cet4PartcIds,jdbcType=VARCHAR},
+      cet4_partC_passage = #{cet4PartcPassage,jdbcType=VARCHAR},
+      cet4_partC_article = #{cet4PartcArticle,jdbcType=VARCHAR},
+      cet4_partC_question = #{cet4PartcQuestion,jdbcType=VARCHAR},
+      cet4_partC_A = #{cet4PartcA,jdbcType=VARCHAR},
+      cet4_partC_B = #{cet4PartcB,jdbcType=VARCHAR},
+      cet4_partC_C = #{cet4PartcC,jdbcType=VARCHAR},
+      cet4_partC_D = #{cet4PartcD,jdbcType=VARCHAR},
+      cet4_partC_info = #{cet4PartcInfo,jdbcType=VARCHAR}
+    where cet4_partC_id = #{cet4PartcId,jdbcType=INTEGER}
+  </update>
+</mapper>

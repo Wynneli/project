@@ -4,6 +4,7 @@ package com.wynne.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import org.apache.catalina.connector.Request;
@@ -31,16 +32,24 @@ public class UserController {
 	private IUserService userService;     
 	@RequestMapping("/login")
 	public String showUserName(UserCustom userCustom,HttpServletRequest request
-			,HttpServletResponse response,RedirectAttributes redirectAttributes)throws Throwable{
+			,HttpServletResponse response,HttpSession session)throws Throwable{
 		//		System.out.println(userCustom.getUserpassword()+"\t"+userCustom.getUserphone());
 		UserCustom user=userService.getUserByPhone(userCustom.getUserphone(), userCustom.getUserpassword());
 		//		System.out.println(user);
 		if(user!=null){
-			redirectAttributes.addAttribute("username", 1234);
+			//			System.out.println(user.getUsername());
+			//			String name=user.getUsername();
+			session.setAttribute("user",user);
 			return "redirect:/";
 			//request.getRequestDispatcher("/index.jsp").forward(request, response);
 		}
 		return "jsp/error";
+	}
+
+	@RequestMapping("/login_out")
+	public String login_out(HttpSession session)throws Throwable{
+		session.invalidate();
+		return "redirect:/";
 	}
 
 	@RequestMapping("/register")

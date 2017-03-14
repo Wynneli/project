@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wynne.Dao.CommentMapper" >
+  <resultMap id="BaseResultMap" type="com.wynne.Entity.CommentCustom" >
+    <id column="topic_id" property="topicId" jdbcType="VARCHAR" />
+    <result column="comment_id" property="commentId" jdbcType="CHAR" />
+    <result column="comment_content" property="commentContent" jdbcType="VARCHAR" />
+    <result column="comment_uid" property="commentUid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    topic_id, comment_id, comment_content, comment_uid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from comment
+    where topic_id = #{topicId,jdbcType=VARCHAR}
+  </select>
+  <select id="findCommentBycommentId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from comment
+    where comment_id = #{commentId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from comment
+    where topic_id = #{topicId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wynne.Entity.CommentCustom" >
+    insert into comment (topic_id, comment_id, comment_content, 
+      comment_uid)
+    values (#{topicId,jdbcType=VARCHAR}, #{commentId,jdbcType=CHAR}, #{commentContent,jdbcType=VARCHAR}, 
+      #{commentUid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wynne.Entity.CommentCustom" >
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="topicId != null" >
+        topic_id,
+      </if>
+      <if test="commentId != null" >
+        comment_id,
+      </if>
+      <if test="commentContent != null" >
+        comment_content,
+      </if>
+      <if test="commentUid != null" >
+        comment_uid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="topicId != null" >
+        #{topicId,jdbcType=VARCHAR},
+      </if>
+      <if test="commentId != null" >
+        #{commentId,jdbcType=CHAR},
+      </if>
+      <if test="commentContent != null" >
+        #{commentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="commentUid != null" >
+        #{commentUid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wynne.Entity.CommentCustom" >
+    update comment
+    <set >
+      <if test="commentId != null" >
+        comment_id = #{commentId,jdbcType=CHAR},
+      </if>
+      <if test="commentContent != null" >
+        comment_content = #{commentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="commentUid != null" >
+        comment_uid = #{commentUid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where topic_id = #{topicId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wynne.Entity.CommentCustom" >
+    update comment
+    set comment_id = #{commentId,jdbcType=CHAR},
+      comment_content = #{commentContent,jdbcType=VARCHAR},
+      comment_uid = #{commentUid,jdbcType=INTEGER}
+    where topic_id = #{topicId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -8,19 +8,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wynne.Dao.Cet4Mapper;
+import com.wynne.Dao.ProcessMapper;
+import com.wynne.Dao.Unknown_WordMapper;
 import com.wynne.Entity.Cet4Custom;
-import com.wynne.Serivce.ICet4Loading;
+import com.wynne.Entity.ProcessCustom;
+import com.wynne.Entity.Unknown_WordCustom;
+import com.wynne.Serivce.ICet4LoadingService;
 
+/**
+ *<p>Title: </p>
+ *<p>Description:相关cet4Service实现 </p>
+ * @author liweining
+ *@date 2017年3月9日 下午5:05:22 
+ */
 @Service("cet4LoadingService")
-public class Cet4LoadingServiceImpl  implements ICet4Loading{
+public class Cet4LoadingServiceImpl  implements ICet4LoadingService{
+
+	@Autowired
+	private ProcessMapper processCustom;
 	
+	@Autowired
+	private Unknown_WordMapper unknown_WordMapper;
+
 	@Autowired
 	private Cet4Mapper cet4Mapper;
 	private static  final String cet4="cet4_";
 	private static  final String cet6="cet6_"; 
 	private static  final String zero="0000";
-	
-	
+
+
 	public void Add() throws Exception {
 		BufferedReader reader =null;
 		String line=null;
@@ -60,7 +76,27 @@ public class Cet4LoadingServiceImpl  implements ICet4Loading{
 			line=reader.readLine();
 		}
 		reader.close();
-		
+
+	}
+
+
+	public ProcessCustom Loading_Cet4(Integer pUserId) {
+		return processCustom.selectBypUserId(pUserId);
+	}
+
+
+	public Cet4Custom Select_cet4_info_ByPrimary(String cet4Id) {
+		return cet4Mapper.selectByPrimaryKey(cet4Id);
+	}
+
+
+	public int Add_UnknownWord(Unknown_WordCustom wordCustom) {
+		return unknown_WordMapper.insert(wordCustom);
+	}
+
+
+	public int Remove_UnknownWord(String  unCetId) {
+		return unknown_WordMapper.deleteByunCetId(unCetId);
 	}
 
 }

@@ -27,7 +27,12 @@
 <script type="text/javascript"
 	src="<%=basePath%>JS/Third_Party/mzui.min.js"></script>
 </head>
-
+<script type="text/javascript">
+	function login_out() {
+		document.form1.action = "${pageContext.request.contextPath}user/login_out";
+		document.form1.submit();
+	}
+</script>
 <body>
 	<nav class="navbar navbar-inverse" role="navigation">
 	<div class="container-fluid navigation">
@@ -40,28 +45,49 @@
 					class="icon-bar"></span> <span class="icon-bar"></span>
 			</button>
 			<!-- 品牌名称或logo -->
-			<a class="navbar-brand" href="your/nice/url">OEL</a>
+			<a class="navbar-brand" href="#">OEL</a>
 		</div>
 		<!-- 导航项目 -->
 		<div class="collapse navbar-collapse navbar-collapse-example">
 			<!-- 一般导航项目 -->
 			<ul class="nav navbar-nav">
 
-				<li class="active"><a href="your/nice/url"><i
+				<li class="active"><a href="<%=basePath%>"><i
 						class="icon-home"></i> 首页</a></li>
-				<li><a href="your/nice/url">快速学习</a></li>
+				<li class="dropdown" class="disabled"><a href="#" class="dropdown-toggle" data-toggle="dropdown">课程学习<b
+						class="caret"></b></a>
+					<ul class="dropdown-menu" role="menu" >
+						<li><a href="<%=basePath%>cet4/loading_cet4_word">4级英语学习</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#">6级英语学习</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#">大学英语学习</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#">高中英语学习</a></li>
+					</ul>
+				</li>
+				
 				<!-- 导航中的下拉菜单 -->
-				<li class="dropdown"><a href="your/nice/url"
+				<li class="dropdown"><a href="#"
 					class="dropdown-toggle" data-toggle="dropdown">在线测试 <b
 						class="caret"></b></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="your/nice/url">任务</a></li>
-					</ul></li>
-				<li><a href="your/nice/url">快速学习</a></li>
-				<li><a href="your/nice/url"></a></li>
-				<li><a href="your/nice/url"></a></li>
+						<li><a href="<%=basePath%>Page/cet4/cet4_questions.jsp">四级真题</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#">试题测试</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#">试题测试</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#">试题测试</a></li>
+					</ul>
+				</li>
+				<li><a href="#">快速学习</a></li>
+				<li><a href="#"></a></li>
+				<li><a href="#"></a></li>
 			</ul>
-			<form class="navbar-form navbar-left" role="search">
+
+
+			<form name="submit" class="navbar-form navbar-left" role="search">
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="搜索">
 				</div>
@@ -72,32 +98,35 @@
 
 			<!-- 右侧的导航项目 -->
 			<ul class="nav navbar-nav navbar-right">
-				<c:if test="${empty username}">
-					<li calss="login"><a href="<%=basePath%>Page/login/Login.jsp">登录</a></li>
-					<li calss="register"><a
-						href="<%=basePath%>Page/login/Register.jsp">注册</a></li>
+				<c:if test="${empty user}">
+					<li><a href="<%=basePath%>Page/login/Login.jsp">登录</a></li>
+					<li><a href="<%=basePath%>Page/login/Register.jsp">注册</a></li>
 				</c:if>
-				<c:if test="${not empty username}">
-					<li><a>欢迎你：张三</a></li>
-					<li ><a class="dropdown-toggle"
-						data-toggle="dropdown" href="<%=basePath%>Page/login/Register.jsp">退出登录</a></li>
+				
+				<c:if test="${not empty user}">
+					<li class="dropdown"><a href="<%=basePath%>Page/success.jsp" class="dropdown-toggle" data-toggle="dropdown">欢迎你：${user.username}</a>
+					   <ul class="dropdown-menu" role="menu">
+					      <li><a href="#">6级英语学习</a></li>
+					   </ul>
+					</li>
 				</c:if>
+				
+				
 				<li><a href="<%=basePath%>Page/Login.jsp">帮助</a></li>
-				<li class="dropdown"><a href="your/nice/url"
+				<li class="dropdown"><a href="#"
 					class="dropdown-toggle" data-toggle="dropdown">探索 <b
 						class="caret"></b></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="your/nice/url">敏捷开发</a></li>
-						<li><a href="your/nice/url">HTML5</a></li>
-						<li><a href="your/nice/url">Javascript</a></li>
+						<li><a href="#">敏捷开发</a></li>
+						<li><a href="#">HTML5</a></li>
+						<li><a href="#">Javascript</a></li>
 						<li class="divider"></li>
-						<li><a href="your/nice/url">探索宇宙</a></li>
+						<li><a href="#">探索宇宙</a></li>
 					</ul></li>
 			</ul>
 		</div>
 	</div>
 	</nav>
-
 
 
 	<div class="container">
@@ -128,13 +157,9 @@
 			</div>
 			<!-- 轮播（Carousel）导航 -->
 			<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-			<a class="carousel-control right" href="#myCarousel"
-				data-slide="next">&rsaquo;</a>
+			<a class="carousel-control right" href="#myCarousel"data-slide="next">&rsaquo;</a>
 		</div>
 
-  
-        <input type="text" name="show" value="${username}">
-  
 		<!-- 最新资讯展现 -->
 
 		<div class="cards">
@@ -244,47 +269,15 @@
 	<!--  container结束-->
 
 
-	<br />
+	<br/>
 
 
 
 
-	<footer>
-	<div class="row" style="background-color: #353535; color: white;">
-		<div class="col-sm-2">
-			<h6>Copyright &copy;英语在线学习</h6>
-		</div>
 
-		<div class="col-sm-4">
-			<h6>关于我们</h6>
-			<p>中国上海/2014年8月14日 — 服务于中国及全球华人社群的领先在线媒体公司新浪公司(NASDAQ GS:
-				SINA)今日公布了截至2014年6月30日的第二季度未经审计的财务报告。</p>
-		</div>
 
-		<div class="col-sm-2">
-			<h6>导航</h6>
-			<ul style="list-style: none; padding: 0; color: red;">
-				<li><a href="">主页</a></li>
-				<li><a href="">服务</a></li>
-				<li><a href="">链接</a></li>
-				<li><a href="">联系我们</a></li>
-			</ul>
-		</div>
 
-		<div class="col-sm-2">
-			<h6>Follow us</h6>
-			<ul style="list-style: none; padding: 0;">
-				<li><a href="">微博</a></li>
-				<li><a href="">微信</a></li>
-				<li><a href="">来往</a></li>
-			</ul>
-		</div>
-
-		<div class="col-sm-2">
-			<h6>
-				本网站由<span class="glyphicon glyphicon-heart"></span>Darren制作
-			</h6>
-		</div>
-	</div>
+	<footer class="container-fluid text-center">
+	  <p>Footer Text</p>
 	</footer>
 </body>

@@ -15,4 +15,21 @@ ul .unstyled {
 }
 footer h6 {
     color: white;
-}    
+}  
+
+/*cet4_vocabulary_css */
+
+.cet4_span{margin-left:17%;}
+
+
+.cet4_heart_span{margin-left:5%;}
+
+.cet4_a{color:#0080c0;}
+.cet4_a:hover{color:red;text-decoration: none;}
+/*覆盖zui。css的样式*/
+.bg-primary-custom{
+    color: #fff;
+    background-color: #ffffff ;
+}
+
+.cet4_a:hover{text-decoration:none;t}

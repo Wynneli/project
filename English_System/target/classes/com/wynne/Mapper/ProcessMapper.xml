@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wynne.Dao.ProcessMapper" >
+  <resultMap id="BaseResultMap" type="com.wynne.Entity.ProcessCustom" >
+    <id column="process_id" property="processId" jdbcType="INTEGER" />
+    <result column="p_user_id" property="pUserId" jdbcType="INTEGER" />
+    <result column="p_cet4_id" property="pCet4Id" jdbcType="CHAR" />
+    <result column="p_cet6_id" property="pCet6Id" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    process_id, p_user_id, p_cet4_id, p_cet6_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from process
+    where process_id = #{processId,jdbcType=INTEGER}
+  </select>
+  <select id="selectBypUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from process
+    where p_user_id = #{pUserId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from process
+    where process_id = #{processId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wynne.Entity.ProcessCustom" >
+    insert into process (process_id, p_user_id, p_cet4_id, 
+      p_cet6_id)
+    values (#{processId,jdbcType=INTEGER}, #{pUserId,jdbcType=INTEGER}, #{pCet4Id,jdbcType=CHAR}, 
+      #{pCet6Id,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wynne.Entity.ProcessCustom" >
+    insert into process
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="processId != null" >
+        process_id,
+      </if>
+      <if test="pUserId != null" >
+        p_user_id,
+      </if>
+      <if test="pCet4Id != null" >
+        p_cet4_id,
+      </if>
+      <if test="pCet6Id != null" >
+        p_cet6_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="processId != null" >
+        #{processId,jdbcType=INTEGER},
+      </if>
+      <if test="pUserId != null" >
+        #{pUserId,jdbcType=INTEGER},
+      </if>
+      <if test="pCet4Id != null" >
+        #{pCet4Id,jdbcType=CHAR},
+      </if>
+      <if test="pCet6Id != null" >
+        #{pCet6Id,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wynne.Entity.ProcessCustom" >
+    update process
+    <set >
+      <if test="pUserId != null" >
+        p_user_id = #{pUserId,jdbcType=INTEGER},
+      </if>
+      <if test="pCet4Id != null" >
+        p_cet4_id = #{pCet4Id,jdbcType=CHAR},
+      </if>
+      <if test="pCet6Id != null" >
+        p_cet6_id = #{pCet6Id,jdbcType=CHAR},
+      </if>
+    </set>
+    where process_id = #{processId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wynne.Entity.ProcessCustom" >
+    update process
+    set p_user_id = #{pUserId,jdbcType=INTEGER},
+      p_cet4_id = #{pCet4Id,jdbcType=CHAR},
+      p_cet6_id = #{pCet6Id,jdbcType=CHAR}
+    where process_id = #{processId,jdbcType=INTEGER}
+  </update>
+</mapper>

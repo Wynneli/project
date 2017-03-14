@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wynne.Dao.Cet4_Part4Mapper" >
+  <resultMap id="BaseResultMap" type="com.wynne.Entity.Cet4_Part4" >
+    <id column="cet4_part4_id" property="cet4Part4Id" jdbcType="VARCHAR" />
+    <result column="cet4_part4_content" property="cet4Part4Content" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cet4_part4_id, cet4_part4_content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from cet4_part4
+    where cet4_part4_id = #{cet4Part4Id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from cet4_part4
+    where cet4_part4_id = #{cet4Part4Id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wynne.Entity.Cet4_Part4" >
+    insert into cet4_part4 (cet4_part4_id, cet4_part4_content)
+    values (#{cet4Part4Id,jdbcType=VARCHAR}, #{cet4Part4Content,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wynne.Entity.Cet4_Part4" >
+    insert into cet4_part4
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cet4Part4Id != null" >
+        cet4_part4_id,
+      </if>
+      <if test="cet4Part4Content != null" >
+        cet4_part4_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cet4Part4Id != null" >
+        #{cet4Part4Id,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Part4Content != null" >
+        #{cet4Part4Content,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wynne.Entity.Cet4_Part4" >
+    update cet4_part4
+    <set >
+      <if test="cet4Part4Content != null" >
+        cet4_part4_content = #{cet4Part4Content,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cet4_part4_id = #{cet4Part4Id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wynne.Entity.Cet4_Part4" >
+    update cet4_part4
+    set cet4_part4_content = #{cet4Part4Content,jdbcType=VARCHAR}
+    where cet4_part4_id = #{cet4Part4Id,jdbcType=VARCHAR}
+  </update>
+</mapper>
