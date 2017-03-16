@@ -6,13 +6,13 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONObject;
 import com.wynne.Entity.Cet4;
 import com.wynne.Entity.Cet4Custom;
 import com.wynne.Entity.Cet4_Part1Custom;
@@ -26,6 +26,7 @@ import com.wynne.Entity.Unknown_WordCustom;
 import com.wynne.Entity.UserCustom;
 import com.wynne.Serivce.ICet4LoadingService;
 import com.wynne.Serivce.ICet4_partService;
+import com.wynne.Utils.HandleUserName;
 
 /**
  *<p>Title: </p>
@@ -36,7 +37,8 @@ import com.wynne.Serivce.ICet4_partService;
 @Controller
 @RequestMapping("cet4")
 public class Cet4Controller {
-
+	private final static String SUCCESS="success";
+	private final static String FAILURE="failure";
 	@Autowired
 	private ICet4LoadingService cet4LoadingService;
 	@Autowired
@@ -70,16 +72,17 @@ public class Cet4Controller {
 
 
 	@RequestMapping("/nextword")
-	public @ResponseBody Cet4Custom nextword(@RequestBody Cet4Custom cet4Custom)throws Exception{
+	public @ResponseBody Object nextword(HttpServletRequest request,Cet4Custom cet4Custom)throws Exception{
 		System.out.println("执行nextword");
-		String cet4_id=cet4Custom.getCet4Id();
-		System.out.println(cet4_id);
-		if(cet4_id.equals("")){
+		JSONObject jsonObject = new JSONObject(); 
+		jsonObject.put("message", "收入我的词库");
+		String cet4_id=request.getParameter("cet4Id");
+		String username=HandleUserName.handle(request.getParameter("username"));
+		//		System.out.println(cet4_id+username);
+		if(cet4_id.trim().equals("")){
 			cet4_id="cet4_0001";
 		}else{
 			cet4_id=cet4Custom.getCet4Id();
-//			System.out.println(cet4_id);
-//			System.out.println(cet4_id.substring(5, cet4_id.length()));
 			int num=Integer.parseInt(cet4_id.substring(5, cet4_id.length()))+1;
 			String num2=String.valueOf(num);
 			if(num2.length()==1){
@@ -92,8 +95,19 @@ public class Cet4Controller {
 			cet4_id=CET4_+num2;
 		}
 		cet4Custom=cet4LoadingService.Select_cet4_info_ByPrimary(cet4_id);
-//		System.out.println(cet4Custom.toString());
-		return cet4Custom;
+		jsonObject.put("Cet4Id", cet4Custom.getCet4Id());
+		jsonObject.put("Cet4Meaning", cet4Custom.getCet4Meaning());
+		jsonObject.put("Cet4Pronunciation", cet4Custom.getCet4Pronunciation());
+		jsonObject.put("Cet4Vocabulary", cet4Custom.getCet4Vocabulary());
+		if(!username.trim().equals("")){
+			System.out.println("查询我的词库");
+			Unknown_WordCustom unknown_WordCustom=cet4LoadingService.findByusernameAndunCetId(cet4_id, username);
+			if(unknown_WordCustom!=null){
+				System.out.println("不为空");
+				jsonObject.put("message", "移出我的词库");
+			}
+		}
+		return jsonObject;
 	}
 
 	@RequestMapping("/preword")
@@ -102,8 +116,8 @@ public class Cet4Controller {
 		String cet4_id=cet4Custom.getCet4Id();
 		if(!cet4_id.equals("")&&!cet4_id.equals("cet4_0001")){
 			cet4_id=cet4Custom.getCet4Id();
-//			System.out.println(cet4_id);
-//			System.out.println(cet4_id.substring(5, cet4_id.length()));
+			//			System.out.println(cet4_id);
+			//			System.out.println(cet4_id.substring(5, cet4_id.length()));
 			int num=(Integer.parseInt(cet4_id.substring(5, cet4_id.length()))-1);
 			String num2=String.valueOf(num);
 			if(num2.length()==1){
@@ -210,21 +224,53 @@ public class Cet4Controller {
 		}
 		return "redirect:/Page/cet4/cet4_test_info.jsp";
 	}
-   
+
 	@RequestMapping("/add_unknown_word")
-	public void add_unknown_word(@RequestBody Cet4Custom cet4Custom){
-		Unknown_WordCustom wordCustom=null;
-		wordCustom.setUnCetId(cet4Custom.getCet4Id());
-		wordCustom.setUnCetMeaning(cet4Custom.getCet4Meaning());
-		wordCustom.setUnCetPronunciation(cet4Custom.getCet4Pronunciation());
-		wordCustom.setUnCetVocabulary(cet4Custom.getCet4Vocabulary());
-		cet4LoadingService.Add_UnknownWord(wordCustom);
+	public @ResponseBody Object add_unknown_word(HttpServletRequest request){
+		System.out.println("add_unknown_word");
+		JSONObject jsonObject=new JSONObject();
+		String username=null;
+		int num=0;
+		String cet=null;
+		Boolean flag=false;
+		cet=request.getParameter("cet4Id");
+		if(cet.equals("cet4_0001")){
+			System.out.println("zhen");
+			flag=true;
+		}
+		Unknown_WordCustom wordCustom=new Unknown_WordCustom();
+		if(!flag){
+			System.out.println("执行这里！");
+			wordCustom.setUnCetId(cet);
+			wordCustom.setUnCetMeaning(request.getParameter("cet4Meaning"));
+			wordCustom.setUnCetPronunciation(request.getParameter("cet4Pronunciation"));
+			wordCustom.setUnCetVocabulary(request.getParameter("cet4Vocabulary"));
+			username=HandleUserName.handle(request.getParameter("username"));
+			wordCustom.setUsername(username);
+			num=cet4LoadingService.Add_UnknownWord(wordCustom);
+
+		}else{
+			System.out.println("检查是否是第一个");
+			Unknown_WordCustom  unknown_WordCustom=cet4LoadingService.findByusernameAndunCetId("cet4_0001", username);
+			if(unknown_WordCustom!=null){
+				num=1;
+			}
+		}
+		if(num==1){
+			jsonObject.put("success", SUCCESS);
+		}else{
+			jsonObject.put("failure", FAILURE);
+		}
+		return jsonObject;
 	}
 
+
 	@RequestMapping("/remove_unknown_word")
-	public void remove_unknown_word(@RequestBody Cet4Custom cet4Custom){
+	public  @ResponseBody Cet4Custom remove_unknown_word(@RequestBody Cet4Custom cet4Custom){
+		System.out.println("remove_unknown_word");
 		String unCetId=cet4Custom.getCet4Id();
 		cet4LoadingService.Remove_UnknownWord(unCetId);
+		return cet4Custom;
 	}
 
 }

@@ -12,7 +12,6 @@ import com.wynne.Dao.Cet4_Part3BMapper;
 import com.wynne.Dao.Cet4_Part3CMapper;
 import com.wynne.Dao.Cet4_Part4Mapper;
 import com.wynne.Entity.Cet4_Part1Custom;
-import com.wynne.Entity.Cet4_Part2;
 import com.wynne.Entity.Cet4_Part2Custom;
 import com.wynne.Entity.Cet4_Part3A;
 import com.wynne.Entity.Cet4_Part3B;

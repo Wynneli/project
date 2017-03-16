@@ -1,5 +1,7 @@
 package com.wynne.Dao;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.wynne.Entity.Unknown_WordCustom;
 
 public interface Unknown_WordMapper {
@@ -16,4 +18,6 @@ public interface Unknown_WordMapper {
     int updateByPrimaryKey(Unknown_WordCustom record);
 
 	int deleteByunCetId(String unCetId);
+	
+	Unknown_WordCustom selectByusernameAndunCetId(@Param("unCetId") String unCetId,@Param("username") String username);
 }

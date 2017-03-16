@@ -3,7 +3,6 @@ package com.wynne.ServiceImpl;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +31,7 @@ public class Cet4LoadingServiceImpl  implements ICet4LoadingService{
 
 	@Autowired
 	private Cet4Mapper cet4Mapper;
+	
 	private static  final String cet4="cet4_";
 	private static  final String cet6="cet6_"; 
 	private static  final String zero="0000";
@@ -98,5 +98,13 @@ public class Cet4LoadingServiceImpl  implements ICet4LoadingService{
 	public int Remove_UnknownWord(String  unCetId) {
 		return unknown_WordMapper.deleteByunCetId(unCetId);
 	}
+
+
+	public Unknown_WordCustom findByusernameAndunCetId(String unCetId, String username) {
+		
+		return unknown_WordMapper.selectByusernameAndunCetId(unCetId, username);
+	}
+
+
 
 }

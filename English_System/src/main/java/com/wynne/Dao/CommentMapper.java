@@ -1,18 +1,19 @@
 package com.wynne.Dao;
 
 import java.util.List;
+
 import com.wynne.Entity.CommentCustom;
 
 public interface CommentMapper {
-    int deleteByPrimaryKey(String topicId);
+    int deleteByPrimaryKey(Integer CommentCustomId);
 
     int insert(CommentCustom record);
 
     int insertSelective(CommentCustom record);
 
-    CommentCustom selectByPrimaryKey(String topicId);
+    CommentCustom selectByPrimaryKey(Integer CommentCustomId);
     
-    List<CommentCustom> findCommentBycommentId(String commentId);
+    List<CommentCustom> selectCommentCustomBytopicId(String topicId);
 
     int updateByPrimaryKeySelective(CommentCustom record);
 

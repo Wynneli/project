@@ -1,5 +1,5 @@
 package com.wynne.Entity;
 
-public class CommentCustom extends Comment {
+public class CommentCustom extends Comment{
 
 }

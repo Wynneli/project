@@ -1,5 +1,7 @@
 package com.wynne.Entity;
 
+import java.util.List;
+
 /**
  *<p>Title:包装类 </p>
  *<p>Description:POJO的包装对象</p>

@@ -93,7 +93,7 @@
 
 				<c:if test="${not empty user}">
 					<li class="dropdown"><a href="<%=basePath%>Page/success.jsp"
-						class="dropdown-toggle" data-toggle="dropdown">欢迎你：${user.username}</a>
+						id="getusername" class="dropdown-toggle" data-toggle="dropdown">欢迎你：${user.username}</a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="#">6级英语学习</a></li>
 						</ul></li>
@@ -122,8 +122,8 @@
 					<div class="panel-heading">
 						<strong>4级词汇</strong><span class="cet4_heart_span"></span> <i
 							class="icon icon-heart"> <a class="cet4_a"
-							id="add_or_remove_unknown_word" onclick="add_or_remove_unknown_word()"
-							href="">收入我的词库</a>
+							id="add_or_remove_unknown_word"
+							onclick="add_or_remove_unknown_word()" href="#">收入我的词库</a>
 						</i>
 					</div>
 					<div class="panel-body">
@@ -132,7 +132,8 @@
 								<div class="row">
 									<div class="col-md-2">
 										<span id="cet4_info_pre"> <a href="#"><i
-												id="pre_word" class="icon icon-circle-arrow-left icon-3x" onclick="pre()"></i></a>
+												id="pre_word" class="icon icon-circle-arrow-left icon-3x"
+												onclick="pre()"></i></a>
 										</span>
 									</div>
 									<div class="col-md-1">
@@ -168,144 +169,58 @@
 		<p>
 			<a href="#" class="cet4_a"><button type="button"
 					class="btn btn-info btn-lg btn-block" data-toggle="collapse"
-					id="cet4_button" data-target="#collapseExample">展开评论</button></a>
+					id="cet4_button" data-target="#collapseExample" onclick="show_comment()">展开评论</button></a>
 		</p>
 		<div class="collapse" id="collapseExample">
-			<div class="bg-primary-custom with-padding">
-				<div class="container">
-					<div class="comments">
-						<header>
-						<div class="pull-right">
-							<a href="#commentReplyForm2" class="btn btn-primary"><i
-								class="icon-comment-alt"></i> 发表评论</a>
+			<div class="comments">
+				<header>
+				<div class="pull-right">
+					<a href="#commentReplyForm2" class="btn btn-primary" name="commit_comment" onclick="commit_comment()"><i
+						class="icon-comment-alt"></i> 发表评论</a>
+				</div>
+				<h3>所有评论</h3>
+				</header>
+				<section class="comments-list">
+				<div class="comment">
+					<a href="###" class="avatar"> <i
+						class="icon-camera-retro icon-2x"></i>
+					</a>
+					<div class="content">
+						<div class="pull-right text-muted">3 个小时前</div>
+						<div>
+							<a href="###"><strong>张士超</strong></a>
 						</div>
-						<h3>所有评论</h3>
-						</header>
-						<section class="comments-list">
-						<div class="comment">
-							<a href="###" class="avatar"> <i
-								class="icon-camera-retro icon-2x"></i>
-							</a>
-							<div class="content">
-								<div class="pull-right text-muted">3 个小时前</div>
-								<div>
-									<a href="###"><strong>张士超</strong></a>
-								</div>
-								<div class="text">今天玩的真开心！~~~~~~</div>
-								<div class="actions">
-									<a href="##">回复</a>
-								</div>
-							</div>
-							<div class="comments-list">
-								<div class="comment">
-									<a href="###" class="avatar"> <i class="icon-user icon-2x"></i>
-									</a>
-									<div class="content">
-										<div class="pull-right text-muted">2 个小时前</div>
-										<div>
-											<a href="###"><strong>Catouse</strong></a> <span
-												class="text-muted">回复</span> <a href="###">张士超</a>
-										</div>
-										<div class="text">你到底把我家钥匙放哪里了...</div>
-										<div class="actions">
-											<a href="##">回复</a> <a href="##">编辑</a> <a href="##">删除</a>
-										</div>
-									</div>
-									<div class="comments-list">
-										<div class="comment">
-											<a href="###" class="avatar"> <i
-												class="icon-yinyang icon-2x"></i>
-											</a>
-											<div class="content">
-												<div class="pull-right text-muted">1 个小时前</div>
-												<div>
-													<a href="###"><strong>门口大爷</strong></a> <span
-														class="text-muted">回复</span> <a href="###">Catouse</a>
-												</div>
-												<div class="text">不在我这儿...</div>
-												<div class="actions">
-													<a href="##">回复</a>
-												</div>
-											</div>
-										</div>
-										<div class="comment">
-											<a href="###" class="avatar"> <i
-												class="icon-cube-alt icon-2x"></i>
-											</a>
-											<div class="content">
-												<div class="pull-right text-muted">1 个小时前</div>
-												<div>
-													<a href="###"><strong>队长</strong></a> <span
-														class="text-muted">回复</span> <a href="###">Catouse</a>
-												</div>
-												<div class="text">也不在我这儿...</div>
-												<div class="actions">
-													<a href="##">回复</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="comment">
-									<a href="###" class="avatar"> <i
-										class="icon-heart-empty icon-2x"></i>
-									</a>
-									<div class="content">
-										<div class="pull-right text-muted">30 分钟前</div>
-										<div>
-											<a href="###"><strong>华师大第一美女</strong></a> <span
-												class="text-muted">回复</span> <a href="###">张士超</a>
-										</div>
-										<div class="text">很开心~~~</div>
-										<div class="actions">
-											<a href="##">回复</a>
-										</div>
-									</div>
-								</div>
-							</div>
+						<div class="text">今天玩的真开心！~~~~~~</div>
+						<div class="actions">
+							<a href="#" onclick="reply()">回复</a>
 						</div>
-						</section>
-						<footer>
-						<div class="reply-form" id="commentReplyForm2">
-							<a href="###" class="avatar"><i class="icon-user icon-2x"></i></a>
-							<form class="form">
-								<div class="form-group">
-									<textarea class="form-control new-comment-text" rows="2"
-										placeholder="撰写评论..."></textarea>
-								</div>
-								<div class="form-group comment-user">
-									<div class="row">
-										<div class="col-md-3">
-											<span class="pull-right">或者</span> <a href="#">登录</a> &nbsp;<a
-												href="##">注册</a>
-										</div>
-										<div class="col-md-7">
-											<div class="form-group">
-												<input type="text" class="form-control" id="nameInputEmail1"
-													placeholder="输入评论显示名称">
-											</div>
-											<div class="form-group">
-												<input type="email" class="form-control"
-													id="exampleInputEmail1" placeholder="输入电子邮件（不会在评论显示）">
-											</div>
-										</div>
-										<div class="col-md-2">
-											<button type="submit" class="btn btn-block btn-primary">
-												<i class="icon-ok"></i>
-											</button>
-										</div>
-									</div>
-								</div>
-							</form>
-						</div>
-						</footer>
 					</div>
+				</div>
+				</section>
+				<br />
+				<div class="reply-form" id="commentReplyForm2">
+					<a href="#" class="avatar"><i class="icon-user icon-2x"></i></a>
+					<form class="form">
+						<div class="form-group">
+							<textarea id="comment_content"
+								class="form-control new-comment-text" rows="2"
+								placeholder="撰写评论"></textarea>
+						</div>
+						<div class="form-group comment-user">
+							<div class="row">
+								<div class="col-md-3">
+									<a href="#">登录</a> &nbsp;<a href="#">注册</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<button type="submit" class="btn btn-block btn-primary"
+								onclick="sumuit_comment()">提交</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-	<footer class="container-fluid text-center">
-	<p>Footer Text</p>
-	</footer>
 </body>
 </html>

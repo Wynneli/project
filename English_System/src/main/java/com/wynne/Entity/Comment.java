@@ -1,51 +1,75 @@
 package com.wynne.Entity;
 
+import java.util.Date;
+
 public class Comment {
-	private String topicId;
+    private Integer commentId;
 
-	private String commentId;
+    private String topicId;
 
-	private String commentContent;
+    private String commentContent;
 
-	private Integer commentUid;
+    private String commentFromUsername;
 
-	public String getTopicId() {
-		return topicId;
-	}
+    private Date commentTime;
 
-	public void setTopicId(String topicId) {
-		this.topicId = topicId == null ? null : topicId.trim();
-	}
+    private Integer topicType;
 
-	public String getCommentId() {
-		return commentId;
-	}
+    private String commentToUsername;
 
-	public void setCommentId(String commentId) {
-		this.commentId = commentId == null ? null : commentId.trim();
-	}
+    public Integer getCommentId() {
+        return commentId;
+    }
 
-	public String getCommentContent() {
-		return commentContent;
-	}
+    public void setCommentId(Integer commentId) {
+        this.commentId = commentId;
+    }
 
-	public void setCommentContent(String commentContent) {
-		this.commentContent = commentContent == null ? null : commentContent.trim();
-	}
+    public String getTopicId() {
+        return topicId;
+    }
 
-	public Integer getCommentUid() {
-		return commentUid;
-	}
+    public void setTopicId(String topicId) {
+        this.topicId = topicId == null ? null : topicId.trim();
+    }
 
+    public String getCommentContent() {
+        return commentContent;
+    }
 
+    public void setCommentContent(String commentContent) {
+        this.commentContent = commentContent == null ? null : commentContent.trim();
+    }
 
-	public void setCommentUid(Integer commentUid) {
-		this.commentUid = commentUid;
-	}
+    public String getCommentFromUsername() {
+        return commentFromUsername;
+    }
 
-	@Override
-	public String toString() {
-		return "Comment [topicId=" + topicId + ", commentId=" + commentId + ", commentContent=" + commentContent
-				+ ", commentUid=" + commentUid + "]";
-	}
+    public void setCommentFromUsername(String commentFromUsername) {
+        this.commentFromUsername = commentFromUsername == null ? null : commentFromUsername.trim();
+    }
+
+    public Date getCommentTime() {
+        return commentTime;
+    }
+
+    public void setCommentTime(Date commentTime) {
+        this.commentTime = commentTime;
+    }
+
+    public Integer getTopicType() {
+        return topicType;
+    }
+
+    public void setTopicType(Integer topicType) {
+        this.topicType = topicType;
+    }
+
+    public String getCommentToUsername() {
+        return commentToUsername;
+    }
+
+    public void setCommentToUsername(String commentToUsername) {
+        this.commentToUsername = commentToUsername == null ? null : commentToUsername.trim();
+    }
 }
