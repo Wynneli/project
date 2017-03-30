@@ -1,0 +1,63 @@
+.custom {
+	background-color: #e8e8e8;
+}
+
+.top {
+	margin: 0 auto;
+	width: 80%;
+	height: 460px;
+	background-color: white;
+	width: 80%;
+}
+
+.header {
+	margin: 0 auto;
+	width: 80%;
+	height: 70px;
+	text-align: center;
+	padding: 15px 0;
+}
+
+.height_setting {
+	height: 370px;
+	overflow: auto;
+}
+
+images {
+	width: 350px;
+	height: 330px;
+	margin-left: 10px;
+}
+
+.ul_setting {
+	list-style-type: none;
+}
+
+.li_setting {
+	display: inline;
+	padding-left: 20px;
+}
+
+#btn_setting {
+	margin-top: 50px;
+}
+
+.span_setting {
+	color: #999;
+	height: 30px;
+}
+
+.middle {
+	background-color: white;
+	width:80%;
+	margin:30px auto;
+}
+.log{
+	margin-left:30px;
+	margin-top:13px;
+}
+
+.middle_span{
+	font-size: 15px;
+	margin-bottom: 20px;
+}

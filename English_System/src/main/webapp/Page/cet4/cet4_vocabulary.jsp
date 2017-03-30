@@ -26,7 +26,7 @@
 	src="<%=basePath%>JS/Third_Party/zui.min.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>JS/Third_Party/mzui.min.js"></script>
-<script type="text/javascript" src="<%=basePath%>JS/Custom/custom.js"></script>
+<script type="text/javascript" src="<%=basePath%>JS/Custom/vocabulary.js"></script>
 
 </head>
 <body>
@@ -121,7 +121,7 @@
 				<div class="board panel">
 					<div class="panel-heading">
 						<strong>4级词汇</strong><span class="cet4_heart_span"></span> <i
-							class="icon icon-heart"> <a class="cet4_a"
+							class="icon icon-heart" style="color: red;"> <a class="cet4_a"
 							id="add_or_remove_unknown_word"
 							onclick="add_or_remove_unknown_word()" href="#">收入我的词库</a>
 						</i>
@@ -167,37 +167,23 @@
 
 		<!-- 评论 -->
 		<p>
-			<a href="#" class="cet4_a"><button type="button"
+			<a href="#" id="cet4_a" style="text-decoration:none;"><button type="button"
 					class="btn btn-info btn-lg btn-block" data-toggle="collapse"
-					id="cet4_button" data-target="#collapseExample" onclick="show_comment()">展开评论</button></a>
+					id="cet4_button" data-target="#collapseExample"
+					onclick="show_comment()">展开评论</button></a>
 		</p>
 		<div class="collapse" id="collapseExample">
 			<div class="comments">
 				<header>
-				<div class="pull-right">
-					<a href="#commentReplyForm2" class="btn btn-primary" name="commit_comment" onclick="commit_comment()"><i
+				
+				<div class="pull-right" id="comment_title">
+					<a href="#commentReplyForm2" class="btn btn-primary"
+						name="commit_comment" onclick="commit_comment()"><i
 						class="icon-comment-alt"></i> 发表评论</a>
 				</div>
-				<h3>所有评论</h3>
+				<h3 id="add_comment_context">所有评论</h3>
 				</header>
-				<section class="comments-list">
-				<div class="comment">
-					<a href="###" class="avatar"> <i
-						class="icon-camera-retro icon-2x"></i>
-					</a>
-					<div class="content">
-						<div class="pull-right text-muted">3 个小时前</div>
-						<div>
-							<a href="###"><strong>张士超</strong></a>
-						</div>
-						<div class="text">今天玩的真开心！~~~~~~</div>
-						<div class="actions">
-							<a href="#" onclick="reply()">回复</a>
-						</div>
-					</div>
-				</div>
-				</section>
-				<br />
+				
 				<div class="reply-form" id="commentReplyForm2">
 					<a href="#" class="avatar"><i class="icon-user icon-2x"></i></a>
 					<form class="form">

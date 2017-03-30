@@ -6,9 +6,11 @@ import java.io.InputStreamReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.wynne.Dao.Answer2Mapper;
 import com.wynne.Dao.Cet4Mapper;
 import com.wynne.Dao.ProcessMapper;
 import com.wynne.Dao.Unknown_WordMapper;
+import com.wynne.Entity.Answer2;
 import com.wynne.Entity.Cet4Custom;
 import com.wynne.Entity.ProcessCustom;
 import com.wynne.Entity.Unknown_WordCustom;
@@ -105,6 +107,8 @@ public class Cet4LoadingServiceImpl  implements ICet4LoadingService{
 		return unknown_WordMapper.selectByusernameAndunCetId(unCetId, username);
 	}
 
+
+	
 
 
 }

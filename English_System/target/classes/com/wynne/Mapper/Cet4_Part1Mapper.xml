@@ -4,9 +4,10 @@
   <resultMap id="BaseResultMap" type="com.wynne.Entity.Cet4_Part1Custom" >
     <id column="cet4_test_id" property="cet4TestId" jdbcType="VARCHAR" />
     <result column="cet4_test_content" property="cet4TestContent" jdbcType="VARCHAR" />
+    <result column="cet4_title" property="cet4Title" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    cet4_test_id, cet4_test_content
+    cet4_test_id, cet4_test_content, cet4_title
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -14,5 +15,15 @@
     from cet4_part1
     where cet4_test_id = #{cet4TestId,jdbcType=VARCHAR}
   </select>
+  
+  
+<select id="selectBycet4TestId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from cet4_part1
+    where cet4_test_id like CONCAT(#{cet4TestId},'%')
+  </select>
+
+  
 
 </mapper>

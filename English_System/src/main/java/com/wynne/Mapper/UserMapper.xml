@@ -25,6 +25,12 @@
     where UserPhone = #{userphone,jdbcType=CHAR}
   </select>
   
+  <select id="selectAllUser" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where UserPhone = #{userphone,jdbcType=CHAR}
+  </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user

@@ -54,9 +54,10 @@
 
 				<li class="active"><a href="<%=basePath%>"><i
 						class="icon-home"></i> 首页</a></li>
-				<li class="dropdown" class="disabled"><a href="#" class="dropdown-toggle" data-toggle="dropdown">课程学习<b
+				<li class="dropdown" class="disabled"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown">课程学习<b
 						class="caret"></b></a>
-					<ul class="dropdown-menu" role="menu" >
+					<ul class="dropdown-menu" role="menu">
 						<li><a href="<%=basePath%>cet4/loading_cet4_word">4级英语学习</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a href="#">6级英语学习</a></li>
@@ -64,26 +65,30 @@
 						<li><a href="#">大学英语学习</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a href="#">高中英语学习</a></li>
-					</ul>
-				</li>
-				
+					</ul></li>
+
 				<!-- 导航中的下拉菜单 -->
-				<li class="dropdown"><a href="#"
-					class="dropdown-toggle" data-toggle="dropdown">在线测试 <b
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">在线测试 <b class="caret"></b></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="<%=basePath%>cet4/show_item?cet4id=cet4">四级真题</a></li>
+						<li class="divider"></li>
+						<li><a href="#">试题测试</a></li>
+						<li class="divider"></li>
+						<li><a href="#">试题测试</a></li>
+						<li class="divider"></li>
+						<li><a href="#">试题测试</a></li>
+					</ul></li>
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" role="menu" href="#">资讯动态<b
 						class="caret"></b></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="<%=basePath%>Page/cet4/cet4_questions.jsp">四级真题</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#">试题测试</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#">试题测试</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#">试题测试</a></li>
-					</ul>
-				</li>
-				<li><a href="#">快速学习</a></li>
-				<li><a href="#"></a></li>
-				<li><a href="#"></a></li>
+						<li><a href="#">考试动态</a></li>
+						<li class="divider"></li>
+						<li><a href="#">报名动态</a></li>
+						<li class="divider"></li>
+						<li><a href="#">政策大纲</a></li>
+					</ul></li>
 			</ul>
 
 
@@ -102,20 +107,19 @@
 					<li><a href="<%=basePath%>Page/login/Login.jsp">登录</a></li>
 					<li><a href="<%=basePath%>Page/login/Register.jsp">注册</a></li>
 				</c:if>
-				
+
 				<c:if test="${not empty user}">
-					<li class="dropdown"><a href="<%=basePath%>Page/success.jsp" class="dropdown-toggle" data-toggle="dropdown">欢迎你：${user.username}</a>
-					   <ul class="dropdown-menu" role="menu">
-					      <li><a href="#">6级英语学习</a></li>
-					   </ul>
-					</li>
+					<li class="dropdown"><a href="<%=basePath%>Page/success.jsp"
+						class="dropdown-toggle" data-toggle="dropdown">欢迎你：${user.username}</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">6级英语学习</a></li>
+						</ul></li>
 				</c:if>
-				
-				
+
+
 				<li><a href="<%=basePath%>Page/Login.jsp">帮助</a></li>
-				<li class="dropdown"><a href="#"
-					class="dropdown-toggle" data-toggle="dropdown">探索 <b
-						class="caret"></b></a>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">探索 <b class="caret"></b></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="#">敏捷开发</a></li>
 						<li><a href="#">HTML5</a></li>
@@ -157,8 +161,172 @@
 			</div>
 			<!-- 轮播（Carousel）导航 -->
 			<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-			<a class="carousel-control right" href="#myCarousel"data-slide="next">&rsaquo;</a>
+			<a class="carousel-control right" href="#myCarousel"
+				data-slide="next">&rsaquo;</a>
 		</div>
+		<br /> <br />
+		<h2>资讯动态</h2>
+		<hr size="3" style="border: 2px blue solid;">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="row">
+					<div class="col-md-3">
+						<h3>考试动态</h3>
+					</div>
+					<div class="col-md-6"></div>
+					<div class="col-md-3" style="padding-top: 20px; color: #999;">
+						<a href="#">更多 <i class="icon icon-circle-arrow-right"></i></a>
+					</div>
+				</div>
+				<div class="row">
+					<ul class="ul_setting">
+						<li><a href="#"><i class="icon icon-info-sign"
+								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
+						<li><a href="#"><i class="icon icon-info-sign"
+								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
+						<li><a href="#"><i class="icon icon-info-sign"
+								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
+						<li><a href="#"><i class="icon icon-info-sign"
+								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
+						<li><a href="#"><i class="icon icon-info-sign"
+								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
+						<li><a href="#"><i class="icon icon-info-sign"
+								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
+						<li><a href="#"><i class="icon icon-info-sign"
+								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
+					</ul>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<h3>考试动态</h3>
+					</div>
+					<div class="col-md-6"></div>
+					<div class="col-md-3" style="padding-top: 20px; color: #999;">
+						<a href="#">更多 <i class="icon icon-circle-arrow-right"></i></a>
+					</div>
+				</div>
+				<div class="row">
+					<ul class="ul_setting">
+						<li><a href="#"><i class="icon icon-info-sign"
+								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
+						<li><a href="#"><i class="icon icon-info-sign"
+								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
+						<li><a href="#"><i class="icon icon-info-sign"
+								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
+						<li><a href="#"><i class="icon icon-info-sign"
+								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
+						<li><a href="#"><i class="icon icon-info-sign"
+								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
+						<li><a href="#"><i class="icon icon-info-sign"
+								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
+						<li><a href="#"><i class="icon icon-info-sign"
+								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
+					</ul>
+				</div>
+
+			</div>
+			<div class="col-md-4">
+				<div class="row">
+					<div class="col-md-3">
+						<h3>考试动态</h3>
+					</div>
+					<div class="col-md-6"></div>
+					<div class="col-md-3" style="padding-top: 20px; color: #999;">
+						<a href="#">更多 <i class="icon icon-circle-arrow-right"></i></a>
+					</div>
+				</div>
+				<div class="row">
+					<ul class="ul_setting">
+						<li><a href="#"><i class="icon icon-info-sign"
+								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
+						<li><a href="#"><i class="icon icon-info-sign"
+								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
+						<li><a href="#"><i class="icon icon-info-sign"
+								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
+						<li><a href="#"><i class="icon icon-info-sign"
+								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
+						<li><a href="#"><i class="icon icon-info-sign"
+								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
+						<li><a href="#"><i class="icon icon-info-sign"
+								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
+						<li><a href="#"><i class="icon icon-info-sign"
+								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-4 exam-guide">
+				<div class="row">
+					<div class="col-md-4">
+						<h3 class="h3_setting">&nbsp;&nbsp;&nbsp;&nbsp;考试提醒</h3>
+					</div>
+					<div class="col-md-8 " style="padding-top: 18px;">
+						距离6月考试还有<span class="span_setting">80</span>天
+					</div>
+				</div>
+				<div class="row exam-guide1">
+					<div class="col-md-4">
+						<h3 class="h3_setting">&nbsp;&nbsp;报名</h3>
+					</div>
+					<div class="col-md-8">
+						<ul class="ul2_setting">
+							<li>2017上半年：2月底至3月底</li>
+							<li>2017下半年：8月底至9月底</li>
+						</ul>
+					</div>
+				</div>
+
+				<br />
+
+				<div class="row exam-guide1">
+					<div class="col-md-4">
+						<h3 class="h3_setting" style="padding-top: 20px;">&nbsp;&nbsp;考试</h3>
+					</div>
+					<div class="col-md-8">
+						<ul class="ul2_setting">
+							<li>2017上半年：6月17日</li>
+							<li>2017下半年：12月16日</li>
+							<li>2017年上半年口语：5月20日</li>
+							<li>2017年下半年口语：11月18日</li>
+						</ul>
+					</div>
+				</div>
+				<br />
+				<div class="row exam-guide1">
+					<ul class="ul3_setting">
+						<li><a href="#">考试题型</a></li>
+						<li><a href="#">考试样卷</a></li>
+						<li><a href="#">考试流程</a></li>
+					</ul>
+				</div>
+				<br />
+				<div class="row exam-guide1">
+					<div class="col-md-4">
+						<i class="icon icon-time i_color" ></i><a href="#">查分时间</a>
+					</div>
+					<div class="col-md-4">
+						<i class="icon icon-circle-arrow-right i_color" ></i><a href="#">查分入口</a>
+					</div>
+					<div class="col-md-4">
+						<i class="icon icon-area-chart i_color" ></i><a href="#">分数线</a>
+					</div>
+					<br/>
+					<div class="col-md-4">
+						<i class="icon icon-unlock-alt i_color" ></i><a href="#">找回准考证号</a>
+					</div>
+					<div class="col-md-4">
+						<i class="icon icon-search i_color" ></i><a href="#">补办及核查</a>
+					</div>
+					<div class="col-md-4">
+						<i class="icon icon-bar-chart i_color" ></i><a href="#">成绩单</a>
+					</div>
+				</div>
+				<br />
+			</div>
+			<br />
+
+		</div>
+
+
 
 		<!-- 最新资讯展现 -->
 
@@ -269,7 +437,7 @@
 	<!--  container结束-->
 
 
-	<br/>
+	<br />
 
 
 
@@ -278,6 +446,6 @@
 
 
 	<footer class="container-fluid text-center">
-	  <p>Footer Text</p>
+	<p>Footer Text</p>
 	</footer>
 </body>

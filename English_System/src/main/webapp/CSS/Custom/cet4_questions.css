@@ -1,2 +1,15 @@
-a:hover{color:red;}
-.input-font{font-size: 13px;}
+a:hover {
+	color: red;
+}
+
+.input-font {
+	font-size: 13px;
+}
+.setting{position:fixed;background-image: ulr("/file/Images/test_background.jpg");}
+.clock {
+	width: inherit;
+	height: 100%;
+}
+.clock_button{
+	margin-top:5px;
+}

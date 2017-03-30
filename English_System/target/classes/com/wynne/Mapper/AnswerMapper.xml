@@ -1,0 +1,752 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wynne.Dao.AnswerMapper" >
+  <resultMap id="BaseResultMap" type="com.wynne.Entity.Answer" >
+    <id column="answer_id" property="answerId" jdbcType="INTEGER" />
+    <result column="cet_type" property="cetType" jdbcType="VARCHAR" />
+    <result column="a_username" property="aUsername" jdbcType="VARCHAR" />
+    <result column="a_part1" property="aPart1" jdbcType="VARCHAR" />
+    <result column="answer1" property="answer1" jdbcType="CHAR" />
+    <result column="answer2" property="answer2" jdbcType="CHAR" />
+    <result column="answer3" property="answer3" jdbcType="CHAR" />
+    <result column="answer4" property="answer4" jdbcType="CHAR" />
+    <result column="answer5" property="answer5" jdbcType="CHAR" />
+    <result column="answer6" property="answer6" jdbcType="CHAR" />
+    <result column="answer7" property="answer7" jdbcType="CHAR" />
+    <result column="answer8" property="answer8" jdbcType="CHAR" />
+    <result column="answer9" property="answer9" jdbcType="CHAR" />
+    <result column="answer10" property="answer10" jdbcType="CHAR" />
+    <result column="answer11" property="answer11" jdbcType="CHAR" />
+    <result column="answer12" property="answer12" jdbcType="CHAR" />
+    <result column="answer13" property="answer13" jdbcType="CHAR" />
+    <result column="answer14" property="answer14" jdbcType="CHAR" />
+    <result column="answer15" property="answer15" jdbcType="CHAR" />
+    <result column="answer16" property="answer16" jdbcType="CHAR" />
+    <result column="answer17" property="answer17" jdbcType="CHAR" />
+    <result column="answer18" property="answer18" jdbcType="CHAR" />
+    <result column="answer19" property="answer19" jdbcType="CHAR" />
+    <result column="answer20" property="answer20" jdbcType="CHAR" />
+    <result column="answer21" property="answer21" jdbcType="CHAR" />
+    <result column="answer22" property="answer22" jdbcType="CHAR" />
+    <result column="answer23" property="answer23" jdbcType="CHAR" />
+    <result column="answer24" property="answer24" jdbcType="CHAR" />
+    <result column="answer25" property="answer25" jdbcType="CHAR" />
+    <result column="answer26" property="answer26" jdbcType="CHAR" />
+    <result column="answer27" property="answer27" jdbcType="CHAR" />
+    <result column="answer28" property="answer28" jdbcType="CHAR" />
+    <result column="answer29" property="answer29" jdbcType="CHAR" />
+    <result column="answer30" property="answer30" jdbcType="CHAR" />
+    <result column="answer31" property="answer31" jdbcType="CHAR" />
+    <result column="answer32" property="answer32" jdbcType="CHAR" />
+    <result column="answer33" property="answer33" jdbcType="CHAR" />
+    <result column="answer34" property="answer34" jdbcType="CHAR" />
+    <result column="answer35" property="answer35" jdbcType="CHAR" />
+    <result column="answer36" property="answer36" jdbcType="CHAR" />
+    <result column="answer37" property="answer37" jdbcType="CHAR" />
+    <result column="answer38" property="answer38" jdbcType="CHAR" />
+    <result column="answer39" property="answer39" jdbcType="CHAR" />
+    <result column="answer40" property="answer40" jdbcType="CHAR" />
+    <result column="answer41" property="answer41" jdbcType="CHAR" />
+    <result column="answer42" property="answer42" jdbcType="CHAR" />
+    <result column="answer43" property="answer43" jdbcType="CHAR" />
+    <result column="answer44" property="answer44" jdbcType="CHAR" />
+    <result column="answer45" property="answer45" jdbcType="CHAR" />
+    <result column="answer46" property="answer46" jdbcType="CHAR" />
+    <result column="answer47" property="answer47" jdbcType="CHAR" />
+    <result column="answer48" property="answer48" jdbcType="CHAR" />
+    <result column="answer49" property="answer49" jdbcType="CHAR" />
+    <result column="answer50" property="answer50" jdbcType="CHAR" />
+    <result column="answer51" property="answer51" jdbcType="CHAR" />
+    <result column="answer52" property="answer52" jdbcType="CHAR" />
+    <result column="answer53" property="answer53" jdbcType="CHAR" />
+    <result column="answer54" property="answer54" jdbcType="CHAR" />
+    <result column="answer55" property="answer55" jdbcType="CHAR" />
+    <result column="a_part4" property="aPart4" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    answer_id, cet_type, a_username, a_part1, answer1, answer2, answer3, answer4, answer5, 
+    answer6, answer7, answer8, answer9, answer10, answer11, answer12, answer13, answer14, 
+    answer15, answer16, answer17, answer18, answer19, answer20, answer21, answer22, answer23, 
+    answer24, answer25, answer26, answer27, answer28, answer29, answer30, answer31, answer32, 
+    answer33, answer34, answer35, answer36, answer37, answer38, answer39, answer40, answer41, 
+    answer42, answer43, answer44, answer45, answer46, answer47, answer48, answer49, answer50, 
+    answer51, answer52, answer53, answer54, answer55, a_part4
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from answer
+    where answer_id = #{answerId,jdbcType=INTEGER}
+  </select>
+  <select id="selectBycetTypeAndUserName" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from answer
+    where cet_type = #{cetType,jdbcType=VARCHAR} and  a_username=#{aUsername,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByUserName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select 
+    <include refid="Base_Column_List" />
+    from answer
+    where  a_username=#{aUsername,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from answer
+    where cet_type = #{answerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wynne.Entity.Answer" >
+    insert into answer (answer_id, cet_type, a_username, 
+      a_part1, answer1, answer2, 
+      answer3, answer4, answer5, answer6, 
+      answer7, answer8, answer9, answer10, 
+      answer11, answer12, answer13, 
+      answer14, answer15, answer16, 
+      answer17, answer18, answer19, 
+      answer20, answer21, answer22, 
+      answer23, answer24, answer25, 
+      answer26, answer27, answer28, 
+      answer29, answer30, answer31, 
+      answer32, answer33, answer34, 
+      answer35, answer36, answer37, 
+      answer38, answer39, answer40, 
+      answer41, answer42, answer43, 
+      answer44, answer45, answer46, 
+      answer47, answer48, answer49, 
+      answer50, answer51, answer52, 
+      answer53, answer54, answer55, 
+      a_part4)
+    values (#{answerId,jdbcType=INTEGER}, #{cetType,jdbcType=VARCHAR}, #{aUsername,jdbcType=VARCHAR}, 
+      #{aPart1,jdbcType=VARCHAR}, #{answer1,jdbcType=CHAR}, #{answer2,jdbcType=CHAR}, 
+      #{answer3,jdbcType=CHAR}, #{answer4,jdbcType=CHAR}, #{answer5,jdbcType=CHAR}, #{answer6,jdbcType=CHAR}, 
+      #{answer7,jdbcType=CHAR}, #{answer8,jdbcType=CHAR}, #{answer9,jdbcType=CHAR}, #{answer10,jdbcType=CHAR}, 
+      #{answer11,jdbcType=CHAR}, #{answer12,jdbcType=CHAR}, #{answer13,jdbcType=CHAR}, 
+      #{answer14,jdbcType=CHAR}, #{answer15,jdbcType=CHAR}, #{answer16,jdbcType=CHAR}, 
+      #{answer17,jdbcType=CHAR}, #{answer18,jdbcType=CHAR}, #{answer19,jdbcType=CHAR}, 
+      #{answer20,jdbcType=CHAR}, #{answer21,jdbcType=CHAR}, #{answer22,jdbcType=CHAR}, 
+      #{answer23,jdbcType=CHAR}, #{answer24,jdbcType=CHAR}, #{answer25,jdbcType=CHAR}, 
+      #{answer26,jdbcType=CHAR}, #{answer27,jdbcType=CHAR}, #{answer28,jdbcType=CHAR}, 
+      #{answer29,jdbcType=CHAR}, #{answer30,jdbcType=CHAR}, #{answer31,jdbcType=CHAR}, 
+      #{answer32,jdbcType=CHAR}, #{answer33,jdbcType=CHAR}, #{answer34,jdbcType=CHAR}, 
+      #{answer35,jdbcType=CHAR}, #{answer36,jdbcType=CHAR}, #{answer37,jdbcType=CHAR}, 
+      #{answer38,jdbcType=CHAR}, #{answer39,jdbcType=CHAR}, #{answer40,jdbcType=CHAR}, 
+      #{answer41,jdbcType=CHAR}, #{answer42,jdbcType=CHAR}, #{answer43,jdbcType=CHAR}, 
+      #{answer44,jdbcType=CHAR}, #{answer45,jdbcType=CHAR}, #{answer46,jdbcType=CHAR}, 
+      #{answer47,jdbcType=CHAR}, #{answer48,jdbcType=CHAR}, #{answer49,jdbcType=CHAR}, 
+      #{answer50,jdbcType=CHAR}, #{answer51,jdbcType=CHAR}, #{answer52,jdbcType=CHAR}, 
+      #{answer53,jdbcType=CHAR}, #{answer54,jdbcType=CHAR}, #{answer55,jdbcType=CHAR}, 
+      #{aPart4,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wynne.Entity.Answer" >
+    insert into answer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="answerId != null" >
+        answer_id,
+      </if>
+      <if test="cetType != null" >
+        cet_type,
+      </if>
+      <if test="aUsername != null" >
+        a_username,
+      </if>
+      <if test="aPart1 != null" >
+        a_part1,
+      </if>
+      <if test="answer1 != null" >
+        answer1,
+      </if>
+      <if test="answer2 != null" >
+        answer2,
+      </if>
+      <if test="answer3 != null" >
+        answer3,
+      </if>
+      <if test="answer4 != null" >
+        answer4,
+      </if>
+      <if test="answer5 != null" >
+        answer5,
+      </if>
+      <if test="answer6 != null" >
+        answer6,
+      </if>
+      <if test="answer7 != null" >
+        answer7,
+      </if>
+      <if test="answer8 != null" >
+        answer8,
+      </if>
+      <if test="answer9 != null" >
+        answer9,
+      </if>
+      <if test="answer10 != null" >
+        answer10,
+      </if>
+      <if test="answer11 != null" >
+        answer11,
+      </if>
+      <if test="answer12 != null" >
+        answer12,
+      </if>
+      <if test="answer13 != null" >
+        answer13,
+      </if>
+      <if test="answer14 != null" >
+        answer14,
+      </if>
+      <if test="answer15 != null" >
+        answer15,
+      </if>
+      <if test="answer16 != null" >
+        answer16,
+      </if>
+      <if test="answer17 != null" >
+        answer17,
+      </if>
+      <if test="answer18 != null" >
+        answer18,
+      </if>
+      <if test="answer19 != null" >
+        answer19,
+      </if>
+      <if test="answer20 != null" >
+        answer20,
+      </if>
+      <if test="answer21 != null" >
+        answer21,
+      </if>
+      <if test="answer22 != null" >
+        answer22,
+      </if>
+      <if test="answer23 != null" >
+        answer23,
+      </if>
+      <if test="answer24 != null" >
+        answer24,
+      </if>
+      <if test="answer25 != null" >
+        answer25,
+      </if>
+      <if test="answer26 != null" >
+        answer26,
+      </if>
+      <if test="answer27 != null" >
+        answer27,
+      </if>
+      <if test="answer28 != null" >
+        answer28,
+      </if>
+      <if test="answer29 != null" >
+        answer29,
+      </if>
+      <if test="answer30 != null" >
+        answer30,
+      </if>
+      <if test="answer31 != null" >
+        answer31,
+      </if>
+      <if test="answer32 != null" >
+        answer32,
+      </if>
+      <if test="answer33 != null" >
+        answer33,
+      </if>
+      <if test="answer34 != null" >
+        answer34,
+      </if>
+      <if test="answer35 != null" >
+        answer35,
+      </if>
+      <if test="answer36 != null" >
+        answer36,
+      </if>
+      <if test="answer37 != null" >
+        answer37,
+      </if>
+      <if test="answer38 != null" >
+        answer38,
+      </if>
+      <if test="answer39 != null" >
+        answer39,
+      </if>
+      <if test="answer40 != null" >
+        answer40,
+      </if>
+      <if test="answer41 != null" >
+        answer41,
+      </if>
+      <if test="answer42 != null" >
+        answer42,
+      </if>
+      <if test="answer43 != null" >
+        answer43,
+      </if>
+      <if test="answer44 != null" >
+        answer44,
+      </if>
+      <if test="answer45 != null" >
+        answer45,
+      </if>
+      <if test="answer46 != null" >
+        answer46,
+      </if>
+      <if test="answer47 != null" >
+        answer47,
+      </if>
+      <if test="answer48 != null" >
+        answer48,
+      </if>
+      <if test="answer49 != null" >
+        answer49,
+      </if>
+      <if test="answer50 != null" >
+        answer50,
+      </if>
+      <if test="answer51 != null" >
+        answer51,
+      </if>
+      <if test="answer52 != null" >
+        answer52,
+      </if>
+      <if test="answer53 != null" >
+        answer53,
+      </if>
+      <if test="answer54 != null" >
+        answer54,
+      </if>
+      <if test="answer55 != null" >
+        answer55,
+      </if>
+      <if test="aPart4 != null" >
+        a_part4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="answerId != null" >
+        #{answerId,jdbcType=INTEGER},
+      </if>
+      <if test="cetType != null" >
+        #{cetType,jdbcType=VARCHAR},
+      </if>
+      <if test="aUsername != null" >
+        #{aUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="aPart1 != null" >
+        #{aPart1,jdbcType=VARCHAR},
+      </if>
+      <if test="answer1 != null" >
+        #{answer1,jdbcType=CHAR},
+      </if>
+      <if test="answer2 != null" >
+        #{answer2,jdbcType=CHAR},
+      </if>
+      <if test="answer3 != null" >
+        #{answer3,jdbcType=CHAR},
+      </if>
+      <if test="answer4 != null" >
+        #{answer4,jdbcType=CHAR},
+      </if>
+      <if test="answer5 != null" >
+        #{answer5,jdbcType=CHAR},
+      </if>
+      <if test="answer6 != null" >
+        #{answer6,jdbcType=CHAR},
+      </if>
+      <if test="answer7 != null" >
+        #{answer7,jdbcType=CHAR},
+      </if>
+      <if test="answer8 != null" >
+        #{answer8,jdbcType=CHAR},
+      </if>
+      <if test="answer9 != null" >
+        #{answer9,jdbcType=CHAR},
+      </if>
+      <if test="answer10 != null" >
+        #{answer10,jdbcType=CHAR},
+      </if>
+      <if test="answer11 != null" >
+        #{answer11,jdbcType=CHAR},
+      </if>
+      <if test="answer12 != null" >
+        #{answer12,jdbcType=CHAR},
+      </if>
+      <if test="answer13 != null" >
+        #{answer13,jdbcType=CHAR},
+      </if>
+      <if test="answer14 != null" >
+        #{answer14,jdbcType=CHAR},
+      </if>
+      <if test="answer15 != null" >
+        #{answer15,jdbcType=CHAR},
+      </if>
+      <if test="answer16 != null" >
+        #{answer16,jdbcType=CHAR},
+      </if>
+      <if test="answer17 != null" >
+        #{answer17,jdbcType=CHAR},
+      </if>
+      <if test="answer18 != null" >
+        #{answer18,jdbcType=CHAR},
+      </if>
+      <if test="answer19 != null" >
+        #{answer19,jdbcType=CHAR},
+      </if>
+      <if test="answer20 != null" >
+        #{answer20,jdbcType=CHAR},
+      </if>
+      <if test="answer21 != null" >
+        #{answer21,jdbcType=CHAR},
+      </if>
+      <if test="answer22 != null" >
+        #{answer22,jdbcType=CHAR},
+      </if>
+      <if test="answer23 != null" >
+        #{answer23,jdbcType=CHAR},
+      </if>
+      <if test="answer24 != null" >
+        #{answer24,jdbcType=CHAR},
+      </if>
+      <if test="answer25 != null" >
+        #{answer25,jdbcType=CHAR},
+      </if>
+      <if test="answer26 != null" >
+        #{answer26,jdbcType=CHAR},
+      </if>
+      <if test="answer27 != null" >
+        #{answer27,jdbcType=CHAR},
+      </if>
+      <if test="answer28 != null" >
+        #{answer28,jdbcType=CHAR},
+      </if>
+      <if test="answer29 != null" >
+        #{answer29,jdbcType=CHAR},
+      </if>
+      <if test="answer30 != null" >
+        #{answer30,jdbcType=CHAR},
+      </if>
+      <if test="answer31 != null" >
+        #{answer31,jdbcType=CHAR},
+      </if>
+      <if test="answer32 != null" >
+        #{answer32,jdbcType=CHAR},
+      </if>
+      <if test="answer33 != null" >
+        #{answer33,jdbcType=CHAR},
+      </if>
+      <if test="answer34 != null" >
+        #{answer34,jdbcType=CHAR},
+      </if>
+      <if test="answer35 != null" >
+        #{answer35,jdbcType=CHAR},
+      </if>
+      <if test="answer36 != null" >
+        #{answer36,jdbcType=CHAR},
+      </if>
+      <if test="answer37 != null" >
+        #{answer37,jdbcType=CHAR},
+      </if>
+      <if test="answer38 != null" >
+        #{answer38,jdbcType=CHAR},
+      </if>
+      <if test="answer39 != null" >
+        #{answer39,jdbcType=CHAR},
+      </if>
+      <if test="answer40 != null" >
+        #{answer40,jdbcType=CHAR},
+      </if>
+      <if test="answer41 != null" >
+        #{answer41,jdbcType=CHAR},
+      </if>
+      <if test="answer42 != null" >
+        #{answer42,jdbcType=CHAR},
+      </if>
+      <if test="answer43 != null" >
+        #{answer43,jdbcType=CHAR},
+      </if>
+      <if test="answer44 != null" >
+        #{answer44,jdbcType=CHAR},
+      </if>
+      <if test="answer45 != null" >
+        #{answer45,jdbcType=CHAR},
+      </if>
+      <if test="answer46 != null" >
+        #{answer46,jdbcType=CHAR},
+      </if>
+      <if test="answer47 != null" >
+        #{answer47,jdbcType=CHAR},
+      </if>
+      <if test="answer48 != null" >
+        #{answer48,jdbcType=CHAR},
+      </if>
+      <if test="answer49 != null" >
+        #{answer49,jdbcType=CHAR},
+      </if>
+      <if test="answer50 != null" >
+        #{answer50,jdbcType=CHAR},
+      </if>
+      <if test="answer51 != null" >
+        #{answer51,jdbcType=CHAR},
+      </if>
+      <if test="answer52 != null" >
+        #{answer52,jdbcType=CHAR},
+      </if>
+      <if test="answer53 != null" >
+        #{answer53,jdbcType=CHAR},
+      </if>
+      <if test="answer54 != null" >
+        #{answer54,jdbcType=CHAR},
+      </if>
+      <if test="answer55 != null" >
+        #{answer55,jdbcType=CHAR},
+      </if>
+      <if test="aPart4 != null" >
+        #{aPart4,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wynne.Entity.Answer" >
+    update answer
+    <set >
+      <if test="cetType != null" >
+        cet_type = #{cetType,jdbcType=VARCHAR},
+      </if>
+      <if test="aUsername != null" >
+        a_username = #{aUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="aPart1 != null" >
+        a_part1 = #{aPart1,jdbcType=VARCHAR},
+      </if>
+      <if test="answer1 != null" >
+        answer1 = #{answer1,jdbcType=CHAR},
+      </if>
+      <if test="answer2 != null" >
+        answer2 = #{answer2,jdbcType=CHAR},
+      </if>
+      <if test="answer3 != null" >
+        answer3 = #{answer3,jdbcType=CHAR},
+      </if>
+      <if test="answer4 != null" >
+        answer4 = #{answer4,jdbcType=CHAR},
+      </if>
+      <if test="answer5 != null" >
+        answer5 = #{answer5,jdbcType=CHAR},
+      </if>
+      <if test="answer6 != null" >
+        answer6 = #{answer6,jdbcType=CHAR},
+      </if>
+      <if test="answer7 != null" >
+        answer7 = #{answer7,jdbcType=CHAR},
+      </if>
+      <if test="answer8 != null" >
+        answer8 = #{answer8,jdbcType=CHAR},
+      </if>
+      <if test="answer9 != null" >
+        answer9 = #{answer9,jdbcType=CHAR},
+      </if>
+      <if test="answer10 != null" >
+        answer10 = #{answer10,jdbcType=CHAR},
+      </if>
+      <if test="answer11 != null" >
+        answer11 = #{answer11,jdbcType=CHAR},
+      </if>
+      <if test="answer12 != null" >
+        answer12 = #{answer12,jdbcType=CHAR},
+      </if>
+      <if test="answer13 != null" >
+        answer13 = #{answer13,jdbcType=CHAR},
+      </if>
+      <if test="answer14 != null" >
+        answer14 = #{answer14,jdbcType=CHAR},
+      </if>
+      <if test="answer15 != null" >
+        answer15 = #{answer15,jdbcType=CHAR},
+      </if>
+      <if test="answer16 != null" >
+        answer16 = #{answer16,jdbcType=CHAR},
+      </if>
+      <if test="answer17 != null" >
+        answer17 = #{answer17,jdbcType=CHAR},
+      </if>
+      <if test="answer18 != null" >
+        answer18 = #{answer18,jdbcType=CHAR},
+      </if>
+      <if test="answer19 != null" >
+        answer19 = #{answer19,jdbcType=CHAR},
+      </if>
+      <if test="answer20 != null" >
+        answer20 = #{answer20,jdbcType=CHAR},
+      </if>
+      <if test="answer21 != null" >
+        answer21 = #{answer21,jdbcType=CHAR},
+      </if>
+      <if test="answer22 != null" >
+        answer22 = #{answer22,jdbcType=CHAR},
+      </if>
+      <if test="answer23 != null" >
+        answer23 = #{answer23,jdbcType=CHAR},
+      </if>
+      <if test="answer24 != null" >
+        answer24 = #{answer24,jdbcType=CHAR},
+      </if>
+      <if test="answer25 != null" >
+        answer25 = #{answer25,jdbcType=CHAR},
+      </if>
+      <if test="answer26 != null" >
+        answer26 = #{answer26,jdbcType=CHAR},
+      </if>
+      <if test="answer27 != null" >
+        answer27 = #{answer27,jdbcType=CHAR},
+      </if>
+      <if test="answer28 != null" >
+        answer28 = #{answer28,jdbcType=CHAR},
+      </if>
+      <if test="answer29 != null" >
+        answer29 = #{answer29,jdbcType=CHAR},
+      </if>
+      <if test="answer30 != null" >
+        answer30 = #{answer30,jdbcType=CHAR},
+      </if>
+      <if test="answer31 != null" >
+        answer31 = #{answer31,jdbcType=CHAR},
+      </if>
+      <if test="answer32 != null" >
+        answer32 = #{answer32,jdbcType=CHAR},
+      </if>
+      <if test="answer33 != null" >
+        answer33 = #{answer33,jdbcType=CHAR},
+      </if>
+      <if test="answer34 != null" >
+        answer34 = #{answer34,jdbcType=CHAR},
+      </if>
+      <if test="answer35 != null" >
+        answer35 = #{answer35,jdbcType=CHAR},
+      </if>
+      <if test="answer36 != null" >
+        answer36 = #{answer36,jdbcType=CHAR},
+      </if>
+      <if test="answer37 != null" >
+        answer37 = #{answer37,jdbcType=CHAR},
+      </if>
+      <if test="answer38 != null" >
+        answer38 = #{answer38,jdbcType=CHAR},
+      </if>
+      <if test="answer39 != null" >
+        answer39 = #{answer39,jdbcType=CHAR},
+      </if>
+      <if test="answer40 != null" >
+        answer40 = #{answer40,jdbcType=CHAR},
+      </if>
+      <if test="answer41 != null" >
+        answer41 = #{answer41,jdbcType=CHAR},
+      </if>
+      <if test="answer42 != null" >
+        answer42 = #{answer42,jdbcType=CHAR},
+      </if>
+      <if test="answer43 != null" >
+        answer43 = #{answer43,jdbcType=CHAR},
+      </if>
+      <if test="answer44 != null" >
+        answer44 = #{answer44,jdbcType=CHAR},
+      </if>
+      <if test="answer45 != null" >
+        answer45 = #{answer45,jdbcType=CHAR},
+      </if>
+      <if test="answer46 != null" >
+        answer46 = #{answer46,jdbcType=CHAR},
+      </if>
+      <if test="answer47 != null" >
+        answer47 = #{answer47,jdbcType=CHAR},
+      </if>
+      <if test="answer48 != null" >
+        answer48 = #{answer48,jdbcType=CHAR},
+      </if>
+      <if test="answer49 != null" >
+        answer49 = #{answer49,jdbcType=CHAR},
+      </if>
+      <if test="answer50 != null" >
+        answer50 = #{answer50,jdbcType=CHAR},
+      </if>
+      <if test="answer51 != null" >
+        answer51 = #{answer51,jdbcType=CHAR},
+      </if>
+      <if test="answer52 != null" >
+        answer52 = #{answer52,jdbcType=CHAR},
+      </if>
+      <if test="answer53 != null" >
+        answer53 = #{answer53,jdbcType=CHAR},
+      </if>
+      <if test="answer54 != null" >
+        answer54 = #{answer54,jdbcType=CHAR},
+      </if>
+      <if test="answer55 != null" >
+        answer55 = #{answer55,jdbcType=CHAR},
+      </if>
+      <if test="aPart4 != null" >
+        a_part4 = #{aPart4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where answer_id = #{answerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wynne.Entity.Answer" >
+    update answer
+    set cet_type = #{cetType,jdbcType=VARCHAR},
+      a_username = #{aUsername,jdbcType=VARCHAR},
+      a_part1 = #{aPart1,jdbcType=VARCHAR},
+      answer1 = #{answer1,jdbcType=CHAR},
+      answer2 = #{answer2,jdbcType=CHAR},
+      answer3 = #{answer3,jdbcType=CHAR},
+      answer4 = #{answer4,jdbcType=CHAR},
+      answer5 = #{answer5,jdbcType=CHAR},
+      answer6 = #{answer6,jdbcType=CHAR},
+      answer7 = #{answer7,jdbcType=CHAR},
+      answer8 = #{answer8,jdbcType=CHAR},
+      answer9 = #{answer9,jdbcType=CHAR},
+      answer10 = #{answer10,jdbcType=CHAR},
+      answer11 = #{answer11,jdbcType=CHAR},
+      answer12 = #{answer12,jdbcType=CHAR},
+      answer13 = #{answer13,jdbcType=CHAR},
+      answer14 = #{answer14,jdbcType=CHAR},
+      answer15 = #{answer15,jdbcType=CHAR},
+      answer16 = #{answer16,jdbcType=CHAR},
+      answer17 = #{answer17,jdbcType=CHAR},
+      answer18 = #{answer18,jdbcType=CHAR},
+      answer19 = #{answer19,jdbcType=CHAR},
+      answer20 = #{answer20,jdbcType=CHAR},
+      answer21 = #{answer21,jdbcType=CHAR},
+      answer22 = #{answer22,jdbcType=CHAR},
+      answer23 = #{answer23,jdbcType=CHAR},
+      answer24 = #{answer24,jdbcType=CHAR},
+      answer25 = #{answer25,jdbcType=CHAR},
+      answer26 = #{answer26,jdbcType=CHAR},
+      answer27 = #{answer27,jdbcType=CHAR},
+      answer28 = #{answer28,jdbcType=CHAR},
+      answer29 = #{answer29,jdbcType=CHAR},
+      answer30 = #{answer30,jdbcType=CHAR},
+      answer31 = #{answer31,jdbcType=CHAR},
+      answer32 = #{answer32,jdbcType=CHAR},
+      answer33 = #{answer33,jdbcType=CHAR},
+      answer34 = #{answer34,jdbcType=CHAR},
+      answer35 = #{answer35,jdbcType=CHAR},
+      answer36 = #{answer36,jdbcType=CHAR},
+      answer37 = #{answer37,jdbcType=CHAR},
+      answer38 = #{answer38,jdbcType=CHAR},
+      answer39 = #{answer39,jdbcType=CHAR},
+      answer40 = #{answer40,jdbcType=CHAR},
+      answer41 = #{answer41,jdbcType=CHAR},
+      answer42 = #{answer42,jdbcType=CHAR},
+      answer43 = #{answer43,jdbcType=CHAR},
+      answer44 = #{answer44,jdbcType=CHAR},
+      answer45 = #{answer45,jdbcType=CHAR},
+      answer46 = #{answer46,jdbcType=CHAR},
+      answer47 = #{answer47,jdbcType=CHAR},
+      answer48 = #{answer48,jdbcType=CHAR},
+      answer49 = #{answer49,jdbcType=CHAR},
+      answer50 = #{answer50,jdbcType=CHAR},
+      answer51 = #{answer51,jdbcType=CHAR},
+      answer52 = #{answer52,jdbcType=CHAR},
+      answer53 = #{answer53,jdbcType=CHAR},
+      answer54 = #{answer54,jdbcType=CHAR},
+      answer55 = #{answer55,jdbcType=CHAR},
+      a_part4 = #{aPart4,jdbcType=VARCHAR}
+    where answer_id = #{answerId,jdbcType=INTEGER}
+  </update>
+</mapper>
