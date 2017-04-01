@@ -7,4 +7,8 @@ import com.wynne.Entity.CommentCustom;
 public interface ICommentService {
 	public List<CommentCustom> findCommentCustomBytopicId(String topicId);
 	
+	public int insertCommentSelective(CommentCustom commentCustom);
+	
+	public List<CommentCustom> findAllComment();
+	
 }

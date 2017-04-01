@@ -25,7 +25,7 @@
 <script type="text/javascript"
 	src="<%=basePath%>JS/Third_Party/zui.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>JS/Admin/nav.js"></script>
-<script type="text/javascript" src="<%=basePath%>JS/Admin/UserManage.js"></script>
+<script type="text/javascript" src="<%=basePath%>JS/Admin/CommentManage.js"></script>
 </head>
 
 <body>
@@ -49,34 +49,40 @@
 			id="show_userinfo">
 			<thead>
 				<tr>
-					<th style="padding-left: 20px;">用户编号</th>
-					<th>昵称</th>
-					<th>电话</th>
-					<th>邮箱</th>
+					<th style="padding-left: 20px;">评论编号</th>
+					<th>主题</th>
+					<th>评论内容</th>
+					<th>评论对象</th>
+					<th>回复对象</th>
+					<th>时间</th>
 					<th>操作</th>
 				</tr>
 			</thead>
-			<c:if test="${not empty AllUser_list}">
+			<c:if test="${not empty allComment_list}">
 				<tbody>
-					<c:forEach items="${AllUser_list}" var="list" varStatus="count">
+					<c:forEach items="${allComment_list}" var="list" varStatus="count" begin="0" end="9">
 						<c:choose>
 							<c:when test="${count.count%2==1}">
 								<tr>
-									<td style="padding-left: 20px;">${list.userid}</td>
-									<td>${list.username}</td>
-									<td>${list.userphone}</td>
-									<td>${list.useremail}</td>
-									<td><a id="${list.userid}" href="#" onclick="deleteUser(${list.userid})"> <i class="icon icon-times i_color "></i>删除
+									<td style="padding-left: 20px;">${list.commentId}</td>
+									<td >${list.topicType}</td>
+									<td>${list.commentContent}</td>
+									<td>${list.commentFromUsername}</td>
+									<td>${list.commentToUsername}</td>
+									<td>${time_list.commentTime}</td>
+									<td><a id="${list.commentId}" href="#" onclick="deleteUser(${list.commentId})"> <i class="icon icon-times i_color "></i>删除
 									</a></td>
 								</tr>
 							</c:when>
 							<c:otherwise>
 								<tr class="active">
-									<td style="padding-left: 20px;">${list.userid}</td>
-									<td>${list.username}</td>
-									<td>${list.userphone}</td>
-									<td>${list.useremail}</td>
-									<td><a id="${list.userid}"  href="#" onclick="deleteUser(${list.userid})"> <i class="icon icon-times i_color "></i>删除
+									<td style="padding-left: 20px;">${list.commentId}</td>
+									<td >${list.topicType}</td>
+									<td>${list.commentContent}</td>
+									<td>${list.commentFromUsername}</td>
+									<td>${list.commentToUsername}</td>
+									<td>${time_list.commentTime}</td>
+									<td><a id="${list.commentId}" href="#" onclick="deleteUser(${list.commentId})"> <i class="icon icon-times i_color "></i>删除
 									</a></td>
 								</tr>
 							</c:otherwise>

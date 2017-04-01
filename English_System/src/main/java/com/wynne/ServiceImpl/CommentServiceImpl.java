@@ -16,5 +16,13 @@ public class CommentServiceImpl implements ICommentService{
 	public List<CommentCustom> findCommentCustomBytopicId(String topicId) {
 		return commentMapper.selectCommentCustomBytopicId(topicId);
 	}
+
+	public int insertCommentSelective(CommentCustom record) {
+		return commentMapper.insertSelective(record);
+	}
+
+	public List<CommentCustom> findAllComment() {
+		return commentMapper.selectAllComment();
+	}
 	
 }

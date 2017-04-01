@@ -5,17 +5,19 @@ import java.util.List;
 import com.wynne.Entity.CommentCustom;
 
 public interface CommentMapper {
-    int deleteByPrimaryKey(Integer CommentCustomId);
+    int deleteByPrimaryKey(Integer commentId);
 
     int insert(CommentCustom record);
 
     int insertSelective(CommentCustom record);
 
-    CommentCustom selectByPrimaryKey(Integer CommentCustomId);
+    CommentCustom selectByPrimaryKey(Integer commentId);
+
+    int updateByPrimaryKeySelective(CommentCustom record);
     
     List<CommentCustom> selectCommentCustomBytopicId(String topicId);
 
-    int updateByPrimaryKeySelective(CommentCustom record);
-
     int updateByPrimaryKey(CommentCustom record);
-}
+    
+    List<CommentCustom> selectAllComment();
+}	

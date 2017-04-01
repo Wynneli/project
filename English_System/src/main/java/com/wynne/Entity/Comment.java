@@ -13,7 +13,7 @@ public class Comment {
 
     private Date commentTime;
 
-    private Integer topicType;
+    private String topicType;
 
     private String commentToUsername;
 
@@ -57,12 +57,12 @@ public class Comment {
         this.commentTime = commentTime;
     }
 
-    public Integer getTopicType() {
+    public String getTopicType() {
         return topicType;
     }
 
-    public void setTopicType(Integer topicType) {
-        this.topicType = topicType;
+    public void setTopicType(String topicType) {
+        this.topicType = topicType == null ? null : topicType.trim();
     }
 
     public String getCommentToUsername() {

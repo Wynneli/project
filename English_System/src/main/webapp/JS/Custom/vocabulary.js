@@ -102,47 +102,125 @@ function add_or_remove_unknown_word(){
 	}
 };
 
-function reply(){
-	alert($(this).find("span").toggle().value);
-	if($("#getusername").text()!=""){
-
-	}else{
-		$("#comment_content").attr("placeholder","回复123");
-
-		alert($(this).parnets(div));
+function reply(obj){
+	if($("#getusername").text()==""){
 		new $.zui.Messager('请登录后再回复', {
 			time:'4000',
 			icon: 'info-sign',
-			type: 'important' ,
+			type: 'danger' ,
 			// 定义颜色主题
 			placement: 'center' // 定义显示位置
 		}).show();
-	}
-}
-
-function sumuit_comment(){
-	var comment=document.getElementById("comment_content").value;
-	var username=$("#getusername").text();
-	if(username!=""){
-		if(comment!=""){
-			$(".comment").after('<div class="comment">'+
-					'<a href="#" class="avatar"><i class="icon-user icon-2x"></i>'+
-					'</a><div class="content">'+
-					'<div class="pull-right text-muted">2 个小时前</div>'+
-					'<div><a href="#"><strong>'+username+'</strong></a> '+
-					'<span class="text-muted">回复</span> <a href="#"></a>'+
-					'</div><div class="text">'+comment+'</div>'+
-					'<div class="actions">'+
-					'<a href="#" id="comment_a" onclick="reply()">回复</a>'+
-			'</div></div></div>');
-			document.getElementById("comment_content").value="";
-			new $.zui.Messager('评论成功', {
+	}else{
+		
+		var username='回复'+$(obj).attr("value");
+//		alert(username);
+		if(username!=""&&$(obj).attr("value")!=$("#getusername").text()){
+			$("#comment_content").attr('placeholder',username);
+		}else{
+			new $.zui.Messager('不能对自己进行回复', {
 				time:'4000',
-				icon: 'check',
-				type: 'success' ,
+				icon: 'info-sign',
+				type: 'warning' ,
 				// 定义颜色主题
 				placement: 'center' // 定义显示位置
 			}).show();
+		}
+	}
+}
+
+function submit_comment(){
+	var placeholder=$("#comment_content").attr('placeholder');
+//	alert($("#comment_content").attr('placeholder'));
+	var comment=document.getElementById("comment_content").value;
+	var current_time=getNowFormatDate();
+	var username=$("#getusername").text();
+	var tousername=placeholder.substr(2,placeholder.lenght);
+	if(username!=""){
+		if(comment!=""){
+			if(placeholder=="撰写评论"){
+				$.ajax({
+					type:'post',
+					url:'http://localhost:8080/English_System/comment/sumuit_comment',
+					data:"cet4Id="+$("#cet4_info_id").text()+
+					"&commentContent="+comment+
+					"&commentFromUsername="+username+
+					"&commentToUsername="+"",
+					success:function(data){
+						if(data.attr=="success"){
+							$("#show_comments").append(
+									'<section class="comments-list"><div class="comment">'+
+									'<a href="#" class="avatar">'+
+									' <i class="icon-camera-retro icon-2x"></i>'+
+									'</a><div class="content">'+
+									'<div class="pull-right text-muted">'+current_time+
+									'</div><div><a href="#" id="from_comment_user"><strong>'+username+'</strong></a>'+
+									'<span class="text-muted">&nbsp;回复&nbsp;</span> <a href="#">'+
+									'</a></div><div class="text">'+comment+
+									'</div><div class="actions"><a href="#commentReplyForm2" data-target="#collapseExample" onclick="reply("'+username+'")">回复'+
+							'</a></div></div></div></section>');
+							new $.zui.Messager('评论成功', {
+								time:'4000',
+								icon: 'check',
+								type: 'success' ,
+								// 定义颜色主题
+								placement: 'center' // 定义显示位置
+							}).show();
+							document.getElementById("comment_content").value="";
+						}else{
+							new $.zui.Messager('评论失败', {
+								time:'4000',
+								icon: 'times',
+								type: 'danger' ,
+								// 定义颜色主题
+								placement: 'center' // 定义显示位置
+							}).show();
+							document.getElementById("comment_content").value="";
+						}
+					}
+				});
+			}else{
+				$.ajax({
+					type:'post',
+					url:'http://localhost:8080/English_System/comment/sumuit_comment',
+					data:"cet4Id="+$("#cet4_info_id").text()+
+					"&commentContent="+comment+
+					"&commentFromUsername="+username+
+					"&commentToUsername="+tousername,
+					success:function(data){
+						if(data.attr=="success"){
+							$("#show_comments").append(
+									'<section class="comments-list"><div class="comment">'+
+									'<a href="#" class="avatar">'+
+									' <i class="icon-camera-retro icon-2x"></i>'+
+									'</a><div class="content">'+
+									'<div class="pull-right text-muted">'+current_time+
+									'</div><div><a href="#" id="from_comment_user"><strong>'+username+'</strong></a>'+
+									'<span class="text-muted">&nbsp;回复&nbsp;</span> <a href="#">'+tousername+
+									'</a></div><div class="text">'+comment+
+									'</div><div class="actions"><a href="#commentReplyForm2" data-target="#collapseExample" onclick="reply("'+username+'")">回复'+
+							'</a></div></div></div></section>');
+							new $.zui.Messager('回复成功', {
+								time:'4000',
+								icon: 'check',
+								type: 'success' ,
+								// 定义颜色主题
+								placement: 'center' // 定义显示位置
+							}).show();
+							document.getElementById("comment_content").value="";
+							$("#comment_content").attr('placeholder',"撰写评论");
+						}else{
+							new $.zui.Messager('回复失败', {
+								time:'4000',
+								icon: 'times',
+								type: 'danger' ,
+								// 定义颜色主题
+								placement: 'center' // 定义显示位置
+							}).show();
+						}
+					}
+				});
+			}
 		}else{
 			new $.zui.Messager('请输入评论内容', {
 				time:'4000',
@@ -161,8 +239,8 @@ function sumuit_comment(){
 			placement: 'center' // 定义显示位置
 		}).show();
 	}
-
 }
+
 
 function commit_comment(){
 	if($("#getusername").text()==""){
@@ -177,38 +255,52 @@ function commit_comment(){
 }
 
 function show_comment(){
-	$.ajax({
-		type:'post',
-		url:"http://localhost:8080/English_System/comment/loading_comment",
-		data:"cet4Id="+$("#cet4_info_id").text(),
-		success:function(data){
-
-//			if($("#cet4_button").text()=="展开评论"){
-//			$("#cet4_button").text("收起评论");
-//			}else {
-//			$("#cet4_button").text("展开评论");
-//			}
-			for(var i=0;i<data.length;i++){
-				$("#add_comment_context").after(
-						'<section class="comments-list"><div class="comment">'+
-						'<a href="###" class="avatar">'+
-						' <i class="icon-camera-retro icon-2x"></i>'+
-						'</a><div class="content">'+
-						'<div class="pull-right text-muted">'+data[i].commentTime+
-						'</div><div><a href="#" id="from_comment_user"><strong>'+data[i].commentFromUsername+'</strong></a>'+
-						'<span class="text-muted">&nbsp;回复&nbsp;</span> <a href="###">'+data[i].commentToUsername+
-						'</a></div><div class="text">'+data[i].commentContent+
-						'</div><div class="actions"><a href="#" data-target="#collapseExample" onclick="reply()">回复'+
-						'</a><span style="display:none;">'+data[i].commentFromUsername+'</span></div></div></div></section>');
+	if($("#cet4_button").text()=='展开评论'){
+		$("#cet4_button").text('收起评论');
+		$.ajax({
+			type:'post',
+			url:"http://localhost:8080/English_System/comment/loading_comment",
+			data:"cet4Id="+$("#cet4_info_id").text(),
+			success:function(data){
+				$("#show_comments").html("");
+				for(var i=0;i<data.length;i++){
+					$("#show_comments").append(
+							'<section class="comments-list"><div class="comment">'+
+							'<a href="###" class="avatar">'+
+							' <i class="icon-camera-retro icon-2x"></i>'+
+							'</a><div class="content">'+
+							'<div class="pull-right text-muted">'+data[i].commentTime+
+							'</div><div><a href="#" id="from_comment_user"><strong>'+data[i].commentFromUsername+'</strong></a>'+
+							'<span class="text-muted">&nbsp;回复&nbsp;</span> <a href="#">'+data[i].commentToUsername+
+							'</a></div><div class="text">'+data[i].commentContent+
+							'</div><div class="actions"><a href="#commentReplyForm2" value="'+data[i].commentFromUsername+'"  data-target="#collapseExample" onclick="reply(this)">回复'+
+							'</div></div></div></section>'
+					);
+				}
 			}
-
-			$("#cet4_button").addClass("disabled");
-		}
-	})
-
-
+		})
+	}else{
+		$("#cet4_button").text('展开评论');
+	}
 }
-
+//'+data[i].commentFromUsername+'
+function getNowFormatDate() {
+	var date = new Date();
+	var seperator1 = "-";
+	var seperator2 = ":";
+	var month = date.getMonth() + 1;
+	var strDate = date.getDate();
+	if (month >= 1 && month <= 9) {
+		month = "0" + month;
+	}
+	if (strDate >= 0 && strDate <= 9) {
+		strDate = "0" + strDate;
+	}
+	var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+	+ " " + date.getHours() + seperator2 + date.getMinutes()
+	+ seperator2 + date.getSeconds();
+	return currentdate;
+}
 
 
 

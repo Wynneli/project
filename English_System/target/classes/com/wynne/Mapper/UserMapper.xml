@@ -25,11 +25,18 @@
     where UserPhone = #{userphone,jdbcType=CHAR}
   </select>
   
-  <select id="selectAllUser" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  
+  <select id="Obscure_select" resultMap="BaseResultMap" parameterType="com.wynne.Entity.UserCustom">
     select 
     <include refid="Base_Column_List" />
     from user
-    where UserPhone = #{userphone,jdbcType=CHAR}
+    where UserID like  CONCAT('%',#{userid},'%')  or UserName  like  CONCAT('%',#{username},'%')
+  </select>
+  
+  <select id="selectAllUser" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >

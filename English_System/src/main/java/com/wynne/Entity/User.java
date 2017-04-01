@@ -50,4 +50,11 @@ public class User {
     public void setUseremail(String useremail) {
         this.useremail = useremail == null ? null : useremail.trim();
     }
+
+	@Override
+	public String toString() {
+		return "User [userid=" + userid + ", username=" + username + ", userpassword=" + userpassword + ", userphone="
+				+ userphone + ", useremail=" + useremail + "]";
+	}
+    
 }

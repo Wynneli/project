@@ -26,7 +26,8 @@
 	src="<%=basePath%>JS/Third_Party/zui.min.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>JS/Third_Party/mzui.min.js"></script>
-<script type="text/javascript" src="<%=basePath%>JS/Custom/vocabulary.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>JS/Custom/vocabulary.js"></script>
 
 </head>
 <body>
@@ -93,7 +94,7 @@
 
 				<c:if test="${not empty user}">
 					<li class="dropdown"><a href="<%=basePath%>Page/success.jsp"
-						id="getusername" class="dropdown-toggle" data-toggle="dropdown">欢迎你：${user.username}</a>
+						id="getusername" class="dropdown-toggle" data-toggle="dropdown">${user.username}</a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="#">6级英语学习</a></li>
 						</ul></li>
@@ -121,8 +122,8 @@
 				<div class="board panel">
 					<div class="panel-heading">
 						<strong>4级词汇</strong><span class="cet4_heart_span"></span> <i
-							class="icon icon-heart" style="color: red;"> <a class="cet4_a"
-							id="add_or_remove_unknown_word"
+							class="icon icon-heart" style="color: red;"> <a
+							class="cet4_a" id="add_or_remove_unknown_word"
 							onclick="add_or_remove_unknown_word()" href="#">收入我的词库</a>
 						</i>
 					</div>
@@ -167,15 +168,15 @@
 
 		<!-- 评论 -->
 		<p>
-			<a href="#" id="cet4_a" style="text-decoration:none;"><button type="button"
-					class="btn btn-info btn-lg btn-block" data-toggle="collapse"
-					id="cet4_button" data-target="#collapseExample"
-					onclick="show_comment()">展开评论</button></a>
+			<a href="#" id="cet4_a" style="text-decoration: none;"><button
+					type="button" class="btn btn-info btn-lg btn-block"
+					data-toggle="collapse" id="cet4_button"
+					data-target="#collapseExample" onclick="show_comment()">展开评论</button></a>
 		</p>
 		<div class="collapse" id="collapseExample">
 			<div class="comments">
 				<header>
-				
+
 				<div class="pull-right" id="comment_title">
 					<a href="#commentReplyForm2" class="btn btn-primary"
 						name="commit_comment" onclick="commit_comment()"><i
@@ -183,7 +184,8 @@
 				</div>
 				<h3 id="add_comment_context">所有评论</h3>
 				</header>
-				
+				<div class="comments" id="show_comments">
+				</div>
 				<div class="reply-form" id="commentReplyForm2">
 					<a href="#" class="avatar"><i class="icon-user icon-2x"></i></a>
 					<form class="form">
@@ -201,7 +203,7 @@
 						</div>
 						<div class="col-md-2">
 							<button type="submit" class="btn btn-block btn-primary"
-								onclick="sumuit_comment()">提交</button>
+								onclick="submit_comment();return false;">提交</button>
 						</div>
 					</form>
 				</div>

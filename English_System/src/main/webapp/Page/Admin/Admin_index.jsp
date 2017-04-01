@@ -52,7 +52,8 @@
 			<ul class="nav nav-primary">
 				<li><a href="<%=basePath%>admin/show_userinfo" target="myframe"><i
 						class="icon icon-user" style="color: blue;"></i>用户信息管理</a></li>
-				<li><a href="#"><i class="icon icon-user"></i> Me</a></li>
+				<li><a href="<%=basePath%>admin/show_commentifo"
+					target="myframe"><i class="icon icon-user"></i> 评论管理</a></li>
 				<li class="nav-parent"><a href="#"><i
 						class="icon icon-time"></i> Time</a>
 					<ul class="nav" id="second_ul">
@@ -78,6 +79,7 @@
 			</nav>
 		</div>
 		<div class="col-md-10">
-				<iframe class="myframe" frameborder="0" name="myframe"> </iframe>
+			<iframe class="myframe" scrolling="no" frameborder="0" name="myframe">
+			</iframe>
 		</div>
 </body>

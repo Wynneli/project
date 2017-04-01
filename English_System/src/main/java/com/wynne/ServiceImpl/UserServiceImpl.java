@@ -1,5 +1,7 @@
 package com.wynne.ServiceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,13 +15,13 @@ import com.wynne.Serivce.IUserService;
 public class UserServiceImpl implements IUserService{
 	@Autowired
 	private UserMapper userMapper;
-	public UserCustom getUserById(Integer userid)throws Throwable{ 
+	public UserCustom getUserById(Integer userid){ 
 		// TODO Auto-generated method stub
 		System.out.println(1321);
 		return (UserCustom)userMapper.selectByPrimaryKey(userid); 
 	}
 
-	public UserCustom getUserByPhone(String userphone,String userpassword)throws Throwable {
+	public UserCustom getUserByPhone(String userphone,String userpassword) {
 		UserCustom userCustomer=(UserCustom) userMapper.selectByUserPhone(userphone);
 		if(userCustomer!=null&&userCustomer.getUserpassword().equals(userpassword)&&userCustomer.getUserphone().equals(userphone)){
 			return userCustomer;
@@ -27,7 +29,7 @@ public class UserServiceImpl implements IUserService{
 		return userCustomer;
 	}
 	
-	public Boolean InsertUser(UserCustom userCustomer) throws Throwable{
+	public Boolean InsertUser(UserCustom userCustomer) {
 		Boolean flag;
 		Integer column=userMapper.insert(userCustomer);
 		if(column>0){
@@ -39,16 +41,29 @@ public class UserServiceImpl implements IUserService{
 		return flag;
 	}
 
-	public Boolean updateUser(UserCustom userCustomer)throws Throwable{
+	public Boolean updateUser(UserCustom userCustomer){
 		if(userCustomer!=null){
 			userMapper.updateByPrimaryKey(userCustomer);
 		}
 		return true;
 	}
 
-	public Boolean deleteUser(Integer userId) throws Throwable{
+	public Boolean deleteUser(Integer userId) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public List<UserCustom> findAllUser() {
+		return userMapper.selectAllUser();
+	}
+
+	public List<UserCustom> Obscure_find(UserCustom userCustom) {
+		
+		return userMapper.Obscure_select(userCustom);
+	}
+
+	public int deleteByPrimaryKey(int userid) {
+		return userMapper.deleteByPrimaryKey(userid);
 	}
 
 

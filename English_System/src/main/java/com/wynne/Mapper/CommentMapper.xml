@@ -7,7 +7,7 @@
     <result column="comment_content" property="commentContent" jdbcType="VARCHAR" />
     <result column="comment_from_username" property="commentFromUsername" jdbcType="VARCHAR" />
     <result column="comment_time" property="commentTime" jdbcType="TIMESTAMP" />
-    <result column="topic_type" property="topicType" jdbcType="INTEGER" />
+    <result column="topic_type" property="topicType" jdbcType="VARCHAR" />
     <result column="comment_to_username" property="commentToUsername" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -20,12 +20,19 @@
     from comment
     where comment_id = #{commentId,jdbcType=INTEGER}
   </select>
-  <select id="selectCommentCustomBytopicId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+   <select id="selectCommentCustomBytopicId" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from comment 
     where topic_id = #{topicId,jdbcType=CHAR}
   </select>
+  
+  <select id="selectAllComment" resultMap="BaseResultMap"  >
+    select  
+    <include refid="Base_Column_List" />
+    from comment
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from comment
     where comment_id = #{commentId,jdbcType=INTEGER}
@@ -35,7 +42,7 @@
       comment_from_username, comment_time, topic_type, 
       comment_to_username)
     values (#{commentId,jdbcType=INTEGER}, #{topicId,jdbcType=CHAR}, #{commentContent,jdbcType=VARCHAR}, 
-      #{commentFromUsername,jdbcType=VARCHAR}, #{commentTime,jdbcType=TIMESTAMP}, #{topicType,jdbcType=INTEGER}, 
+      #{commentFromUsername,jdbcType=VARCHAR}, #{commentTime,jdbcType=TIMESTAMP}, #{topicType,jdbcType=VARCHAR}, 
       #{commentToUsername,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.wynne.Entity.CommentCustom" >
@@ -80,7 +87,7 @@
         #{commentTime,jdbcType=TIMESTAMP},
       </if>
       <if test="topicType != null" >
-        #{topicType,jdbcType=INTEGER},
+        #{topicType,jdbcType=VARCHAR},
       </if>
       <if test="commentToUsername != null" >
         #{commentToUsername,jdbcType=VARCHAR},
@@ -103,7 +110,7 @@
         comment_time = #{commentTime,jdbcType=TIMESTAMP},
       </if>
       <if test="topicType != null" >
-        topic_type = #{topicType,jdbcType=INTEGER},
+        topic_type = #{topicType,jdbcType=VARCHAR},
       </if>
       <if test="commentToUsername != null" >
         comment_to_username = #{commentToUsername,jdbcType=VARCHAR},
@@ -117,7 +124,7 @@
       comment_content = #{commentContent,jdbcType=VARCHAR},
       comment_from_username = #{commentFromUsername,jdbcType=VARCHAR},
       comment_time = #{commentTime,jdbcType=TIMESTAMP},
-      topic_type = #{topicType,jdbcType=INTEGER},
+      topic_type = #{topicType,jdbcType=VARCHAR},
       comment_to_username = #{commentToUsername,jdbcType=VARCHAR}
     where comment_id = #{commentId,jdbcType=INTEGER}
   </update>
