@@ -180,7 +180,7 @@
 				</div>
 				<div class="row">
 					<ul class="ul_setting">
-						<li><a href="#"><i class="icon icon-info-sign"
+						<li><a href="<%=basePath%>Page/New/dynamicNew.jsp" target="_blank"><i class="icon icon-info-sign"
 								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
 						<li><a href="#"><i class="icon icon-info-sign"
 								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
@@ -207,8 +207,8 @@
 				</div>
 				<div class="row">
 					<ul class="ul_setting">
-						<li><a href="#"><i class="icon icon-info-sign"
-								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
+						<li><a href="<%=basePath%>Page/New/dynamicNew.jsp" target="_blank"><i class="icon icon-info-sign"
+								id="i_setting"></i>&nbsp;&nbsp;test</a></li>
 						<li><a href="#"><i class="icon icon-info-sign"
 								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
 						<li><a href="#"><i class="icon icon-info-sign"
@@ -438,14 +438,5 @@
 
 
 	<br />
-
-
-
-
-
-
-
-	<footer class="container-fluid text-center">
-	<p>Footer Text</p>
-	</footer>
+    <jsp:include page="/Page/tail.jsp"/>
 </body>

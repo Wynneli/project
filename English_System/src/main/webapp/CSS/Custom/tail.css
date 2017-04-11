@@ -1,0 +1,30 @@
+.tail {
+	height: 150px;
+	width: 100%;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	background-color: #f0f0f0;
+	padding: 0;
+	text-align: center;
+	font-size: 12px;
+}
+
+.a {
+	width: 830px;
+	height: inherit;
+	margin: 0 auto;
+}
+
+a {
+	color: #444;
+	text-decoration: none;
+}
+
+a:hover {
+	color: red;
+}
+
+.cRed {
+    color: red;
+}

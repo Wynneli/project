@@ -27,12 +27,18 @@
     where topic_id = #{topicId,jdbcType=CHAR}
   </select>
   
-  <select id="selectAllComment" resultMap="BaseResultMap"  >
-    select  
-    <include refid="Base_Column_List" />
-    from comment
-  </select>
   
+  
+  <select id="countComment" resultType="int">
+		select count(*) from comment
+	</select>
+  
+  <select id="selectAllComment" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from comment limit #{pageOffset},10
+	</select>
+	
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from comment
     where comment_id = #{commentId,jdbcType=INTEGER}

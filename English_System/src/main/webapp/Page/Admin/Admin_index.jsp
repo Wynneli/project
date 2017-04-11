@@ -36,7 +36,7 @@
 		<div class="col-md-2">
 			<img src="/file/Images/piki.jpg" class="img-circle img_setting"></img>
 			<span class="span_setting">Tonny</span>&nbsp;&nbsp;&nbsp; <a href="#"><i
-				class="icon icon-signin i_icon_color icon-2x"></i></a>
+				class="icon icon-signout i_icon_color icon-2x"></i></a>
 		</div>
 		<div class="col-md-1"></div>
 	</div>
@@ -55,13 +55,12 @@
 				<li><a href="<%=basePath%>admin/show_commentifo"
 					target="myframe"><i class="icon icon-user"></i> 评论管理</a></li>
 				<li class="nav-parent"><a href="#"><i
-						class="icon icon-time"></i> Time</a>
+						class="icon icon-time"></i>单词管理</a>
 					<ul class="nav" id="second_ul">
+						<li><a href="<%=basePath%>admin/show_cet4info" target="myframe"><i class="icon icon-user"
+								style="color: blue;"></i>四级</a></li>
 						<li><a href="#"><i class="icon icon-user"
-								style="color: blue;"></i>Today</a></li>
-						<li><a href="#">Tomarrow</a></li>
-						<li><a href="#">Yestorday</a></li>
-						<li><a href="#">This Week</a></li>
+								style="color: blue;"></i>六级</a></li>
 					</ul></li>
 				<li><a href="#"><i class="icon icon-trash"></i> Trash</a></li>
 				<li><a href="#"><i class="icon icon-list-ul"></i> All</a></li>

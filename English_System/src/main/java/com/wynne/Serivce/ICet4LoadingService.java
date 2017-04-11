@@ -1,5 +1,7 @@
 package com.wynne.Serivce;
 
+import java.util.List;
+
 import com.wynne.Entity.Answer2;
 import com.wynne.Entity.Cet4Custom;
 import com.wynne.Entity.ProcessCustom;
@@ -23,6 +25,18 @@ public interface ICet4LoadingService {
    public int Remove_UnknownWord(String  unCetId);
    
    public Unknown_WordCustom findByusernameAndunCetId(String unCetId,String username);
+   
+   public int countCet4();
+   
+   public List<Cet4Custom> findCet4(int pageOffset);
+   
+   public int updateCet4(Cet4Custom cet4Custom);
+   
+   public int deleteCet4(String  cet4Id);
+   
+   public String findLastCet4Id();
+   
+   public int insertCetRecord(Cet4Custom record);
 
   
 }

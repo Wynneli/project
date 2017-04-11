@@ -1,0 +1,185 @@
+h1 {
+	text-align: center;
+	color: red;
+}
+
+.height1 {
+	height: 150px;
+	background-image: url('/file/Images/banner_1.jpg');
+}
+
+.span1 {
+	font-size: 40px;
+	color: yellow;
+	height: 250px;
+}
+
+.span2 {
+	font-size: 40px;
+	color: white;
+	height: 250px;
+}
+
+.span3 {
+	font-size: 25px;
+	height: 250px;
+}
+
+.setting {
+	border-bottom: 2px solid #d6e1e6;
+}
+
+.p_setting {
+	background-color: #F0F0F0;
+	font-size: 15px;
+}
+
+.setting2 {
+	margin-top: 100px;
+	width: 90%;
+	border-bottom: 2px solid #d6e1e6;
+	background-color: #F0F0F0;
+}
+
+.setting3 {
+	padding-top: 30px;
+	height: 100px;
+	padding-left: 240px;
+	font-size: 35px;
+	color: red;
+}
+
+.setting4 {
+	margin-top: 20px;
+}
+
+.setting5 {
+	border: 1px solid #d6e1e6;
+	height: 330px;
+}
+
+.setting6 {
+	border: 1px solid #d6e1e6;
+	height: 330px;
+}
+
+ul li {
+	font-size: 14px;
+}
+
+.p_setting1 {
+	padding-left: 35%;
+	font-size: 40px;
+	padding-top: 40px;
+	color: red;
+}
+
+.set {
+	height: 270px;
+	margin-top: 50px;
+}
+
+.set5{
+	height: 200px;
+	margin-top: 50px;
+}
+
+
+.set6{
+	height: 330px;
+	background-color: orange;
+	margin-top: 50px;
+}
+.set7{
+	height: 240px;
+	margin-top: 50px;
+}
+.set8{
+	height: 310px;
+	margin-top: 50px;
+}
+.set9{
+	height: 330px;
+	margin-top: 50px;
+}
+.set1 {
+	height: inherit;
+	background-color: #03a2b6;
+}
+
+.set2 {
+	height: inherit;
+	background-color: #F0F0F0;
+}
+
+.set3 {
+	height: inherit;
+}
+
+.span2 {
+	font: bold 24px/40px "微软雅黑";
+	color: white;
+	padding-left: 80px;
+	text-align: center;
+}
+
+.span3 {
+	font: bold 24px/40px "微软雅黑";
+	padding-left: 40px;
+	text-align: center;
+	color:white;
+}
+
+.span4 {
+	font: bold 24px/40px "微软雅黑";
+	padding-left: 50px;
+	text-align: center;
+	color:white;
+}
+
+.set4 {
+	width: 80%;
+	height: inherit;
+	overflow: hidden;
+	margin: 0 auto;
+	margin-top: 20px;
+	font: normal 16px/28px "微软雅黑";
+	color: white;
+}
+
+.A {
+	width: 30px;
+	height: 30px;
+	overflow: hidden;
+	background: #6c6c6c;
+	text-align: center;
+	color: #eee;
+	font: normal 16px/30px "微软雅黑";
+	margin-top: 20px;
+	margin-left: 30px;
+	float: left;
+}
+
+.A_text {
+	height: inherit;
+	margin-left: 70px;
+	overflow: hidden;
+}
+
+.p_setting {
+	font: normal 14px/26px "微软雅黑";
+	overflow: hidden;
+	color: #666; 
+	word-break: break-all;    /*实现在任何地方换行*/
+}
+
+.dd{
+	height:134px;
+	width:inherit;
+}
+
+.tail{
+	height:150px;
+	background-color:#f0f0f0;
+	margin-top:30px;
+}

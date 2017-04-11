@@ -3,6 +3,8 @@ package com.wynne.ServiceImpl;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,7 @@ import com.wynne.Entity.Cet4Custom;
 import com.wynne.Entity.ProcessCustom;
 import com.wynne.Entity.Unknown_WordCustom;
 import com.wynne.Serivce.ICet4LoadingService;
+import com.wynne.Utils.HandleCet;
 
 /**
  *<p>Title: </p>
@@ -105,6 +108,39 @@ public class Cet4LoadingServiceImpl  implements ICet4LoadingService{
 	public Unknown_WordCustom findByusernameAndunCetId(String unCetId, String username) {
 		
 		return unknown_WordMapper.selectByusernameAndunCetId(unCetId, username);
+	}
+
+
+	public int countCet4() {
+		return cet4Mapper.countCet4();
+	}
+
+
+	public List<Cet4Custom> findCet4(int pageOffset) {
+		return cet4Mapper.selectCet4(pageOffset);
+	}
+
+
+	public int updateCet4(Cet4Custom cet4Custom) {
+		
+		return cet4Mapper.updateByPrimaryKey(cet4Custom);
+	}
+
+
+	public int deleteCet4(String  cet4Id) {
+		return cet4Mapper.deleteByPrimaryKey(cet4Id);
+	}
+
+
+	public String findLastCet4Id() {
+		String index=null;
+		index=HandleCet.handleCetId(cet4Mapper.selectLastCet4Id());
+		return index;
+	}
+
+
+	public int insertCetRecord(Cet4Custom record) {
+		return cet4Mapper.insertSelective(record);
 	}
 
 

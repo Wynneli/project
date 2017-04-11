@@ -21,8 +21,20 @@ public class CommentServiceImpl implements ICommentService{
 		return commentMapper.insertSelective(record);
 	}
 
-	public List<CommentCustom> findAllComment() {
-		return commentMapper.selectAllComment();
+	public List<CommentCustom> findAllComment(int pageOffset) {
+		return commentMapper.selectAllComment(pageOffset);
 	}
+
+	public int deleteCommentByPrimaryKey(int commentId) {
+		return commentMapper.deleteByPrimaryKey(commentId);
+	}
+
+	public int countComment() {
+		// TODO Auto-generated method stub
+		return commentMapper.countComment();
+	}
+
+	
+
 	
 }

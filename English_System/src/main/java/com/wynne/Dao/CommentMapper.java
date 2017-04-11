@@ -19,5 +19,7 @@ public interface CommentMapper {
 
     int updateByPrimaryKey(CommentCustom record);
     
-    List<CommentCustom> selectAllComment();
+    List<CommentCustom> selectAllComment(int pageOffset);
+    
+    public int countComment();
 }	

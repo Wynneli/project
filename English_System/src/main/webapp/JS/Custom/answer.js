@@ -1,11 +1,4 @@
 $(function(){
-//	$("li").each(function(index){
-//	$(this).click(function(){
-//	$("li").removeClass("active");
-//	$("li").eq(index).addClass("active");
-//	$('#content div').eq($(this).index()).show().siblings().hide();
-//	});
-//	});
 	$("#ulContainer li").click(function(){
 		$(this).addClass("active").siblings().removeClass("active");
 		var index = $(this).index();

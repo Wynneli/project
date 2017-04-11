@@ -113,3 +113,84 @@ function deleteUser(a){
 		}
 	})
 }
+
+$(function(){	
+	$("#pagecontent li").click(function(){
+//		if(!isNaN($("ul .active a").html())){
+		$(this).addClass("active").siblings().removeClass("active");
+	});
+});
+
+function page(page){
+	$.ajax({
+		type:'post',
+		url:"http://localhost:8080/English_System/admin/uniquepage",
+		data:"pagecontent="+page,
+		success:function(data){
+			if(data.attr=='success'){
+				if(data.userlist.length!=0){
+					$("#show_userinfo tbody").html("");
+					for(var i=0;i<data.userlist.length;i++){
+						if(i%2==0){
+							var temp='<tr><td style="padding-left: 20px;">'+data.userlist[i].userid+'</td>'+
+							'<td>'+data.userlist[i].username+'</td>'+
+							'<td>'+data.userlist[i].userphone+'</td>'+
+							'<td>'+data.userlist[i].useremail+'</td>'+
+							'<td><a onclick="deleteUser('+data.userlist[i].userid+')" href="#" id="'+data.userlist[i].userid+'"> '+
+							'<i class="icon icon-times i_color"></i>删除'+
+							'</a></td></tr>';
+
+						}else{
+							var temp='<tr class="active"><td style="padding-left: 20px;">'+data.userlist[i].userid+'</td>'+
+							'<td>'+data.userlist[i].username+'</td>'+
+							'<td>'+data.userlist[i].userphone+'</td>'+
+							'<td>'+data.userlist[i].useremail+'</td>'+
+							'<td><a onclick="deleteUser('+data.userlist[i].userid+')" href="#" id="'+data.userlist[i].userid+'"> '+
+							'<i class="icon icon-times i_color"></i>删除'+
+							'</a></td></tr>';
+						}
+						$("#show_userinfo tbody").append(temp);
+					} 
+				}
+			}
+		}
+	})
+}
+
+//$(function(){
+//	$("#selectAll").click(function(){
+//		$("input[name='checkbox']").attr("checked","true"); 
+//	});
+//
+//	$("#resever").click(function () {  
+//		$("input[name='checkbox']").attr("checked","");  
+//
+//	})  
+//});
+
+//function selectAll() {
+//	alert("selectall");
+//	$("input[name='checkbox']").attr("checked","true"); 
+//}
+//
+//function notAll() {
+//	alert("notAll2");
+//	$("input[name='checkbox']").attr("checked",''); 
+//}
+//
+//
+//function reverseSelect(){
+//	$("input[name='checkbox']").each(function(){ 
+//		if($(this).attr("checked")) 
+//		{ 
+//			$(this).removeAttr("checked"); 
+//		} 
+//		else 
+//		{ 
+//			$(this).attr("checked","true"); 
+//		}
+//	}) 
+//}
+function test(){
+	alert(23);
+}

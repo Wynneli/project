@@ -66,5 +66,13 @@ public class UserServiceImpl implements IUserService{
 		return userMapper.deleteByPrimaryKey(userid);
 	}
 
+	public int totalUser() {
+		return userMapper.countUser();
+	}
+
+	public List<UserCustom> findAllUser2(int pageOffset) {
+		return userMapper.selectAllUser2(pageOffset);
+	}
+
 
 }

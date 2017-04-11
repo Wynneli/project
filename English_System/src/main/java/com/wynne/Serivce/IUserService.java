@@ -17,7 +17,11 @@ public interface IUserService {
 	
 	public List<UserCustom> findAllUser();
 	
+	public List<UserCustom> findAllUser2(int pageOffset);
+	
 	public List<UserCustom> Obscure_find(UserCustom userCustom);
 	
 	public int deleteByPrimaryKey(int userid);
+	
+	public int totalUser();
 }  

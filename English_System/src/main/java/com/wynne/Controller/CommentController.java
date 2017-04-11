@@ -29,6 +29,10 @@ public class CommentController {
 	private final static String SUCCESS="success";
 
 	private final static String FAILURE="failure";
+	
+	private final static String cet4type="四级单词";
+	
+	private final static String cet6type="六级单词";
 
 	@SuppressWarnings("static-access")
 	@RequestMapping("/loading_comment")
@@ -52,6 +56,11 @@ public class CommentController {
 		commentCustom.setCommentContent(request.getParameter("commentContent"));
 		commentCustom.setCommentFromUsername(request.getParameter("commentFromUsername"));
 		commentCustom.setTopicId(request.getParameter("cet4Id"));
+		if(request.getParameter("cet4Id").contains("cet4_")){
+			commentCustom.setTopicType(cet4type);
+		}else{
+			commentCustom.setTopicType(cet6type);
+		}
 		if(!request.getParameter("commentToUsername").trim().equals("")){
 			commentCustom.setCommentToUsername(request.getParameter("commentToUsername"));
 		}

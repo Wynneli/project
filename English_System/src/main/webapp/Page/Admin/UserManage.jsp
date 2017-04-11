@@ -20,12 +20,13 @@
 
 
 <link rel="stylesheet" href="<%=basePath%>CSS/Admin/usermanage.css">
+<link rel="stylesheet" href="<%=basePath%>CSS/Admin/common.css">
 <script type="text/javascript"
 	src="<%=basePath%>JS/Third_Party/jquery-2.1.4.min.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>JS/Third_Party/zui.min.js"></script>
-<script type="text/javascript" src="<%=basePath%>JS/Admin/nav.js"></script>
 <script type="text/javascript" src="<%=basePath%>JS/Admin/UserManage.js"></script>
+<script type="text/javascript" src="<%=basePath%>JS/Admin/common.js"></script>
 </head>
 
 <body>
@@ -44,12 +45,14 @@
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="row" style="height: 420px;">
 		<table class="table table-fixed  table-hover table-borderless"
 			id="show_userinfo">
 			<thead>
 				<tr>
-					<th style="padding-left: 20px;">用户编号</th>
+					<th style="padding-left: 35px;"><input type="checkbox"
+						onclick="selectAll(this);" /> &nbsp;全选/取消全选</th>
+					<th>用户编号</th>
 					<th>昵称</th>
 					<th>电话</th>
 					<th>邮箱</th>
@@ -62,21 +65,31 @@
 						<c:choose>
 							<c:when test="${count.count%2==1}">
 								<tr>
-									<td style="padding-left: 20px;">${list.userid}</td>
+									<td style="padding-left: 35px;"><label> <input
+											type="checkbox" name="checkbox">
+									</label></td>
+									<td>${list.userid}</td>
 									<td>${list.username}</td>
 									<td>${list.userphone}</td>
 									<td>${list.useremail}</td>
-									<td><a id="${list.userid}" href="#" onclick="deleteUser(${list.userid})"> <i class="icon icon-times i_color "></i>删除
+									<td><a id="${list.userid}" href="#"
+										onclick="deleteUser(${list.userid})"> <i
+											class="icon icon-times i_color "></i>删除
 									</a></td>
 								</tr>
 							</c:when>
 							<c:otherwise>
 								<tr class="active">
-									<td style="padding-left: 20px;">${list.userid}</td>
+									<td style="padding-left: 35px;"><label> <input
+											type="checkbox" name="checkbox">
+									</label></td>
+									<td>${list.userid}</td>
 									<td>${list.username}</td>
 									<td>${list.userphone}</td>
 									<td>${list.useremail}</td>
-									<td><a id="${list.userid}"  href="#" onclick="deleteUser(${list.userid})"> <i class="icon icon-times i_color "></i>删除
+									<td><a id="${list.userid}" href="#"
+										onclick="deleteUser(${list.userid})"> <i
+											class="icon icon-times i_color "></i>删除
 									</a></td>
 								</tr>
 							</c:otherwise>
@@ -85,5 +98,42 @@
 				</tbody>
 			</c:if>
 		</table>
+	</div>
+	<div class="row" id="page">
+		<div class="container">
+			<ul class="pager pager-pills pager-loose" id="pagecontent">
+				<li class="previous"><a href="#">首页</a></li>
+				<c:forEach items="${count_list}" varStatus="page_count">
+					<c:choose>
+						<c:when test="${page_count.count<=13}">
+							<c:choose>
+								<c:when test="${page_count.count==1}">
+									<li class="active"><a href="#"
+										onclick="page(${page_count.count})">${page_count.count}</a></li>
+								</c:when>
+								<c:otherwise>
+									<li><a href="#" onclick="page(${page_count.count})">${page_count.count}</a></li>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+					</c:choose>
+				</c:forEach>
+				<c:choose>
+					<c:when test="${not empty pagecontent_user }">
+						<li class="disabled "><a href="#"><span
+								style="color: red;">共${pagecontent_user}页</span></a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="disabled "><a href="#"><span
+								style="color: red;">共 0 页</span></a></li>
+					</c:otherwise>
+				</c:choose>
+				<span style="margin-left: 20px;">跳转到</span>
+				<input style="width: 50px; margin-left: 6px; text-align: center;"
+					type="text" />
+				<span>页</span>
+				<button class="btn btn-warning " type="button">确认</button>
+			</ul>
+		</div>
 	</div>
 </body>

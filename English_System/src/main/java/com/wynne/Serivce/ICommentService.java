@@ -9,6 +9,9 @@ public interface ICommentService {
 	
 	public int insertCommentSelective(CommentCustom commentCustom);
 	
-	public List<CommentCustom> findAllComment();
+	public List<CommentCustom> findAllComment(int pageOffset);
 	
+	public int deleteCommentByPrimaryKey(int commentId);
+	
+	public int countComment();
 }
