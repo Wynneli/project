@@ -81,7 +81,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<!-- 右侧的导航项目 -->
 			<ul class="nav navbar-nav navbar-right">
 				<c:if test="${empty user}">
-					<li><a href="<%=basePath%>Page/login/Login.jsp">登录</a></li>
+					<li><a href="<%=basePath%>Page/login/Login2.jsp">登录</a></li>
 					<li><a href="<%=basePath%>Page/login/Register.jsp">注册</a></li>
 				</c:if>
 				
@@ -94,7 +94,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</c:if>
 				
 				
-				<li><a href="<%=basePath%>Page/Login.jsp">帮助</a></li>
+				<li><a href="<%=basePath%>Page/Login2.jsp">帮助</a></li>
 				<li class="dropdown"><a href="#"
 					class="dropdown-toggle" data-toggle="dropdown">探索 <b
 						class="caret"></b></a>

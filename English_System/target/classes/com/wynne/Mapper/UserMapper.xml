@@ -19,6 +19,16 @@
 		where UserID = #{userid,jdbcType=INTEGER}
 	</select>
 
+	<select id="selectByUserName" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		where UserName = #{username,jdbcType=VARCHAR}
+	</select>
+	
+	
+
 	<select id="selectByUserPhone" resultMap="BaseResultMap"
 		parameterType="java.lang.String">
 		select
@@ -60,7 +70,8 @@
 	</select>
 
 
-	<select id="selectAllUser2" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+	<select id="selectAllUser2" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from user limit #{pageOffset},10

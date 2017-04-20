@@ -17,7 +17,8 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" href="<%=basePath%>CSS/Third_Party/zui.min.css">
-
+<link rel="stylesheet"
+	href="<%=basePath%>CSS/fonts/font-awesome.min.css">
 
 <link rel="stylesheet" href="<%=basePath%>CSS/Custom/show_item.css">
 <script type="text/javascript"

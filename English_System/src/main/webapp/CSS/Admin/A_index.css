@@ -5,7 +5,8 @@ body {
 
 .top_setting {
 	height: 50px;
-	width: inherit; background-color : #3280fc;
+	width: inherit;
+	background-color: #3280fc;
 	margin-bottom: 10px;
 	padding: 0;
 	background-color: #3280fc;
@@ -26,33 +27,48 @@ body {
 	height: 50px;
 }
 
-.span_setting{
+.span_setting {
 	font-size: 20px;
-	color:white;	
-}
-.i_icon_color{
-	color:white;
+	color: white;
 }
 
-.nav li a:visited{
+.i_icon_color {
+	color: white;
+}
+
+.nav li a:visited {
 	background-color: #3280fc;
 }
 
-.nav li a:hover{
-	background-color: #3280fc;
-}
-#second_ul li a:hover{
+.nav li a:hover {
 	background-color: #3280fc;
 }
 
-#second_ul li a:visited{
+#second_ul li a:hover {
 	background-color: #3280fc;
 }
 
-
-.myframe{
-	width:1120px;
-	height:560px;
+#second_ul li a:visited {
+	background-color: #3280fc;
 }
 
+.myframe {
+	width: 100%;
+	height: 100%;
+}
 
+.admin {
+	background: #fff;
+	position: fixed;
+	border-left: solid 1px #b5cfd9;
+	right: 0;
+	bottom: 0;
+	top: 110px;
+	left: 180px;
+	padding: 15px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	overflow: auto;
+	border-top: 1px solid #b5cfd9;
+	padding-right: 15px;
+}

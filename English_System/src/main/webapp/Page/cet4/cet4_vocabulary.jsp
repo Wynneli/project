@@ -88,7 +88,7 @@
 			<!-- 右侧的导航项目 -->
 			<ul class="nav navbar-nav navbar-right">
 				<c:if test="${empty user}">
-					<li><a href="<%=basePath%>Page/login/Login.jsp">登录</a></li>
+					<li><a href="<%=basePath%>Page/login/Login2.jsp">登录</a></li>
 					<li><a href="<%=basePath%>Page/login/Register.jsp">注册</a></li>
 				</c:if>
 
@@ -101,7 +101,7 @@
 				</c:if>
 
 
-				<li><a href="<%=basePath%>Page/Login.jsp">帮助</a></li>
+				<li><a href="<%=basePath%>Page/Login2.jsp">帮助</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">探索 <b class="caret"></b></a>
 					<ul class="dropdown-menu" role="menu">
@@ -125,7 +125,16 @@
 							class="icon icon-heart" style="color: red;"> <a
 							class="cet4_a" id="add_or_remove_unknown_word"
 							onclick="add_or_remove_unknown_word()" href="#">收入我的词库</a>
-						</i>
+						</i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<button class="btn btn-mini btn-success" type="button"
+							onclick="saveProcess()">
+							<i class="icon icon-save"></i>&nbsp; 保存进度
+						</button>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<button class="btn btn-mini btn-success" type="button"
+							onclick="loadProcess()">
+							<i class="icon icon-history"></i>&nbsp; 加载进度
+						</button>
 					</div>
 					<div class="panel-body">
 						<div class="board-list">
@@ -184,8 +193,7 @@
 				</div>
 				<h3 id="add_comment_context">所有评论</h3>
 				</header>
-				<div class="comments" id="show_comments">
-				</div>
+				<div class="comments" id="show_comments"></div>
 				<div class="reply-form" id="commentReplyForm2">
 					<a href="#" class="avatar"><i class="icon-user icon-2x"></i></a>
 					<form class="form">

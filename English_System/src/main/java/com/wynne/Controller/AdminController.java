@@ -160,7 +160,7 @@ public class AdminController {
 		List<Cet4Custom> cet4_list =new ArrayList<Cet4Custom>();
 		List<Integer> cet4list=new ArrayList<Integer>();
 		cet4_list= cet4LoadingService.findCet4(0);
-		int cet4page=Handlepage.handlepage(cet4LoadingService.countCet4());
+		int cet4page=Handlepage.handlepage(cet4LoadingService.countCet4("cet4_"));
 		for(int i=0;i<cet4page;i++){
 			cet4list.add(i);
 		}
@@ -183,7 +183,7 @@ public class AdminController {
 		List<Cet4Custom> cet4_list =new ArrayList<Cet4Custom>();
 		List<Integer> cet4list=new ArrayList<Integer>();
 		cet4_list= cet4LoadingService.findCet4(Handlepage.handlepagebyCetid(cet4Id));
-		int cet4page=Handlepage.handlepage(cet4LoadingService.countCet4());
+		int cet4page=Handlepage.handlepage(cet4LoadingService.countCet4("cet4_"));
 		for(int i=0;i<cet4page;i++){
 			cet4list.add(i);
 		}

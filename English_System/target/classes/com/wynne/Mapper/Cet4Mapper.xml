@@ -17,10 +17,12 @@
     where cet4_id = #{cet4Id,jdbcType=CHAR}
   </select>
   
-  <select id="countCet4" resultType="int">
-		select count(*) from cet4
+  <select id="countCet4" resultType="int" parameterType="java.lang.String">
+		select count(*) from cet4 where cet4_id like CONCAT(#{CET},'%')
 	</select>
   
+  
+	
   <select id="selectCet4" parameterType="java.lang.Integer" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />

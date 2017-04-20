@@ -3,7 +3,6 @@ package com.wynne.Controller;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.wynne.Entity.Answer;
@@ -27,17 +27,14 @@ import com.wynne.Entity.Cet4_Part3B;
 import com.wynne.Entity.Cet4_Part3C;
 import com.wynne.Entity.Cet4_Part4;
 import com.wynne.Entity.Chart;
-import com.wynne.Entity.CommentCustom;
 import com.wynne.Entity.Compare_Result;
 import com.wynne.Entity.ProcessCustom;
 import com.wynne.Entity.Unknown_WordCustom;
 import com.wynne.Entity.UserCustom;
 import com.wynne.Serivce.ICet4LoadingService;
 import com.wynne.Serivce.ICet4_partService;
+import com.wynne.Serivce.IUserService;
 import com.wynne.Utils.HandleUserName;
-import com.wynne.Utils.TranferTime;
-
-import net.sf.json.JsonConfig;
 
 /**
  *<p>Title: </p>
@@ -63,7 +60,8 @@ public class Cet4Controller {
 	@Autowired
 	private ICet4_partService cet4_partService;
 
-
+	@Autowired 
+	private IUserService userService;
 
 	@RequestMapping("/loading")
 	public String Add()throws Exception{
@@ -551,6 +549,77 @@ public class Cet4Controller {
 			return "redirect:/Page/cet4/show_item.jsp";
 		}
 		return "/Error/item_error";
+	}
+
+	@RequestMapping("/saveProcess")
+	public @ResponseBody Object saveProcess(HttpServletRequest request){
+		int count=0;
+		JSONObject jsonObject=new JSONObject();
+		UserCustom userCustom=new UserCustom();
+		ProcessCustom processCustom=new ProcessCustom();
+		ProcessCustom processCustom2=new ProcessCustom();
+		String  pCet4Id =request.getParameter("cet4Id");
+		processCustom.setpCet4Id(pCet4Id);
+		String username=request.getParameter("username");
+		userCustom=userService.findUserByUserName(username);
+
+		if(userCustom!=null){
+			processCustom.setpUserId(userCustom.getUserid());
+		}else{
+			jsonObject.put("attr", FAILURE);
+		}
+		System.out.println(userCustom.toString());
+		processCustom2=cet4LoadingService.findProcessByUserId(userCustom.getUserid());
+		int num=processCustom2.getpUserId();
+		System.out.println(num);
+		if(num>0){
+			processCustom.setProcessId(processCustom2.getProcessId());
+			count=cet4LoadingService.updateProcess(processCustom);
+		}else{
+			count=cet4LoadingService.insertProcess(processCustom);
+		}
+		if(count==1){
+			jsonObject.put("attr", SUCCESS);
+		}else{
+			jsonObject.put("attr", FAILURE);
+		}
+		return jsonObject;
+	}
+
+	@RequestMapping("/loadProcess")
+	public @ResponseBody Object loadProcess(HttpSession session){
+		JSONObject jsonObject=new JSONObject();
+		Cet4Custom cet4Custom=new Cet4Custom();
+		ProcessCustom processCustom=new ProcessCustom();
+		UserCustom userCustom=(UserCustom)session.getAttribute("user");
+
+		if(userCustom!=null){
+			processCustom=cet4LoadingService.findProcessByUserId(userCustom.getUserid());
+		}else{
+			jsonObject.put("attr",FAILURE);
+		}
+		System.out.println(userCustom.toString());
+		if(processCustom!=null){
+			String cet4Id=processCustom.getpCet4Id();
+			cet4Custom=cet4LoadingService.Select_cet4_info_ByPrimary(cet4Id);
+			System.out.println(cet4Custom.toString());
+			jsonObject.put("attr",SUCCESS);
+			jsonObject.put("cet4Custom", cet4Custom);
+		}else{
+			jsonObject.put("attr",FAILURE);
+		}
+		return jsonObject;
+	}
+
+	@RequestMapping("/loadingCetInfo")
+	public ModelAndView loadingCetInfo(){
+		ModelAndView modelAndView=new ModelAndView();
+		int count=cet4LoadingService.countCet4("cet4_");
+		int count2=cet4LoadingService.countCet4("cet6_");
+		modelAndView.addObject("countcet4", count);
+		modelAndView.addObject("countcet6", count2);
+		modelAndView.setViewName("user/showcet");
+		return modelAndView;
 	}
 }
 

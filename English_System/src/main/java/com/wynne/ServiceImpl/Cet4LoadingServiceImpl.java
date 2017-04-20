@@ -29,7 +29,7 @@ import com.wynne.Utils.HandleCet;
 public class Cet4LoadingServiceImpl  implements ICet4LoadingService{
 
 	@Autowired
-	private ProcessMapper processCustom;
+	private ProcessMapper processMapper;
 	
 	@Autowired
 	private Unknown_WordMapper unknown_WordMapper;
@@ -46,7 +46,7 @@ public class Cet4LoadingServiceImpl  implements ICet4LoadingService{
 		BufferedReader reader =null;
 		String line=null;
 		int count=1;
-		String filepath="C:\\Users\\liweining\\Desktop\\2.txt";
+		String filepath="C:\\Users\\liweining\\Desktop\\";
 		//		reader=new BufferedReader(new InputStreamReader(in));
 		reader=new BufferedReader(new InputStreamReader(new FileInputStream(filepath), "utf-8"));
 		line=reader.readLine();
@@ -69,7 +69,7 @@ public class Cet4LoadingServiceImpl  implements ICet4LoadingService{
 				Cet4Custom cet4Custom=new Cet4Custom();
 				String aString=String.valueOf(count);
 				String bString=zero.substring(0,4-aString.length())+aString;
-				String cet4_id=cet4+bString;
+				String cet4_id=cet6+bString;
 				System.out.println(cet4_id);
 				cet4Custom.setCet4Id(cet4_id);
 				cet4Custom.setCet4Vocabulary(cet4_vocabulary);
@@ -86,7 +86,7 @@ public class Cet4LoadingServiceImpl  implements ICet4LoadingService{
 
 
 	public ProcessCustom Loading_Cet4(Integer pUserId) {
-		return processCustom.selectBypUserId(pUserId);
+		return processMapper.selectBypUserId(pUserId);
 	}
 
 
@@ -111,8 +111,8 @@ public class Cet4LoadingServiceImpl  implements ICet4LoadingService{
 	}
 
 
-	public int countCet4() {
-		return cet4Mapper.countCet4();
+	public int countCet4(String cet) {
+		return cet4Mapper.countCet4(cet);
 	}
 
 
@@ -144,7 +144,32 @@ public class Cet4LoadingServiceImpl  implements ICet4LoadingService{
 	}
 
 
+	public int insertProcess(ProcessCustom processCustom) {
+		int count=0;
+		if(processCustom!=null){
+			count=processMapper.insertSelective(processCustom);
+		}
+		return count;
+	}
+
+
+	public int updateProcess(ProcessCustom processCustom) {
+		int count=0;
+		if(processCustom!=null){
+			count=processMapper.updateByPrimaryKeySelective(processCustom);
+		}
+		return count;
+	}
+
+
+	public ProcessCustom findProcessByUserId(int userid) {
+		return processMapper.selectBypUserId(userid);
+		
+	}
+}
+
+
 	
 
 
-}
+

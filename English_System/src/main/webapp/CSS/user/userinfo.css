@@ -1,0 +1,25 @@
+.border{
+	border:solid 1px #C4E1FF;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+.marginset{
+	margin-top:10px;
+	amrgin-left:20px;
+}
+
+.setting{
+	margin-left:130px;
+	overflow: hidden;
+	margin-top:20px;
+	margin-bottom: 30px;
+}
+
+.span_setting{
+	color:red;
+}
+
+.span_setting1{
+	color:#38b03f;
+}

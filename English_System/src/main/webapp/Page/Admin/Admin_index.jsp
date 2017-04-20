@@ -57,7 +57,8 @@
 				<li class="nav-parent"><a href="#"><i
 						class="icon icon-time"></i>单词管理</a>
 					<ul class="nav" id="second_ul">
-						<li><a href="<%=basePath%>admin/show_cet4info" target="myframe"><i class="icon icon-user"
+						<li><a href="<%=basePath%>admin/show_cet4info"
+							target="myframe"><i class="icon icon-user"
 								style="color: blue;"></i>四级</a></li>
 						<li><a href="#"><i class="icon icon-user"
 								style="color: blue;"></i>六级</a></li>
@@ -78,7 +79,9 @@
 			</nav>
 		</div>
 		<div class="col-md-10">
-			<iframe class="myframe" scrolling="no" frameborder="0" name="myframe">
-			</iframe>
+				<iframe scrolling="auto" frameborder="0"
+					src="<%=basePath%>admin/show_userinfo" name="right" width="100%"
+					height="100%"></iframe>
+			
 		</div>
 </body>

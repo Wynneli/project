@@ -9,7 +9,7 @@ $(function(){
 function show_chart(){
 	var allMyCharts = $("canvas").chart();
 	if($("#getusername").text()==""){
-		new $.zui.Messager('<a style="color:white;"  href="../login/Login.jsp">您好，请登录!</a>', {
+		new $.zui.Messager('<a style="color:white;"  href="../login/Login2.jsp">您好，请登录!</a>', {
 			time:'4000',
 			icon: 'info-sign',
 			// 定义颜色主题
@@ -52,7 +52,7 @@ function show_chart(){
 
 function show_Piechart(){
 	if($("#getusername").text()==""){
-		new $.zui.Messager('<a style="color:white;"  href="../login/Login.jsp">您好，请登录!</a>', {
+		new $.zui.Messager('<a style="color:white;"  href="../login/Login2.jsp">您好，请登录!</a>', {
 			time:'4000',
 			icon: 'info-sign',
 			// 定义颜色主题
@@ -96,7 +96,7 @@ function show_Piechart(){
 function show_chart2(){
 	var allMyCharts1 = $("canvas").chart();
 	if($("#getusername").text()==""){
-		new $.zui.Messager('<a style="color:white;"  href="../login/Login.jsp">您好，请登录!</a>', {
+		new $.zui.Messager('<a style="color:white;"  href="../login/Login2.jsp">您好，请登录!</a>', {
 			time:'4000',
 			icon: 'info-sign',
 			// 定义颜色主题
@@ -139,7 +139,7 @@ function show_chart2(){
 
 function show_Piechart2(){
 	if($("#getusername").text()==""){
-		new $.zui.Messager('<a style="color:white;"  href="../login/Login.jsp">您好，请登录!</a>', {
+		new $.zui.Messager('<a style="color:white;"  href="../login/Login2.jsp">您好，请登录!</a>', {
 			time:'4000',
 			icon: 'info-sign',
 			// 定义颜色主题

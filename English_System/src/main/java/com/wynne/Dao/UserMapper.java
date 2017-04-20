@@ -21,6 +21,8 @@ public interface UserMapper {
     
     UserCustom selectByUserPhone(String userphone);
     
+    UserCustom selectByUserName(String username);
+    
     List<UserCustom> selectAllUser();
     
     List<UserCustom> selectAllUser2(@Param("pageOffset") int pageOffset);

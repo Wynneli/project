@@ -15,24 +15,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
-
 <link rel="stylesheet" href="<%=basePath%>CSS/Third_Party/zui.min.css">
-
-
 <link rel="stylesheet" href="<%=basePath%>CSS/Custom/index.css">
 <script type="text/javascript"
-	src="<%=basePath%>JS/Third_Party/jquery-2.1.4.min.js"></script>
+	src="http://localhost:8080/English_System/JS/Third_Party/jquery-3.1.1.min.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>JS/Third_Party/zui.min.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>JS/Third_Party/mzui.min.js"></script>
 </head>
-<script type="text/javascript">
-	function login_out() {
-		document.form1.action = "${pageContext.request.contextPath}user/login_out";
-		document.form1.submit();
-	}
-</script>
 <body>
 	<nav class="navbar navbar-inverse" role="navigation">
 	<div class="container-fluid navigation">
@@ -104,15 +95,15 @@
 			<!-- 右侧的导航项目 -->
 			<ul class="nav navbar-nav navbar-right">
 				<c:if test="${empty user}">
-					<li><a href="<%=basePath%>Page/login/Login.jsp">登录</a></li>
-					<li><a href="<%=basePath%>Page/login/Register.jsp">注册</a></li>
+					<li><a href="<%=basePath%>Page/login/Login2.jsp" >登录</a></li>
+					<li><a href="<%=basePath%>Page/login/register2.jsp">注册</a></li>
 				</c:if>
 
 				<c:if test="${not empty user}">
-					<li class="dropdown"><a href="<%=basePath%>Page/success.jsp"
+					<li class="dropdown"><a href="#"
 						class="dropdown-toggle" data-toggle="dropdown">欢迎你：${user.username}</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">6级英语学习</a></li>
+							<li><a href="<%=basePath%>Page/user/user.jsp">个人中心</a></li>
 						</ul></li>
 				</c:if>
 
@@ -146,17 +137,17 @@
 			<!-- 轮播（Carousel）项目 -->
 			<div class="carousel-inner">
 				<div class="item active">
-					<img src="<%=basePath%>Images/Slide/slide1.jpg" alt="First slide">
+					<img class="images" src="/file/Images/slide.jpg" alt="First slide">
 					<div class="carousel-caption">
 						<h3>我是第二张幻灯片</h3>
 						<p>0.0</p>
 					</div>
 				</div>
 				<div class="item">
-					<img src="<%=basePath%>Images/Slide/slide2.jpg" alt="Second slide">
+					<img class="images" src="/file/Images/slide2.jpg" alt="Second slide">
 				</div>
 				<div class="item">
-					<img src="<%=basePath%>Images/Slide/slide3.jpg" alt="Third slide">
+					<img class="images"  src="/file/Images/slide3.jpg" alt="Third slide">
 				</div>
 			</div>
 			<!-- 轮播（Carousel）导航 -->

@@ -1,6 +1,8 @@
 package com.wynne.ServiceImpl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +17,17 @@ import com.wynne.Serivce.IUserService;
 public class UserServiceImpl implements IUserService{
 	@Autowired
 	private UserMapper userMapper;
+
+	private final String SUCCESS="success";
+
+	private final String FAILURE="密码不正确";
+
+	private final String NOTEXISITE="用户不存在";
+
+	private final String EXISITE="用户存在";
+
+
 	public UserCustom getUserById(Integer userid){ 
-		// TODO Auto-generated method stub
 		System.out.println(1321);
 		return (UserCustom)userMapper.selectByPrimaryKey(userid); 
 	}
@@ -28,16 +39,13 @@ public class UserServiceImpl implements IUserService{
 		}
 		return userCustomer;
 	}
-	
+
 	public Boolean InsertUser(UserCustom userCustomer) {
-		Boolean flag;
+		Boolean flag=false;
 		Integer column=userMapper.insert(userCustomer);
 		if(column>0){
 			flag=true;
-		}else{
-			flag=false;
 		}
-		
 		return flag;
 	}
 
@@ -49,7 +57,6 @@ public class UserServiceImpl implements IUserService{
 	}
 
 	public Boolean deleteUser(Integer userId) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -58,7 +65,7 @@ public class UserServiceImpl implements IUserService{
 	}
 
 	public List<UserCustom> Obscure_find(UserCustom userCustom) {
-		
+
 		return userMapper.Obscure_select(userCustom);
 	}
 
@@ -74,5 +81,69 @@ public class UserServiceImpl implements IUserService{
 		return userMapper.selectAllUser2(pageOffset);
 	}
 
+	public Map<String, String> findUserByUserName(UserCustom userCustom) {
+		Map<String, String> map=new HashMap<String, String>();
+		UserCustom user=userMapper.selectByUserName(userCustom.getUsername());
+		if(user!=null){
+			map.put("existe", EXISITE);
+			if(user.getUserpassword().equals(userCustom.getUserpassword())){
+				map.put("attr", SUCCESS);
+			}else{
+				map.put("attr", FAILURE);
+			}
+		}else{
+			map.put("notexiste", NOTEXISITE);
+		}
+		return map;
+	}
 
+	public UserCustom findUserByUserName(String username) {
+		UserCustom userCustom=new UserCustom();
+		if(!username.trim().equals("")){
+			userCustom=userMapper.selectByUserName(username);
+		}
+		return userCustom;
+	}
+
+	public String findUserByUserName2(UserCustom userCustom) {
+		UserCustom userCustom2=new UserCustom();
+		String attr=null;
+		if(userCustom!=null){
+			userCustom2=userMapper.selectByUserName(userCustom.getUsername());
+		}
+		if(userCustom2!=null){
+			attr=EXISITE;
+		}else{
+			attr=NOTEXISITE;
+		}
+		return attr;
+	}
+
+	public String changepass(UserCustom userCustom, String newpass) {
+		UserCustom userCustom2=new UserCustom();
+		int count=0;
+		userCustom2=userMapper.selectByUserName(userCustom.getUsername());
+		System.out.println(userCustom2.toString());
+		if(userCustom2!=null){
+			if(userCustom2.getUserpassword().equals(userCustom.getUserpassword())){
+				userCustom2.setUserpassword(newpass);
+				count=userMapper.updateByPrimaryKey(userCustom2);
+			}
+			if(count==1){
+				return "success";
+			}
+		}
+		return "false";
+	}
+
+	public String updateUser2(UserCustom userCustom) {
+		int count=0;
+		if(userCustom!=null){
+			count=userMapper.updateByPrimaryKeySelective(userCustom);
+		}
+		if(count==1){
+			return "success";
+		}
+		return "failure";
+	}
 }

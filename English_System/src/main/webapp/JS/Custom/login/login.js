@@ -30,7 +30,7 @@ function fnLogin(){
 }
 
 $.ajax({
-    url:"${pageContext.request.contextPath}/Page/login/Login.jsp",
+    url:"${pageContext.request.contextPath}/Page/login/Login2.jsp",
     type:"post",
     data:{username:username,userpasspword:userpasspword},
     success:function(data){

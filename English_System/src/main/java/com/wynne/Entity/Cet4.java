@@ -40,4 +40,10 @@ public class Cet4 {
     public void setCet4Meaning(String cet4Meaning) {
         this.cet4Meaning = cet4Meaning == null ? null : cet4Meaning.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Cet4 [cet4Id=" + cet4Id + ", cet4Vocabulary=" + cet4Vocabulary + ", cet4Pronunciation="
+				+ cet4Pronunciation + ", cet4Meaning=" + cet4Meaning + "]";
+	}
 }

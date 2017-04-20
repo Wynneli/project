@@ -1,7 +1,7 @@
 function save_part1(){
 	var comment=document.getElementById("part1_content").value;
 	if($("#getusername").text()==""){
-		new $.zui.Messager('<a style="color:white;"  href="../login/Login.jsp">您好，请登录!</a>', {
+		new $.zui.Messager('<a style="color:white;"  href="../login/Login2.jsp">您好，请登录!</a>', {
 			time:'4000',
 			icon: 'info-sign',
 			// 定义颜色主题
@@ -56,7 +56,7 @@ function save_part1(){
 
 function save_part2(){
 	if($("#getusername").text()==""){
-		new $.zui.Messager('<a style="color:white;"  href="../login/Login.jsp">您好，请登录!</a>', {
+		new $.zui.Messager('<a style="color:white;"  href="../login/Login2.jsp">您好，请登录!</a>', {
 			time:'4000',
 			icon: 'info-sign',
 			// 定义颜色主题
@@ -123,7 +123,7 @@ function save_part2(){
 
 function save_part3(){
 	if($("#getusername").text()==""){
-		new $.zui.Messager('<a style="color:white;"  href="../login/Login.jsp">您好，请登录!</a>', {
+		new $.zui.Messager('<a style="color:white;"  href="../login/Login2.jsp">您好，请登录!</a>', {
 			time:'4000',
 			icon: 'info-sign',
 			// 定义颜色主题
@@ -198,7 +198,7 @@ function save_part3(){
 function save_part4(){
 	var comment=document.getElementById("part4_content").value;
 	if($("#getusername").text()==""){
-		new $.zui.Messager('<a style="color:white;"  href="../login/Login.jsp">您好，请登录!</a>', {
+		new $.zui.Messager('<a style="color:white;"  href="../login/Login2.jsp">您好，请登录!</a>', {
 			time:'4000',
 			icon: 'info-sign',
 			// 定义颜色主题
@@ -254,7 +254,7 @@ function load_process(){
 	var username=$("#getusername").text()
 	var data={aUsername:username};
 	if(username==""){
-		new $.zui.Messager('<a style="color:white;"  href="../login/Login.jsp">您好，请登录!</a>', {
+		new $.zui.Messager('<a style="color:white;"  href="../login/Login2.jsp">您好，请登录!</a>', {
 			time:'4000',
 			icon: 'info-sign',
 			// 定义颜色主题

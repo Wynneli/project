@@ -45,7 +45,7 @@
 		</div>
 	</div>
 
-	<div class="row" style="height: 420px;">
+	<div class="row">
 		<table class="table table-fixed  table-hover table-borderless"
 			id="show_userinfo">
 			<thead>

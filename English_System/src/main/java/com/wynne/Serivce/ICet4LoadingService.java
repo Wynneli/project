@@ -26,7 +26,7 @@ public interface ICet4LoadingService {
    
    public Unknown_WordCustom findByusernameAndunCetId(String unCetId,String username);
    
-   public int countCet4();
+   public int countCet4(String cet);
    
    public List<Cet4Custom> findCet4(int pageOffset);
    
@@ -38,5 +38,15 @@ public interface ICet4LoadingService {
    
    public int insertCetRecord(Cet4Custom record);
 
+    public int insertProcess(ProcessCustom processCustom);
+    
+    public int updateProcess(ProcessCustom processCustom);
+    
+    public ProcessCustom findProcessByUserId(int userid);
+    
+   
+    
+    
+    
   
 }

@@ -13,12 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 <link rel="stylesheet" href="<%=basePath%>CSS/Custom/tail.css">
-<script type="text/javascript"
-	src="../../JS/Third_Party/jquery-2.1.4.min.js"></script>
-<script type="text/javascript"
-	src="<%=basePath%>JS/Third_Party/zui.min.js"></script>
-<script type="text/javascript"
-	src="<%=basePath%>JS/Third_Party/mzui.min.js"></script>
+
 </head>
 <body>
 	<div class="row tail">

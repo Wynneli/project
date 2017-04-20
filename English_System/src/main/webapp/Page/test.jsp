@@ -10,35 +10,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <link rel="stylesheet"
-	href="<%=basePath%>CSS/Third_Party/bootstrap.min.css">
+	href="<%=basePath%>CSS/Third_Party/zui.min.css">
+	<link rel="stylesheet"
+	href="<%=basePath%>CSS/fonts/font-awesome.min.css">
 <script type="text/javascript"
 	src="<%=basePath%>JS/Third_Party/jquery-2.1.4.min.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>JS/Third_Party/bootstrap.min.js"></script>
 
 
-<script type="text/javascript">
-            function selectAll(checkbox) {
-                $('input[type=checkbox]').prop('checked',
-                		$(checkbox).prop('checked'));
-            }
-        </script>
+
 </head>
 <body>
-	<input type="checkbox" onclick="selectAll(this);" />全选
-	<br />
-	<input type="checkbox" />
-	<br />
-	<input type="checkbox" />
-	<br />
-	<input type="checkbox" />
-	<br />
-	<input type="checkbox" />
-	<br />
-	<input type="checkbox" />
-	<br />
-	<input type="checkbox" />
-	<br />
-
+	<i class="icon icon-flag icon-flip-horizontal">测试</i>
 </body>
 </html>

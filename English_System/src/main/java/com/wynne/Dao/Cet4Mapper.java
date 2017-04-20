@@ -2,6 +2,8 @@ package com.wynne.Dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.wynne.Entity.Cet4Custom;
 
 public interface Cet4Mapper {
@@ -17,7 +19,7 @@ public interface Cet4Mapper {
 
     int updateByPrimaryKey(Cet4Custom record);
     
-    int countCet4();
+    int countCet4(@Param("CET") String CET);
     
     List<Cet4Custom> selectCet4(int pageOffset);
     

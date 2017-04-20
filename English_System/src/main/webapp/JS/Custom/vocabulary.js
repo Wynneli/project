@@ -93,7 +93,7 @@ function add_or_remove_unknown_word(){
 			});
 		}
 	}else{
-		new $.zui.Messager('<a style="color:white;"  href="../login/Login.jsp">您好，请登录!</a>', {
+		new $.zui.Messager('<a style="color:white;"  href="../login/Login2.jsp">您好，请登录!</a>', {
 			time:'4000',
 			icon: 'info-sign',
 			// 定义颜色主题
@@ -112,7 +112,7 @@ function reply(obj){
 			placement: 'center' // 定义显示位置
 		}).show();
 	}else{
-		
+
 		var username='回复'+$(obj).attr("value");
 //		alert(username);
 		if(username!=""&&$(obj).attr("value")!=$("#getusername").text()){
@@ -302,6 +302,82 @@ function getNowFormatDate() {
 	return currentdate;
 }
 
+function saveProcess(){
+	if($("#getusername").text()!=""){
+		$.ajax({
+			type:'post',
+			url:"http://localhost:8080/English_System/cet4/saveProcess",
+			data:"cet4Id="+$("#cet4_info_id").text()+
+			"&username="+$("#getusername").text(),
+			success:function(data){
+				if(data.attr=="success"){
+					new $.zui.Messager('保存成功!', {
+						time:'4000',
+						icon: 'check',
+						type: 'success' ,
+						// 定义颜色主题
+						placement: 'top' // 定义显示位置
+					}).show();
+				}else{
+					new $.zui.Messager('保存失败!', {
+						time:'4000',
+						icon: 'times',
+						type: 'danger' ,
+						// 定义颜色主题
+						placement: 'top' // 定义显示位置
+					}).show();
+				}
+			}
+		});
+	}else{
+		new $.zui.Messager('<a style="color:white;"  href="../login/Login2.jsp">您好，请登录!</a>', {
+			time:'4000',
+			icon: 'info-sign',
+			// 定义颜色主题
+			placement: 'top' // 定义显示位置
+		}).show();
+	}
+}
 
+function loadProcess(){
+	if($("#getusername").text()!=""){
+		$.ajax({
+			type:'post',
+			url:"http://localhost:8080/English_System/cet4/loadProcess",
+			data:"cet4Id="+$("#cet4_info_id").text()+
+			"&username="+$("#getusername").text(),
+			success:function(data){
+				if(data.attr=="success"){
+					$('#cet4_info_id').text(data.cet4Custom.cet4Id);
+					$('#cet4_info_vocabulary').text(data.cet4Custom.cet4Vocabulary);
+					$('#cet4_info_pronunciation').text(data.cet4Custom.cet4Pronunciation);
+					$('#cet4_info_meaning').text(data.cet4Custom.cet4Meaning);
+					new $.zui.Messager('加载成功！', {
+						time:'4000',
+						icon: 'check',
+						type: 'success' ,
+						// 定义颜色主题
+						placement: 'center' // 定义显示位置
+					}).show();
+				}else{
+					new $.zui.Messager('加载失败！', {
+						time:'4000',
+						icon: 'times',
+						type: 'danger' ,
+						// 定义颜色主题
+						placement: 'center' // 定义显示位置
+					}).show();
+				}
+			}
+		});
+	}else{
+		new $.zui.Messager('<a style="color:white;"  href="../login/Login2.jsp">您好，请登录!</a>', {
+			time:'4000',
+			icon: 'info-sign',
+			// 定义颜色主题
+			placement: 'top' // 定义显示位置
+		}).show();
+	}
+}
 
 

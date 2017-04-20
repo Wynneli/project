@@ -1,0 +1,12 @@
+.setting{
+	overflow: hidden;
+	overflow-x:auto;
+}
+
+.span{
+	color:red;
+}
+
+a:hover{
+	color:red;
+}

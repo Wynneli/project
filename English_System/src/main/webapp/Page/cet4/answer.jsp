@@ -19,6 +19,8 @@
 <link rel="stylesheet" href="<%=basePath%>CSS/Third_Party/zui.min.css">
 <link rel="stylesheet" href="<%=basePath%>CSS/Custom/index.css">
 <link rel="stylesheet" href="<%=basePath%>CSS/Custom/answer.css">
+<link rel="stylesheet"
+	href="<%=basePath%>CSS/fonts/font-awesome.min.css">
 <script type="text/javascript"
 	src="<%=basePath%>JS/Third_Party/jquery-2.1.4.min.js"></script>
 
@@ -90,8 +92,8 @@
 			<!-- 右侧的导航项目 -->
 			<ul class="nav navbar-nav navbar-right">
 				<c:if test="${empty user}">
-					<li><a href="<%=basePath%>Page/login/Login.jsp">登录</a></li>
-					<li><a href="<%=basePath%>Page/login/Register.jsp">注册</a></li>
+					<li><a href="<%=basePath%>Page/login/Login2.jsp">登录</a></li>
+					<li><a href="<%=basePath%>Page/login/register2.jsp">注册</a></li>
 				</c:if>
 
 				<c:if test="${not empty user}">
