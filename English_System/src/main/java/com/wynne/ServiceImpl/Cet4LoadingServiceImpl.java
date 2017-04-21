@@ -28,11 +28,8 @@ import com.wynne.Utils.HandleCet;
 @Service("cet4LoadingService")
 public class Cet4LoadingServiceImpl  implements ICet4LoadingService{
 
-	@Autowired
-	private ProcessMapper processMapper;
+
 	
-	@Autowired
-	private Unknown_WordMapper unknown_WordMapper;
 
 	@Autowired
 	private Cet4Mapper cet4Mapper;
@@ -85,31 +82,11 @@ public class Cet4LoadingServiceImpl  implements ICet4LoadingService{
 	}
 
 
-	public ProcessCustom Loading_Cet4(Integer pUserId) {
-		return processMapper.selectBypUserId(pUserId);
-	}
 
 
 	public Cet4Custom Select_cet4_info_ByPrimary(String cet4Id) {
 		return cet4Mapper.selectByPrimaryKey(cet4Id);
 	}
-
-
-	public int Add_UnknownWord(Unknown_WordCustom wordCustom) {
-		return unknown_WordMapper.insert(wordCustom);
-	}
-
-
-	public int Remove_UnknownWord(String  unCetId) {
-		return unknown_WordMapper.deleteByunCetId(unCetId);
-	}
-
-
-	public Unknown_WordCustom findByusernameAndunCetId(String unCetId, String username) {
-		
-		return unknown_WordMapper.selectByusernameAndunCetId(unCetId, username);
-	}
-
 
 	public int countCet4(String cet) {
 		return cet4Mapper.countCet4(cet);
@@ -144,28 +121,6 @@ public class Cet4LoadingServiceImpl  implements ICet4LoadingService{
 	}
 
 
-	public int insertProcess(ProcessCustom processCustom) {
-		int count=0;
-		if(processCustom!=null){
-			count=processMapper.insertSelective(processCustom);
-		}
-		return count;
-	}
-
-
-	public int updateProcess(ProcessCustom processCustom) {
-		int count=0;
-		if(processCustom!=null){
-			count=processMapper.updateByPrimaryKeySelective(processCustom);
-		}
-		return count;
-	}
-
-
-	public ProcessCustom findProcessByUserId(int userid) {
-		return processMapper.selectBypUserId(userid);
-		
-	}
 }
 
 

@@ -19,8 +19,7 @@
 <link rel="stylesheet" href="<%=basePath%>CSS/Third_Party/zui.min.css">
 <link rel="stylesheet" href="<%=basePath%>CSS/Custom/index.css">
 <link rel="stylesheet" href="<%=basePath%>CSS/Custom/answer.css">
-<link rel="stylesheet"
-	href="<%=basePath%>CSS/fonts/font-awesome.min.css">
+
 <script type="text/javascript"
 	src="<%=basePath%>JS/Third_Party/jquery-2.1.4.min.js"></script>
 

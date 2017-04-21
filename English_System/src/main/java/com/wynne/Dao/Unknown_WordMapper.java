@@ -20,4 +20,6 @@ public interface Unknown_WordMapper {
 	int deleteByunCetId(String unCetId);
 	
 	Unknown_WordCustom selectByusernameAndunCetId(@Param("unCetId") String unCetId,@Param("username") String username);
+
+	int countUnkownWord(@Param("CETID") String cetid,@Param("username") String username);
 }

@@ -121,9 +121,12 @@
 			<div class="boards" id="myBoard">
 				<div class="board panel">
 					<div class="panel-heading">
-						<strong>4级词汇</strong><span class="cet4_heart_span"></span> <i
-							class="icon icon-heart" style="color: red;"> <a
-							class="cet4_a" id="add_or_remove_unknown_word"
+							<c:if test="${not empty cet}">
+								<strong>${cet}</strong>
+							</c:if>
+						<span class="cet4_heart_span"></span> <i class="icon icon-heart"
+							style="color: red;"> <a class="cet4_a"
+							id="add_or_remove_unknown_word"
 							onclick="add_or_remove_unknown_word()" href="#">收入我的词库</a>
 						</i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<button class="btn btn-mini btn-success" type="button"

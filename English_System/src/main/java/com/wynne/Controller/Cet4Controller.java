@@ -2,6 +2,7 @@ package com.wynne.Controller;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +34,8 @@ import com.wynne.Entity.Unknown_WordCustom;
 import com.wynne.Entity.UserCustom;
 import com.wynne.Serivce.ICet4LoadingService;
 import com.wynne.Serivce.ICet4_partService;
+import com.wynne.Serivce.IProcessService;
+import com.wynne.Serivce.IUnknownWordService;
 import com.wynne.Serivce.IUserService;
 import com.wynne.Utils.HandleUserName;
 
@@ -51,9 +54,11 @@ public class Cet4Controller {
 
 	private static final String cet4_id_init="cet4_0001";
 
+	private static final String cet6_id_init="cet6_0003";
+
 	private static final String CET4_="cet4_";
 
-	private static final String CET6_="cet4_";
+	private static final String CET6_="cet6_";
 	@Autowired
 	private ICet4LoadingService cet4LoadingService;
 
@@ -62,6 +67,12 @@ public class Cet4Controller {
 
 	@Autowired 
 	private IUserService userService;
+
+	@Autowired
+	private IUnknownWordService unknownWordService;
+
+	@Autowired
+	private IProcessService processService;
 
 	@RequestMapping("/loading")
 	public String Add()throws Exception{
@@ -97,7 +108,11 @@ public class Cet4Controller {
 		String username=HandleUserName.handle(request.getParameter("username"));
 		//		System.out.println(cet4_id+username);
 		if(cet4_id.trim().equals("")){
-			cet4_id="cet4_0001";
+			if(cet4_id.contains(CET4_)){
+				cet4_id="cet4_0001";
+			}else{
+				cet4_id="cet6_0003";
+			}
 		}else{
 			cet4_id=cet4Custom.getCet4Id();
 			int num=Integer.parseInt(cet4_id.substring(5, cet4_id.length()))+1;
@@ -109,7 +124,11 @@ public class Cet4Controller {
 			}else if(num2.length()==3){
 				num2="0"+num2;
 			}
-			cet4_id=CET4_+num2;
+			if(cet4_id.contains(CET4_)){
+				cet4_id=CET4_+num2;
+			}else{
+				cet4_id=CET6_+num2;
+			}
 		}
 		cet4Custom=cet4LoadingService.Select_cet4_info_ByPrimary(cet4_id);
 		jsonObject.put("Cet4Id", cet4Custom.getCet4Id());
@@ -117,7 +136,7 @@ public class Cet4Controller {
 		jsonObject.put("Cet4Pronunciation", cet4Custom.getCet4Pronunciation());
 		jsonObject.put("Cet4Vocabulary", cet4Custom.getCet4Vocabulary());
 		if(!username.trim().equals("")){
-			Unknown_WordCustom unknown_WordCustom=cet4LoadingService.findByusernameAndunCetId(cet4_id, username);
+			Unknown_WordCustom unknown_WordCustom=unknownWordService.findByusernameAndunCetId(cet4_id, username);
 			if(unknown_WordCustom!=null){
 				jsonObject.put("message", "移出我的词库");
 			}
@@ -133,7 +152,7 @@ public class Cet4Controller {
 		String cet4_id=request.getParameter("cet4Id");
 		System.out.println(cet4_id);
 		String username=HandleUserName.handle(request.getParameter("username"));
-		if(!cet4_id.equals("")&&!cet4_id.equals("cet4_0001")){
+		if(!cet4_id.equals("")&&!(cet4_id.equals(cet4_id_init)||cet4_id.equals(cet6_id_init))){
 			int num=(Integer.parseInt(cet4_id.substring(5, cet4_id.length()))-1);
 			String num2=String.valueOf(num);
 			if(num2.length()==1){
@@ -143,7 +162,11 @@ public class Cet4Controller {
 			}else if(num2.length()==3){
 				num2="0"+num2;
 			}
-			cet4_id=CET4_+num2;
+			if(cet4_id.contains(CET4_)){
+				cet4_id=CET4_+num2;
+			}else{
+				cet4_id=CET6_+num2;
+			}
 		}
 		cet4Custom=cet4LoadingService.Select_cet4_info_ByPrimary(cet4_id);
 		jsonObject.put("Cet4Id", cet4Custom.getCet4Id());
@@ -151,7 +174,7 @@ public class Cet4Controller {
 		jsonObject.put("Cet4Pronunciation", cet4Custom.getCet4Pronunciation());
 		jsonObject.put("Cet4Vocabulary", cet4Custom.getCet4Vocabulary());
 		if(!username.trim().equals("")){
-			Unknown_WordCustom unknown_WordCustom=cet4LoadingService.findByusernameAndunCetId(cet4_id, username);
+			Unknown_WordCustom unknown_WordCustom=unknownWordService.findByusernameAndunCetId(cet4_id, username);
 			if(unknown_WordCustom!=null){
 				jsonObject.put("message", "移出我的词库");
 			}else{
@@ -174,19 +197,15 @@ public class Cet4Controller {
 		return userCustom;
 	}
 	@RequestMapping("/loading_cet4_word")
-	public String show_cet4_info(HttpSession session){
+	public String show_cet4_info(@RequestParam("cetid") String cetid,HttpSession session){
 		Cet4Custom cet4Custom=null;
-		UserCustom userCustom=(UserCustom) session.getAttribute("user");
-		if(userCustom!=null){
-			ProcessCustom processCustom=cet4LoadingService.Loading_Cet4(userCustom.getUserid());
-			if(processCustom!=null){
-				String cet4_id=processCustom.getpCet4Id();
-				cet4Custom=cet4LoadingService.Select_cet4_info_ByPrimary(cet4_id);
-				session.setAttribute("cet4Custom", cet4Custom);
-				return "redirect:/Page/cet4/cet4_vocabulary.jsp";
-			} 
+		if(cetid.equals("cet4_")){
+			cet4Custom=cet4LoadingService.Select_cet4_info_ByPrimary(cet4_id_init);
+			session.setAttribute("cet", "四级词汇");
+		}else{
+			cet4Custom=cet4LoadingService.Select_cet4_info_ByPrimary(cet6_id_init);
+			session.setAttribute("cet", "六级词汇");
 		}
-		cet4Custom=cet4LoadingService.Select_cet4_info_ByPrimary(cet4_id_init);
 		session.setAttribute("cet4Custom", cet4Custom);
 		System.out.println(cet4Custom.getCet4Vocabulary()+"\t"+cet4Custom.getCet4Pronunciation()+"\t"+cet4Custom.getCet4Meaning());
 		return "redirect:/Page/cet4/cet4_vocabulary.jsp";
@@ -268,7 +287,6 @@ public class Cet4Controller {
 		String username=null;
 		int num=0;
 		String cet=null;
-		Boolean flag=false;
 		cet=request.getParameter("cet4Id");
 		Unknown_WordCustom wordCustom=new Unknown_WordCustom();
 		//		System.out.println("执行这里！");
@@ -278,12 +296,14 @@ public class Cet4Controller {
 		wordCustom.setUnCetVocabulary(request.getParameter("cet4Vocabulary"));
 		username=HandleUserName.handle(request.getParameter("username"));
 		wordCustom.setUsername(username);
-		Unknown_WordCustom  unknown_WordCustom=cet4LoadingService.findByusernameAndunCetId(cet, username);
+		Unknown_WordCustom  unknown_WordCustom=unknownWordService.findByusernameAndunCetId(cet, username);
 		if(unknown_WordCustom!=null){
 			jsonObject.put("exist", "exist");
 		}else{
-			num=cet4LoadingService.Add_UnknownWord(wordCustom);
-			jsonObject.put("success", SUCCESS);
+			num=unknownWordService.Add_UnknownWord(wordCustom);
+			if(num>0){
+				jsonObject.put("success", SUCCESS);
+			}
 		}
 		return jsonObject;
 	}
@@ -293,7 +313,7 @@ public class Cet4Controller {
 	public  @ResponseBody Cet4Custom remove_unknown_word(@RequestBody Cet4Custom cet4Custom){
 		System.out.println("remove_unknown_word");
 		String unCetId=cet4Custom.getCet4Id();
-		cet4LoadingService.Remove_UnknownWord(unCetId);
+		unknownWordService.Remove_UnknownWord(unCetId);
 		return cet4Custom;
 	}
 
@@ -554,29 +574,35 @@ public class Cet4Controller {
 	@RequestMapping("/saveProcess")
 	public @ResponseBody Object saveProcess(HttpServletRequest request){
 		int count=0;
+		int num=0;
 		JSONObject jsonObject=new JSONObject();
 		UserCustom userCustom=new UserCustom();
 		ProcessCustom processCustom=new ProcessCustom();
 		ProcessCustom processCustom2=new ProcessCustom();
-		String  pCet4Id =request.getParameter("cet4Id");
-		processCustom.setpCet4Id(pCet4Id);
+		String  pCetId =request.getParameter("cet4Id");
+
 		String username=request.getParameter("username");
 		userCustom=userService.findUserByUserName(username);
-
+		if(pCetId.contains(CET4_)){
+			processCustom.setpCet4Id(pCetId);
+		}else{
+			processCustom.setpCet6Id(pCetId);
+		}
 		if(userCustom!=null){
 			processCustom.setpUserId(userCustom.getUserid());
 		}else{
 			jsonObject.put("attr", FAILURE);
 		}
-		System.out.println(userCustom.toString());
-		processCustom2=cet4LoadingService.findProcessByUserId(userCustom.getUserid());
-		int num=processCustom2.getpUserId();
-		System.out.println(num);
+		//		System.out.println(userCustom.toString());
+		processCustom2=processService.findProcessByUserId(userCustom.getUserid());
+		if(processCustom2!=null){
+			num=processCustom2.getpUserId();
+		}
 		if(num>0){
 			processCustom.setProcessId(processCustom2.getProcessId());
-			count=cet4LoadingService.updateProcess(processCustom);
+			count=processService.updateProcess(processCustom);
 		}else{
-			count=cet4LoadingService.insertProcess(processCustom);
+			count=processService.insertProcess(processCustom);
 		}
 		if(count==1){
 			jsonObject.put("attr", SUCCESS);
@@ -587,22 +613,26 @@ public class Cet4Controller {
 	}
 
 	@RequestMapping("/loadProcess")
-	public @ResponseBody Object loadProcess(HttpSession session){
+	public @ResponseBody Object loadProcess(HttpSession session,HttpServletRequest request){
+		String cetid=null;
 		JSONObject jsonObject=new JSONObject();
 		Cet4Custom cet4Custom=new Cet4Custom();
 		ProcessCustom processCustom=new ProcessCustom();
 		UserCustom userCustom=(UserCustom)session.getAttribute("user");
 
 		if(userCustom!=null){
-			processCustom=cet4LoadingService.findProcessByUserId(userCustom.getUserid());
+			processCustom=processService.findProcessByUserId(userCustom.getUserid());
 		}else{
 			jsonObject.put("attr",FAILURE);
 		}
-		System.out.println(userCustom.toString());
 		if(processCustom!=null){
-			String cet4Id=processCustom.getpCet4Id();
-			cet4Custom=cet4LoadingService.Select_cet4_info_ByPrimary(cet4Id);
-			System.out.println(cet4Custom.toString());
+
+			if(session.getAttribute("cet").equals("四级词汇")){
+				cetid=processCustom.getpCet4Id();
+			}else{
+				cetid=processCustom.getpCet6Id();
+			}
+			cet4Custom=cet4LoadingService.Select_cet4_info_ByPrimary(cetid);
 			jsonObject.put("attr",SUCCESS);
 			jsonObject.put("cet4Custom", cet4Custom);
 		}else{
@@ -612,13 +642,56 @@ public class Cet4Controller {
 	}
 
 	@RequestMapping("/loadingCetInfo")
-	public ModelAndView loadingCetInfo(){
+	public ModelAndView loadingCetInfo(HttpSession session){
 		ModelAndView modelAndView=new ModelAndView();
+		ProcessCustom processCustom=new ProcessCustom();
+		String cet4=null;
+		String cet6=null;
+		int num=0;
+		int num2=0;
+
 		int count=cet4LoadingService.countCet4("cet4_");
 		int count2=cet4LoadingService.countCet4("cet6_");
+		UserCustom userCustom=new UserCustom();
+		userCustom=(UserCustom)session.getAttribute("user");
+		if(userCustom!=null){
+			processCustom=processService.findProcessByUserId(userCustom.getUserid());
+		}
+		if(processCustom!=null){
+			cet4=processCustom.getpCet4Id();
+			cet6=processCustom.getpCet6Id();
+
+		}
+		if(!cet4.equals("")){
+			num=Integer.parseInt(cet4.substring(5,9));
+		}
+		if(!cet6.equals("")){
+			num2=Integer.parseInt(cet6.substring(5,9))-2;
+		}
+
+		String cet4pec= new DecimalFormat("0.0000").format((double)num/(double)count*100);
+		String cet6pec= new DecimalFormat("0.0000").format((double)num2/(double)count2*100);
+		System.out.println(cet4pec);
+		modelAndView.addObject("cet4", num);
+		modelAndView.addObject("cet6", num2);
+		int count3=unknownWordService.countUnWord("cet4_",userCustom.getUsername());
+		int count4=unknownWordService.countUnWord("cet6_",userCustom.getUsername());
 		modelAndView.addObject("countcet4", count);
 		modelAndView.addObject("countcet6", count2);
+		modelAndView.addObject("uncet4", count3);
+		modelAndView.addObject("uncet6", count4);
+		modelAndView.addObject("cet4pec", cet4pec);
+		modelAndView.addObject("cet6pec", cet6pec);
 		modelAndView.setViewName("user/showcet");
+		return modelAndView;
+	}
+
+
+
+	@RequestMapping("/loadingCetTestinfo")
+	public  ModelAndView loadingCetTestinfo(HttpSession session){
+		ModelAndView modelAndView=new ModelAndView();
+		modelAndView.setViewName("user/showtest");
 		return modelAndView;
 	}
 }

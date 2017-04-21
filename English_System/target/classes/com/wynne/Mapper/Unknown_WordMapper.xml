@@ -13,12 +13,23 @@
     unknown_word_id, un_cet_id, un_cet_vocabulary, un_cet_pronunciation, un_cet_meaning, 
     username
   </sql>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List"/>
     from unknown_word 
     where unknown_word_id = #{unknownWordId,jdbcType=INTEGER}
   </select>
+  
+  
+  
+  <select id="countUnkownWord"  resultType="java.lang.Integer" >
+    select 
+   count(*)
+    from unknown_word 
+    where  un_cet_id like CONCAT(#{CETID},'%') and username=#{username}
+  </select>
+  
   <select id="selectByusernameAndunCetId" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List"/>

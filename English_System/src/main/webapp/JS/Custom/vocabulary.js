@@ -344,8 +344,7 @@ function loadProcess(){
 		$.ajax({
 			type:'post',
 			url:"http://localhost:8080/English_System/cet4/loadProcess",
-			data:"cet4Id="+$("#cet4_info_id").text()+
-			"&username="+$("#getusername").text(),
+			data:"cet4Id="+$("#cet4_info_id").text(),
 			success:function(data){
 				if(data.attr=="success"){
 					$('#cet4_info_id').text(data.cet4Custom.cet4Id);

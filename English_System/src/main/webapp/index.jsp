@@ -49,9 +49,9 @@
 					class="dropdown-toggle" data-toggle="dropdown">课程学习<b
 						class="caret"></b></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="<%=basePath%>cet4/loading_cet4_word">4级英语学习</a></li>
+						<li><a href="<%=basePath%>cet4/loading_cet4_word?cetid=cet4_">4级英语学习</a></li>
 						<li role="separator" class="divider"></li>
-						<li><a href="#">6级英语学习</a></li>
+						<li><a href="<%=basePath%>cet4/loading_cet4_word?cetid=cet6_">6级英语学习</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a href="#">大学英语学习</a></li>
 						<li role="separator" class="divider"></li>

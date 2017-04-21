@@ -46,10 +46,8 @@
 					class="icon-caret-right"></span>个人信息管理</a></li>
 			<li><a href="<%=basePath%>cet4/loadingCetInfo" target="right"><span
 					class="icon-caret-right"></span>词汇学习情况</a></li>
-			<li><a href="book.html" target="right"><span
-					class="icon-caret-right"></span>留言管理</a></li>
-			<li><a href="column.html" target="right"><span
-					class="icon-caret-right"></span>栏目管理</a></li>
+			<li><a href="<%=basePath%>cet4/loadingCetTestinfo" target="right"><span
+					class="icon-caret-right"></span>测试情况</a></li>
 		</ul>
 		<h2>
 			<span class="icon-pencil-square-o"></span>栏目管理
