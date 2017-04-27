@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wynne.Dao.NewMapper" >
+  <resultMap id="BaseResultMap" type="com.wynne.Entity.New" >
+    <id column="NewId" property="newid" jdbcType="INTEGER" />
+    <result column="NewType" property="newtype" jdbcType="VARCHAR" />
+    <result column="NewTopic" property="newtopic" jdbcType="VARCHAR" />
+    <result column="NewLead" property="newlead" jdbcType="VARCHAR" />
+    <result column="NewOther1" property="newother1" jdbcType="VARCHAR" />
+    <result column="NewOther" property="newother" jdbcType="VARCHAR" />
+    <result column="NewmainId" property="newmainid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    NewId, NewType, NewTopic, NewLead, NewOther1, NewOther, NewmainId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from new
+    where NewId = #{newid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from new
+    where NewId = #{newid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wynne.Entity.New" >
+    insert into new (NewId, NewType, NewTopic, 
+      NewLead, NewOther1, NewOther, 
+      NewmainId)
+    values (#{newid,jdbcType=INTEGER}, #{newtype,jdbcType=VARCHAR}, #{newtopic,jdbcType=VARCHAR}, 
+      #{newlead,jdbcType=VARCHAR}, #{newother1,jdbcType=VARCHAR}, #{newother,jdbcType=VARCHAR}, 
+      #{newmainid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wynne.Entity.New" >
+    insert into new
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="newid != null" >
+        NewId,
+      </if>
+      <if test="newtype != null" >
+        NewType,
+      </if>
+      <if test="newtopic != null" >
+        NewTopic,
+      </if>
+      <if test="newlead != null" >
+        NewLead,
+      </if>
+      <if test="newother1 != null" >
+        NewOther1,
+      </if>
+      <if test="newother != null" >
+        NewOther,
+      </if>
+      <if test="newmainid != null" >
+        NewmainId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="newid != null" >
+        #{newid,jdbcType=INTEGER},
+      </if>
+      <if test="newtype != null" >
+        #{newtype,jdbcType=VARCHAR},
+      </if>
+      <if test="newtopic != null" >
+        #{newtopic,jdbcType=VARCHAR},
+      </if>
+      <if test="newlead != null" >
+        #{newlead,jdbcType=VARCHAR},
+      </if>
+      <if test="newother1 != null" >
+        #{newother1,jdbcType=VARCHAR},
+      </if>
+      <if test="newother != null" >
+        #{newother,jdbcType=VARCHAR},
+      </if>
+      <if test="newmainid != null" >
+        #{newmainid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wynne.Entity.New" >
+    update new
+    <set >
+      <if test="newtype != null" >
+        NewType = #{newtype,jdbcType=VARCHAR},
+      </if>
+      <if test="newtopic != null" >
+        NewTopic = #{newtopic,jdbcType=VARCHAR},
+      </if>
+      <if test="newlead != null" >
+        NewLead = #{newlead,jdbcType=VARCHAR},
+      </if>
+      <if test="newother1 != null" >
+        NewOther1 = #{newother1,jdbcType=VARCHAR},
+      </if>
+      <if test="newother != null" >
+        NewOther = #{newother,jdbcType=VARCHAR},
+      </if>
+      <if test="newmainid != null" >
+        NewmainId = #{newmainid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where NewId = #{newid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wynne.Entity.New" >
+    update new
+    set NewType = #{newtype,jdbcType=VARCHAR},
+      NewTopic = #{newtopic,jdbcType=VARCHAR},
+      NewLead = #{newlead,jdbcType=VARCHAR},
+      NewOther1 = #{newother1,jdbcType=VARCHAR},
+      NewOther = #{newother,jdbcType=VARCHAR},
+      NewmainId = #{newmainid,jdbcType=INTEGER}
+    where NewId = #{newid,jdbcType=INTEGER}
+  </update>
+</mapper>

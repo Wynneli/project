@@ -34,6 +34,7 @@ import com.wynne.Entity.Unknown_WordCustom;
 import com.wynne.Entity.UserCustom;
 import com.wynne.Serivce.ICet4LoadingService;
 import com.wynne.Serivce.ICet4_partService;
+import com.wynne.Serivce.IChartService;
 import com.wynne.Serivce.IProcessService;
 import com.wynne.Serivce.IUnknownWordService;
 import com.wynne.Serivce.IUserService;
@@ -73,6 +74,9 @@ public class Cet4Controller {
 
 	@Autowired
 	private IProcessService processService;
+	
+	@Autowired
+	private IChartService charService;
 
 	@RequestMapping("/loading")
 	public String Add()throws Exception{
@@ -581,7 +585,7 @@ public class Cet4Controller {
 		ProcessCustom processCustom2=new ProcessCustom();
 		String  pCetId =request.getParameter("cet4Id");
 
-		String username=request.getParameter("username");
+		String username=HandleUserName.handle(request.getParameter("username"));
 		userCustom=userService.findUserByUserName(username);
 		if(pCetId.contains(CET4_)){
 			processCustom.setpCet4Id(pCetId);
@@ -691,6 +695,9 @@ public class Cet4Controller {
 	@RequestMapping("/loadingCetTestinfo")
 	public  ModelAndView loadingCetTestinfo(HttpSession session){
 		ModelAndView modelAndView=new ModelAndView();
+		List<Chart> chart=charService.findAll();
+		System.out.println(chart.toString());
+		modelAndView.addObject("chartlist", chart);
 		modelAndView.setViewName("user/showtest");
 		return modelAndView;
 	}

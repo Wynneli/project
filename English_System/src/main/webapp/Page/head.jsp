@@ -4,6 +4,9 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,12 +17,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <link rel="stylesheet" href="<%=basePath%>CSS/Custom/index.css">
 <script type="text/javascript"
-	src="../../JS/Third_Party/jquery-2.1.4.min.js"></script>
+	src="<%=basePath%>JS/Third_Party/jquery-2.1.4.min.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>JS/Third_Party/zui.min.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>JS/Third_Party/mzui.min.js"></script>
-<script type="text/javascript" src="<%=basePath%>JS/Custom/custom.js"></script>
+
 </head>
 <body>
   <nav class="navbar navbar-inverse" role="navigation">
@@ -42,30 +45,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<li class="active"><a href="<%=basePath%>"><i
 						class="icon-home"></i> 首页</a></li>
-				<li class="dropdown" class="disabled"><a href="#" class="dropdown-toggle" data-toggle="dropdown">课程学习<b
+				<li class="dropdown" class="disabled"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown">课程学习<b
 						class="caret"></b></a>
-					<ul class="dropdown-menu" role="menu" >
-						<li><a href="<%=basePath%>cet4/loading_cet4_word">4级英语学习</a></li>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="<%=basePath%>cet4/loading_cet4_word?cetid=cet4_">4级英语学习</a></li>
 						<li role="separator" class="divider"></li>
-						<li><a href="#">6级英语学习</a></li>
+						<li><a href="<%=basePath%>cet4/loading_cet4_word?cetid=cet6_">6级英语学习</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a href="#">大学英语学习</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a href="#">高中英语学习</a></li>
-					</ul>
-				</li>
-				
+					</ul></li>
+
 				<!-- 导航中的下拉菜单 -->
-				<li class="dropdown"><a href="#"
-					class="dropdown-toggle" data-toggle="dropdown">在线测试 <b
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">在线测试 <b class="caret"></b></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="<%=basePath%>cet4/show_item?cet4id=cet4">四级真题</a></li>
+						<li class="divider"></li>
+						<li><a href="#">试题测试</a></li>
+						<li class="divider"></li>
+						<li><a href="#">试题测试</a></li>
+						<li class="divider"></li>
+						<li><a href="#">试题测试</a></li>
+					</ul></li>
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" role="menu" href="#">资讯动态<b
 						class="caret"></b></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">试题测试</a></li>
-					</ul>
-				</li>
-				<li><a href="#">快速学习</a></li>
-				<li><a href="#"></a></li>
-				<li><a href="#"></a></li>
+						<li><a href="#">考试动态</a></li>
+						<li class="divider"></li>
+						<li><a href="#">报名动态</a></li>
+						<li class="divider"></li>
+						<li><a href="#">政策大纲</a></li>
+					</ul></li>
 			</ul>
 
 
@@ -81,25 +95,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<!-- 右侧的导航项目 -->
 			<ul class="nav navbar-nav navbar-right">
 				<c:if test="${empty user}">
-					<li><a href="<%=basePath%>Page/login/Login2.jsp">登录</a></li>
-					<li><a href="<%=basePath%>Page/login/Register.jsp">注册</a></li>
+					<li><a href="<%=basePath%>Page/login/Login2.jsp" >登录</a></li>
+					<li><a href="<%=basePath%>Page/login/register2.jsp">注册</a></li>
 				</c:if>
-				
+
 				<c:if test="${not empty user}">
-					<li class="dropdown"><a href="<%=basePath%>Page/success.jsp" class="dropdown-toggle" data-toggle="dropdown">欢迎你：${user.username}</a>
-					   <ul class="dropdown-menu" role="menu">
-					      <li><a href="#">6级英语学习</a></li>
-					   </ul>
-					</li>
+					<li class="dropdown"><a href="#"
+						class="dropdown-toggle" data-toggle="dropdown">欢迎你：${user.username}</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="<%=basePath%>Page/user/user.jsp">个人中心</a></li>
+						</ul></li>
 				</c:if>
-				
-				
-				<li><a href="<%=basePath%>Page/Login2.jsp">帮助</a></li>
-				<li class="dropdown"><a href="#"
-					class="dropdown-toggle" data-toggle="dropdown">探索 <b
-						class="caret"></b></a>
+
+
+				<li><a href="<%=basePath%>Page/Login.jsp">帮助</a></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">更多 <b class="caret"></b></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">敏捷开发</a></li>
+						<li><a href="<%=basePath%>Page/more/feedback.jsp">用户信息反馈</a></li>
 						<li><a href="#">HTML5</a></li>
 						<li><a href="#">Javascript</a></li>
 						<li class="divider"></li>
@@ -109,5 +122,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</div>
 	</nav>
+
 </body>
 </html>

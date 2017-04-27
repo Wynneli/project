@@ -1,0 +1,23 @@
+.span1 {
+	color: #666;
+	text-align: center;
+	padding: 15px 0 20px 0;
+	position: relative;
+	font-size: 12px;
+}
+
+.span2 {
+	color: #666;
+	text-align: center;
+	padding: 15px 0 20px 0;
+	position: relative;
+	font-size: 13px;
+}
+
+.p1 {
+	text-align: left;
+	text-indent: 2em;
+	font-size:14px;
+	line-height: 35px;
+}
+

@@ -1,5 +1,7 @@
 package com.wynne.Dao;
 
+import java.util.List;
+
 import com.wynne.Entity.Chart;
 
 public interface ChartMapper {
@@ -16,4 +18,6 @@ public interface ChartMapper {
     int updateByPrimaryKeySelective(Chart record);
 
     int updateByPrimaryKey(Chart record);
+    
+    List<Chart> selectAll();
 }

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wynne.Dao.DownloadMapper" >
+  <resultMap id="BaseResultMap" type="com.wynne.Entity.Download" >
+    <id column="FileID" property="fileid" jdbcType="INTEGER" />
+    <result column="FileType" property="filetype" jdbcType="VARCHAR" />
+    <result column="FilePath" property="filepath" jdbcType="VARCHAR" />
+    <result column="Filedownloadsum" property="filedownloadsum" jdbcType="INTEGER" />
+    <result column="FileName" property="filename" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    FileID, FileType, FilePath, Filedownloadsum, FileName
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from download
+    where FileID = #{fileid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from download
+    where FileID = #{fileid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wynne.Entity.Download" >
+    insert into download (FileID, FileType, FilePath, 
+      Filedownloadsum, FileName)
+    values (#{fileid,jdbcType=INTEGER}, #{filetype,jdbcType=VARCHAR}, #{filepath,jdbcType=VARCHAR}, 
+      #{filedownloadsum,jdbcType=INTEGER}, #{filename,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wynne.Entity.Download" >
+    insert into download
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fileid != null" >
+        FileID,
+      </if>
+      <if test="filetype != null" >
+        FileType,
+      </if>
+      <if test="filepath != null" >
+        FilePath,
+      </if>
+      <if test="filedownloadsum != null" >
+        Filedownloadsum,
+      </if>
+      <if test="filename != null" >
+        FileName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fileid != null" >
+        #{fileid,jdbcType=INTEGER},
+      </if>
+      <if test="filetype != null" >
+        #{filetype,jdbcType=VARCHAR},
+      </if>
+      <if test="filepath != null" >
+        #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="filedownloadsum != null" >
+        #{filedownloadsum,jdbcType=INTEGER},
+      </if>
+      <if test="filename != null" >
+        #{filename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wynne.Entity.Download" >
+    update download
+    <set >
+      <if test="filetype != null" >
+        FileType = #{filetype,jdbcType=VARCHAR},
+      </if>
+      <if test="filepath != null" >
+        FilePath = #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="filedownloadsum != null" >
+        Filedownloadsum = #{filedownloadsum,jdbcType=INTEGER},
+      </if>
+      <if test="filename != null" >
+        FileName = #{filename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where FileID = #{fileid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wynne.Entity.Download" >
+    update download
+    set FileType = #{filetype,jdbcType=VARCHAR},
+      FilePath = #{filepath,jdbcType=VARCHAR},
+      Filedownloadsum = #{filedownloadsum,jdbcType=INTEGER},
+      FileName = #{filename,jdbcType=VARCHAR}
+    where FileID = #{fileid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -35,13 +35,10 @@
 			<param-value>classpath:spring-mvc.xml</param-value>
 		</init-param>
 
-		<!-- 前端控制器知道全局异常处理器id为handlerExceptionResolver, 
-		所以要让 detectAllHandlerExceptionResolvers失效 
-		<init-param>
-			<param-name>detectAllHandlerExceptionResolvers</param-name>
-			<param-value>false</param-value>
-		</init-param>-->
-		
+		<!-- 前端控制器知道全局异常处理器id为handlerExceptionResolver, 所以要让 detectAllHandlerExceptionResolvers失效 
+			<init-param> <param-name>detectAllHandlerExceptionResolvers</param-name> 
+			<param-value>false</param-value> </init-param> -->
+
 		<load-on-startup>1</load-on-startup>
 		<async-supported>true</async-supported>
 	</servlet>
@@ -52,4 +49,14 @@
 	<welcome-file-list>
 		<welcome-file>/index.jsp</welcome-file>
 	</welcome-file-list>
+
+	<!-- 检查用户是否登录过的web.xml配置 -->
+	<filter>
+		<filter-name>AuthFilter</filter-name>
+		<filter-class>com.wynne.Filter.AuthFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AuthFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
 </web-app>

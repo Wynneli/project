@@ -18,111 +18,12 @@
 <link rel="stylesheet" href="<%=basePath%>CSS/Third_Party/zui.min.css">
 <link rel="stylesheet" href="<%=basePath%>CSS/Custom/index.css">
 <script type="text/javascript"
-	src="http://localhost:8080/English_System/JS/Third_Party/jquery-3.1.1.min.js"></script>
-<script type="text/javascript"
-	src="<%=basePath%>JS/Third_Party/zui.min.js"></script>
-<script type="text/javascript"
-	src="<%=basePath%>JS/Third_Party/mzui.min.js"></script>
+	src="http://localhost:8080/English_System/JS/Third_Party/jquery-2.1.4.min.js"></script>
+
 </head>
 <body>
-	<nav class="navbar navbar-inverse" role="navigation">
-	<div class="container-fluid navigation">
-		<!-- 导航头部 -->
-		<div class="navbar-header">
-			<!-- 移动设备上的导航切换按钮 -->
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target=".navbar-collapse-example">
-				<span class="sr-only">切换导航</span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span>
-			</button>
-			<!-- 品牌名称或logo -->
-			<a class="navbar-brand" href="#">OEL</a>
-		</div>
-		<!-- 导航项目 -->
-		<div class="collapse navbar-collapse navbar-collapse-example">
-			<!-- 一般导航项目 -->
-			<ul class="nav navbar-nav">
 
-				<li class="active"><a href="<%=basePath%>"><i
-						class="icon-home"></i> 首页</a></li>
-				<li class="dropdown" class="disabled"><a href="#"
-					class="dropdown-toggle" data-toggle="dropdown">课程学习<b
-						class="caret"></b></a>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="<%=basePath%>cet4/loading_cet4_word?cetid=cet4_">4级英语学习</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="<%=basePath%>cet4/loading_cet4_word?cetid=cet6_">6级英语学习</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#">大学英语学习</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#">高中英语学习</a></li>
-					</ul></li>
-
-				<!-- 导航中的下拉菜单 -->
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">在线测试 <b class="caret"></b></a>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="<%=basePath%>cet4/show_item?cet4id=cet4">四级真题</a></li>
-						<li class="divider"></li>
-						<li><a href="#">试题测试</a></li>
-						<li class="divider"></li>
-						<li><a href="#">试题测试</a></li>
-						<li class="divider"></li>
-						<li><a href="#">试题测试</a></li>
-					</ul></li>
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" role="menu" href="#">资讯动态<b
-						class="caret"></b></a>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">考试动态</a></li>
-						<li class="divider"></li>
-						<li><a href="#">报名动态</a></li>
-						<li class="divider"></li>
-						<li><a href="#">政策大纲</a></li>
-					</ul></li>
-			</ul>
-
-
-			<form name="submit" class="navbar-form navbar-left" role="search">
-				<div class="form-group">
-					<input type="text" class="form-control" placeholder="搜索">
-				</div>
-				<button type="submit" class="btn btn-default">
-					<i class=" icon-search"></i>&nbsp;搜索
-				</button>
-			</form>
-
-			<!-- 右侧的导航项目 -->
-			<ul class="nav navbar-nav navbar-right">
-				<c:if test="${empty user}">
-					<li><a href="<%=basePath%>Page/login/Login2.jsp" >登录</a></li>
-					<li><a href="<%=basePath%>Page/login/register2.jsp">注册</a></li>
-				</c:if>
-
-				<c:if test="${not empty user}">
-					<li class="dropdown"><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown">欢迎你：${user.username}</a>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="<%=basePath%>Page/user/user.jsp">个人中心</a></li>
-						</ul></li>
-				</c:if>
-
-
-				<li><a href="<%=basePath%>Page/Login.jsp">帮助</a></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">探索 <b class="caret"></b></a>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">敏捷开发</a></li>
-						<li><a href="#">HTML5</a></li>
-						<li><a href="#">Javascript</a></li>
-						<li class="divider"></li>
-						<li><a href="#">探索宇宙</a></li>
-					</ul></li>
-			</ul>
-		</div>
-	</div>
-	</nav>
-
+	<jsp:include page="/Page/public/head.jsp"></jsp:include>
 
 	<div class="container">
 		<!-- 轮播 -->
@@ -144,10 +45,11 @@
 					</div>
 				</div>
 				<div class="item">
-					<img class="images" src="/file/Images/slide2.jpg" alt="Second slide">
+					<img class="images" src="/file/Images/slide2.jpg"
+						alt="Second slide">
 				</div>
 				<div class="item">
-					<img class="images"  src="/file/Images/slide3.jpg" alt="Third slide">
+					<img class="images" src="/file/Images/slide3.jpg" alt="Third slide">
 				</div>
 			</div>
 			<!-- 轮播（Carousel）导航 -->
@@ -158,91 +60,172 @@
 		<br /> <br />
 		<h2>资讯动态</h2>
 		<hr size="3" style="border: 2px blue solid;">
-		<div class="row">
-			<div class="col-md-4">
-				<div class="row">
-					<div class="col-md-3">
-						<h3>考试动态</h3>
-					</div>
-					<div class="col-md-6"></div>
-					<div class="col-md-3" style="padding-top: 20px; color: #999;">
-						<a href="#">更多 <i class="icon icon-circle-arrow-right"></i></a>
-					</div>
-				</div>
-				<div class="row">
-					<ul class="ul_setting">
-						<li><a href="<%=basePath%>Page/New/dynamicNew.jsp" target="_blank"><i class="icon icon-info-sign"
-								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
-						<li><a href="#"><i class="icon icon-info-sign"
-								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
-						<li><a href="#"><i class="icon icon-info-sign"
-								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
-						<li><a href="#"><i class="icon icon-info-sign"
-								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
-						<li><a href="#"><i class="icon icon-info-sign"
-								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
-						<li><a href="#"><i class="icon icon-info-sign"
-								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
-						<li><a href="#"><i class="icon icon-info-sign"
-								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
-					</ul>
-				</div>
-				<div class="row">
-					<div class="col-md-3">
-						<h3>考试动态</h3>
-					</div>
-					<div class="col-md-6"></div>
-					<div class="col-md-3" style="padding-top: 20px; color: #999;">
-						<a href="#">更多 <i class="icon icon-circle-arrow-right"></i></a>
-					</div>
-				</div>
-				<div class="row">
-					<ul class="ul_setting">
-						<li><a href="<%=basePath%>Page/New/dynamicNew.jsp" target="_blank"><i class="icon icon-info-sign"
-								id="i_setting"></i>&nbsp;&nbsp;test</a></li>
-						<li><a href="#"><i class="icon icon-info-sign"
-								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
-						<li><a href="#"><i class="icon icon-info-sign"
-								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
-						<li><a href="#"><i class="icon icon-info-sign"
-								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
-						<li><a href="#"><i class="icon icon-info-sign"
-								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
-						<li><a href="#"><i class="icon icon-info-sign"
-								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
-						<li><a href="#"><i class="icon icon-info-sign"
-								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
-					</ul>
-				</div>
-
-			</div>
-			<div class="col-md-4">
-				<div class="row">
-					<div class="col-md-3">
-						<h3>考试动态</h3>
-					</div>
-					<div class="col-md-6"></div>
-					<div class="col-md-3" style="padding-top: 20px; color: #999;">
-						<a href="#">更多 <i class="icon icon-circle-arrow-right"></i></a>
+		<div class="row" id="setting">
+			<div class="col-md-8">
+				<div class="col-md-6">
+					<div class="panel">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-md-3">考试动态</div>
+								<div class="col-md-6"></div>
+								<div class="col-md-3">
+									<a href="#" class="asetting">更多<i
+										class="icon icon-circle-arrow-right"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<table class="table table-borderless">
+								<tbody>
+									<tr>
+										<td><a href="<%=basePath%>Page/New/dynamicNew.jsp"
+											target="_blank"><i class="icon icon-info-sign"
+												id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></td>
+									</tr>
+									<tr>
+										<td><a href="<%=basePath%>new/findnew/1" target="_blank"><i
+												class="icon icon-info-sign" id="i_setting"></i>&nbsp;&nbsp;新版四六级听力考“懵”学生
+												考生普遍喊难</a></td>
+									</tr>
+									<tr>
+										<td><a href="<%=basePath%>new/findnew/2" target="_blank"><i
+												class="icon icon-info-sign" id="i_setting"></i>&nbsp;&nbsp;2016年6月英语四六级“没想到败在语文上”</a></td>
+									</tr>
+									<tr>
+										<td><a href="<%=basePath%>new/findnew/3" target="_blank"><i
+												class="icon icon-info-sign" id="i_setting"></i>&nbsp;&nbsp;神翻译不断，四六级吐槽大会开会啦！</a></td>
+									</tr>
+									<tr>
+										<td><a href="<%=basePath%>new/findnew/4" target="_blank"><i
+												class="icon icon-info-sign" id="i_setting"></i>&nbsp;&nbsp;2016年6月四级听力秒杀雅思作文初中水平</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
-				<div class="row">
-					<ul class="ul_setting">
-						<li><a href="#"><i class="icon icon-info-sign"
-								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
-						<li><a href="#"><i class="icon icon-info-sign"
-								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
-						<li><a href="#"><i class="icon icon-info-sign"
-								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
-						<li><a href="#"><i class="icon icon-info-sign"
-								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
-						<li><a href="#"><i class="icon icon-info-sign"
-								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
-						<li><a href="#"><i class="icon icon-info-sign"
-								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
-						<li><a href="#"><i class="icon icon-info-sign"
-								id="i_setting"></i>&nbsp;&nbsp;2016年英语四级考试考前必看注意事项</a></li>
-					</ul>
+				<div class="col-md-6">
+					<div class="panel">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-md-3">考试动态</div>
+								<div class="col-md-6"></div>
+								<div class="col-md-3">
+									<a href="#" class="asetting">更多<i
+										class="icon icon-circle-arrow-right"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<table class="table table-borderless">
+								<tbody>
+									<tr>
+										<td><a href="<%=basePath%>new/findnew/7" target="_blank"><i
+												class="icon icon-info-sign" id="i_setting"></i>&nbsp;&nbsp;2017年5月英语四六级口语报名今日开始</a></td>
+									</tr>
+									<tr>
+										<td><a href="<%=basePath%>new/findnew/9" target="_blank"><i
+												class="icon icon-info-sign" id="i_setting"></i>&nbsp;&nbsp;2017年5月江西理工大学英语四级口语报名通知</a></td>
+									</tr>
+									<tr>
+										<td><a href="<%=basePath%>new/findnew/11" target="_blank"><i
+												class="icon icon-info-sign" id="i_setting"></i>&nbsp;&nbsp;英语四六级口语报名考生可以更改考点和考生日期</a></td>
+									</tr>
+									<tr>
+										<td><a href="<%=basePath%>new/findnew/12" target="_blank"><i
+												class="icon icon-info-sign" id="i_setting"></i>&nbsp;&nbsp;英语四六级口语报名考生是否可以选择场次</a></td>
+									</tr>
+									<tr>
+										<td><a href="<%=basePath%>new/findnew/13" target="_blank"><i
+												class="icon icon-info-sign" id="i_setting"></i>&nbsp;&nbsp;英语四六级口语报考缴费重复支付了怎么办</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="panel">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-md-3">考试动态</div>
+								<div class="col-md-6"></div>
+								<div class="col-md-3">
+									<a href="#" class="asetting">更多<i
+										class="icon icon-circle-arrow-right"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<table class="table table-borderless">
+								<tbody>
+									<tr>
+										<td><a href="<%=basePath%>new/findnew/15" target="_blank"><i
+												class="icon icon-info-sign" id="i_setting"></i>&nbsp;&nbsp;2017年5月大学英语四级口语成绩什么时候公布</a></td>
+									</tr>
+									<tr>
+										<td><a href="<%=basePath%>new/findnew/16" target="_blank"><i
+												class="icon icon-info-sign" id="i_setting"></i>&nbsp;&nbsp;2016年12月英语四级成绩查询中常见问题</a></td>
+									</tr>
+									<tr>
+										<td><a href="<%=basePath%>new/findnew/17" target="_blank"><i
+												class="icon icon-info-sign" id="i_setting"></i>&nbsp;&nbsp;大学英语四级通过以后成绩在网上保存多久</a></td>
+									</tr>
+									<tr>
+										<td><a href="<%=basePath%>new/findnew2/18"
+											target="_blank"><i class="icon icon-info-sign"
+												id="i_setting"></i>&nbsp;&nbsp;2017年6月大学英语四级考试翻译与作文评分标准</a></td>
+									</tr>
+									<tr>
+										<td><a href="<%=basePath%>new/findnew2/19"
+											target="_blank"><i class="icon icon-info-sign"
+												id="i_setting"></i>&nbsp;&nbsp;怎么用支付宝查询英语四六级成绩 这里看教程</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="panel">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-md-3">考试动态</div>
+								<div class="col-md-6"></div>
+								<div class="col-md-3">
+									<a href="#" class="asetting">更多<i
+										class="icon icon-circle-arrow-right"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<table class="table table-borderless">
+								<tbody>
+									<tr>
+										<td><a href="<%=basePath%>new/findnew/20" target="_blank"><i
+												class="icon icon-info-sign" id="i_setting"></i>&nbsp;&nbsp;2017年上半年大学英语四级口语准考证打印时间</a></td>
+									</tr>
+									<tr>
+										<td><a href="<%=basePath%>new/findnew/21" target="_blank"><i
+												class="icon icon-info-sign" id="i_setting"></i>&nbsp;&nbsp;2016年英语四六级成绩查询准考证找回方法</a></td>
+									</tr>
+									<tr>
+										<td><a href="<%=basePath%>new/findnew/22" target="_blank"><i
+												class="icon icon-info-sign" id="i_setting"></i>&nbsp;&nbsp;2016年12月大学英语四级准考证找回有哪些方法</a></td>
+									</tr>
+									<tr>
+										<td><a href="<%=basePath%>new/findnew2/23"
+											target="_blank"><i class="icon icon-info-sign"
+												id="i_setting"></i>&nbsp;&nbsp;2016年12月大学英语四级准考证号怎么推算</a></td>
+									</tr>
+									<tr>
+										<td><a href="<%=basePath%>new/findnew/24" target="_blank"><i
+												class="icon icon-info-sign" id="i_setting"></i>&nbsp;&nbsp;2017年6月英语四级成绩查询准考证找回方法汇总</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="col-md-4 exam-guide">
@@ -292,23 +275,23 @@
 				<br />
 				<div class="row exam-guide1">
 					<div class="col-md-4">
-						<i class="icon icon-time i_color" ></i><a href="#">查分时间</a>
+						<i class="icon icon-time i_color"></i><a href="#">查分时间</a>
 					</div>
 					<div class="col-md-4">
-						<i class="icon icon-circle-arrow-right i_color" ></i><a href="#">查分入口</a>
+						<i class="icon icon-circle-arrow-right i_color"></i><a href="#">查分入口</a>
 					</div>
 					<div class="col-md-4">
-						<i class="icon icon-area-chart i_color" ></i><a href="#">分数线</a>
+						<i class="icon icon-area-chart i_color"></i><a href="#">分数线</a>
 					</div>
-					<br/>
+					<br />
 					<div class="col-md-4">
-						<i class="icon icon-unlock-alt i_color" ></i><a href="#">找回准考证号</a>
-					</div>
-					<div class="col-md-4">
-						<i class="icon icon-search i_color" ></i><a href="#">补办及核查</a>
+						<i class="icon icon-unlock-alt i_color"></i><a href="#">找回准考证号</a>
 					</div>
 					<div class="col-md-4">
-						<i class="icon icon-bar-chart i_color" ></i><a href="#">成绩单</a>
+						<i class="icon icon-search i_color"></i><a href="#">补办及核查</a>
+					</div>
+					<div class="col-md-4">
+						<i class="icon icon-bar-chart i_color"></i><a href="#">成绩单</a>
 					</div>
 				</div>
 				<br />
@@ -429,5 +412,5 @@
 
 
 	<br />
-    <jsp:include page="/Page/tail.jsp"/>
+	<jsp:include page="/Page/tail.jsp" />
 </body>

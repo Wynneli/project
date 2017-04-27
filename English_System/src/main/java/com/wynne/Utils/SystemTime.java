@@ -1,6 +1,8 @@
 package com.wynne.Utils;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class SystemTime {
 	public static String systime(){
@@ -21,4 +23,17 @@ public class SystemTime {
 		}
 		return str;
 	}
+
+	public static String getTime(){
+		Date d = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return  sdf.format(d);
+	}
+	
+	public static String getTimeToFile(){
+		Date d = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		return  sdf.format(d);
+	}
+
 }

@@ -15,6 +15,16 @@ public class Chart {
 
     private String chartUsername;
 
+    private String chartCetTitle;
+
+    private Integer chartCorrect;
+
+    private Integer chartError;
+
+    private Integer chartSum;
+
+    private String chartPec;
+
     public Integer getChartId() {
         return chartId;
     }
@@ -69,5 +79,45 @@ public class Chart {
 
     public void setChartUsername(String chartUsername) {
         this.chartUsername = chartUsername == null ? null : chartUsername.trim();
+    }
+
+    public String getChartCetTitle() {
+        return chartCetTitle;
+    }
+
+    public void setChartCetTitle(String chartCetTitle) {
+        this.chartCetTitle = chartCetTitle == null ? null : chartCetTitle.trim();
+    }
+
+    public Integer getChartCorrect() {
+        return chartCorrect;
+    }
+
+    public void setChartCorrect(Integer chartCorrect) {
+        this.chartCorrect = chartCorrect;
+    }
+
+    public Integer getChartError() {
+        return chartError;
+    }
+
+    public void setChartError(Integer chartError) {
+        this.chartError = chartError;
+    }
+
+    public Integer getChartSum() {
+        return chartSum;
+    }
+
+    public void setChartSum(Integer chartSum) {
+        this.chartSum = chartSum;
+    }
+
+    public String getChartPec() {
+        return chartPec;
+    }
+
+    public void setChartPec(String chartPec) {
+        this.chartPec = chartPec == null ? null : chartPec.trim();
     }
 }

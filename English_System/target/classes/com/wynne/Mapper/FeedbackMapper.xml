@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wynne.Dao.FeedbackMapper">
+  <resultMap id="BaseResultMap" type="com.wynne.Entity.Feedback">
+    <id column="feedback_id" jdbcType="INTEGER" property="feedbackId" />
+    <result column="feedback_username" jdbcType="VARCHAR" property="feedbackUsername" />
+    <result column="feedback_first" jdbcType="VARCHAR" property="feedbackFirst" />
+    <result column="feedback_second" jdbcType="VARCHAR" property="feedbackSecond" />
+    <result column="feedback_title" jdbcType="VARCHAR" property="feedbackTitle" />
+    <result column="feedback_desctiption" jdbcType="VARCHAR" property="feedbackDesctiption" />
+    <result column="feedback_advice" jdbcType="VARCHAR" property="feedbackAdvice" />
+    <result column="feedback_stime" jdbcType="VARCHAR" property="feedbackStime" />
+    <result column="feedback_htime" jdbcType="VARCHAR" property="feedbackHtime" />
+    <result column="feedback_state" jdbcType="VARCHAR" property="feedbackState" />
+    <result column="feedback_accept" jdbcType="VARCHAR" property="feedbackAccept" />
+    <result column="feedback_other" jdbcType="VARCHAR" property="feedbackOther" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    feedback_id, feedback_username, feedback_first, feedback_second, feedback_title, 
+    feedback_desctiption, feedback_advice, feedback_stime, feedback_htime, feedback_state, 
+    feedback_accept, feedback_other
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from feedback
+    where feedback_id = #{feedbackId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from feedback
+    where feedback_id = #{feedbackId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wynne.Entity.Feedback">
+    insert into feedback (feedback_id, feedback_username, feedback_first, 
+      feedback_second, feedback_title, feedback_desctiption, 
+      feedback_advice, feedback_stime, feedback_htime, 
+      feedback_state, feedback_accept, feedback_other
+      )
+    values (#{feedbackId,jdbcType=INTEGER}, #{feedbackUsername,jdbcType=VARCHAR}, #{feedbackFirst,jdbcType=VARCHAR}, 
+      #{feedbackSecond,jdbcType=VARCHAR}, #{feedbackTitle,jdbcType=VARCHAR}, #{feedbackDesctiption,jdbcType=VARCHAR}, 
+      #{feedbackAdvice,jdbcType=VARCHAR}, #{feedbackStime,jdbcType=VARCHAR}, #{feedbackHtime,jdbcType=VARCHAR}, 
+      #{feedbackState,jdbcType=VARCHAR}, #{feedbackAccept,jdbcType=VARCHAR}, #{feedbackOther,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wynne.Entity.Feedback">
+    insert into feedback
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="feedbackId != null">
+        feedback_id,
+      </if>
+      <if test="feedbackUsername != null">
+        feedback_username,
+      </if>
+      <if test="feedbackFirst != null">
+        feedback_first,
+      </if>
+      <if test="feedbackSecond != null">
+        feedback_second,
+      </if>
+      <if test="feedbackTitle != null">
+        feedback_title,
+      </if>
+      <if test="feedbackDesctiption != null">
+        feedback_desctiption,
+      </if>
+      <if test="feedbackAdvice != null">
+        feedback_advice,
+      </if>
+      <if test="feedbackStime != null">
+        feedback_stime,
+      </if>
+      <if test="feedbackHtime != null">
+        feedback_htime,
+      </if>
+      <if test="feedbackState != null">
+        feedback_state,
+      </if>
+      <if test="feedbackAccept != null">
+        feedback_accept,
+      </if>
+      <if test="feedbackOther != null">
+        feedback_other,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="feedbackId != null">
+        #{feedbackId,jdbcType=INTEGER},
+      </if>
+      <if test="feedbackUsername != null">
+        #{feedbackUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackFirst != null">
+        #{feedbackFirst,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackSecond != null">
+        #{feedbackSecond,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackTitle != null">
+        #{feedbackTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackDesctiption != null">
+        #{feedbackDesctiption,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackAdvice != null">
+        #{feedbackAdvice,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackStime != null">
+        #{feedbackStime,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackHtime != null">
+        #{feedbackHtime,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackState != null">
+        #{feedbackState,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackAccept != null">
+        #{feedbackAccept,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackOther != null">
+        #{feedbackOther,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wynne.Entity.Feedback">
+    update feedback
+    <set>
+      <if test="feedbackUsername != null">
+        feedback_username = #{feedbackUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackFirst != null">
+        feedback_first = #{feedbackFirst,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackSecond != null">
+        feedback_second = #{feedbackSecond,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackTitle != null">
+        feedback_title = #{feedbackTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackDesctiption != null">
+        feedback_desctiption = #{feedbackDesctiption,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackAdvice != null">
+        feedback_advice = #{feedbackAdvice,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackStime != null">
+        feedback_stime = #{feedbackStime,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackHtime != null">
+        feedback_htime = #{feedbackHtime,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackState != null">
+        feedback_state = #{feedbackState,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackAccept != null">
+        feedback_accept = #{feedbackAccept,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackOther != null">
+        feedback_other = #{feedbackOther,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where feedback_id = #{feedbackId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wynne.Entity.Feedback">
+    update feedback
+    set feedback_username = #{feedbackUsername,jdbcType=VARCHAR},
+      feedback_first = #{feedbackFirst,jdbcType=VARCHAR},
+      feedback_second = #{feedbackSecond,jdbcType=VARCHAR},
+      feedback_title = #{feedbackTitle,jdbcType=VARCHAR},
+      feedback_desctiption = #{feedbackDesctiption,jdbcType=VARCHAR},
+      feedback_advice = #{feedbackAdvice,jdbcType=VARCHAR},
+      feedback_stime = #{feedbackStime,jdbcType=VARCHAR},
+      feedback_htime = #{feedbackHtime,jdbcType=VARCHAR},
+      feedback_state = #{feedbackState,jdbcType=VARCHAR},
+      feedback_accept = #{feedbackAccept,jdbcType=VARCHAR},
+      feedback_other = #{feedbackOther,jdbcType=VARCHAR}
+    where feedback_id = #{feedbackId,jdbcType=INTEGER}
+  </update>
+ 
+</mapper>

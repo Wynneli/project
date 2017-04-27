@@ -60,7 +60,6 @@ footer h6 {
 }
 
 .ul_setting li a:hover {
-	font-size: 15px;
 	color: red;
 }
 
@@ -122,4 +121,8 @@ footer h6 {
 
 .i_color{
 	color:orange;
+}
+
+.asetting{
+	color:blue;
 }

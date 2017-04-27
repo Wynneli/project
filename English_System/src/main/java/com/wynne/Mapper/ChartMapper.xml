@@ -1,123 +1,191 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wynne.Dao.ChartMapper" >
-  <resultMap id="BaseResultMap" type="com.wynne.Entity.Chart" >
-    <id column="chart_id" property="chartId" jdbcType="INTEGER" />
-    <result column="chart_cet_id" property="chartCetId" jdbcType="VARCHAR" />
-    <result column="chart_part1" property="chartPart1" jdbcType="INTEGER" />
-    <result column="chart_part2" property="chartPart2" jdbcType="INTEGER" />
-    <result column="chart_part3" property="chartPart3" jdbcType="INTEGER" />
-    <result column="chart_part4" property="chartPart4" jdbcType="INTEGER" />
-    <result column="chart_username" property="chartUsername" jdbcType="VARCHAR" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wynne.Dao.ChartMapper">
+  <resultMap id="BaseResultMap" type="com.wynne.Entity.Chart">
+    <id column="chart_id" jdbcType="INTEGER" property="chartId" />
+    <result column="chart_cet_id" jdbcType="VARCHAR" property="chartCetId" />
+    <result column="chart_part1" jdbcType="INTEGER" property="chartPart1" />
+    <result column="chart_part2" jdbcType="INTEGER" property="chartPart2" />
+    <result column="chart_part3" jdbcType="INTEGER" property="chartPart3" />
+    <result column="chart_part4" jdbcType="INTEGER" property="chartPart4" />
+    <result column="chart_username" jdbcType="VARCHAR" property="chartUsername" />
+    <result column="chart_cet_title" jdbcType="VARCHAR" property="chartCetTitle" />
+    <result column="chart_correct" jdbcType="INTEGER" property="chartCorrect" />
+    <result column="chart_error" jdbcType="INTEGER" property="chartError" />
+    <result column="chart_sum" jdbcType="INTEGER" property="chartSum" />
+    <result column="chart_pec" jdbcType="VARCHAR" property="chartPec" />
   </resultMap>
-  <sql id="Base_Column_List" >
-    chart_id, chart_cet_id, chart_part1, chart_part2, chart_part3, chart_part4, chart_username
+  <sql id="Base_Column_List">
+    chart_id, chart_cet_id, chart_part1, chart_part2, chart_part3, chart_part4, chart_username, 
+    chart_cet_title, chart_correct, chart_error, chart_sum, chart_pec
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from chart
     where chart_id = #{chartId,jdbcType=INTEGER}
   </select>
+  
   <select id="selectBychartCetIdAndchartUsername" resultMap="BaseResultMap" >
     select 
     <include refid="Base_Column_List" />
     from chart
     where chart_cet_id = #{chartCetId,jdbcType=VARCHAR} and chart_username=#{chartUsername,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from chart
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from chart
     where chart_id = #{chartId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.wynne.Entity.Chart" >
+  <insert id="insert" parameterType="com.wynne.Entity.Chart">
     insert into chart (chart_id, chart_cet_id, chart_part1, 
       chart_part2, chart_part3, chart_part4, 
-      chart_username)
+      chart_username, chart_cet_title, chart_correct, 
+      chart_error, chart_sum, chart_pec
+      )
     values (#{chartId,jdbcType=INTEGER}, #{chartCetId,jdbcType=VARCHAR}, #{chartPart1,jdbcType=INTEGER}, 
       #{chartPart2,jdbcType=INTEGER}, #{chartPart3,jdbcType=INTEGER}, #{chartPart4,jdbcType=INTEGER}, 
-      #{chartUsername,jdbcType=VARCHAR})
+      #{chartUsername,jdbcType=VARCHAR}, #{chartCetTitle,jdbcType=VARCHAR}, #{chartCorrect,jdbcType=INTEGER}, 
+      #{chartError,jdbcType=INTEGER}, #{chartSum,jdbcType=INTEGER}, #{chartPec,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.wynne.Entity.Chart" >
+  <insert id="insertSelective" parameterType="com.wynne.Entity.Chart">
     insert into chart
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="chartId != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="chartId != null">
         chart_id,
       </if>
-      <if test="chartCetId != null" >
+      <if test="chartCetId != null">
         chart_cet_id,
       </if>
-      <if test="chartPart1 != null" >
+      <if test="chartPart1 != null">
         chart_part1,
       </if>
-      <if test="chartPart2 != null" >
+      <if test="chartPart2 != null">
         chart_part2,
       </if>
-      <if test="chartPart3 != null" >
+      <if test="chartPart3 != null">
         chart_part3,
       </if>
-      <if test="chartPart4 != null" >
+      <if test="chartPart4 != null">
         chart_part4,
       </if>
-      <if test="chartUsername != null" >
+      <if test="chartUsername != null">
         chart_username,
       </if>
+      <if test="chartCetTitle != null">
+        chart_cet_title,
+      </if>
+      <if test="chartCorrect != null">
+        chart_correct,
+      </if>
+      <if test="chartError != null">
+        chart_error,
+      </if>
+      <if test="chartSum != null">
+        chart_sum,
+      </if>
+      <if test="chartPec != null">
+        chart_pec,
+      </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="chartId != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="chartId != null">
         #{chartId,jdbcType=INTEGER},
       </if>
-      <if test="chartCetId != null" >
+      <if test="chartCetId != null">
         #{chartCetId,jdbcType=VARCHAR},
       </if>
-      <if test="chartPart1 != null" >
+      <if test="chartPart1 != null">
         #{chartPart1,jdbcType=INTEGER},
       </if>
-      <if test="chartPart2 != null" >
+      <if test="chartPart2 != null">
         #{chartPart2,jdbcType=INTEGER},
       </if>
-      <if test="chartPart3 != null" >
+      <if test="chartPart3 != null">
         #{chartPart3,jdbcType=INTEGER},
       </if>
-      <if test="chartPart4 != null" >
+      <if test="chartPart4 != null">
         #{chartPart4,jdbcType=INTEGER},
       </if>
-      <if test="chartUsername != null" >
+      <if test="chartUsername != null">
         #{chartUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="chartCetTitle != null">
+        #{chartCetTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="chartCorrect != null">
+        #{chartCorrect,jdbcType=INTEGER},
+      </if>
+      <if test="chartError != null">
+        #{chartError,jdbcType=INTEGER},
+      </if>
+      <if test="chartSum != null">
+        #{chartSum,jdbcType=INTEGER},
+      </if>
+      <if test="chartPec != null">
+        #{chartPec,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.wynne.Entity.Chart" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.wynne.Entity.Chart">
     update chart
-    <set >
-      <if test="chartCetId != null" >
+    <set>
+      <if test="chartCetId != null">
         chart_cet_id = #{chartCetId,jdbcType=VARCHAR},
       </if>
-      <if test="chartPart1 != null" >
+      <if test="chartPart1 != null">
         chart_part1 = #{chartPart1,jdbcType=INTEGER},
       </if>
-      <if test="chartPart2 != null" >
+      <if test="chartPart2 != null">
         chart_part2 = #{chartPart2,jdbcType=INTEGER},
       </if>
-      <if test="chartPart3 != null" >
+      <if test="chartPart3 != null">
         chart_part3 = #{chartPart3,jdbcType=INTEGER},
       </if>
-      <if test="chartPart4 != null" >
+      <if test="chartPart4 != null">
         chart_part4 = #{chartPart4,jdbcType=INTEGER},
       </if>
-      <if test="chartUsername != null" >
+      <if test="chartUsername != null">
         chart_username = #{chartUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="chartCetTitle != null">
+        chart_cet_title = #{chartCetTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="chartCorrect != null">
+        chart_correct = #{chartCorrect,jdbcType=INTEGER},
+      </if>
+      <if test="chartError != null">
+        chart_error = #{chartError,jdbcType=INTEGER},
+      </if>
+      <if test="chartSum != null">
+        chart_sum = #{chartSum,jdbcType=INTEGER},
+      </if>
+      <if test="chartPec != null">
+        chart_pec = #{chartPec,jdbcType=VARCHAR},
       </if>
     </set>
     where chart_id = #{chartId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.wynne.Entity.Chart" >
+  <update id="updateByPrimaryKey" parameterType="com.wynne.Entity.Chart">
     update chart
     set chart_cet_id = #{chartCetId,jdbcType=VARCHAR},
       chart_part1 = #{chartPart1,jdbcType=INTEGER},
       chart_part2 = #{chartPart2,jdbcType=INTEGER},
       chart_part3 = #{chartPart3,jdbcType=INTEGER},
       chart_part4 = #{chartPart4,jdbcType=INTEGER},
-      chart_username = #{chartUsername,jdbcType=VARCHAR}
+      chart_username = #{chartUsername,jdbcType=VARCHAR},
+      chart_cet_title = #{chartCetTitle,jdbcType=VARCHAR},
+      chart_correct = #{chartCorrect,jdbcType=INTEGER},
+      chart_error = #{chartError,jdbcType=INTEGER},
+      chart_sum = #{chartSum,jdbcType=INTEGER},
+      chart_pec = #{chartPec,jdbcType=VARCHAR}
     where chart_id = #{chartId,jdbcType=INTEGER}
   </update>
+ 
 </mapper>

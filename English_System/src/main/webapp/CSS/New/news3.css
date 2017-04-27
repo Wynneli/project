@@ -1,0 +1,15 @@
+.p1{
+	text-align: left;
+	line-height: 30px;
+}
+
+.p2{
+	padding-left:100px;
+	text-align: center;
+}
+
+.p3 {
+	text-align: left;
+	text-indent: 2em;
+	font-size:14px;
+}

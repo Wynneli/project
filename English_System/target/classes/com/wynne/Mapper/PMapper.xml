@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wynne.Dao.PMapper" >
+  <resultMap id="BaseResultMap" type="com.wynne.Entity.P" >
+    <id column="BodyId" property="bodyid" jdbcType="INTEGER" />
+    <result column="p1" property="p1" jdbcType="VARCHAR" />
+    <result column="p2" property="p2" jdbcType="VARCHAR" />
+    <result column="p3" property="p3" jdbcType="VARCHAR" />
+    <result column="p4" property="p4" jdbcType="VARCHAR" />
+    <result column="p5" property="p5" jdbcType="VARCHAR" />
+    <result column="p6" property="p6" jdbcType="VARCHAR" />
+    <result column="p7" property="p7" jdbcType="VARCHAR" />
+    <result column="p8" property="p8" jdbcType="VARCHAR" />
+    <result column="p9" property="p9" jdbcType="VARCHAR" />
+    <result column="p10" property="p10" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    BodyId, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from p
+    where BodyId = #{bodyid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from p
+    where BodyId = #{bodyid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wynne.Entity.P" >
+    insert into p (BodyId, p1, p2, 
+      p3, p4, p5, p6, 
+      p7, p8, p9, p10
+      )
+    values (#{bodyid,jdbcType=INTEGER}, #{p1,jdbcType=VARCHAR}, #{p2,jdbcType=VARCHAR}, 
+      #{p3,jdbcType=VARCHAR}, #{p4,jdbcType=VARCHAR}, #{p5,jdbcType=VARCHAR}, #{p6,jdbcType=VARCHAR}, 
+      #{p7,jdbcType=VARCHAR}, #{p8,jdbcType=VARCHAR}, #{p9,jdbcType=VARCHAR}, #{p10,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wynne.Entity.P" >
+    insert into p
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bodyid != null" >
+        BodyId,
+      </if>
+      <if test="p1 != null" >
+        p1,
+      </if>
+      <if test="p2 != null" >
+        p2,
+      </if>
+      <if test="p3 != null" >
+        p3,
+      </if>
+      <if test="p4 != null" >
+        p4,
+      </if>
+      <if test="p5 != null" >
+        p5,
+      </if>
+      <if test="p6 != null" >
+        p6,
+      </if>
+      <if test="p7 != null" >
+        p7,
+      </if>
+      <if test="p8 != null" >
+        p8,
+      </if>
+      <if test="p9 != null" >
+        p9,
+      </if>
+      <if test="p10 != null" >
+        p10,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bodyid != null" >
+        #{bodyid,jdbcType=INTEGER},
+      </if>
+      <if test="p1 != null" >
+        #{p1,jdbcType=VARCHAR},
+      </if>
+      <if test="p2 != null" >
+        #{p2,jdbcType=VARCHAR},
+      </if>
+      <if test="p3 != null" >
+        #{p3,jdbcType=VARCHAR},
+      </if>
+      <if test="p4 != null" >
+        #{p4,jdbcType=VARCHAR},
+      </if>
+      <if test="p5 != null" >
+        #{p5,jdbcType=VARCHAR},
+      </if>
+      <if test="p6 != null" >
+        #{p6,jdbcType=VARCHAR},
+      </if>
+      <if test="p7 != null" >
+        #{p7,jdbcType=VARCHAR},
+      </if>
+      <if test="p8 != null" >
+        #{p8,jdbcType=VARCHAR},
+      </if>
+      <if test="p9 != null" >
+        #{p9,jdbcType=VARCHAR},
+      </if>
+      <if test="p10 != null" >
+        #{p10,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wynne.Entity.P" >
+    update p
+    <set >
+      <if test="p1 != null" >
+        p1 = #{p1,jdbcType=VARCHAR},
+      </if>
+      <if test="p2 != null" >
+        p2 = #{p2,jdbcType=VARCHAR},
+      </if>
+      <if test="p3 != null" >
+        p3 = #{p3,jdbcType=VARCHAR},
+      </if>
+      <if test="p4 != null" >
+        p4 = #{p4,jdbcType=VARCHAR},
+      </if>
+      <if test="p5 != null" >
+        p5 = #{p5,jdbcType=VARCHAR},
+      </if>
+      <if test="p6 != null" >
+        p6 = #{p6,jdbcType=VARCHAR},
+      </if>
+      <if test="p7 != null" >
+        p7 = #{p7,jdbcType=VARCHAR},
+      </if>
+      <if test="p8 != null" >
+        p8 = #{p8,jdbcType=VARCHAR},
+      </if>
+      <if test="p9 != null" >
+        p9 = #{p9,jdbcType=VARCHAR},
+      </if>
+      <if test="p10 != null" >
+        p10 = #{p10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where BodyId = #{bodyid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wynne.Entity.P" >
+    update p
+    set p1 = #{p1,jdbcType=VARCHAR},
+      p2 = #{p2,jdbcType=VARCHAR},
+      p3 = #{p3,jdbcType=VARCHAR},
+      p4 = #{p4,jdbcType=VARCHAR},
+      p5 = #{p5,jdbcType=VARCHAR},
+      p6 = #{p6,jdbcType=VARCHAR},
+      p7 = #{p7,jdbcType=VARCHAR},
+      p8 = #{p8,jdbcType=VARCHAR},
+      p9 = #{p9,jdbcType=VARCHAR},
+      p10 = #{p10,jdbcType=VARCHAR}
+    where BodyId = #{bodyid,jdbcType=INTEGER}
+  </update>
+</mapper>

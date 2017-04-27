@@ -20,9 +20,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.wynne.Entity.Feedback;
 import com.wynne.Entity.UserCustom;
 import com.wynne.Exception.CustomException;
+import com.wynne.Serivce.IFeedbackService;
 import com.wynne.Serivce.IUserService;
+import com.wynne.Utils.HandleUserName;
+import com.wynne.Utils.SystemTime;
 
 /**
  *<p>Title:Controller </p>
@@ -36,7 +40,10 @@ public class UserController {
 	//private static Logger log=LoggerFactory.getLogger(UserController.class);
 	@Autowired  
 	private IUserService userService;   
-	
+
+	@Autowired
+	private IFeedbackService FeedbackService;
+
 	private final String SUCCESS="success";
 	@RequestMapping("/login2")
 	public String showUserName(UserCustom userCustom,HttpServletRequest request
@@ -139,7 +146,7 @@ public class UserController {
 		}
 		return "success";
 	}
-	
+
 	@RequestMapping("/changePass")
 	public @ResponseBody Object changePass(HttpServletRequest request){
 		UserCustom userCustom=new UserCustom();
@@ -151,7 +158,7 @@ public class UserController {
 		jsonObject.put("message", message);
 		return jsonObject;
 	}
-	
+
 	@RequestMapping("/updateUser")
 	public @ResponseBody Object updateUser(HttpSession session,@RequestBody UserCustom userCustom){
 		UserCustom userCustom2=new UserCustom();
@@ -167,5 +174,18 @@ public class UserController {
 		jsonObject.put("message", attr);
 		return jsonObject;
 	}
-	
+
+	@RequestMapping("/feedback")
+	public @ResponseBody Object feedback(@RequestBody Feedback feedback){
+		JSONObject jsonObject=new JSONObject();
+		feedback.setFeedbackUsername(HandleUserName.handle(feedback.getFeedbackUsername()));
+		feedback.setFeedbackStime(SystemTime.systime());
+		int count=FeedbackService.insertRecord(feedback);
+		if(count==1){
+			jsonObject.put("attr", "success");
+		}else{
+			jsonObject.put("attr", "false");
+		}
+		return jsonObject;
+	}
 }
