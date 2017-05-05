@@ -17,7 +17,6 @@ function getSecond(){
 }
 
 function submit2(){
-//	alert(124);
 	var username=$("#getusername").text();
 
 	var f="请选择一级标题";

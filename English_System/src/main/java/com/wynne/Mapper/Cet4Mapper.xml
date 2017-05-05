@@ -23,18 +23,18 @@
   
   
 	
-  <select id="selectCet4" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectCet4"  resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
-		from cet4 limit #{pageOffset},10
+		from cet4 where cet4_id like CONCAT(#{CET},'%') limit #{pageOffset},20
 	</select>
 	
-	<select id="selectLastCet4Id"  resultType="java.lang.String">
+	<select id="selectLastCet4Id" parameterType="java.lang.String"  resultType="java.lang.String">
 		select  cet4_id
-		from cet4  ORDER BY cet4_id DESC LIMIT 1
+		from cet4  where cet4_id like CONCAT(#{CET},'%') ORDER BY cet4_id DESC LIMIT 1
 	</select>
   
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from cet4
     where cet4_id = #{cet4Id,jdbcType=CHAR}
   </delete>

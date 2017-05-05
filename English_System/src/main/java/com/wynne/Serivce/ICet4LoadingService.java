@@ -20,13 +20,13 @@ public interface ICet4LoadingService {
 
 	public int countCet4(String cet);
 
-	public List<Cet4Custom> findCet4(int pageOffset);
+	public List<Cet4Custom> findCet4(String cet,int pageOffset);
 
 	public int updateCet4(Cet4Custom cet4Custom);
 
 	public int deleteCet4(String  cet4Id);
 
-	public String findLastCet4Id();
+	public String findLastCet4Id(String Cet);
 
 	public int insertCetRecord(Cet4Custom record);
 

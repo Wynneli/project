@@ -1,0 +1,26 @@
+.divsetting{
+	margin:0 auto;
+    width:95%;
+    padding-top: 3px;
+    border: 1px solid gray;
+}
+
+.setting{position:fixed;}
+
+
+a:hover {
+	color: red;
+	text-decoration: none;
+}
+
+.input-font {
+	font-size: 13px;
+}
+
+.clock {
+	width: inherit;
+	height: 100%;
+}
+.clock_button{
+	margin-top:5px;
+}

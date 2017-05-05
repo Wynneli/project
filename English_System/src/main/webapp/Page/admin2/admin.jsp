@@ -37,21 +37,12 @@
 			<strong><span class="icon-list"></span>菜单列表</strong>
 		</div>
 		<h2>
-			<span class="icon-user"></span>基本设置
+			<span class="icon-user"></span>用户信息
 		</h2>
 		<ul style="display: block">
-			<li><a href="info.html" target="right"><span
-					class="icon-caret-right"></span>网站设置</a></li>
-			<li><a href="pass.html" target="right"><span
-					class="icon-caret-right"></span>修改密码</a></li>
-			<li><a href="page.html" target="right"><span
-					class="icon-caret-right"></span>单页管理</a></li>
-			<li><a href="adv.html" target="right"><span
-					class="icon-caret-right"></span>首页轮播</a></li>
-			<li><a href="book.html" target="right"><span
-					class="icon-caret-right"></span>留言管理</a></li>
-			<li><a href="column.html" target="right"><span
-					class="icon-caret-right"></span>栏目管理</a></li>
+			<li><a  href="<%=basePath%>admin/show_userinfo" target="right"><span
+					class="icon-caret-right"></span>用户信息管理</a></li>
+			
 		</ul>
 		<h2>
 			<span class="icon-pencil-square-o"></span>栏目管理
@@ -75,7 +66,7 @@
 			href="##">英文</a></li>
 	</ul>
 	<div class="admin">
-		<iframe scrolling="auto" rameborder="0" src="show.jsp" name="right"
+		<iframe scrolling="auto" frameborder="0" src="show.jsp" name="right"
 			width="100%" height="100%"></iframe>
 	</div>
 	<div style="text-align: center;">

@@ -17,9 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSONObject;
 import com.wynne.Entity.Cet4Custom;
 import com.wynne.Entity.CommentCustom;
+import com.wynne.Entity.Feedback;
 import com.wynne.Entity.UserCustom;
 import com.wynne.Serivce.ICet4LoadingService;
 import com.wynne.Serivce.ICommentService;
+import com.wynne.Serivce.IFeedbackService;
 import com.wynne.Serivce.IUserService;
 import com.wynne.Utils.HandleCet;
 import com.wynne.Utils.Handlepage;
@@ -34,7 +36,9 @@ public class AdminController {
 
 	@Autowired
 	private ICet4LoadingService cet4LoadingService;
-
+	
+	@Autowired
+	private IFeedbackService feedbackService;
 
 	private final static String SUCCESS="success";
 
@@ -81,7 +85,7 @@ public class AdminController {
 			modelAndView.addObject("AllUser_list", allUser_list);
 		}
 		System.out.println("modelandview");
-		modelAndView.setViewName("Admin/UserManage");
+		modelAndView.setViewName("admin4/UserManage");
 		return modelAndView;
 	}
 
@@ -129,7 +133,7 @@ public class AdminController {
 			modelAndView.addObject("false", FAILURE);
 		}
 		System.out.println("modelandview2");
-		modelAndView.setViewName("Admin/CommentManage");
+		modelAndView.setViewName("admin4/CommentManage");
 		return modelAndView;
 	}
 
@@ -154,13 +158,15 @@ public class AdminController {
 	//		return "Admin/Cet";
 	//	}
 
-	@RequestMapping("/show_cet4info")
-	public ModelAndView show_cet4info( ){
+	@RequestMapping("/show_cet4info/{cet}")
+	public ModelAndView show_cet4info(@PathVariable(value="cet") String cet){
 		ModelAndView modelAndView=new ModelAndView();
 		List<Cet4Custom> cet4_list =new ArrayList<Cet4Custom>();
 		List<Integer> cet4list=new ArrayList<Integer>();
-		cet4_list= cet4LoadingService.findCet4(0);
-		int cet4page=Handlepage.handlepage(cet4LoadingService.countCet4("cet4_"));
+		cet4_list= cet4LoadingService.findCet4(cet,0);
+		int count=cet4LoadingService.countCet4(cet);
+		int cet4page=Handlepage.handlepage(count);
+		System.out.println(count);
 		for(int i=0;i<cet4page;i++){
 			cet4list.add(i);
 		}
@@ -173,7 +179,23 @@ public class AdminController {
 		}else{
 			modelAndView.addObject("false", FAILURE);
 		}
-		modelAndView.setViewName("Admin/Cet");
+		if(cet.equals("cet4_")){
+			modelAndView.addObject("cetType", "cet4");
+		}else{
+			modelAndView.addObject("cetType", "cet6");
+		}
+		modelAndView.setViewName("admin4/Cet");
+		return modelAndView;
+	}
+
+
+	@RequestMapping("/showfeedbackinfo")
+	public ModelAndView showfeedbackinfo(){
+		ModelAndView modelAndView=new ModelAndView();
+		List<Feedback> list=new ArrayList<Feedback>();
+		list=feedbackService.FindAllFeedBack();
+		modelAndView.addObject("feedback_list", list);
+		modelAndView.setViewName("admin4/feedback");
 		return modelAndView;
 	}
 
@@ -182,8 +204,10 @@ public class AdminController {
 		ModelAndView modelAndView=new ModelAndView();
 		List<Cet4Custom> cet4_list =new ArrayList<Cet4Custom>();
 		List<Integer> cet4list=new ArrayList<Integer>();
-		cet4_list= cet4LoadingService.findCet4(Handlepage.handlepagebyCetid(cet4Id));
-		int cet4page=Handlepage.handlepage(cet4LoadingService.countCet4("cet4_"));
+		String cet=cet4Id.substring(0,4);
+		System.out.println(cet);
+		cet4_list= cet4LoadingService.findCet4(cet,Handlepage.handlepagebyCetid(cet4Id));
+		int cet4page=Handlepage.handlepage(cet4LoadingService.countCet4(cet));
 		for(int i=0;i<cet4page;i++){
 			cet4list.add(i);
 		}
@@ -196,16 +220,17 @@ public class AdminController {
 		}else{
 			modelAndView.addObject("false", FAILURE);
 		}
-		modelAndView.setViewName("Admin/Cet");
+		modelAndView.setViewName("admin4/Cet");
 		return modelAndView;
 	}
 
 
-	@RequestMapping("/add_new_cetword")
-	public ModelAndView add_new_cetword(){
+	@RequestMapping("/add_new_cetword/{cetType}")
+	public ModelAndView add_new_cetword(@PathVariable(value="cetType") String cetType){
 		ModelAndView modelAndView=new ModelAndView();
-		modelAndView.addObject("maxcetId", cet4LoadingService.findLastCet4Id());
-		modelAndView.setViewName("Admin/AddCetWord");
+		modelAndView.addObject("maxcetId", cet4LoadingService.findLastCet4Id(cetType));
+		modelAndView.addObject("cetType", cetType);
+		modelAndView.setViewName("admin4/AddCetWord");
 		return modelAndView;
 	}
 
@@ -288,8 +313,9 @@ public class AdminController {
 	public @ResponseBody Object unique_cet_page(HttpServletRequest request){
 		JSONObject jsonObject=new JSONObject();
 		String qString=request.getParameter("pagecontent");
+		String cet=request.getParameter("cet").substring(0,4);
 		int page=Integer.parseInt(qString);
-		List<Cet4Custom> cet4list=cet4LoadingService.findCet4(Handlepage.handlepageoff(page));
+		List<Cet4Custom> cet4list=cet4LoadingService.findCet4(cet,Handlepage.handlepageoff(page));
 		if(cet4list!=null){
 			jsonObject.put("cet4list", cet4list);
 			jsonObject.put("attr", SUCCESS);
@@ -322,8 +348,9 @@ public class AdminController {
 		JSONObject jsonObject=new JSONObject();
 		String qString=request.getParameter("page");
 		int page=Integer.parseInt(qString);
+		String cet=request.getParameter("cet").substring(0,4);
 		//		System.out.println(Handlepage.handlepageoff(page));
-		List<Cet4Custom> cet4list=cet4LoadingService.findCet4(Handlepage.handlepageoff(page));
+		List<Cet4Custom> cet4list=cet4LoadingService.findCet4(cet,Handlepage.handlepageoff(page));
 		if(cet4list!=null){
 			jsonObject.put("cet4list", cet4list);
 			jsonObject.put("attr", SUCCESS);
@@ -341,7 +368,7 @@ public class AdminController {
 		Cet4Custom cet4Custom=cet4LoadingService.Select_cet4_info_ByPrimary(cet4Id);
 		System.out.println(cet4Custom.toString());
 		modelAndView.addObject("cet4Custom", cet4Custom);
-		modelAndView.setViewName("/Admin/Cet_edit");
+		modelAndView.setViewName("/admin4/Cet_edit");
 		return modelAndView;
 	}
 
@@ -377,11 +404,19 @@ public class AdminController {
 	@RequestMapping("/cet_delete")
 	public @ResponseBody Object cet_delete(HttpServletRequest request){
 		JSONObject jsonObject=new JSONObject();
-		System.out.println("cet_delete");
-		System.out.println(request.getParameter("cet4Id"));
-		int count=cet4LoadingService.deleteCet4("cet4_0001");
+		String cet2=request.getParameter("cet4Id");
+		int index=cet2.lastIndexOf("/");
+		String cetid=cet2.substring(index+1,cet2.length());
+		System.out.println(cetid);
+		String cet=cetid.substring(0,4);
+		int  page=Integer.parseInt(request.getParameter("page"));
+		int count=cet4LoadingService.deleteCet4(cetid);
 		System.out.println(count);
 		if(count==1){
+			List<Cet4Custom> cet4list=cet4LoadingService.findCet4(cet,Handlepage.handlepageoff(page));
+			if(cet4list!=null){
+				jsonObject.put("cet4list", cet4list);
+			}
 			jsonObject.put("attr", SUCCESS);
 		}else{
 			jsonObject.put("attr", FAILURE);
@@ -397,6 +432,7 @@ public class AdminController {
 		int counts=0;
 		String CetIdList=request.getParameter("CetIdList");
 		String[] items=CetIdList.split(",");
+		String cet=request.getParameter("cetType").substring(0,4);
 		for(int i=0;i<items.length;i++){
 			int count=cet4LoadingService.deleteCet4(items[i]);
 			System.out.println(items[i]);
@@ -413,14 +449,14 @@ public class AdminController {
 		}
 		String qString=request.getParameter("page");
 		int page=Integer.parseInt(qString);
-		cet4list=cet4LoadingService.findCet4(Handlepage.handlepageoff(page));
+		cet4list=cet4LoadingService.findCet4(cet,Handlepage.handlepageoff(page));
 		if(!cet4list.isEmpty()){
 			jsonObject.put("cet4list", cet4list);
 			jsonObject.put("page", page);
 		}else{
-			cet4list=cet4LoadingService.findCet4(Handlepage.handlepageoff(page-1));
-			 jsonObject.put("cet4list", cet4list);
-			 jsonObject.put("page", page-1);
+			cet4list=cet4LoadingService.findCet4(cet,Handlepage.handlepageoff(page-1));
+			jsonObject.put("cet4list", cet4list);
+			jsonObject.put("page", page-1);
 		}
 		return jsonObject;
 	}

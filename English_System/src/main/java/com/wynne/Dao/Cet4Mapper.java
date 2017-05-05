@@ -10,7 +10,7 @@ public interface Cet4Mapper {
     int deleteByPrimaryKey(String cet4Id);
 
     int insert(Cet4Custom record);
-
+ 
     int insertSelective(Cet4Custom record);
 
     Cet4Custom selectByPrimaryKey(String cet4Id);
@@ -21,7 +21,7 @@ public interface Cet4Mapper {
     
     int countCet4(@Param("CET") String CET);
     
-    List<Cet4Custom> selectCet4(int pageOffset);
+    List<Cet4Custom> selectCet4(@Param("CET") String CET,@Param("pageOffset")int pageOffset);
     
-    String selectLastCet4Id();
+    String selectLastCet4Id(String CET);
 }

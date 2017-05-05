@@ -1,5 +1,6 @@
 function page_cet(page){
 	var currentpage="当前页："+page;
+	alert("here");
 	$.ajax({
 		type:'post',
 		url:"http://localhost:8080/English_System/admin/unique_cet_page",
@@ -8,10 +9,10 @@ function page_cet(page){
 			if(data.attr=='success'){
 				$("#currentpage").html(currentpage);
 				if(data.cet4list.length!=0){
-					$("#show_userinfo tbody").html("");
+					$("#show_cetinfo tbody").html("");
 					for(var i=0;i<data.cet4list.length;i++){
 						if(i%2==0){
-							var temp='<tr><td style="padding-left: 35px;"><label> <input'+
+							var temp='<tr><td><label> <input'+
 							' type="checkbox" name="checkbox" value="'+data.cet4list[i].cet4Id+'">'+
 							'</label></td><td>'+data.cet4list[i].cet4Id+'</td>'+
 							'<td>'+data.cet4list[i].cet4Vocabulary+'</td>'+
@@ -21,7 +22,7 @@ function page_cet(page){
 							'<i class="icon icon-edit i_color"></i> 编辑'+
 							'</a></td></tr>';
 						}else{
-							var temp='<tr class="active"><td style="padding-left: 35px;"><label> <input'+
+							var temp='<tr><td style="padding-left: 35px;"><label> <input'+
 							' type="checkbox" name="checkbox" value="'+data.cet4list[i].cet4Id+'">'+
 							'</label></td><td>'+data.cet4list[i].cet4Id+'</td>'+
 							'<td>'+data.cet4list[i].cet4Vocabulary+'</td>'+
@@ -31,7 +32,7 @@ function page_cet(page){
 							'<i class="icon icon-edit i_color"></i> 编辑'+
 							'</a></td></tr>';
 						}
-						$("#show_userinfo tbody").append(temp);
+						$("#show_cetinfo tbody").append(temp);
 					} 
 				}
 			}
@@ -79,10 +80,10 @@ function search_cet_page(){
 					$("#currentpage").html(currentpage);
 					if(data.attr=='success'){
 						if(data.cet4list.length!=0){
-							$("#show_userinfo tbody").html("");
+							$("#show_cetinfo tbody").html("");
 							for(var i=0;i<data.cet4list.length;i++){
 								if(i%2==0){
-									var temp='<tr><td style="padding-left: 35px;"><label> <input'+
+									var temp='<tr><td><label> <input'+
 									' type="checkbox" name="checkbox" value="'+data.cet4list[i].cet4Id+'">'+
 									'</label></td><td>'+data.cet4list[i].cet4Id+'</td>'+
 									'<td>'+data.cet4list[i].cet4Vocabulary+'</td>'+
@@ -92,7 +93,7 @@ function search_cet_page(){
 									'<i class="icon icon-edit i_color"></i> 编辑'+
 									'</a></td></tr>';
 								}else{
-									var temp='<tr class="active"><td style="padding-left: 35px;"><label> <input'+
+									var temp='<tr><td><label> <input'+
 									' type="checkbox" name="checkbox" value="'+data.cet4list[i].cet4Id+'">'+
 									'</label></td><td>'+data.cet4list[i].cet4Id+'</td>'+
 									'<td>'+data.cet4list[i].cet4Vocabulary+'</td>'+
@@ -102,7 +103,7 @@ function search_cet_page(){
 									'<i class="icon icon-edit i_color"></i> 编辑'+
 									'</a></td></tr>';
 								}
-								$("#show_userinfo tbody").append(temp);
+								$("#show_cetinfo tbody").append(temp);
 								$("input[name='page']").val("");
 							}
 
@@ -149,10 +150,10 @@ function Batchdelete(){
 							$("#maxpage").html("共"+data.page+"页");
 						}
 						if(data.cet4list.length!=0){
-							$("#show_userinfo tbody").html("");
+							$("#show_cetinfo tbody").html("");
 							for(var i=0;i<data.cet4list.length;i++){
 								if(i%2==0){
-									var temp='<tr><td style="padding-left: 35px;"><label> <input'+
+									var temp='<tr><td><label> <input'+
 									' type="checkbox" name="checkbox" value="'+data.cet4list[i].cet4Id+'">'+
 									'</label></td><td>'+data.cet4list[i].cet4Id+'</td>'+
 									'<td>'+data.cet4list[i].cet4Vocabulary+'</td>'+
@@ -162,7 +163,7 @@ function Batchdelete(){
 									'<i class="icon icon-edit i_color"></i> 编辑'+
 									'</a></td></tr>';
 								}else{
-									var temp='<tr class="active"><td style="padding-left: 35px;"><label> <input'+
+									var temp='<tr><td><label> <input'+
 									' type="checkbox" name="checkbox" value="'+data.cet4list[i].cet4Id+'">'+
 									'</label></td><td>'+data.cet4list[i].cet4Id+'</td>'+
 									'<td>'+data.cet4list[i].cet4Vocabulary+'</td>'+
@@ -172,7 +173,7 @@ function Batchdelete(){
 									'<i class="icon icon-edit i_color"></i> 编辑'+
 									'</a></td></tr>';
 								}
-								$("#show_userinfo tbody").append(temp);
+								$("#show_cetinfo tbody").append(temp);
 							}
 							new $.zui.Messager('删除成功', {
 								time:'4000',
@@ -188,3 +189,7 @@ function Batchdelete(){
 	}
 }
 
+
+function test(){
+	alert(123123123);
+}

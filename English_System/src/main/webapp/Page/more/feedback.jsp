@@ -28,12 +28,12 @@
 					<div class="col-md-4">
 						<select class="form-control" id="first" onchange="getSecond()">
 							<option value="">请选择一级标题</option>
-							<option value="apple">词汇</option>
-							<option value="banana">测试</option>
-							<option value="orange">下载</option>
-							<option value="orange">个人信息</option>
-							<option value="orange">动态资讯</option>
-							<option value="orange">其他</option>
+							<option >词汇</option>
+							<option >测试</option>
+							<option >下载</option>
+							<option >个人信息</option>
+							<option >动态资讯</option>
+							<option >其他</option>
 						</select>
 					</div>
 					<div class="col-md-4">

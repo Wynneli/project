@@ -1,5 +1,6 @@
 function search(){
 	var user_name=$("input:text[name='username']").val();
+	alert(123);
 	var user_id=$("input:text[name='userid']").val()
 	if(user_name==""&&user_id==""){
 		new $.zui.Messager('请输入内容', {
@@ -23,7 +24,9 @@ function search(){
 					$("#show_userinfo tbody").html("");
 					for(var i=0;i<data.obscure_list.length;i++){
 						if(i%2==0){
-							var temp='<tr><td style="padding-left: 20px;">'+data.obscure_list[i].userid+'</td>'+
+							var temp='<tr><td><label> <input type="checkbox" name="checkbox">'+
+							'</label></td>'+
+							'<td>'+data.obscure_list[i].userid+'</td>'+
 							'<td>'+data.obscure_list[i].username+'</td>'+
 							'<td>'+data.obscure_list[i].userphone+'</td>'+
 							'<td>'+data.obscure_list[i].useremail+'</td>'+
@@ -32,7 +35,9 @@ function search(){
 							'</a></td></tr>';
 
 						}else{
-							var temp='<tr class="active"><td style="padding-left: 20px;">'+data.obscure_list[i].userid+'</td>'+
+							var temp='<tr><td><label> <input type="checkbox" name="checkbox">'+
+							'</label></td>'+
+							'<td>'+data.obscure_list[i].userid+'</td>'+
 							'<td>'+data.obscure_list[i].username+'</td>'+
 							'<td>'+data.obscure_list[i].userphone+'</td>'+
 							'<td>'+data.obscure_list[i].useremail+'</td>'+
@@ -64,6 +69,7 @@ function search(){
 	}
 }
 function deleteUser(a){
+	alert(123);
 	$.ajax({
 		type:'post',
 		url:"http://localhost:8080/English_System/admin/deleteuser",
@@ -74,7 +80,9 @@ function deleteUser(a){
 					$("#show_userinfo tbody").html("");
 					for(var i=0;i<data.allUser_list.length;i++){
 						if(i%2==0){
-							var temp='<tr><td style="padding-left: 20px;">'+data.allUser_list[i].userid+'</td>'+
+							var temp='<tr><td><label> <input type="checkbox" name="checkbox">'+
+							'</label></td>'+
+							'<td>'+data.allUser_list[i].userid+'</td>'+
 							'<td>'+data.allUser_list[i].username+'</td>'+
 							'<td>'+data.allUser_list[i].userphone+'</td>'+
 							'<td>'+data.allUser_list[i].useremail+'</td>'+
@@ -83,7 +91,9 @@ function deleteUser(a){
 							'</a></td></tr>';
 
 						}else{
-							var temp='<tr class="active"><td style="padding-left: 20px;">'+data.allUser_list[i].userid+'</td>'+
+							var temp='<tr><td><label> <input type="checkbox" name="checkbox">'+
+							'</label></td>'+
+							'<td >'+data.allUser_list[i].userid+'</td>'+
 							'<td>'+data.allUser_list[i].username+'</td>'+
 							'<td>'+data.allUser_list[i].userphone+'</td>'+
 							'<td>'+data.allUser_list[i].useremail+'</td>'+
@@ -132,7 +142,9 @@ function page(page){
 					$("#show_userinfo tbody").html("");
 					for(var i=0;i<data.userlist.length;i++){
 						if(i%2==0){
-							var temp='<tr><td style="padding-left: 20px;">'+data.userlist[i].userid+'</td>'+
+							var temp='<tr><td><label> <input type="checkbox" name="checkbox">'+
+							'</label></td>'+
+							'<td>'+data.userlist[i].userid+'</td>'+
 							'<td>'+data.userlist[i].username+'</td>'+
 							'<td>'+data.userlist[i].userphone+'</td>'+
 							'<td>'+data.userlist[i].useremail+'</td>'+
@@ -141,7 +153,9 @@ function page(page){
 							'</a></td></tr>';
 
 						}else{
-							var temp='<tr class="active"><td style="padding-left: 20px;">'+data.userlist[i].userid+'</td>'+
+							var temp='<tr><td><label> <input type="checkbox" name="checkbox">'+
+							'</label></td>'+
+							'<td>'+data.userlist[i].userid+'</td>'+
 							'<td>'+data.userlist[i].username+'</td>'+
 							'<td>'+data.userlist[i].userphone+'</td>'+
 							'<td>'+data.userlist[i].useremail+'</td>'+
@@ -158,38 +172,38 @@ function page(page){
 }
 
 //$(function(){
-//	$("#selectAll").click(function(){
-//		$("input[name='checkbox']").attr("checked","true"); 
-//	});
-//
-//	$("#resever").click(function () {  
-//		$("input[name='checkbox']").attr("checked","");  
-//
-//	})  
+//$("#selectAll").click(function(){
+//$("input[name='checkbox']").attr("checked","true"); 
+//});
+
+//$("#resever").click(function () {  
+//$("input[name='checkbox']").attr("checked","");  
+
+//})  
 //});
 
 //function selectAll() {
-//	alert("selectall");
-//	$("input[name='checkbox']").attr("checked","true"); 
+//alert("selectall");
+//$("input[name='checkbox']").attr("checked","true"); 
 //}
-//
+
 //function notAll() {
-//	alert("notAll2");
-//	$("input[name='checkbox']").attr("checked",''); 
+//alert("notAll2");
+//$("input[name='checkbox']").attr("checked",''); 
 //}
-//
-//
+
+
 //function reverseSelect(){
-//	$("input[name='checkbox']").each(function(){ 
-//		if($(this).attr("checked")) 
-//		{ 
-//			$(this).removeAttr("checked"); 
-//		} 
-//		else 
-//		{ 
-//			$(this).attr("checked","true"); 
-//		}
-//	}) 
+//$("input[name='checkbox']").each(function(){ 
+//if($(this).attr("checked")) 
+//{ 
+//$(this).removeAttr("checked"); 
+//} 
+//else 
+//{ 
+//$(this).attr("checked","true"); 
+//}
+//}) 
 //}
 function test(){
 	alert(23);

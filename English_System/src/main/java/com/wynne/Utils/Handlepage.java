@@ -3,13 +3,13 @@ package com.wynne.Utils;
 public class Handlepage {
 	public static int handlepage(int page){
 		int count=0;
-		if(page<10){
+		if(page<20){
 			count=1;
 		}else{
-			if(page%10==0){
-				count=page/10;
+			if(page%20==0){
+				count=page/20;
 			}else{
-				count=page/10;
+				count=page/20;
 				count=count+1;
 			}
 		}
@@ -19,7 +19,7 @@ public class Handlepage {
 	public static int handlepageoff(int page){
 		int count=0;
 		if(page>1){
-			count=(page-1)*10;
+			count=(page-1)*20;
 		}
 		return count;
 	}

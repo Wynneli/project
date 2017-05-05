@@ -64,7 +64,7 @@ function register(){
 				$("#checkpassword2").html("");
 				$("#password2").addClass("has-success");
 			}
-			if(uservalidate=="success"&&passwordvalidate=="success"&&passwordvalidate=="success"){
+			if(uservalidate=="success"&&passwordvalidate=="success"&&passwordvalidate2=="success"){
 				$.ajax({
 					type:'post',
 					url:"http://localhost:8080/English_System/user/RegisterUser",

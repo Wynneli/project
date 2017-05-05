@@ -93,8 +93,8 @@ public class Cet4LoadingServiceImpl  implements ICet4LoadingService{
 	}
 
 
-	public List<Cet4Custom> findCet4(int pageOffset) {
-		return cet4Mapper.selectCet4(pageOffset);
+	public List<Cet4Custom> findCet4(String cet,int pageOffset) {
+		return cet4Mapper.selectCet4(cet,pageOffset);
 	}
 
 
@@ -109,9 +109,10 @@ public class Cet4LoadingServiceImpl  implements ICet4LoadingService{
 	}
 
 
-	public String findLastCet4Id() {
+	public String findLastCet4Id(String Cet) {
 		String index=null;
-		index=HandleCet.handleCetId(cet4Mapper.selectLastCet4Id());
+		System.out.println(Cet);
+		index=HandleCet.handleCetId(cet4Mapper.selectLastCet4Id(Cet));
 		return index;
 	}
 
