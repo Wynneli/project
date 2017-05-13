@@ -30,6 +30,12 @@ public class SystemTime {
 		return  sdf.format(d);
 	}
 	
+	public static String getTime2(){
+		Date d = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		return  sdf.format(d);
+	}
+	
 	public static String getTimeToFile(){
 		Date d = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");

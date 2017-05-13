@@ -74,7 +74,7 @@ public class Cet4Controller {
 
 	@Autowired
 	private IProcessService processService;
-	
+
 	@Autowired
 	private IChartService charService;
 
@@ -699,6 +699,15 @@ public class Cet4Controller {
 		System.out.println(chart.toString());
 		modelAndView.addObject("chartlist", chart);
 		modelAndView.setViewName("user/showtest");
+		return modelAndView;
+	}
+
+	@RequestMapping("/test2")
+	public  ModelAndView testDatatable(){
+		ModelAndView modelAndView=new ModelAndView();
+		List<Cet4Custom> cet4_list=cet4LoadingService.findAllCettest();
+		modelAndView.addObject("cet4_list", cet4_list);
+		modelAndView.setViewName("test/test2");
 		return modelAndView;
 	}
 }

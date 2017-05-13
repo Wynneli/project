@@ -15,16 +15,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
-
 <link rel="stylesheet" href="<%=basePath%>CSS/Third_Party/zui.min.css">
-
-
-<link rel="stylesheet" href="<%=basePath%>CSS/Admin/common.css">
+<link rel="stylesheet" href="<%=basePath%>CSS/admin4/common2.css">
 <script type="text/javascript"
 	src="<%=basePath%>JS/Third_Party/jquery-2.1.4.min.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>JS/Third_Party/zui.min.js"></script>
-<script type="text/javascript" src="<%=basePath%>JS/admin4/cet.js"></script>
+<script type="text/javascript" src="<%=basePath%>JS/admin4/cet3.js"></script>
 <script type="text/javascript" src="<%=basePath%>JS/admin4/common.js"></script>
 
 </head>
@@ -100,11 +97,13 @@
 							<td>${list.cet4Meaning}</td>
 							<td><a id="${list.cet4Id}"
 								href="<%=basePath%>admin/cet_edit/${list.cet4Id}"
-								target="myframe"> <i class="icon icon-edit i_color "></i> 编辑
-							</a>&nbsp;&nbsp;&nbsp;<a  href="#"
-								onclick="cet_delete(${list.cet4Id})"> <i class="icon icon-trash i_color "></i>
-									删除
-							</a></td>
+								target="myframe"><button class="btn btn-mini btn-info">
+										<i class="icon icon-edit"></i> 编辑
+									</button></a>&nbsp;&nbsp;&nbsp;
+								<button onclick="cet_delete(${list.cet4Id})"
+									class="btn btn-mini btn-danger">
+									<i class="icon icon-trash "></i> 删除
+								</button></td>
 						</tr>
 					</c:forEach>
 				</tbody>

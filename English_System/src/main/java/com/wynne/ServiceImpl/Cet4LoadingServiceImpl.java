@@ -122,6 +122,13 @@ public class Cet4LoadingServiceImpl  implements ICet4LoadingService{
 	}
 
 
+
+
+	public List<Cet4Custom> findAllCettest() {
+		return cet4Mapper.selectAlltest();
+	}
+
+
 }
 
 

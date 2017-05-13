@@ -16,7 +16,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="<%=basePath%>CSS/Third_Party/zui.min.css">
-<link rel="stylesheet" href="<%=basePath%>CSS/Admin/Cet_edit.css">
+<link rel="stylesheet" href="<%=basePath%>CSS/admin4/Cet_edit.css">
 <script type="text/javascript"
 	src="<%=basePath%>JS/Third_Party/jquery-2.1.4.min.js"></script>
 <script type="text/javascript"

@@ -12,5 +12,8 @@ public interface IFeedbackService {
     public List<Feedback> FindAllFeedBack(String feedbackstate,String feedbackaccept);
 
     public int DeleteFeedBack(int feedbackId);
+    
+    public int updataFeedBack(Feedback record);
 
+    public Feedback findByPrimaryKey(int feedbackId);
 }

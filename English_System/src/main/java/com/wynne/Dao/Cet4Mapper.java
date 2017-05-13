@@ -24,4 +24,6 @@ public interface Cet4Mapper {
     List<Cet4Custom> selectCet4(@Param("CET") String CET,@Param("pageOffset")int pageOffset);
     
     String selectLastCet4Id(String CET);
+    
+    List<Cet4Custom> selectAlltest();
 }

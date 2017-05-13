@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.taglibs.standard.tag.common.fmt.RequestEncodingSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,13 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSONObject;
 import com.wynne.Entity.Cet4Custom;
 import com.wynne.Entity.CommentCustom;
-import com.wynne.Entity.Feedback;
 import com.wynne.Entity.UserCustom;
 import com.wynne.Serivce.ICet4LoadingService;
 import com.wynne.Serivce.ICommentService;
-import com.wynne.Serivce.IFeedbackService;
 import com.wynne.Serivce.IUserService;
 import com.wynne.Utils.HandleCet;
+import com.wynne.Utils.HandleNull;
 import com.wynne.Utils.Handlepage;
 @Controller
 @RequestMapping("/admin")
@@ -36,34 +34,11 @@ public class AdminController {
 
 	@Autowired
 	private ICet4LoadingService cet4LoadingService;
-	
-	@Autowired
-	private IFeedbackService feedbackService;
 
 	private final static String SUCCESS="success";
 
 	private final static String FAILURE="failure";
 
-	//	@RequestMapping("/show_userinfo")
-	//	public String show_userinfo(HttpSession session){
-	//		List<UserCustom> allUser_list =new ArrayList<UserCustom>();
-	//		int count=0;
-	//		List<Integer> count_list=new ArrayList<Integer>();
-	//		allUser_list=userService.findAllUser();
-	//		count=userService.totalUser();
-	//		int pagecontent=Handlepage.handlepage(count);
-	//		session.setAttribute("pagecontent_user", pagecontent);
-	//		for(int i=0;i<pagecontent;i++){
-	//			count_list.add(i);
-	//		}
-	//
-	//		session.setAttribute("count_list",count_list);
-	//
-	//		if(allUser_list!=null){ 
-	//			session.setAttribute("AllUser_list", allUser_list);
-	//		}
-	//		return "Admin/UserManage";
-	//	}
 
 	@RequestMapping("/show_userinfo")
 	public ModelAndView show_userinfo(){
@@ -84,32 +59,11 @@ public class AdminController {
 		if(allUser_list!=null){ 
 			modelAndView.addObject("AllUser_list", allUser_list);
 		}
-		System.out.println("modelandview");
 		modelAndView.setViewName("admin4/UserManage");
 		return modelAndView;
 	}
 
 
-	//	@RequestMapping("/show_commentifo")
-	//	public String show_CommenInfo(HttpSession session){
-	//		List<CommentCustom> allComment_list =new ArrayList<CommentCustom>();
-	//		List<Integer> commentlist=new ArrayList<Integer>();
-	//		allComment_list= commentService.findAllComment(0);
-	//		int commentpage=Handlepage.handlepage(commentService.countComment());
-	//		for(int i=0;i<commentpage;i++){
-	//			commentlist.add(i);
-	//		}
-	//		if(commentpage>0){
-	//			session.setAttribute("commentlist",commentlist);
-	//			session.setAttribute("commentpage",commentpage);
-	//		}
-	//		if(allComment_list!=null){
-	//			session.setAttribute("allComment_list", allComment_list);
-	//		}else{
-	//			session.setAttribute("false", FAILURE);
-	//		}
-	//		return "Admin/CommentManage";
-	//	}
 
 
 
@@ -137,26 +91,6 @@ public class AdminController {
 		return modelAndView;
 	}
 
-	//	@RequestMapping("/show_cet4info")
-	//	public String show_cet4info(HttpSession session){
-	//		List<Cet4Custom> cet4_list =new ArrayList<Cet4Custom>();
-	//		List<Integer> cet4list=new ArrayList<Integer>();
-	//		cet4_list= cet4LoadingService.findCet4(0);
-	//		int cet4page=Handlepage.handlepage(cet4LoadingService.countCet4());
-	//		for(int i=0;i<cet4page;i++){
-	//			cet4list.add(i);
-	//		}
-	//		if(cet4page>0){
-	//			session.setAttribute("cet4list",cet4list);
-	//			session.setAttribute("cet4page",cet4page);
-	//		}
-	//		if(cet4_list!=null){
-	//			session.setAttribute("cet4_list", cet4_list);
-	//		}else{
-	//			session.setAttribute("false", FAILURE);
-	//		}
-	//		return "Admin/Cet";
-	//	}
 
 	@RequestMapping("/show_cet4info/{cet}")
 	public ModelAndView show_cet4info(@PathVariable(value="cet") String cet){
@@ -166,7 +100,7 @@ public class AdminController {
 		cet4_list= cet4LoadingService.findCet4(cet,0);
 		int count=cet4LoadingService.countCet4(cet);
 		int cet4page=Handlepage.handlepage(count);
-		System.out.println(count);
+		System.out.println("show_cet4info");
 		for(int i=0;i<cet4page;i++){
 			cet4list.add(i);
 		}
@@ -189,18 +123,11 @@ public class AdminController {
 	}
 
 
-	@RequestMapping("/showfeedbackinfo")
-	public ModelAndView showfeedbackinfo(){
-		ModelAndView modelAndView=new ModelAndView();
-		List<Feedback> list=new ArrayList<Feedback>();
-		list=feedbackService.FindAllFeedBack();
-		modelAndView.addObject("feedback_list", list);
-		modelAndView.setViewName("admin4/feedback");
-		return modelAndView;
-	}
+
 
 	@RequestMapping("/return_cet_info/{cet4Id}")
 	public ModelAndView return_cet_info(@PathVariable(value="cet4Id") String cet4Id){
+		System.out.println("return_cet_info");
 		ModelAndView modelAndView=new ModelAndView();
 		List<Cet4Custom> cet4_list =new ArrayList<Cet4Custom>();
 		List<Integer> cet4list=new ArrayList<Integer>();
@@ -211,6 +138,7 @@ public class AdminController {
 		for(int i=0;i<cet4page;i++){
 			cet4list.add(i);
 		}
+		System.out.println(cet4list.size());
 		if(cet4page>0){
 			modelAndView.addObject("cet4list",cet4list);
 			modelAndView.addObject("cet4page",cet4page);
@@ -220,6 +148,13 @@ public class AdminController {
 		}else{
 			modelAndView.addObject("false", FAILURE);
 		}
+		System.out.println(cet4_list.toString());
+		if(cet.equals("cet4_")){
+			modelAndView.addObject("cetType", "cet4");
+		}else{
+			modelAndView.addObject("cetType", "cet6");
+		}
+
 		modelAndView.setViewName("admin4/Cet");
 		return modelAndView;
 	}
@@ -240,6 +175,7 @@ public class AdminController {
 		JSONObject jsonObject=new JSONObject();
 		List<UserCustom> obscure_list=new ArrayList<UserCustom>();
 		obscure_list=userService.Obscure_find(userCustom);
+		obscure_list=HandleNull.HandleUser(obscure_list);
 		jsonObject.put("obscure_list", obscure_list);
 		return jsonObject;
 	}
@@ -253,6 +189,7 @@ public class AdminController {
 		List<UserCustom> allUser_list =new ArrayList<UserCustom>();
 		allUser_list=userService.findAllUser();
 		if(count==1&&allUser_list!=null){
+			allUser_list=HandleNull.HandleUser(allUser_list);
 			jsonObject.put("attr", SUCCESS);
 			jsonObject.put("allUser_list", allUser_list);
 		}else{
@@ -405,6 +342,7 @@ public class AdminController {
 	public @ResponseBody Object cet_delete(HttpServletRequest request){
 		JSONObject jsonObject=new JSONObject();
 		String cet2=request.getParameter("cet4Id");
+		System.out.println(cet2);
 		int index=cet2.lastIndexOf("/");
 		String cetid=cet2.substring(index+1,cet2.length());
 		System.out.println(cetid);

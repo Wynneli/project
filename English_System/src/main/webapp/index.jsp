@@ -22,7 +22,6 @@
 
 </head>
 <body>
-
 	<jsp:include page="/Page/public/head.jsp"></jsp:include>
 
 	<div class="container">
@@ -301,7 +300,16 @@
 		</div>
 
 
+		<h1>这里：${test}</h1>
 
+		<table>
+			<c:forEach items="${userlist}" var="list">
+				<td>${list.userid}</td>
+				<td>${list.username}</td>
+				<td>${list.userpassword}</td>
+				<td>${list.userphone}</td>
+			</c:forEach>
+		</table>
 		<!-- 最新资讯展现 -->
 
 		<div class="cards">
@@ -363,7 +371,7 @@
 		<div class="list list-condensed">
 			<header>
 			<h3>
-				<i class="icon-list-ul"></i> 最新动态 <small>更新 123 条</small>
+				<i class="icon-list-ul"></i> 美文推荐 <small>共 123 条</small>
 			</h3>
 			</header>
 			<div class="items items-hover">

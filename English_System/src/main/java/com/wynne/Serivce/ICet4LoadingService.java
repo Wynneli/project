@@ -30,5 +30,6 @@ public interface ICet4LoadingService {
 
 	public int insertCetRecord(Cet4Custom record);
 
+	public List<Cet4Custom> findAllCettest();
 
 }

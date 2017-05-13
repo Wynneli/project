@@ -1,6 +1,6 @@
 function search(){
+	alert(1234);
 	var user_name=$("input:text[name='username']").val();
-	alert(123);
 	var user_id=$("input:text[name='userid']").val()
 	if(user_name==""&&user_id==""){
 		new $.zui.Messager('请输入内容', {
@@ -29,9 +29,10 @@ function search(){
 						'<td>'+data.obscure_list[i].username+'</td>'+
 						'<td>'+data.obscure_list[i].userphone+'</td>'+
 						'<td>'+data.obscure_list[i].useremail+'</td>'+
-						'<td><a onclick="deleteUser('+data.obscure_list[i].userid+')" href="#" id="'+data.obscure_list[i].userid+'"> '+
-						'<i class="icon icon-times i_color"></i>删除'+
-						'</a></td></tr>';
+						'<td>&nbsp;&nbsp;&nbsp;<button class="btn btn-mini btn-danger"'+
+						' onclick="deleteUser('+data.obscure_list[i].userid+')">'+
+						'<i class="icon icon-trash"></i>删除'+
+						'</button></td></tr>';
 						$("#show_userinfo tbody").append(temp);
 					} 
 					new $.zui.Messager('查询加载成功', {
@@ -72,9 +73,10 @@ function deleteUser(a){
 							'<td>'+data.allUser_list[i].username+'</td>'+
 							'<td>'+data.allUser_list[i].userphone+'</td>'+
 							'<td>'+data.allUser_list[i].useremail+'</td>'+
-							'<td><a onclick="deleteUser('+data.allUser_list[i].userid+')" href="#" id="'+data.allUser_list[i].userid+'"> '+
-							'<i class="icon icon-times i_color"></i>删除'+
-							'</a></td></tr>';
+							'<td>&nbsp;&nbsp;&nbsp;<button class="btn btn-mini btn-danger"'+
+							' onclick="deleteUser('+data.allUser_list[i].userid+')">'+
+							'<i class="icon icon-trash"></i>删除'+
+							'</button></td></tr>';
 							$("#show_userinfo tbody").append(temp);
 						} 
 					}
@@ -152,7 +154,7 @@ function adduser(){
 				icon: 'times',
 				type: 'danger' ,
 				// 定义颜色主题
-				placement: 'top' // 定义显示位置
+				placement: 'center' // 定义显示位置
 			}).show();
 		}else{
 			new $.zui.Messager('密码不能为空', {
@@ -170,7 +172,7 @@ function adduser(){
 			uservalidate="false";
 		}else{
 			$("#user").addClass("has-success");
-			$("#checkuser").html("");
+			$("#checkpassword").html("");
 		}
 		if(!pattern2.test(password)){
 			$("#checkpassword").html("<font color='red' size='2'>密码格式不正确！由数字和字母组成，长度6-16位</font>");
@@ -201,10 +203,29 @@ function adduser(){
 						$("#password").removeClass("has-error");
 						$("input[name='user']").val("");
 						$("input[name='password']").val("");
+						$("#checkuser").html("");
+						$("#checkpassword").html("");
+						if(data.allUser_list.length!=0){
+							$("#show_userinfo tbody").html("");
+							for(var i=0;i<data.allUser_list.length;i++){
+								var temp='<tr><td><label> <input type="checkbox" name="checkbox">'+
+								'</label></td>'+
+								'<td>'+data.allUser_list[i].userid+'</td>'+
+								'<td>'+data.allUser_list[i].username+'</td>'+
+								'<td>'+data.allUser_list[i].userphone+'</td>'+
+								'<td>'+data.allUser_list[i].useremail+'</td>'+
+								'<td>&nbsp;&nbsp;&nbsp;<button class="btn btn-mini btn-danger"'+
+								' onclick="deleteUser('+data.allUser_list[i].userid+')">'+
+								'<i class="icon icon-trash"></i>删除'+
+								'</button></td></tr>';
+								$("#show_userinfo tbody").append(temp);
+							} 
+						}
 					}else{
-						$("#user").removeClass("has-success");
-						$("#checkuser").html("<font color='red' size='2'>用户名已经存在，请使用其他进行注册！</font>");
+						$("#checkuser").html("用户名已经被使用，请使用其他用户名");
 						$("#user").addClass("has-error");
+						$("#password").removeClass("has-success");
+						$("#password").removeClass("has-error");
 					}
 				}
 			})

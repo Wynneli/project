@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wynne.Dao.DownloadMapper" >
+  <resultMap id="BaseResultMap" type="com.wynne.Entity.Download" >
+    <result column="FileID" property="fileid" jdbcType="INTEGER" />
+    <result column="FileType" property="filetype" jdbcType="VARCHAR" />
+    <result column="FilePath" property="filepath" jdbcType="VARCHAR" />
+    <result column="Filedownloadsum" property="filedownloadsum" jdbcType="INTEGER" />
+    <result column="FileName" property="filename" jdbcType="VARCHAR" />
+    <result column="Filetime" property="filetime" jdbcType="VARCHAR" />
+    <result column="FileRName" property="filername" jdbcType="VARCHAR" />
+    <result column="filecetid" property="filecetid" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.wynne.Entity.Download" >
+    insert into download (FileID, FileType, FilePath, 
+      Filedownloadsum, FileName, Filetime, 
+      FileRName, filecetid)
+    values (#{fileid,jdbcType=INTEGER}, #{filetype,jdbcType=VARCHAR}, #{filepath,jdbcType=VARCHAR}, 
+      #{filedownloadsum,jdbcType=INTEGER}, #{filename,jdbcType=VARCHAR}, #{filetime,jdbcType=VARCHAR}, 
+      #{filername,jdbcType=VARCHAR}, #{filecetid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wynne.Entity.Download" >
+    insert into download
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fileid != null" >
+        FileID,
+      </if>
+      <if test="filetype != null" >
+        FileType,
+      </if>
+      <if test="filepath != null" >
+        FilePath,
+      </if>
+      <if test="filedownloadsum != null" >
+        Filedownloadsum,
+      </if>
+      <if test="filename != null" >
+        FileName,
+      </if>
+      <if test="filetime != null" >
+        Filetime,
+      </if>
+      <if test="filername != null" >
+        FileRName,
+      </if>
+      <if test="filecetid != null" >
+        filecetid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fileid != null" >
+        #{fileid,jdbcType=INTEGER},
+      </if>
+      <if test="filetype != null" >
+        #{filetype,jdbcType=VARCHAR},
+      </if>
+      <if test="filepath != null" >
+        #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="filedownloadsum != null" >
+        #{filedownloadsum,jdbcType=INTEGER},
+      </if>
+      <if test="filename != null" >
+        #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="filetime != null" >
+        #{filetime,jdbcType=VARCHAR},
+      </if>
+      <if test="filername != null" >
+        #{filername,jdbcType=VARCHAR},
+      </if>
+      <if test="filecetid != null" >
+        #{filecetid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

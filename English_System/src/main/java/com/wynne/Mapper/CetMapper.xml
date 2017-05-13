@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wynne.Dao.CetMapper">
+	<resultMap id="BaseResultMap" type="com.wynne.Entity.Cet">
+		<id column="CET_Primary" property="cetPrimary" jdbcType="INTEGER" />
+		<result column="CETID" property="cetid" jdbcType="VARCHAR" />
+		<result column="CET_info" property="cetInfo" jdbcType="VARCHAR" />
+		<result column="CET_entend1" property="cetEntend1" jdbcType="VARCHAR" />
+		<result column="CET_entend2" property="cetEntend2" jdbcType="VARCHAR" />
+		<result column="CET_entend3" property="cetEntend3" jdbcType="VARCHAR" />
+		<result column="CET_entend4" property="cetEntend4" jdbcType="VARCHAR" />
+		<result column="CET_entend5" property="cetEntend5" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		CET_Primary, CETID, CET_info, CET_entend1, CET_entend2,
+		CET_entend3, CET_entend4,
+		CET_entend5
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from cet
+		where CET_Primary = #{cetPrimary,jdbcType=INTEGER}
+	</select>
+
+	<select id="selectCondition" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from cet
+		where CETID like CONCAT(#{cet},'%')
+	</select>
+
+	<select id="selectCetId" resultType="java.lang.Integer"
+		parameterType="java.lang.String">
+		select
+		count(CET_Primary) from cet
+		where CETID=#{cetid}
+	</select>
+
+	<select id="sletctCet" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List"/>
+		from cet
+		where CETID=#{cetid}
+	</select>
+
+	<select id="selectCetInfo" resultType="java.lang.Integer"
+		parameterType="java.lang.String">
+		select
+		count(CET_Primary) from cet
+		where
+		CET_info=#{cetInfo}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from cet
+		where CET_Primary = #{cetPrimary,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.wynne.Entity.Cet">
+		insert into cet (CET_Primary,
+		CETID, CET_info,
+		CET_entend1, CET_entend2, CET_entend3,
+		CET_entend4,
+		CET_entend5)
+		values (#{cetPrimary,jdbcType=INTEGER},
+		#{cetid,jdbcType=VARCHAR},
+		#{cetInfo,jdbcType=VARCHAR},
+		#{cetEntend1,jdbcType=VARCHAR}, #{cetEntend2,jdbcType=VARCHAR},
+		#{cetEntend3,jdbcType=VARCHAR},
+		#{cetEntend4,jdbcType=VARCHAR},
+		#{cetEntend5,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.wynne.Entity.Cet">
+		insert into cet
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="cetPrimary != null">
+				CET_Primary,
+			</if>
+			<if test="cetid != null">
+				CETID,
+			</if>
+			<if test="cetInfo != null">
+				CET_info,
+			</if>
+			<if test="cetEntend1 != null">
+				CET_entend1,
+			</if>
+			<if test="cetEntend2 != null">
+				CET_entend2,
+			</if>
+			<if test="cetEntend3 != null">
+				CET_entend3,
+			</if>
+			<if test="cetEntend4 != null">
+				CET_entend4,
+			</if>
+			<if test="cetEntend5 != null">
+				CET_entend5,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="cetPrimary != null">
+				#{cetPrimary,jdbcType=INTEGER},
+			</if>
+			<if test="cetid != null">
+				#{cetid,jdbcType=VARCHAR},
+			</if>
+			<if test="cetInfo != null">
+				#{cetInfo,jdbcType=VARCHAR},
+			</if>
+			<if test="cetEntend1 != null">
+				#{cetEntend1,jdbcType=VARCHAR},
+			</if>
+			<if test="cetEntend2 != null">
+				#{cetEntend2,jdbcType=VARCHAR},
+			</if>
+			<if test="cetEntend3 != null">
+				#{cetEntend3,jdbcType=VARCHAR},
+			</if>
+			<if test="cetEntend4 != null">
+				#{cetEntend4,jdbcType=VARCHAR},
+			</if>
+			<if test="cetEntend5 != null">
+				#{cetEntend5,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.wynne.Entity.Cet">
+		update cet
+		<set>
+			<if test="cetid != null">
+				CETID = #{cetid,jdbcType=VARCHAR},
+			</if>
+			<if test="cetInfo != null">
+				CET_info = #{cetInfo,jdbcType=VARCHAR},
+			</if>
+			<if test="cetEntend1 != null">
+				CET_entend1 = #{cetEntend1,jdbcType=VARCHAR},
+			</if>
+			<if test="cetEntend2 != null">
+				CET_entend2 = #{cetEntend2,jdbcType=VARCHAR},
+			</if>
+			<if test="cetEntend3 != null">
+				CET_entend3 = #{cetEntend3,jdbcType=VARCHAR},
+			</if>
+			<if test="cetEntend4 != null">
+				CET_entend4 = #{cetEntend4,jdbcType=VARCHAR},
+			</if>
+			<if test="cetEntend5 != null">
+				CET_entend5 = #{cetEntend5,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where CET_Primary = #{cetPrimary,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.wynne.Entity.Cet">
+		update cet
+		set
+		CETID = #{cetid,jdbcType=VARCHAR},
+		CET_info =
+		#{cetInfo,jdbcType=VARCHAR},
+		CET_entend1 =
+		#{cetEntend1,jdbcType=VARCHAR},
+		CET_entend2 =
+		#{cetEntend2,jdbcType=VARCHAR},
+		CET_entend3 =
+		#{cetEntend3,jdbcType=VARCHAR},
+		CET_entend4 =
+		#{cetEntend4,jdbcType=VARCHAR},
+		CET_entend5 =
+		#{cetEntend5,jdbcType=VARCHAR}
+		where CET_Primary =
+		#{cetPrimary,jdbcType=INTEGER}
+	</update>
+</mapper>

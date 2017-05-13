@@ -17,13 +17,17 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" href="<%=basePath%>CSS/Third_Party/zui.min.css">
+<link rel="stylesheet"
+	href="<%=basePath%>CSS/Third_Party/zui.datatable.min.css">
 
-<link rel="stylesheet" href="<%=basePath%>CSS/admin4/common.css">
+<link rel="stylesheet" href="<%=basePath%>CSS/admin4/common2.css">
 <script type="text/javascript"
 	src="<%=basePath%>JS/Third_Party/jquery-2.1.4.min.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>JS/Third_Party/zui.min.js"></script>
-<script type="text/javascript" src="<%=basePath%>JS/admin4/feedback.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>JS/Third_Party/zui.datatable.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>JS/admin4/feedback2.js"></script>
 <script type="text/javascript" src="<%=basePath%>JS/admin4/common.js"></script>
 </head>
 
@@ -58,7 +62,6 @@
 							<label for="exampleInputEmail2">昵称</label> <input type="text"
 								class="form-control" name="username" placeholder="昵称">
 						</div>
-
 						<button type="button" class="btn btn-info" onclick="search()">
 							<i class=" icon-search"></i>查 找
 						</button>
@@ -67,34 +70,33 @@
 			</div>
 			<br />
 			<table
-				class="table table-fixed  table-condensed table-hover table-bordered"
+				class="table datatable table-fixed  table-condensed table-hover table-bordered"
 				id="show_feedbackinfo">
 				<thead>
 					<tr>
 						<th><input type="checkbox" onclick="selectAll(this);" />
-							&nbsp;全选/取消全选</th>
+							&nbsp;全选/全不选</th>
 						<th>反馈用户</th>
 						<th>反馈标题</th>
 						<th>反馈模块</th>
 						<th>具体问题</th>
-						<th>反馈建议</th>
-						<th>状态</th>
-						<th>是否接受</th>
+						<th class="flex-col">反馈建议</th>
+						<th class="flex-col">状态</th>
+						<th class="flex-col">是否接受</th>
 						<th>操作</th>
 					</tr>
 				</thead>
 				<c:if test="${not empty feedback_list}">
-					<tbody>
+					<tbody id="mytbody">
 						<c:forEach items="${feedback_list}" var="list" varStatus="count">
-
-							<tr>
+							<tr id="${list.feedbackId}">
 								<td><label> <input type="checkbox" name="checkbox">
 								</label></td>
 								<td>${list.feedbackUsername}</td>
 								<td>${list.feedbackTitle}</td>
 								<c:choose>
 									<c:when test="${ not empty list.feedbackSecond}">
-										<td>${list.feedbackFirst} / ${list.feedbackSecond}</td>
+										<td>${list.feedbackFirst}/${list.feedbackSecond}</td>
 									</c:when>
 									<c:otherwise>
 										<td>${list.feedbackFirst}</td>
@@ -104,52 +106,20 @@
 								<td>${list.feedbackAdvice}</td>
 								<td>${list.feedbackState}</td>
 								<td>${list.feedbackAccept}</td>
-								<td><a href="#" onclick="deletefeedback(${list.feedbackId})">
-										<i class="icon icon-times i_color "></i>删除
-								</a> <a href="#" onclick="check(${list.feedbackId})"> <i
-										class="icon icon-zoom-in i_color "></i>查看详情
-								</a></td>
+								<td><a
+									href="<%=basePath%>feedback/feedbackDetails/${list.feedbackId}"><button
+											class="btn btn-mini btn-info">
+											<i class="icon icon-edit"></i>编辑
+										</button>&nbsp; </a>
+									<button onclick="deletefeedback(${list.feedbackId})"
+										class="btn btn-mini btn-danger">
+										<i class="icon icon-trash  "></i>删除
+									</button></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</c:if>
 			</table>
-			
-			<div class="container">
-				<ul class="pager pager-pills pager-loose" id="pagecontent">
-					<li class="previous"><a href="#">首页</a></li>
-					<c:forEach items="${count_list}" varStatus="page_count">
-						<c:choose>
-							<c:when test="${page_count.count<=13}">
-								<c:choose>
-									<c:when test="${page_count.count==1}">
-										<li class="active"><a href="#"
-											onclick="page(${page_count.count})">${page_count.count}</a></li>
-									</c:when>
-									<c:otherwise>
-										<li><a href="#" onclick="page(${page_count.count})">${page_count.count}</a></li>
-									</c:otherwise>
-								</c:choose>
-							</c:when>
-						</c:choose>
-					</c:forEach>
-					<c:choose>
-						<c:when test="${not empty pagecontent_user }">
-							<li class="disabled "><a href="#"><span
-									style="color: red;">共${pagecontent_user}页</span></a></li>
-						</c:when>
-						<c:otherwise>
-							<li class="disabled "><a href="#"><span
-									style="color: red;">共 0 页</span></a></li>
-						</c:otherwise>
-					</c:choose>
-					<span style="margin-left: 20px;">跳转到</span>
-					<input style="width: 50px; margin-left: 6px; text-align: center;"
-						type="text" />
-					<span>页</span>
-					<button class="btn btn-warning " type="button">确认</button>
-				</ul>
-			</div>
 		</div>
 	</div>
 </body>

@@ -1,17 +1,21 @@
 package com.wynne.Dao;
 
+import java.util.List;
+
 import com.wynne.Entity.Download;
 
 public interface DownloadMapper {
-    int deleteByPrimaryKey(Integer fileid);
+	int deleteByPrimaryKey(Integer fileid);
 
-    int insert(Download record);
+	int insert(Download record);
 
-    int insertSelective(Download record);
+	int insertSelective(Download record);
 
-    Download selectByPrimaryKey(Integer fileid);
+	Download selectByPrimaryKey(Integer fileid);
 
-    int updateByPrimaryKeySelective(Download record);
+	int updateByPrimaryKeySelective(Download record);
 
-    int updateByPrimaryKey(Download record);
+	int updateByPrimaryKey(Download record);
+
+	List<Download> selectAll();
 }

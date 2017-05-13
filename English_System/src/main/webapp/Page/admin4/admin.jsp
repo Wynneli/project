@@ -24,7 +24,7 @@
 	src="<%=basePath%>JS/Third_Party/jquery-2.1.4.min.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>JS/Third_Party/zui.min.js"></script>
-<script type="text/javascript" src="<%=basePath%>JS/Admin/nav.js"></script>
+<script type="text/javascript" src="<%=basePath%>JS/admin4/nav.js"></script>
 </head>
 
 <body>
@@ -43,10 +43,11 @@
 	<div class="leftnav">
 		<nav class="menu" data-ride="menu" style="width: 180px">
 		<ul class="nav nav-primary">
-			<li class="active"><a href="<%=basePath%>admin/show_userinfo" target="myframe"><i
-					class="icon icon-user" style="color: blue;"></i>用户信息管理</a></li>
+			<li class="active"><a href="<%=basePath%>admin/show_userinfo"
+				target="myframe"><i class="icon icon-user" style="color: blue;"></i>用户信息管理</a></li>
 			<li><a href="<%=basePath%>admin/show_commentifo"
-				target="myframe"><i class="icon  icon-comments" style="color: blue;"></i>评论管理</a></li>
+				target="myframe"><i class="icon  icon-comments"
+					style="color: blue;"></i>评论管理</a></li>
 			<li class="nav-parent"><a href="#"><i class="icon icon-time"
 					style="color: blue;"></i>单词管理</a>
 				<ul class="nav" id="second_ul">
@@ -57,38 +58,36 @@
 						target="myframe"><i class="icon icon-user"
 							style="color: blue;"></i>六级</a></li>
 				</ul></li>
-			<li class="nav-parent"><a href="#"><i class="icon icon-file-text"
-					style="color: blue;"></i>试题管理</a>
+			<li class="nav-parent"><a href="#"><i
+					class="icon icon-file-text" style="color: blue;"></i>试题管理</a>
 				<ul class="nav" id="second_ul">
-					<li><a href="<%=basePath%>admin/show_cet4info/cet4_"
-						target="myframe"><i class="icon icon-user"
-							style="color: blue;"></i>四级试题</a></li>
-					<li><a href="<%=basePath%>admin/show_cet4info/cet6_"
+					<li><a href="<%=basePath%>cet/showcetinfo/cet4_" target="myframe"><i
+							class="icon icon-user" style="color: blue;"></i>四级试题</a></li>
+					<li><a href="<%=basePath%>cet/showcetinfo/cet6_"
 						target="myframe"><i class="icon icon-user"
 							style="color: blue;"></i>六级试题</a></li>
 				</ul></li>
-			<li class="nav-parent"><a href="#"><i class="icon icon-cloud-download" 
-					style="color: blue;"></i>资源下载管理</a>
+			<li class="nav-parent"><a href="#"><i
+					class="icon icon-cloud-download" style="color: blue;"></i>资源下载管理</a>
 				<ul class="nav" id="second_ul">
-					<li><a href="<%=basePath%>admin/show_cet4info/cet4_"
-						target="myframe"><i class="icon icon-user"
-							style="color: blue;"></i>四级试题</a></li>
-					<li><a href="<%=basePath%>admin/show_cet4info/cet6_"
-						target="myframe"><i class="icon icon-user"
-							style="color: blue;"></i>六级试题</a></li>
+					<li><a href="<%=basePath%>file/show_listeninfo"
+						target="myframe"><i class="icon icon-music"
+							style="color: blue;"></i>听力录音</a></li>
+					<li><a href="<%=basePath%>download/show_cet4info/cet6_"
+						target="myframe"><i class="icon icon-file-text-o"
+							style="color: blue;"></i>试题</a></li>
+					<li><a href="<%=basePath%>download/show_cet4info/cet6_"
+						target="myframe"><i class="icon icon-expand"
+							style="color: blue;"></i>视频</a></li>
+					<li><a href="<%=basePath%>download/show_cet4info/cet6_"
+						target="myframe"><i class="icon icon-file-word" 
+							style="color: blue;"></i>词汇表</a></li>
 				</ul></li>
-				<li class="nav-parent"><a href="#"><i class="icon icon-time"
-					style="color: blue;"></i>参考答案管理</a>
-				<ul class="nav" id="second_ul">
-					<li><a href="<%=basePath%>admin/show_cet4info/cet4_"
-						target="myframe"><i class="icon icon-user"
-							style="color: blue;"></i>四级试题</a></li>
-					<li><a href="<%=basePath%>admin/show_cet4info/cet6_"
-						target="myframe"><i class="icon icon-user"
-							style="color: blue;"></i>六级试题</a></li>
-				</ul></li>
-			<li><a href="<%=basePath%>admin/showfeedbackinfo" target="myframe"><i class="icon icon-reply"
-					style="color: blue;" > </i>用户反馈信息管理</a></li>
+			<li><a href="<%=basePath%>answer/showAnswerinfo"
+				target="myframe"><i class="icon icon-time" style="color: blue;"></i>参考答案管理</a></li>
+			<li><a href="<%=basePath%>feedback/showfeedbackinfo"
+				target="myframe"><i class="icon icon-reply" style="color: blue;">
+				</i>用户反馈信息管理</a></li>
 		</ul>
 		</nav>
 	</div>

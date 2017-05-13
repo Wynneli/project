@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wynne.Dao.ArticleMapper" >
+  <resultMap id="BaseResultMap" type="com.wynne.Entity.Article" >
+    <id column="article_id" property="articleId" jdbcType="INTEGER" />
+    <result column="article_chinese" property="articleChinese" jdbcType="VARCHAR" />
+    <result column="article_english" property="articleEnglish" jdbcType="VARCHAR" />
+    <result column="article_time" property="articleTime" jdbcType="VARCHAR" />
+    <result column="article_scan" property="articleScan" jdbcType="INTEGER" />
+    <result column="article_like" property="articleLike" jdbcType="INTEGER" />
+    <result column="article_other" property="articleOther" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    article_id, article_chinese, article_english, article_time, article_scan, article_like, 
+    article_other
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from article
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from article
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wynne.Entity.Article" >
+    insert into article (article_id, article_chinese, article_english, 
+      article_time, article_scan, article_like, 
+      article_other)
+    values (#{articleId,jdbcType=INTEGER}, #{articleChinese,jdbcType=VARCHAR}, #{articleEnglish,jdbcType=VARCHAR}, 
+      #{articleTime,jdbcType=VARCHAR}, #{articleScan,jdbcType=INTEGER}, #{articleLike,jdbcType=INTEGER}, 
+      #{articleOther,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wynne.Entity.Article" >
+    insert into article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="articleId != null" >
+        article_id,
+      </if>
+      <if test="articleChinese != null" >
+        article_chinese,
+      </if>
+      <if test="articleEnglish != null" >
+        article_english,
+      </if>
+      <if test="articleTime != null" >
+        article_time,
+      </if>
+      <if test="articleScan != null" >
+        article_scan,
+      </if>
+      <if test="articleLike != null" >
+        article_like,
+      </if>
+      <if test="articleOther != null" >
+        article_other,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="articleId != null" >
+        #{articleId,jdbcType=INTEGER},
+      </if>
+      <if test="articleChinese != null" >
+        #{articleChinese,jdbcType=VARCHAR},
+      </if>
+      <if test="articleEnglish != null" >
+        #{articleEnglish,jdbcType=VARCHAR},
+      </if>
+      <if test="articleTime != null" >
+        #{articleTime,jdbcType=VARCHAR},
+      </if>
+      <if test="articleScan != null" >
+        #{articleScan,jdbcType=INTEGER},
+      </if>
+      <if test="articleLike != null" >
+        #{articleLike,jdbcType=INTEGER},
+      </if>
+      <if test="articleOther != null" >
+        #{articleOther,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wynne.Entity.Article" >
+    update article
+    <set >
+      <if test="articleChinese != null" >
+        article_chinese = #{articleChinese,jdbcType=VARCHAR},
+      </if>
+      <if test="articleEnglish != null" >
+        article_english = #{articleEnglish,jdbcType=VARCHAR},
+      </if>
+      <if test="articleTime != null" >
+        article_time = #{articleTime,jdbcType=VARCHAR},
+      </if>
+      <if test="articleScan != null" >
+        article_scan = #{articleScan,jdbcType=INTEGER},
+      </if>
+      <if test="articleLike != null" >
+        article_like = #{articleLike,jdbcType=INTEGER},
+      </if>
+      <if test="articleOther != null" >
+        article_other = #{articleOther,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wynne.Entity.Article" >
+    update article
+    set article_chinese = #{articleChinese,jdbcType=VARCHAR},
+      article_english = #{articleEnglish,jdbcType=VARCHAR},
+      article_time = #{articleTime,jdbcType=VARCHAR},
+      article_scan = #{articleScan,jdbcType=INTEGER},
+      article_like = #{articleLike,jdbcType=INTEGER},
+      article_other = #{articleOther,jdbcType=VARCHAR}
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </update>
+</mapper>

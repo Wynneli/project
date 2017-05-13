@@ -21,7 +21,9 @@
 		select count(*) from cet4 where cet4_id like CONCAT(#{CET},'%')
 	</select>
   
-  
+  <select id="selectAlltest" resultMap="BaseResultMap" >
+		select * from cet4 where cet4_id like 'cet4_%'
+	</select>
 	
   <select id="selectCet4"  resultMap="BaseResultMap">
 		select

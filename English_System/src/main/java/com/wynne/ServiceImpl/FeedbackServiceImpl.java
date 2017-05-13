@@ -27,4 +27,14 @@ public class FeedbackServiceImpl implements IFeedbackService{
 	public int DeleteFeedBack(int feedbackId) {
 		return feedbackMapper.deleteByPrimaryKey(feedbackId);
 	}
+	public int updataFeedBack(Feedback record) {
+		return feedbackMapper.updateByPrimaryKeySelective(record);
+	}
+	public Feedback findByPrimaryKey(int feedbackId) {
+		Feedback feedback=new Feedback();
+		if(feedbackId>0){
+			feedback=feedbackMapper.selectByPrimaryKey(feedbackId);
+		}
+		return feedback;
+	}
 }

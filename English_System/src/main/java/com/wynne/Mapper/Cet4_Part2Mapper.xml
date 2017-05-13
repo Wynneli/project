@@ -29,6 +29,35 @@
     from cet4_part2
     where cet4_2_test_id = #{cet42TestId,jdbcType=INTEGER} order by cet4_2_id
   </select>
-  
+   <update id="updateByPrimaryKeySelective" parameterType="com.wynne.Entity.Cet4_Part2Custom" >
+    update cet4_part2
+    <set >
+      <if test="cet42TestId != null" >
+        cet4_2_test_id = #{cet42TestId,jdbcType=VARCHAR},
+      </if>
+      <if test="cet42Section != null" >
+        cet4_2_section = #{cet42Section,jdbcType=VARCHAR},
+      </if>
+      <if test="cet42Topic != null" >
+        cet4_2_topic = #{cet42Topic,jdbcType=VARCHAR},
+      </if>
+      <if test="cet42Title != null" >
+        cet4_2_title = #{cet42Title,jdbcType=VARCHAR},
+      </if>
+      <if test="cet42A != null" >
+        cet4_2_A = #{cet42A,jdbcType=VARCHAR},
+      </if>
+      <if test="cet42B != null" >
+        cet4_2_B = #{cet42B,jdbcType=VARCHAR},
+      </if>
+      <if test="cet42C != null" >
+        cet4_2_C = #{cet42C,jdbcType=VARCHAR},
+      </if>
+      <if test="cet42D != null" >
+        cet4_2_D = #{cet42D,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cet4_2_id = #{cet42Id,jdbcType=INTEGER}
+  </update>
   
 </mapper>

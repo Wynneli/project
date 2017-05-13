@@ -1,705 +1,738 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wynne.Dao.Answer2Mapper" >
-  <resultMap id="BaseResultMap" type="com.wynne.Entity.Answer2" >
-    <id column="a_cet_id" property="aCetId" jdbcType="VARCHAR" />
-    <result column="a_part1" property="aPart1" jdbcType="VARCHAR" />
-    <result column="a_part4" property="aPart4" jdbcType="VARCHAR" />
-    <result column="a1" property="a1" jdbcType="CHAR" />
-    <result column="a2" property="a2" jdbcType="CHAR" />
-    <result column="a3" property="a3" jdbcType="CHAR" />
-    <result column="a4" property="a4" jdbcType="CHAR" />
-    <result column="a5" property="a5" jdbcType="CHAR" />
-    <result column="a6" property="a6" jdbcType="CHAR" />
-    <result column="a7" property="a7" jdbcType="CHAR" />
-    <result column="a8" property="a8" jdbcType="CHAR" />
-    <result column="a9" property="a9" jdbcType="CHAR" />
-    <result column="a10" property="a10" jdbcType="CHAR" />
-    <result column="a11" property="a11" jdbcType="CHAR" />
-    <result column="a12" property="a12" jdbcType="CHAR" />
-    <result column="a13" property="a13" jdbcType="CHAR" />
-    <result column="a14" property="a14" jdbcType="CHAR" />
-    <result column="a15" property="a15" jdbcType="CHAR" />
-    <result column="a16" property="a16" jdbcType="CHAR" />
-    <result column="a17" property="a17" jdbcType="CHAR" />
-    <result column="a18" property="a18" jdbcType="CHAR" />
-    <result column="a19" property="a19" jdbcType="CHAR" />
-    <result column="a20" property="a20" jdbcType="CHAR" />
-    <result column="a21" property="a21" jdbcType="CHAR" />
-    <result column="a22" property="a22" jdbcType="CHAR" />
-    <result column="a23" property="a23" jdbcType="CHAR" />
-    <result column="a24" property="a24" jdbcType="CHAR" />
-    <result column="a25" property="a25" jdbcType="CHAR" />
-    <result column="a26" property="a26" jdbcType="CHAR" />
-    <result column="a27" property="a27" jdbcType="CHAR" />
-    <result column="a28" property="a28" jdbcType="CHAR" />
-    <result column="a29" property="a29" jdbcType="CHAR" />
-    <result column="a30" property="a30" jdbcType="CHAR" />
-    <result column="a31" property="a31" jdbcType="CHAR" />
-    <result column="a32" property="a32" jdbcType="CHAR" />
-    <result column="a33" property="a33" jdbcType="CHAR" />
-    <result column="a34" property="a34" jdbcType="CHAR" />
-    <result column="a35" property="a35" jdbcType="CHAR" />
-    <result column="a36" property="a36" jdbcType="CHAR" />
-    <result column="a37" property="a37" jdbcType="CHAR" />
-    <result column="a38" property="a38" jdbcType="CHAR" />
-    <result column="a39" property="a39" jdbcType="CHAR" />
-    <result column="a40" property="a40" jdbcType="CHAR" />
-    <result column="a41" property="a41" jdbcType="CHAR" />
-    <result column="a42" property="a42" jdbcType="CHAR" />
-    <result column="a43" property="a43" jdbcType="CHAR" />
-    <result column="a44" property="a44" jdbcType="CHAR" />
-    <result column="a45" property="a45" jdbcType="CHAR" />
-    <result column="a46" property="a46" jdbcType="CHAR" />
-    <result column="a47" property="a47" jdbcType="CHAR" />
-    <result column="a48" property="a48" jdbcType="CHAR" />
-    <result column="a49" property="a49" jdbcType="CHAR" />
-    <result column="a50" property="a50" jdbcType="CHAR" />
-    <result column="a51" property="a51" jdbcType="CHAR" />
-    <result column="a52" property="a52" jdbcType="CHAR" />
-    <result column="a53" property="a53" jdbcType="CHAR" />
-    <result column="a54" property="a54" jdbcType="CHAR" />
-    <result column="a55" property="a55" jdbcType="CHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    a_cet_id, a_part1, a_part4, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, 
-    a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30, 
-    a31, a32, a33, a34, a35, a36, a37, a38, a39, a40, a41, a42, a43, a44, a45, a46, a47, 
-    a48, a49, a50, a51, a52, a53, a54, a55
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from answer2
-    where a_cet_id = #{aCetId,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from answer2
-    where a_cet_id = #{aCetId,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.wynne.Entity.Answer2" >
-    insert into answer2 (a_cet_id, a_part1, a_part4, 
-      a1, a2, a3, a4, 
-      a5, a6, a7, a8, 
-      a9, a10, a11, a12, 
-      a13, a14, a15, a16, 
-      a17, a18, a19, a20, 
-      a21, a22, a23, a24, 
-      a25, a26, a27, a28, 
-      a29, a30, a31, a32, 
-      a33, a34, a35, a36, 
-      a37, a38, a39, a40, 
-      a41, a42, a43, a44, 
-      a45, a46, a47, a48, 
-      a49, a50, a51, a52, 
-      a53, a54, a55)
-    values (#{aCetId,jdbcType=VARCHAR}, #{aPart1,jdbcType=VARCHAR}, #{aPart4,jdbcType=VARCHAR}, 
-      #{a1,jdbcType=CHAR}, #{a2,jdbcType=CHAR}, #{a3,jdbcType=CHAR}, #{a4,jdbcType=CHAR}, 
-      #{a5,jdbcType=CHAR}, #{a6,jdbcType=CHAR}, #{a7,jdbcType=CHAR}, #{a8,jdbcType=CHAR}, 
-      #{a9,jdbcType=CHAR}, #{a10,jdbcType=CHAR}, #{a11,jdbcType=CHAR}, #{a12,jdbcType=CHAR}, 
-      #{a13,jdbcType=CHAR}, #{a14,jdbcType=CHAR}, #{a15,jdbcType=CHAR}, #{a16,jdbcType=CHAR}, 
-      #{a17,jdbcType=CHAR}, #{a18,jdbcType=CHAR}, #{a19,jdbcType=CHAR}, #{a20,jdbcType=CHAR}, 
-      #{a21,jdbcType=CHAR}, #{a22,jdbcType=CHAR}, #{a23,jdbcType=CHAR}, #{a24,jdbcType=CHAR}, 
-      #{a25,jdbcType=CHAR}, #{a26,jdbcType=CHAR}, #{a27,jdbcType=CHAR}, #{a28,jdbcType=CHAR}, 
-      #{a29,jdbcType=CHAR}, #{a30,jdbcType=CHAR}, #{a31,jdbcType=CHAR}, #{a32,jdbcType=CHAR}, 
-      #{a33,jdbcType=CHAR}, #{a34,jdbcType=CHAR}, #{a35,jdbcType=CHAR}, #{a36,jdbcType=CHAR}, 
-      #{a37,jdbcType=CHAR}, #{a38,jdbcType=CHAR}, #{a39,jdbcType=CHAR}, #{a40,jdbcType=CHAR}, 
-      #{a41,jdbcType=CHAR}, #{a42,jdbcType=CHAR}, #{a43,jdbcType=CHAR}, #{a44,jdbcType=CHAR}, 
-      #{a45,jdbcType=CHAR}, #{a46,jdbcType=CHAR}, #{a47,jdbcType=CHAR}, #{a48,jdbcType=CHAR}, 
-      #{a49,jdbcType=CHAR}, #{a50,jdbcType=CHAR}, #{a51,jdbcType=CHAR}, #{a52,jdbcType=CHAR}, 
-      #{a53,jdbcType=CHAR}, #{a54,jdbcType=CHAR}, #{a55,jdbcType=CHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.wynne.Entity.Answer2" >
-    insert into answer2
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="aCetId != null" >
-        a_cet_id,
-      </if>
-      <if test="aPart1 != null" >
-        a_part1,
-      </if>
-      <if test="aPart4 != null" >
-        a_part4,
-      </if>
-      <if test="a1 != null" >
-        a1,
-      </if>
-      <if test="a2 != null" >
-        a2,
-      </if>
-      <if test="a3 != null" >
-        a3,
-      </if>
-      <if test="a4 != null" >
-        a4,
-      </if>
-      <if test="a5 != null" >
-        a5,
-      </if>
-      <if test="a6 != null" >
-        a6,
-      </if>
-      <if test="a7 != null" >
-        a7,
-      </if>
-      <if test="a8 != null" >
-        a8,
-      </if>
-      <if test="a9 != null" >
-        a9,
-      </if>
-      <if test="a10 != null" >
-        a10,
-      </if>
-      <if test="a11 != null" >
-        a11,
-      </if>
-      <if test="a12 != null" >
-        a12,
-      </if>
-      <if test="a13 != null" >
-        a13,
-      </if>
-      <if test="a14 != null" >
-        a14,
-      </if>
-      <if test="a15 != null" >
-        a15,
-      </if>
-      <if test="a16 != null" >
-        a16,
-      </if>
-      <if test="a17 != null" >
-        a17,
-      </if>
-      <if test="a18 != null" >
-        a18,
-      </if>
-      <if test="a19 != null" >
-        a19,
-      </if>
-      <if test="a20 != null" >
-        a20,
-      </if>
-      <if test="a21 != null" >
-        a21,
-      </if>
-      <if test="a22 != null" >
-        a22,
-      </if>
-      <if test="a23 != null" >
-        a23,
-      </if>
-      <if test="a24 != null" >
-        a24,
-      </if>
-      <if test="a25 != null" >
-        a25,
-      </if>
-      <if test="a26 != null" >
-        a26,
-      </if>
-      <if test="a27 != null" >
-        a27,
-      </if>
-      <if test="a28 != null" >
-        a28,
-      </if>
-      <if test="a29 != null" >
-        a29,
-      </if>
-      <if test="a30 != null" >
-        a30,
-      </if>
-      <if test="a31 != null" >
-        a31,
-      </if>
-      <if test="a32 != null" >
-        a32,
-      </if>
-      <if test="a33 != null" >
-        a33,
-      </if>
-      <if test="a34 != null" >
-        a34,
-      </if>
-      <if test="a35 != null" >
-        a35,
-      </if>
-      <if test="a36 != null" >
-        a36,
-      </if>
-      <if test="a37 != null" >
-        a37,
-      </if>
-      <if test="a38 != null" >
-        a38,
-      </if>
-      <if test="a39 != null" >
-        a39,
-      </if>
-      <if test="a40 != null" >
-        a40,
-      </if>
-      <if test="a41 != null" >
-        a41,
-      </if>
-      <if test="a42 != null" >
-        a42,
-      </if>
-      <if test="a43 != null" >
-        a43,
-      </if>
-      <if test="a44 != null" >
-        a44,
-      </if>
-      <if test="a45 != null" >
-        a45,
-      </if>
-      <if test="a46 != null" >
-        a46,
-      </if>
-      <if test="a47 != null" >
-        a47,
-      </if>
-      <if test="a48 != null" >
-        a48,
-      </if>
-      <if test="a49 != null" >
-        a49,
-      </if>
-      <if test="a50 != null" >
-        a50,
-      </if>
-      <if test="a51 != null" >
-        a51,
-      </if>
-      <if test="a52 != null" >
-        a52,
-      </if>
-      <if test="a53 != null" >
-        a53,
-      </if>
-      <if test="a54 != null" >
-        a54,
-      </if>
-      <if test="a55 != null" >
-        a55,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="aCetId != null" >
-        #{aCetId,jdbcType=VARCHAR},
-      </if>
-      <if test="aPart1 != null" >
-        #{aPart1,jdbcType=VARCHAR},
-      </if>
-      <if test="aPart4 != null" >
-        #{aPart4,jdbcType=VARCHAR},
-      </if>
-      <if test="a1 != null" >
-        #{a1,jdbcType=CHAR},
-      </if>
-      <if test="a2 != null" >
-        #{a2,jdbcType=CHAR},
-      </if>
-      <if test="a3 != null" >
-        #{a3,jdbcType=CHAR},
-      </if>
-      <if test="a4 != null" >
-        #{a4,jdbcType=CHAR},
-      </if>
-      <if test="a5 != null" >
-        #{a5,jdbcType=CHAR},
-      </if>
-      <if test="a6 != null" >
-        #{a6,jdbcType=CHAR},
-      </if>
-      <if test="a7 != null" >
-        #{a7,jdbcType=CHAR},
-      </if>
-      <if test="a8 != null" >
-        #{a8,jdbcType=CHAR},
-      </if>
-      <if test="a9 != null" >
-        #{a9,jdbcType=CHAR},
-      </if>
-      <if test="a10 != null" >
-        #{a10,jdbcType=CHAR},
-      </if>
-      <if test="a11 != null" >
-        #{a11,jdbcType=CHAR},
-      </if>
-      <if test="a12 != null" >
-        #{a12,jdbcType=CHAR},
-      </if>
-      <if test="a13 != null" >
-        #{a13,jdbcType=CHAR},
-      </if>
-      <if test="a14 != null" >
-        #{a14,jdbcType=CHAR},
-      </if>
-      <if test="a15 != null" >
-        #{a15,jdbcType=CHAR},
-      </if>
-      <if test="a16 != null" >
-        #{a16,jdbcType=CHAR},
-      </if>
-      <if test="a17 != null" >
-        #{a17,jdbcType=CHAR},
-      </if>
-      <if test="a18 != null" >
-        #{a18,jdbcType=CHAR},
-      </if>
-      <if test="a19 != null" >
-        #{a19,jdbcType=CHAR},
-      </if>
-      <if test="a20 != null" >
-        #{a20,jdbcType=CHAR},
-      </if>
-      <if test="a21 != null" >
-        #{a21,jdbcType=CHAR},
-      </if>
-      <if test="a22 != null" >
-        #{a22,jdbcType=CHAR},
-      </if>
-      <if test="a23 != null" >
-        #{a23,jdbcType=CHAR},
-      </if>
-      <if test="a24 != null" >
-        #{a24,jdbcType=CHAR},
-      </if>
-      <if test="a25 != null" >
-        #{a25,jdbcType=CHAR},
-      </if>
-      <if test="a26 != null" >
-        #{a26,jdbcType=CHAR},
-      </if>
-      <if test="a27 != null" >
-        #{a27,jdbcType=CHAR},
-      </if>
-      <if test="a28 != null" >
-        #{a28,jdbcType=CHAR},
-      </if>
-      <if test="a29 != null" >
-        #{a29,jdbcType=CHAR},
-      </if>
-      <if test="a30 != null" >
-        #{a30,jdbcType=CHAR},
-      </if>
-      <if test="a31 != null" >
-        #{a31,jdbcType=CHAR},
-      </if>
-      <if test="a32 != null" >
-        #{a32,jdbcType=CHAR},
-      </if>
-      <if test="a33 != null" >
-        #{a33,jdbcType=CHAR},
-      </if>
-      <if test="a34 != null" >
-        #{a34,jdbcType=CHAR},
-      </if>
-      <if test="a35 != null" >
-        #{a35,jdbcType=CHAR},
-      </if>
-      <if test="a36 != null" >
-        #{a36,jdbcType=CHAR},
-      </if>
-      <if test="a37 != null" >
-        #{a37,jdbcType=CHAR},
-      </if>
-      <if test="a38 != null" >
-        #{a38,jdbcType=CHAR},
-      </if>
-      <if test="a39 != null" >
-        #{a39,jdbcType=CHAR},
-      </if>
-      <if test="a40 != null" >
-        #{a40,jdbcType=CHAR},
-      </if>
-      <if test="a41 != null" >
-        #{a41,jdbcType=CHAR},
-      </if>
-      <if test="a42 != null" >
-        #{a42,jdbcType=CHAR},
-      </if>
-      <if test="a43 != null" >
-        #{a43,jdbcType=CHAR},
-      </if>
-      <if test="a44 != null" >
-        #{a44,jdbcType=CHAR},
-      </if>
-      <if test="a45 != null" >
-        #{a45,jdbcType=CHAR},
-      </if>
-      <if test="a46 != null" >
-        #{a46,jdbcType=CHAR},
-      </if>
-      <if test="a47 != null" >
-        #{a47,jdbcType=CHAR},
-      </if>
-      <if test="a48 != null" >
-        #{a48,jdbcType=CHAR},
-      </if>
-      <if test="a49 != null" >
-        #{a49,jdbcType=CHAR},
-      </if>
-      <if test="a50 != null" >
-        #{a50,jdbcType=CHAR},
-      </if>
-      <if test="a51 != null" >
-        #{a51,jdbcType=CHAR},
-      </if>
-      <if test="a52 != null" >
-        #{a52,jdbcType=CHAR},
-      </if>
-      <if test="a53 != null" >
-        #{a53,jdbcType=CHAR},
-      </if>
-      <if test="a54 != null" >
-        #{a54,jdbcType=CHAR},
-      </if>
-      <if test="a55 != null" >
-        #{a55,jdbcType=CHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.wynne.Entity.Answer2" >
-    update answer2
-    <set >
-      <if test="aPart1 != null" >
-        a_part1 = #{aPart1,jdbcType=VARCHAR},
-      </if>
-      <if test="aPart4 != null" >
-        a_part4 = #{aPart4,jdbcType=VARCHAR},
-      </if>
-      <if test="a1 != null" >
-        a1 = #{a1,jdbcType=CHAR},
-      </if>
-      <if test="a2 != null" >
-        a2 = #{a2,jdbcType=CHAR},
-      </if>
-      <if test="a3 != null" >
-        a3 = #{a3,jdbcType=CHAR},
-      </if>
-      <if test="a4 != null" >
-        a4 = #{a4,jdbcType=CHAR},
-      </if>
-      <if test="a5 != null" >
-        a5 = #{a5,jdbcType=CHAR},
-      </if>
-      <if test="a6 != null" >
-        a6 = #{a6,jdbcType=CHAR},
-      </if>
-      <if test="a7 != null" >
-        a7 = #{a7,jdbcType=CHAR},
-      </if>
-      <if test="a8 != null" >
-        a8 = #{a8,jdbcType=CHAR},
-      </if>
-      <if test="a9 != null" >
-        a9 = #{a9,jdbcType=CHAR},
-      </if>
-      <if test="a10 != null" >
-        a10 = #{a10,jdbcType=CHAR},
-      </if>
-      <if test="a11 != null" >
-        a11 = #{a11,jdbcType=CHAR},
-      </if>
-      <if test="a12 != null" >
-        a12 = #{a12,jdbcType=CHAR},
-      </if>
-      <if test="a13 != null" >
-        a13 = #{a13,jdbcType=CHAR},
-      </if>
-      <if test="a14 != null" >
-        a14 = #{a14,jdbcType=CHAR},
-      </if>
-      <if test="a15 != null" >
-        a15 = #{a15,jdbcType=CHAR},
-      </if>
-      <if test="a16 != null" >
-        a16 = #{a16,jdbcType=CHAR},
-      </if>
-      <if test="a17 != null" >
-        a17 = #{a17,jdbcType=CHAR},
-      </if>
-      <if test="a18 != null" >
-        a18 = #{a18,jdbcType=CHAR},
-      </if>
-      <if test="a19 != null" >
-        a19 = #{a19,jdbcType=CHAR},
-      </if>
-      <if test="a20 != null" >
-        a20 = #{a20,jdbcType=CHAR},
-      </if>
-      <if test="a21 != null" >
-        a21 = #{a21,jdbcType=CHAR},
-      </if>
-      <if test="a22 != null" >
-        a22 = #{a22,jdbcType=CHAR},
-      </if>
-      <if test="a23 != null" >
-        a23 = #{a23,jdbcType=CHAR},
-      </if>
-      <if test="a24 != null" >
-        a24 = #{a24,jdbcType=CHAR},
-      </if>
-      <if test="a25 != null" >
-        a25 = #{a25,jdbcType=CHAR},
-      </if>
-      <if test="a26 != null" >
-        a26 = #{a26,jdbcType=CHAR},
-      </if>
-      <if test="a27 != null" >
-        a27 = #{a27,jdbcType=CHAR},
-      </if>
-      <if test="a28 != null" >
-        a28 = #{a28,jdbcType=CHAR},
-      </if>
-      <if test="a29 != null" >
-        a29 = #{a29,jdbcType=CHAR},
-      </if>
-      <if test="a30 != null" >
-        a30 = #{a30,jdbcType=CHAR},
-      </if>
-      <if test="a31 != null" >
-        a31 = #{a31,jdbcType=CHAR},
-      </if>
-      <if test="a32 != null" >
-        a32 = #{a32,jdbcType=CHAR},
-      </if>
-      <if test="a33 != null" >
-        a33 = #{a33,jdbcType=CHAR},
-      </if>
-      <if test="a34 != null" >
-        a34 = #{a34,jdbcType=CHAR},
-      </if>
-      <if test="a35 != null" >
-        a35 = #{a35,jdbcType=CHAR},
-      </if>
-      <if test="a36 != null" >
-        a36 = #{a36,jdbcType=CHAR},
-      </if>
-      <if test="a37 != null" >
-        a37 = #{a37,jdbcType=CHAR},
-      </if>
-      <if test="a38 != null" >
-        a38 = #{a38,jdbcType=CHAR},
-      </if>
-      <if test="a39 != null" >
-        a39 = #{a39,jdbcType=CHAR},
-      </if>
-      <if test="a40 != null" >
-        a40 = #{a40,jdbcType=CHAR},
-      </if>
-      <if test="a41 != null" >
-        a41 = #{a41,jdbcType=CHAR},
-      </if>
-      <if test="a42 != null" >
-        a42 = #{a42,jdbcType=CHAR},
-      </if>
-      <if test="a43 != null" >
-        a43 = #{a43,jdbcType=CHAR},
-      </if>
-      <if test="a44 != null" >
-        a44 = #{a44,jdbcType=CHAR},
-      </if>
-      <if test="a45 != null" >
-        a45 = #{a45,jdbcType=CHAR},
-      </if>
-      <if test="a46 != null" >
-        a46 = #{a46,jdbcType=CHAR},
-      </if>
-      <if test="a47 != null" >
-        a47 = #{a47,jdbcType=CHAR},
-      </if>
-      <if test="a48 != null" >
-        a48 = #{a48,jdbcType=CHAR},
-      </if>
-      <if test="a49 != null" >
-        a49 = #{a49,jdbcType=CHAR},
-      </if>
-      <if test="a50 != null" >
-        a50 = #{a50,jdbcType=CHAR},
-      </if>
-      <if test="a51 != null" >
-        a51 = #{a51,jdbcType=CHAR},
-      </if>
-      <if test="a52 != null" >
-        a52 = #{a52,jdbcType=CHAR},
-      </if>
-      <if test="a53 != null" >
-        a53 = #{a53,jdbcType=CHAR},
-      </if>
-      <if test="a54 != null" >
-        a54 = #{a54,jdbcType=CHAR},
-      </if>
-      <if test="a55 != null" >
-        a55 = #{a55,jdbcType=CHAR},
-      </if>
-    </set>
-    where a_cet_id = #{aCetId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.wynne.Entity.Answer2" >
-    update answer2
-    set a_part1 = #{aPart1,jdbcType=VARCHAR},
-      a_part4 = #{aPart4,jdbcType=VARCHAR},
-      a1 = #{a1,jdbcType=CHAR},
-      a2 = #{a2,jdbcType=CHAR},
-      a3 = #{a3,jdbcType=CHAR},
-      a4 = #{a4,jdbcType=CHAR},
-      a5 = #{a5,jdbcType=CHAR},
-      a6 = #{a6,jdbcType=CHAR},
-      a7 = #{a7,jdbcType=CHAR},
-      a8 = #{a8,jdbcType=CHAR},
-      a9 = #{a9,jdbcType=CHAR},
-      a10 = #{a10,jdbcType=CHAR},
-      a11 = #{a11,jdbcType=CHAR},
-      a12 = #{a12,jdbcType=CHAR},
-      a13 = #{a13,jdbcType=CHAR},
-      a14 = #{a14,jdbcType=CHAR},
-      a15 = #{a15,jdbcType=CHAR},
-      a16 = #{a16,jdbcType=CHAR},
-      a17 = #{a17,jdbcType=CHAR},
-      a18 = #{a18,jdbcType=CHAR},
-      a19 = #{a19,jdbcType=CHAR},
-      a20 = #{a20,jdbcType=CHAR},
-      a21 = #{a21,jdbcType=CHAR},
-      a22 = #{a22,jdbcType=CHAR},
-      a23 = #{a23,jdbcType=CHAR},
-      a24 = #{a24,jdbcType=CHAR},
-      a25 = #{a25,jdbcType=CHAR},
-      a26 = #{a26,jdbcType=CHAR},
-      a27 = #{a27,jdbcType=CHAR},
-      a28 = #{a28,jdbcType=CHAR},
-      a29 = #{a29,jdbcType=CHAR},
-      a30 = #{a30,jdbcType=CHAR},
-      a31 = #{a31,jdbcType=CHAR},
-      a32 = #{a32,jdbcType=CHAR},
-      a33 = #{a33,jdbcType=CHAR},
-      a34 = #{a34,jdbcType=CHAR},
-      a35 = #{a35,jdbcType=CHAR},
-      a36 = #{a36,jdbcType=CHAR},
-      a37 = #{a37,jdbcType=CHAR},
-      a38 = #{a38,jdbcType=CHAR},
-      a39 = #{a39,jdbcType=CHAR},
-      a40 = #{a40,jdbcType=CHAR},
-      a41 = #{a41,jdbcType=CHAR},
-      a42 = #{a42,jdbcType=CHAR},
-      a43 = #{a43,jdbcType=CHAR},
-      a44 = #{a44,jdbcType=CHAR},
-      a45 = #{a45,jdbcType=CHAR},
-      a46 = #{a46,jdbcType=CHAR},
-      a47 = #{a47,jdbcType=CHAR},
-      a48 = #{a48,jdbcType=CHAR},
-      a49 = #{a49,jdbcType=CHAR},
-      a50 = #{a50,jdbcType=CHAR},
-      a51 = #{a51,jdbcType=CHAR},
-      a52 = #{a52,jdbcType=CHAR},
-      a53 = #{a53,jdbcType=CHAR},
-      a54 = #{a54,jdbcType=CHAR},
-      a55 = #{a55,jdbcType=CHAR}
-    where a_cet_id = #{aCetId,jdbcType=VARCHAR}
-  </update>
+<mapper namespace="com.wynne.Dao.Answer2Mapper">
+	<resultMap id="BaseResultMap" type="com.wynne.Entity.Answer2">
+		<id column="a_cet_id" property="aCetId" jdbcType="VARCHAR" />
+		<result column="a_part1" property="aPart1" jdbcType="VARCHAR" />
+		<result column="a_part4" property="aPart4" jdbcType="VARCHAR" />
+		<result column="a1" property="a1" jdbcType="CHAR" />
+		<result column="a2" property="a2" jdbcType="CHAR" />
+		<result column="a3" property="a3" jdbcType="CHAR" />
+		<result column="a4" property="a4" jdbcType="CHAR" />
+		<result column="a5" property="a5" jdbcType="CHAR" />
+		<result column="a6" property="a6" jdbcType="CHAR" />
+		<result column="a7" property="a7" jdbcType="CHAR" />
+		<result column="a8" property="a8" jdbcType="CHAR" />
+		<result column="a9" property="a9" jdbcType="CHAR" />
+		<result column="a10" property="a10" jdbcType="CHAR" />
+		<result column="a11" property="a11" jdbcType="CHAR" />
+		<result column="a12" property="a12" jdbcType="CHAR" />
+		<result column="a13" property="a13" jdbcType="CHAR" />
+		<result column="a14" property="a14" jdbcType="CHAR" />
+		<result column="a15" property="a15" jdbcType="CHAR" />
+		<result column="a16" property="a16" jdbcType="CHAR" />
+		<result column="a17" property="a17" jdbcType="CHAR" />
+		<result column="a18" property="a18" jdbcType="CHAR" />
+		<result column="a19" property="a19" jdbcType="CHAR" />
+		<result column="a20" property="a20" jdbcType="CHAR" />
+		<result column="a21" property="a21" jdbcType="CHAR" />
+		<result column="a22" property="a22" jdbcType="CHAR" />
+		<result column="a23" property="a23" jdbcType="CHAR" />
+		<result column="a24" property="a24" jdbcType="CHAR" />
+		<result column="a25" property="a25" jdbcType="CHAR" />
+		<result column="a26" property="a26" jdbcType="CHAR" />
+		<result column="a27" property="a27" jdbcType="CHAR" />
+		<result column="a28" property="a28" jdbcType="CHAR" />
+		<result column="a29" property="a29" jdbcType="CHAR" />
+		<result column="a30" property="a30" jdbcType="CHAR" />
+		<result column="a31" property="a31" jdbcType="CHAR" />
+		<result column="a32" property="a32" jdbcType="CHAR" />
+		<result column="a33" property="a33" jdbcType="CHAR" />
+		<result column="a34" property="a34" jdbcType="CHAR" />
+		<result column="a35" property="a35" jdbcType="CHAR" />
+		<result column="a36" property="a36" jdbcType="CHAR" />
+		<result column="a37" property="a37" jdbcType="CHAR" />
+		<result column="a38" property="a38" jdbcType="CHAR" />
+		<result column="a39" property="a39" jdbcType="CHAR" />
+		<result column="a40" property="a40" jdbcType="CHAR" />
+		<result column="a41" property="a41" jdbcType="CHAR" />
+		<result column="a42" property="a42" jdbcType="CHAR" />
+		<result column="a43" property="a43" jdbcType="CHAR" />
+		<result column="a44" property="a44" jdbcType="CHAR" />
+		<result column="a45" property="a45" jdbcType="CHAR" />
+		<result column="a46" property="a46" jdbcType="CHAR" />
+		<result column="a47" property="a47" jdbcType="CHAR" />
+		<result column="a48" property="a48" jdbcType="CHAR" />
+		<result column="a49" property="a49" jdbcType="CHAR" />
+		<result column="a50" property="a50" jdbcType="CHAR" />
+		<result column="a51" property="a51" jdbcType="CHAR" />
+		<result column="a52" property="a52" jdbcType="CHAR" />
+		<result column="a53" property="a53" jdbcType="CHAR" />
+		<result column="a54" property="a54" jdbcType="CHAR" />
+		<result column="a55" property="a55" jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		a_cet_id, a_part1, a_part4, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12,
+		a13,
+		a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28,
+		a29, a30,
+		a31, a32, a33, a34, a35, a36, a37, a38, a39, a40, a41, a42, a43, a44, a45,
+		a46, a47,
+		a48, a49, a50, a51, a52, a53, a54, a55
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from answer2
+		where a_cet_id = #{aCetId,jdbcType=VARCHAR}
+	</select>
+
+	<select id="selectAllAnswer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from answer2
+	</select>
+
+	<select id="selectaCetId" resultType="java.lang.String"
+		parameterType="java.lang.String">
+		select a_cet_id
+		from answer2 where a_cet_id=#{aCetId}
+	</select>
+
+
+	<select id="FilterAnswer" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from answer2 where a_cet_id like CONCAT(#{a_cet_id},'%')
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from answer2
+		where a_cet_id = #{aCetId,jdbcType=VARCHAR}
+	</delete>
+
+	<insert id="insert" parameterType="com.wynne.Entity.Answer2">
+		insert into answer2 (a_cet_id, a_part1, a_part4,
+		a1, a2, a3, a4,
+		a5, a6, a7, a8,
+		a9, a10, a11, a12,
+		a13, a14, a15, a16,
+		a17, a18, a19, a20,
+		a21, a22, a23, a24,
+		a25, a26, a27, a28,
+		a29, a30, a31, a32,
+		a33, a34, a35, a36,
+		a37, a38, a39, a40,
+		a41, a42, a43, a44,
+		a45, a46, a47, a48,
+		a49, a50, a51, a52,
+		a53, a54, a55)
+		values (#{aCetId,jdbcType=VARCHAR}, #{aPart1,jdbcType=VARCHAR},
+		#{aPart4,jdbcType=VARCHAR},
+		#{a1,jdbcType=CHAR}, #{a2,jdbcType=CHAR}, #{a3,jdbcType=CHAR}, #{a4,jdbcType=CHAR},
+		#{a5,jdbcType=CHAR}, #{a6,jdbcType=CHAR}, #{a7,jdbcType=CHAR},
+		#{a8,jdbcType=CHAR},
+		#{a9,jdbcType=CHAR}, #{a10,jdbcType=CHAR}, #{a11,jdbcType=CHAR}, #{a12,jdbcType=CHAR},
+		#{a13,jdbcType=CHAR}, #{a14,jdbcType=CHAR}, #{a15,jdbcType=CHAR},
+		#{a16,jdbcType=CHAR},
+		#{a17,jdbcType=CHAR}, #{a18,jdbcType=CHAR}, #{a19,jdbcType=CHAR}, #{a20,jdbcType=CHAR},
+		#{a21,jdbcType=CHAR}, #{a22,jdbcType=CHAR}, #{a23,jdbcType=CHAR},
+		#{a24,jdbcType=CHAR},
+		#{a25,jdbcType=CHAR}, #{a26,jdbcType=CHAR}, #{a27,jdbcType=CHAR}, #{a28,jdbcType=CHAR},
+		#{a29,jdbcType=CHAR}, #{a30,jdbcType=CHAR}, #{a31,jdbcType=CHAR},
+		#{a32,jdbcType=CHAR},
+		#{a33,jdbcType=CHAR}, #{a34,jdbcType=CHAR}, #{a35,jdbcType=CHAR}, #{a36,jdbcType=CHAR},
+		#{a37,jdbcType=CHAR}, #{a38,jdbcType=CHAR}, #{a39,jdbcType=CHAR},
+		#{a40,jdbcType=CHAR},
+		#{a41,jdbcType=CHAR}, #{a42,jdbcType=CHAR}, #{a43,jdbcType=CHAR}, #{a44,jdbcType=CHAR},
+		#{a45,jdbcType=CHAR}, #{a46,jdbcType=CHAR}, #{a47,jdbcType=CHAR},
+		#{a48,jdbcType=CHAR},
+		#{a49,jdbcType=CHAR}, #{a50,jdbcType=CHAR}, #{a51,jdbcType=CHAR}, #{a52,jdbcType=CHAR},
+		#{a53,jdbcType=CHAR}, #{a54,jdbcType=CHAR}, #{a55,jdbcType=CHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.wynne.Entity.Answer2">
+		insert into answer2
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="aCetId != null">
+				a_cet_id,
+			</if>
+			<if test="aPart1 != null">
+				a_part1,
+			</if>
+			<if test="aPart4 != null">
+				a_part4,
+			</if>
+			<if test="a1 != null">
+				a1,
+			</if>
+			<if test="a2 != null">
+				a2,
+			</if>
+			<if test="a3 != null">
+				a3,
+			</if>
+			<if test="a4 != null">
+				a4,
+			</if>
+			<if test="a5 != null">
+				a5,
+			</if>
+			<if test="a6 != null">
+				a6,
+			</if>
+			<if test="a7 != null">
+				a7,
+			</if>
+			<if test="a8 != null">
+				a8,
+			</if>
+			<if test="a9 != null">
+				a9,
+			</if>
+			<if test="a10 != null">
+				a10,
+			</if>
+			<if test="a11 != null">
+				a11,
+			</if>
+			<if test="a12 != null">
+				a12,
+			</if>
+			<if test="a13 != null">
+				a13,
+			</if>
+			<if test="a14 != null">
+				a14,
+			</if>
+			<if test="a15 != null">
+				a15,
+			</if>
+			<if test="a16 != null">
+				a16,
+			</if>
+			<if test="a17 != null">
+				a17,
+			</if>
+			<if test="a18 != null">
+				a18,
+			</if>
+			<if test="a19 != null">
+				a19,
+			</if>
+			<if test="a20 != null">
+				a20,
+			</if>
+			<if test="a21 != null">
+				a21,
+			</if>
+			<if test="a22 != null">
+				a22,
+			</if>
+			<if test="a23 != null">
+				a23,
+			</if>
+			<if test="a24 != null">
+				a24,
+			</if>
+			<if test="a25 != null">
+				a25,
+			</if>
+			<if test="a26 != null">
+				a26,
+			</if>
+			<if test="a27 != null">
+				a27,
+			</if>
+			<if test="a28 != null">
+				a28,
+			</if>
+			<if test="a29 != null">
+				a29,
+			</if>
+			<if test="a30 != null">
+				a30,
+			</if>
+			<if test="a31 != null">
+				a31,
+			</if>
+			<if test="a32 != null">
+				a32,
+			</if>
+			<if test="a33 != null">
+				a33,
+			</if>
+			<if test="a34 != null">
+				a34,
+			</if>
+			<if test="a35 != null">
+				a35,
+			</if>
+			<if test="a36 != null">
+				a36,
+			</if>
+			<if test="a37 != null">
+				a37,
+			</if>
+			<if test="a38 != null">
+				a38,
+			</if>
+			<if test="a39 != null">
+				a39,
+			</if>
+			<if test="a40 != null">
+				a40,
+			</if>
+			<if test="a41 != null">
+				a41,
+			</if>
+			<if test="a42 != null">
+				a42,
+			</if>
+			<if test="a43 != null">
+				a43,
+			</if>
+			<if test="a44 != null">
+				a44,
+			</if>
+			<if test="a45 != null">
+				a45,
+			</if>
+			<if test="a46 != null">
+				a46,
+			</if>
+			<if test="a47 != null">
+				a47,
+			</if>
+			<if test="a48 != null">
+				a48,
+			</if>
+			<if test="a49 != null">
+				a49,
+			</if>
+			<if test="a50 != null">
+				a50,
+			</if>
+			<if test="a51 != null">
+				a51,
+			</if>
+			<if test="a52 != null">
+				a52,
+			</if>
+			<if test="a53 != null">
+				a53,
+			</if>
+			<if test="a54 != null">
+				a54,
+			</if>
+			<if test="a55 != null">
+				a55,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="aCetId != null">
+				#{aCetId,jdbcType=VARCHAR},
+			</if>
+			<if test="aPart1 != null">
+				#{aPart1,jdbcType=VARCHAR},
+			</if>
+			<if test="aPart4 != null">
+				#{aPart4,jdbcType=VARCHAR},
+			</if>
+			<if test="a1 != null">
+				#{a1,jdbcType=CHAR},
+			</if>
+			<if test="a2 != null">
+				#{a2,jdbcType=CHAR},
+			</if>
+			<if test="a3 != null">
+				#{a3,jdbcType=CHAR},
+			</if>
+			<if test="a4 != null">
+				#{a4,jdbcType=CHAR},
+			</if>
+			<if test="a5 != null">
+				#{a5,jdbcType=CHAR},
+			</if>
+			<if test="a6 != null">
+				#{a6,jdbcType=CHAR},
+			</if>
+			<if test="a7 != null">
+				#{a7,jdbcType=CHAR},
+			</if>
+			<if test="a8 != null">
+				#{a8,jdbcType=CHAR},
+			</if>
+			<if test="a9 != null">
+				#{a9,jdbcType=CHAR},
+			</if>
+			<if test="a10 != null">
+				#{a10,jdbcType=CHAR},
+			</if>
+			<if test="a11 != null">
+				#{a11,jdbcType=CHAR},
+			</if>
+			<if test="a12 != null">
+				#{a12,jdbcType=CHAR},
+			</if>
+			<if test="a13 != null">
+				#{a13,jdbcType=CHAR},
+			</if>
+			<if test="a14 != null">
+				#{a14,jdbcType=CHAR},
+			</if>
+			<if test="a15 != null">
+				#{a15,jdbcType=CHAR},
+			</if>
+			<if test="a16 != null">
+				#{a16,jdbcType=CHAR},
+			</if>
+			<if test="a17 != null">
+				#{a17,jdbcType=CHAR},
+			</if>
+			<if test="a18 != null">
+				#{a18,jdbcType=CHAR},
+			</if>
+			<if test="a19 != null">
+				#{a19,jdbcType=CHAR},
+			</if>
+			<if test="a20 != null">
+				#{a20,jdbcType=CHAR},
+			</if>
+			<if test="a21 != null">
+				#{a21,jdbcType=CHAR},
+			</if>
+			<if test="a22 != null">
+				#{a22,jdbcType=CHAR},
+			</if>
+			<if test="a23 != null">
+				#{a23,jdbcType=CHAR},
+			</if>
+			<if test="a24 != null">
+				#{a24,jdbcType=CHAR},
+			</if>
+			<if test="a25 != null">
+				#{a25,jdbcType=CHAR},
+			</if>
+			<if test="a26 != null">
+				#{a26,jdbcType=CHAR},
+			</if>
+			<if test="a27 != null">
+				#{a27,jdbcType=CHAR},
+			</if>
+			<if test="a28 != null">
+				#{a28,jdbcType=CHAR},
+			</if>
+			<if test="a29 != null">
+				#{a29,jdbcType=CHAR},
+			</if>
+			<if test="a30 != null">
+				#{a30,jdbcType=CHAR},
+			</if>
+			<if test="a31 != null">
+				#{a31,jdbcType=CHAR},
+			</if>
+			<if test="a32 != null">
+				#{a32,jdbcType=CHAR},
+			</if>
+			<if test="a33 != null">
+				#{a33,jdbcType=CHAR},
+			</if>
+			<if test="a34 != null">
+				#{a34,jdbcType=CHAR},
+			</if>
+			<if test="a35 != null">
+				#{a35,jdbcType=CHAR},
+			</if>
+			<if test="a36 != null">
+				#{a36,jdbcType=CHAR},
+			</if>
+			<if test="a37 != null">
+				#{a37,jdbcType=CHAR},
+			</if>
+			<if test="a38 != null">
+				#{a38,jdbcType=CHAR},
+			</if>
+			<if test="a39 != null">
+				#{a39,jdbcType=CHAR},
+			</if>
+			<if test="a40 != null">
+				#{a40,jdbcType=CHAR},
+			</if>
+			<if test="a41 != null">
+				#{a41,jdbcType=CHAR},
+			</if>
+			<if test="a42 != null">
+				#{a42,jdbcType=CHAR},
+			</if>
+			<if test="a43 != null">
+				#{a43,jdbcType=CHAR},
+			</if>
+			<if test="a44 != null">
+				#{a44,jdbcType=CHAR},
+			</if>
+			<if test="a45 != null">
+				#{a45,jdbcType=CHAR},
+			</if>
+			<if test="a46 != null">
+				#{a46,jdbcType=CHAR},
+			</if>
+			<if test="a47 != null">
+				#{a47,jdbcType=CHAR},
+			</if>
+			<if test="a48 != null">
+				#{a48,jdbcType=CHAR},
+			</if>
+			<if test="a49 != null">
+				#{a49,jdbcType=CHAR},
+			</if>
+			<if test="a50 != null">
+				#{a50,jdbcType=CHAR},
+			</if>
+			<if test="a51 != null">
+				#{a51,jdbcType=CHAR},
+			</if>
+			<if test="a52 != null">
+				#{a52,jdbcType=CHAR},
+			</if>
+			<if test="a53 != null">
+				#{a53,jdbcType=CHAR},
+			</if>
+			<if test="a54 != null">
+				#{a54,jdbcType=CHAR},
+			</if>
+			<if test="a55 != null">
+				#{a55,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.wynne.Entity.Answer2">
+		update answer2
+		<set>
+			<if test="aPart1 != null">
+				a_part1 = #{aPart1,jdbcType=VARCHAR},
+			</if>
+			<if test="aPart4 != null">
+				a_part4 = #{aPart4,jdbcType=VARCHAR},
+			</if>
+			<if test="a1 != null">
+				a1 = #{a1,jdbcType=CHAR},
+			</if>
+			<if test="a2 != null">
+				a2 = #{a2,jdbcType=CHAR},
+			</if>
+			<if test="a3 != null">
+				a3 = #{a3,jdbcType=CHAR},
+			</if>
+			<if test="a4 != null">
+				a4 = #{a4,jdbcType=CHAR},
+			</if>
+			<if test="a5 != null">
+				a5 = #{a5,jdbcType=CHAR},
+			</if>
+			<if test="a6 != null">
+				a6 = #{a6,jdbcType=CHAR},
+			</if>
+			<if test="a7 != null">
+				a7 = #{a7,jdbcType=CHAR},
+			</if>
+			<if test="a8 != null">
+				a8 = #{a8,jdbcType=CHAR},
+			</if>
+			<if test="a9 != null">
+				a9 = #{a9,jdbcType=CHAR},
+			</if>
+			<if test="a10 != null">
+				a10 = #{a10,jdbcType=CHAR},
+			</if>
+			<if test="a11 != null">
+				a11 = #{a11,jdbcType=CHAR},
+			</if>
+			<if test="a12 != null">
+				a12 = #{a12,jdbcType=CHAR},
+			</if>
+			<if test="a13 != null">
+				a13 = #{a13,jdbcType=CHAR},
+			</if>
+			<if test="a14 != null">
+				a14 = #{a14,jdbcType=CHAR},
+			</if>
+			<if test="a15 != null">
+				a15 = #{a15,jdbcType=CHAR},
+			</if>
+			<if test="a16 != null">
+				a16 = #{a16,jdbcType=CHAR},
+			</if>
+			<if test="a17 != null">
+				a17 = #{a17,jdbcType=CHAR},
+			</if>
+			<if test="a18 != null">
+				a18 = #{a18,jdbcType=CHAR},
+			</if>
+			<if test="a19 != null">
+				a19 = #{a19,jdbcType=CHAR},
+			</if>
+			<if test="a20 != null">
+				a20 = #{a20,jdbcType=CHAR},
+			</if>
+			<if test="a21 != null">
+				a21 = #{a21,jdbcType=CHAR},
+			</if>
+			<if test="a22 != null">
+				a22 = #{a22,jdbcType=CHAR},
+			</if>
+			<if test="a23 != null">
+				a23 = #{a23,jdbcType=CHAR},
+			</if>
+			<if test="a24 != null">
+				a24 = #{a24,jdbcType=CHAR},
+			</if>
+			<if test="a25 != null">
+				a25 = #{a25,jdbcType=CHAR},
+			</if>
+			<if test="a26 != null">
+				a26 = #{a26,jdbcType=CHAR},
+			</if>
+			<if test="a27 != null">
+				a27 = #{a27,jdbcType=CHAR},
+			</if>
+			<if test="a28 != null">
+				a28 = #{a28,jdbcType=CHAR},
+			</if>
+			<if test="a29 != null">
+				a29 = #{a29,jdbcType=CHAR},
+			</if>
+			<if test="a30 != null">
+				a30 = #{a30,jdbcType=CHAR},
+			</if>
+			<if test="a31 != null">
+				a31 = #{a31,jdbcType=CHAR},
+			</if>
+			<if test="a32 != null">
+				a32 = #{a32,jdbcType=CHAR},
+			</if>
+			<if test="a33 != null">
+				a33 = #{a33,jdbcType=CHAR},
+			</if>
+			<if test="a34 != null">
+				a34 = #{a34,jdbcType=CHAR},
+			</if>
+			<if test="a35 != null">
+				a35 = #{a35,jdbcType=CHAR},
+			</if>
+			<if test="a36 != null">
+				a36 = #{a36,jdbcType=CHAR},
+			</if>
+			<if test="a37 != null">
+				a37 = #{a37,jdbcType=CHAR},
+			</if>
+			<if test="a38 != null">
+				a38 = #{a38,jdbcType=CHAR},
+			</if>
+			<if test="a39 != null">
+				a39 = #{a39,jdbcType=CHAR},
+			</if>
+			<if test="a40 != null">
+				a40 = #{a40,jdbcType=CHAR},
+			</if>
+			<if test="a41 != null">
+				a41 = #{a41,jdbcType=CHAR},
+			</if>
+			<if test="a42 != null">
+				a42 = #{a42,jdbcType=CHAR},
+			</if>
+			<if test="a43 != null">
+				a43 = #{a43,jdbcType=CHAR},
+			</if>
+			<if test="a44 != null">
+				a44 = #{a44,jdbcType=CHAR},
+			</if>
+			<if test="a45 != null">
+				a45 = #{a45,jdbcType=CHAR},
+			</if>
+			<if test="a46 != null">
+				a46 = #{a46,jdbcType=CHAR},
+			</if>
+			<if test="a47 != null">
+				a47 = #{a47,jdbcType=CHAR},
+			</if>
+			<if test="a48 != null">
+				a48 = #{a48,jdbcType=CHAR},
+			</if>
+			<if test="a49 != null">
+				a49 = #{a49,jdbcType=CHAR},
+			</if>
+			<if test="a50 != null">
+				a50 = #{a50,jdbcType=CHAR},
+			</if>
+			<if test="a51 != null">
+				a51 = #{a51,jdbcType=CHAR},
+			</if>
+			<if test="a52 != null">
+				a52 = #{a52,jdbcType=CHAR},
+			</if>
+			<if test="a53 != null">
+				a53 = #{a53,jdbcType=CHAR},
+			</if>
+			<if test="a54 != null">
+				a54 = #{a54,jdbcType=CHAR},
+			</if>
+			<if test="a55 != null">
+				a55 = #{a55,jdbcType=CHAR},
+			</if>
+		</set>
+		where a_cet_id = #{aCetId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.wynne.Entity.Answer2">
+		update answer2
+		set a_part1 = #{aPart1,jdbcType=VARCHAR},
+		a_part4 = #{aPart4,jdbcType=VARCHAR},
+		a1 = #{a1,jdbcType=CHAR},
+		a2 = #{a2,jdbcType=CHAR},
+		a3 = #{a3,jdbcType=CHAR},
+		a4 = #{a4,jdbcType=CHAR},
+		a5 = #{a5,jdbcType=CHAR},
+		a6 = #{a6,jdbcType=CHAR},
+		a7 = #{a7,jdbcType=CHAR},
+		a8 = #{a8,jdbcType=CHAR},
+		a9 = #{a9,jdbcType=CHAR},
+		a10 = #{a10,jdbcType=CHAR},
+		a11 = #{a11,jdbcType=CHAR},
+		a12 = #{a12,jdbcType=CHAR},
+		a13 = #{a13,jdbcType=CHAR},
+		a14 = #{a14,jdbcType=CHAR},
+		a15 = #{a15,jdbcType=CHAR},
+		a16 = #{a16,jdbcType=CHAR},
+		a17 = #{a17,jdbcType=CHAR},
+		a18 = #{a18,jdbcType=CHAR},
+		a19 = #{a19,jdbcType=CHAR},
+		a20 = #{a20,jdbcType=CHAR},
+		a21 = #{a21,jdbcType=CHAR},
+		a22 = #{a22,jdbcType=CHAR},
+		a23 = #{a23,jdbcType=CHAR},
+		a24 = #{a24,jdbcType=CHAR},
+		a25 = #{a25,jdbcType=CHAR},
+		a26 = #{a26,jdbcType=CHAR},
+		a27 = #{a27,jdbcType=CHAR},
+		a28 = #{a28,jdbcType=CHAR},
+		a29 = #{a29,jdbcType=CHAR},
+		a30 = #{a30,jdbcType=CHAR},
+		a31 = #{a31,jdbcType=CHAR},
+		a32 = #{a32,jdbcType=CHAR},
+		a33 = #{a33,jdbcType=CHAR},
+		a34 = #{a34,jdbcType=CHAR},
+		a35 = #{a35,jdbcType=CHAR},
+		a36 = #{a36,jdbcType=CHAR},
+		a37 = #{a37,jdbcType=CHAR},
+		a38 = #{a38,jdbcType=CHAR},
+		a39 = #{a39,jdbcType=CHAR},
+		a40 = #{a40,jdbcType=CHAR},
+		a41 = #{a41,jdbcType=CHAR},
+		a42 = #{a42,jdbcType=CHAR},
+		a43 = #{a43,jdbcType=CHAR},
+		a44 = #{a44,jdbcType=CHAR},
+		a45 = #{a45,jdbcType=CHAR},
+		a46 = #{a46,jdbcType=CHAR},
+		a47 = #{a47,jdbcType=CHAR},
+		a48 = #{a48,jdbcType=CHAR},
+		a49 = #{a49,jdbcType=CHAR},
+		a50 = #{a50,jdbcType=CHAR},
+		a51 = #{a51,jdbcType=CHAR},
+		a52 = #{a52,jdbcType=CHAR},
+		a53 = #{a53,jdbcType=CHAR},
+		a54 = #{a54,jdbcType=CHAR},
+		a55 = #{a55,jdbcType=CHAR}
+		where a_cet_id = #{aCetId,jdbcType=VARCHAR}
+	</update>
 </mapper>
