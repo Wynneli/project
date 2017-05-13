@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wynne.Dao.SentenceMapper">
+	<resultMap id="BaseResultMap" type="com.wynne.Entity.Sentence">
+		<id column="sentence_Id" property="sentenceId" jdbcType="INTEGER" />
+		<result column="sentence_Chinese" property="sentenceChinese"
+			jdbcType="VARCHAR" />
+		<result column="sentence_English" property="sentenceEnglish"
+			jdbcType="VARCHAR" />
+		<result column="sentence_Scan" property="sentenceScan"
+			jdbcType="INTEGER" />
+		<result column="sentence_Upvote" property="sentenceUpvote"
+			jdbcType="INTEGER" />
+		<result column="sentence_Time" property="sentenceTime"
+			jdbcType="VARCHAR" />
+		<result column="sentence_Type" property="sentenceType"
+			jdbcType="VARCHAR" />
+		<result column="sentence_ImagePath" property="sentenceImagepath"
+			jdbcType="VARCHAR" />
+		<result column="sentence_Extend1" property="sentenceExtend1"
+			jdbcType="VARCHAR" />
+		<result column="sentence_Extend2" property="sentenceExtend2"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		sentence_Id, sentence_Chinese, sentence_English,
+		sentence_Scan, sentence_Upvote,
+		sentence_Time, sentence_Type,
+		sentence_ImagePath, sentence_Extend1,
+		sentence_Extend2
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from sentence
+		where sentence_Id = #{sentenceId,jdbcType=INTEGER}
+	</select>
+
+	<select id="selectOption" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from sentence
+		order by sentence_Upvote DESC limit 9
+	</select>
+
+	<select id="count" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		select sentence_Upvote
+		from sentence
+		where sentence_Id =
+		#{sentenceId,jdbcType=INTEGER}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		sentence
+		where sentence_Id = #{sentenceId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.wynne.Entity.Sentence">
+		insert into sentence
+		(sentence_Id, sentence_Chinese, sentence_English,
+		sentence_Scan,
+		sentence_Upvote, sentence_Time,
+		sentence_Type, sentence_ImagePath,
+		sentence_Extend1,
+		sentence_Extend2)
+		values
+		(#{sentenceId,jdbcType=INTEGER}, #{sentenceChinese,jdbcType=VARCHAR},
+		#{sentenceEnglish,jdbcType=VARCHAR},
+		#{sentenceScan,jdbcType=INTEGER},
+		#{sentenceUpvote,jdbcType=INTEGER}, #{sentenceTime,jdbcType=VARCHAR},
+		#{sentenceType,jdbcType=VARCHAR},
+		#{sentenceImagepath,jdbcType=VARCHAR},
+		#{sentenceExtend1,jdbcType=VARCHAR},
+		#{sentenceExtend2,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.wynne.Entity.Sentence">
+		insert into sentence
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="sentenceId != null">
+				sentence_Id,
+			</if>
+			<if test="sentenceChinese != null">
+				sentence_Chinese,
+			</if>
+			<if test="sentenceEnglish != null">
+				sentence_English,
+			</if>
+			<if test="sentenceScan != null">
+				sentence_Scan,
+			</if>
+			<if test="sentenceUpvote != null">
+				sentence_Upvote,
+			</if>
+			<if test="sentenceTime != null">
+				sentence_Time,
+			</if>
+			<if test="sentenceType != null">
+				sentence_Type,
+			</if>
+			<if test="sentenceImagepath != null">
+				sentence_ImagePath,
+			</if>
+			<if test="sentenceExtend1 != null">
+				sentence_Extend1,
+			</if>
+			<if test="sentenceExtend2 != null">
+				sentence_Extend2,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="sentenceId != null">
+				#{sentenceId,jdbcType=INTEGER},
+			</if>
+			<if test="sentenceChinese != null">
+				#{sentenceChinese,jdbcType=VARCHAR},
+			</if>
+			<if test="sentenceEnglish != null">
+				#{sentenceEnglish,jdbcType=VARCHAR},
+			</if>
+			<if test="sentenceScan != null">
+				#{sentenceScan,jdbcType=INTEGER},
+			</if>
+			<if test="sentenceUpvote != null">
+				#{sentenceUpvote,jdbcType=INTEGER},
+			</if>
+			<if test="sentenceTime != null">
+				#{sentenceTime,jdbcType=VARCHAR},
+			</if>
+			<if test="sentenceType != null">
+				#{sentenceType,jdbcType=VARCHAR},
+			</if>
+			<if test="sentenceImagepath != null">
+				#{sentenceImagepath,jdbcType=VARCHAR},
+			</if>
+			<if test="sentenceExtend1 != null">
+				#{sentenceExtend1,jdbcType=VARCHAR},
+			</if>
+			<if test="sentenceExtend2 != null">
+				#{sentenceExtend2,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.wynne.Entity.Sentence">
+		update sentence
+		<set>
+			<if test="sentenceChinese != null">
+				sentence_Chinese = #{sentenceChinese,jdbcType=VARCHAR},
+			</if>
+			<if test="sentenceEnglish != null">
+				sentence_English = #{sentenceEnglish,jdbcType=VARCHAR},
+			</if>
+			<if test="sentenceScan != null">
+				sentence_Scan = #{sentenceScan,jdbcType=INTEGER},
+			</if>
+			<if test="sentenceUpvote != null">
+				sentence_Upvote = #{sentenceUpvote,jdbcType=INTEGER},
+			</if>
+			<if test="sentenceTime != null">
+				sentence_Time = #{sentenceTime,jdbcType=VARCHAR},
+			</if>
+			<if test="sentenceType != null">
+				sentence_Type = #{sentenceType,jdbcType=VARCHAR},
+			</if>
+			<if test="sentenceImagepath != null">
+				sentence_ImagePath =
+				#{sentenceImagepath,jdbcType=VARCHAR},
+			</if>
+			<if test="sentenceExtend1 != null">
+				sentence_Extend1 = #{sentenceExtend1,jdbcType=VARCHAR},
+			</if>
+			<if test="sentenceExtend2 != null">
+				sentence_Extend2 = #{sentenceExtend2,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where sentence_Id = #{sentenceId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.wynne.Entity.Sentence">
+		update sentence
+		set sentence_Chinese = #{sentenceChinese,jdbcType=VARCHAR},
+		sentence_English = #{sentenceEnglish,jdbcType=VARCHAR},
+		sentence_Scan =
+		#{sentenceScan,jdbcType=INTEGER},
+		sentence_Upvote =
+		#{sentenceUpvote,jdbcType=INTEGER},
+		sentence_Time =
+		#{sentenceTime,jdbcType=VARCHAR},
+		sentence_Type =
+		#{sentenceType,jdbcType=VARCHAR},
+		sentence_ImagePath =
+		#{sentenceImagepath,jdbcType=VARCHAR},
+		sentence_Extend1 =
+		#{sentenceExtend1,jdbcType=VARCHAR},
+		sentence_Extend2 =
+		#{sentenceExtend2,jdbcType=VARCHAR}
+		where sentence_Id =
+		#{sentenceId,jdbcType=INTEGER}
+	</update>
+
+	<update id="update" parameterType="com.wynne.Entity.Sentence">
+		update sentence set
+		sentence_Upvote = #{sentenceUpvote,jdbcType=INTEGER}
+		where sentence_Id
+		= #{sentenceId,jdbcType=INTEGER}
+	</update>
+</mapper>

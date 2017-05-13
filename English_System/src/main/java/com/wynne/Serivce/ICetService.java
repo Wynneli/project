@@ -3,6 +3,7 @@ package com.wynne.Serivce;
 import java.util.List;
 
 import com.wynne.Entity.Cet;
+import com.wynne.Entity.CetCustomVo;
 
 public interface ICetService {
    public List<Cet> findCetCondition(String cet);
@@ -18,4 +19,6 @@ public interface ICetService {
    public int delete(int cetPrimary);
    
    public Cet findByPrimaryKey(int cetPrimary);
+   
+   public List<Cet> findAll(String CET);
 }

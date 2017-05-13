@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,8 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.wynne.Dao.CetMapper;
 import com.wynne.Entity.Answer;
 import com.wynne.Entity.Answer2;
+import com.wynne.Entity.Cet;
 import com.wynne.Entity.Cet4;
 import com.wynne.Entity.Cet4Custom;
 import com.wynne.Entity.Cet4_Part1Custom;
@@ -32,8 +35,10 @@ import com.wynne.Entity.Compare_Result;
 import com.wynne.Entity.ProcessCustom;
 import com.wynne.Entity.Unknown_WordCustom;
 import com.wynne.Entity.UserCustom;
+import com.wynne.Serivce.IArticleService;
 import com.wynne.Serivce.ICet4LoadingService;
 import com.wynne.Serivce.ICet4_partService;
+import com.wynne.Serivce.ICetService;
 import com.wynne.Serivce.IChartService;
 import com.wynne.Serivce.IProcessService;
 import com.wynne.Serivce.IUnknownWordService;
@@ -77,6 +82,9 @@ public class Cet4Controller {
 
 	@Autowired
 	private IChartService charService;
+
+	@Autowired
+	private ICetService cetService;
 
 	@RequestMapping("/loading")
 	public String Add()throws Exception{
@@ -211,7 +219,7 @@ public class Cet4Controller {
 			session.setAttribute("cet", "六级词汇");
 		}
 		session.setAttribute("cet4Custom", cet4Custom);
-		System.out.println(cet4Custom.getCet4Vocabulary()+"\t"+cet4Custom.getCet4Pronunciation()+"\t"+cet4Custom.getCet4Meaning());
+		//		System.out.println(cet4Custom.getCet4Vocabulary()+"\t"+cet4Custom.getCet4Pronunciation()+"\t"+cet4Custom.getCet4Meaning());
 		return "redirect:/Page/cet4/cet4_vocabulary.jsp";
 	}
 
@@ -542,34 +550,35 @@ public class Cet4Controller {
 		return jsonObject;
 	}
 
+
+	@SuppressWarnings("unchecked")
 	@RequestMapping("/show_item")
 	public String show_item(@RequestParam("cet4id") String cet4id,HttpSession session){
-		List<Cet4_Part1Custom> cet4_Part1Customs_list=null;
+
+		List<Cet> cet_list=new ArrayList<Cet>();
 		if(cet4id!=null){
-			cet4_Part1Customs_list=cet4_partService.findBycet4TestId(cet4id);
+			cet_list=cetService.findAll(cet4id);
 		}
-		if(cet4_Part1Customs_list==null){
-			session.setAttribute("show_item_null", "false");
-			return "redirect:/Page/cet4/cet4_questions.jsp";
-		}
-		session.setAttribute("cet4_Part1Customs_list", cet4_Part1Customs_list);
+		session.setAttribute("cet_Test_Type", cet4id);
+		session.setAttribute("cet_list", cet_list);
+		session.setAttribute("cet_count", cet_list.size());
 		return "redirect:/Page/cet4/cet4_questions.jsp";
 	}
 
 	@RequestMapping("/cet4_test_item")
-	public String cet4_test_item(@RequestParam("question_title")  String question_title,
-			@RequestParam("question_cet4_id")  String question_cet4_id,HttpSession session){
-		Cet4_Part1Custom cet4_Part1Custom_item=new Cet4_Part1Custom();
+	public String cet4_test_item(@RequestParam("cetid")  String cetid,
+			@RequestParam("cetInfo")  String cetInfo,HttpSession session){
+		Cet cet=new Cet();
 		String title=null;
 		try {
-			title = new String (question_title.getBytes("iso-8859-1"), "UTF-8");
+			title = new String (cetInfo.getBytes("iso-8859-1"), "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		} 
-		if(!question_title.equals("")&&!question_cet4_id.equals("")){
-			cet4_Part1Custom_item.setCet4TestId(question_cet4_id);
-			cet4_Part1Custom_item.setCet4Title(title);
-			session.setAttribute("cet4_Part1Custom_item", cet4_Part1Custom_item);
+		if(!cetInfo.equals("")&&!cetid.equals("")){
+			cet.setCetid(cetid);
+			cet.setCetInfo(title);
+			session.setAttribute("cet_item", cet);
 			return "redirect:/Page/cet4/show_item.jsp";
 		}
 		return "/Error/item_error";

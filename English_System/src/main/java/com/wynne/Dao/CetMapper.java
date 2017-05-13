@@ -21,6 +21,8 @@ public interface CetMapper {
 	
 	int selectCetId(String cetid);
 	
+	List<Cet> select(String CET);
+	
 	int selectCetInfo(String cetInfo);
 	
 	 Cet sletctCet(String cetid);

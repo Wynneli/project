@@ -6,10 +6,26 @@
 		<result column="CETID" property="cetid" jdbcType="VARCHAR" />
 		<result column="CET_info" property="cetInfo" jdbcType="VARCHAR" />
 		<result column="CET_entend1" property="cetEntend1" jdbcType="VARCHAR" />
-		<result column="CET_entend2" property="cetEntend2" jdbcType="VARCHAR" />
+		<result column="CET_entend2" property="cetEntend2" jdbcType="INTEGER" />
 		<result column="CET_entend3" property="cetEntend3" jdbcType="VARCHAR" />
 		<result column="CET_entend4" property="cetEntend4" jdbcType="VARCHAR" />
 		<result column="CET_entend5" property="cetEntend5" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="BaseResultMap2" type="com.wynne.Entity.Cet">
+		<id column="CET_Primary" property="cetPrimary" jdbcType="INTEGER" />
+		<result column="CETID" property="cetid" jdbcType="VARCHAR" />
+		<result column="CET_info" property="cetInfo" jdbcType="VARCHAR" />
+		<result column="CET_entend1" property="cetEntend1" jdbcType="VARCHAR" />
+		<result column="CET_entend2" property="cetEntend2" jdbcType="INTEGER" />
+		<result column="CET_entend3" property="cetEntend3" jdbcType="VARCHAR" />
+		<result column="CET_entend4" property="cetEntend4" jdbcType="VARCHAR" />
+		<result column="CET_entend5" property="cetEntend5" jdbcType="VARCHAR" />
+		<association property="cet4_Part1" javaType="com.wynne.Entity.Cet4_Part1">
+			<id column="cet4_test_id" property="cet4TestId" jdbcType="VARCHAR" />
+			<result column="cet4_test_content" property="cet4TestContent"
+				jdbcType="VARCHAR" />
+			<result column="cet4_title" property="cet4Title" jdbcType="VARCHAR" />
+		</association>
 	</resultMap>
 	<sql id="Base_Column_List">
 		CET_Primary, CETID, CET_info, CET_entend1, CET_entend2,
@@ -32,6 +48,13 @@
 		where CETID like CONCAT(#{cet},'%')
 	</select>
 
+	<select id="select" resultMap="BaseResultMap2" parameterType="java.lang.String">
+		select
+		* from
+		cet c inner join
+		cet4_part1 c1 where c.CETID=c1.cet4_test_id and c.CETID like CONCAT(#{CET},'%') order by  CET_entend2 DESC
+	</select>
+
 	<select id="selectCetId" resultType="java.lang.Integer"
 		parameterType="java.lang.String">
 		select
@@ -41,7 +64,7 @@
 
 	<select id="sletctCet" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
-		<include refid="Base_Column_List"/>
+		<include refid="Base_Column_List" />
 		from cet
 		where CETID=#{cetid}
 	</select>
@@ -67,7 +90,7 @@
 		values (#{cetPrimary,jdbcType=INTEGER},
 		#{cetid,jdbcType=VARCHAR},
 		#{cetInfo,jdbcType=VARCHAR},
-		#{cetEntend1,jdbcType=VARCHAR}, #{cetEntend2,jdbcType=VARCHAR},
+		#{cetEntend1,jdbcType=VARCHAR}, #{cetEntend2,jdbcType=INTEGER},
 		#{cetEntend3,jdbcType=VARCHAR},
 		#{cetEntend4,jdbcType=VARCHAR},
 		#{cetEntend5,jdbcType=VARCHAR})
@@ -114,7 +137,7 @@
 				#{cetEntend1,jdbcType=VARCHAR},
 			</if>
 			<if test="cetEntend2 != null">
-				#{cetEntend2,jdbcType=VARCHAR},
+				#{cetEntend2,jdbcType=INTEGER},
 			</if>
 			<if test="cetEntend3 != null">
 				#{cetEntend3,jdbcType=VARCHAR},
@@ -140,7 +163,7 @@
 				CET_entend1 = #{cetEntend1,jdbcType=VARCHAR},
 			</if>
 			<if test="cetEntend2 != null">
-				CET_entend2 = #{cetEntend2,jdbcType=VARCHAR},
+				CET_entend2 = #{cetEntend2,jdbcType=INTEGER},
 			</if>
 			<if test="cetEntend3 != null">
 				CET_entend3 = #{cetEntend3,jdbcType=VARCHAR},
@@ -163,7 +186,7 @@
 		CET_entend1 =
 		#{cetEntend1,jdbcType=VARCHAR},
 		CET_entend2 =
-		#{cetEntend2,jdbcType=VARCHAR},
+		#{cetEntend2,jdbcType=INTEGER},
 		CET_entend3 =
 		#{cetEntend3,jdbcType=VARCHAR},
 		CET_entend4 =

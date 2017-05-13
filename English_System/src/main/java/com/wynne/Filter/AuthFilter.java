@@ -17,10 +17,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.wynne.Entity.UserCustom;
 import com.wynne.Serivce.IUserService;
 public class AuthFilter implements Filter{
-	
+
 	@Autowired
 	private IUserService userService;
-	
+
 	private static final String INDEXJSP="/English_System/";
 
 	private static final String INDEXJSP2="/English_System/index.jsp";
@@ -44,9 +44,10 @@ public class AuthFilter implements Filter{
 		//			System.out.println("不能继续往下执行！，您好没有登录");
 		//		    response2.sendRedirect(request2.getContextPath() + "/Page/login/Login2.jsp");  
 		//			return ;
-		//		}
+//		//		}
 		if(currentURL.equals(INDEXJSP)||currentURL.equals(INDEXJSP2)){
-			request.setAttribute("test", "test_success");
+			System.out.println("filert");
+			request2.getRequestDispatcher("/Page/Return.jsp").forward(request2,response2);
 		}
 		chain.doFilter(request2, response2);
 

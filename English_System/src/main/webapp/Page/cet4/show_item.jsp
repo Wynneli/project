@@ -24,8 +24,7 @@
 	src="../../JS/Third_Party/jquery-2.1.4.min.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>JS/Third_Party/zui.min.js"></script>
-<script type="text/javascript"
-	src="<%=basePath%>JS/Third_Party/mzui.min.js"></script>
+
 <script type="text/javascript" src="<%=basePath%>JS/Custom/show_item.js"></script>
 
 </head>
@@ -34,8 +33,8 @@
 	<div class="container">
 		<div class="top">
 			<div class="header">
-				<c:if test="${not empty cet4_Part1Custom_item.cet4Title}">
-					<h2>${cet4_Part1Custom_item.cet4Title}</h2>
+				<c:if test="${not empty cet_item.cetInfo}">
+					<h2>${cet_item.cetInfo}</h2>
 				</c:if>
 			</div>
 			<hr size="3" noshade="noshade" style="border: 2px #9AC0CD dotted;">
@@ -77,9 +76,9 @@
 							class="icon icon-star-empty"></i>
 					</div>
 					<div class="col-md-6">
-						<c:if test="${not empty cet4_Part1Custom_item.cet4TestId}">
+						<c:if test="${not empty cet_item.cetid}">
 							<a
-								href="<%=basePath%>cet4/cet4_test_info?cet42TestId=${cet4_Part1Custom_item.cet4TestId}"><button
+								href="<%=basePath%>cet4/cet4_test_info?cet42TestId=${cet_item.cetid}"><button
 									class="btn btn-danger  " id="btn_setting" type="button">普通模考</button>
 							</a>
 						</c:if>

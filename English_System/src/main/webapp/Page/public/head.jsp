@@ -19,13 +19,11 @@
 <link rel="stylesheet" href="<%=basePath%>CSS/Third_Party/zui.min.css">
 <link rel="stylesheet" href="<%=basePath%>CSS/Custom/index.css">
 <link rel="stylesheet" href="<%=basePath%>CSS/Custom/cet4_questions.css">
-<script type="text/javascript"
-	src="../../JS/Third_Party/jquery-2.1.4.min.js"></script>
+
 <script type="text/javascript"
 	src="<%=basePath%>JS/Third_Party/zui.min.js"></script>
-<script type="text/javascript"
-	src="<%=basePath%>JS/Third_Party/mzui.min.js"></script>
-<script type="text/javascript" src="<%=basePath%>JS/Custom/custom.js"></script>
+
+
 
 </head>
 <body>
@@ -68,7 +66,7 @@
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="<%=basePath%>cet4/show_item?cet4id=cet4">四级真题</a></li>
 						<li class="divider"></li>
-						<li><a href="#">试题测试</a></li>
+						<li><a href="<%=basePath%>cet4/show_item?cet4id=cet6">六级真题</a></li>
 						<li class="divider"></li>
 						<li><a href="#">试题测试</a></li>
 						<li class="divider"></li>
@@ -99,13 +97,13 @@
 			<!-- 右侧的导航项目 -->
 			<ul class="nav navbar-nav navbar-right">
 				<c:if test="${empty user}">
-					<li><a href="<%=basePath%>Page/login/Login2.jsp" >登录</a></li>
+					<li><a href="<%=basePath%>Page/login/Login2.jsp">登录</a></li>
 					<li><a href="<%=basePath%>Page/login/register2.jsp">注册</a></li>
 				</c:if>
 
 				<c:if test="${not empty user}">
-					<li class="dropdown"><a href="#"
-						class="dropdown-toggle" id="getusername" data-toggle="dropdown">欢迎你：${user.username}</a>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						id="getusername" data-toggle="dropdown">欢迎你：${user.username}</a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="<%=basePath%>Page/user/user.jsp">个人中心</a></li>
 						</ul></li>

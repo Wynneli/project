@@ -69,4 +69,8 @@ public class CetServiceImpl implements  ICetService{
 		return cet;
 	}
 
+	public List<Cet> findAll(String CET) {
+		return cetMapper.select( CET);
+	}
+
 }

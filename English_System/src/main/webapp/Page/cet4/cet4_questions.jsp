@@ -32,34 +32,48 @@
 		<div class="list">
 			<header>
 			<h3>
-				<i class="icon-list-ul"></i> 四级题库 <small>总共189条</small>
+				<c:choose>
+					<c:when test="${cet_Test_Type=='cet4' }">
+						<i class="icon-list-ul"></i> 四级题库 <small>总共${cet_count}条</small>
+					</c:when>
+					<c:otherwise>
+						<i class="icon-list-ul"></i> 六级题库 <small>总共${cet_count}条</small>
+					</c:otherwise>
+				</c:choose>
 			</h3>
 			</header>
 
 			<div class="items items-hover">
-				<c:if test="${ not empty cet4_Part1Customs_list}">
-					<c:forEach items="${cet4_Part1Customs_list}" var="list"
-						varStatus="count">
+				<c:if test="${ not empty cet_list}">
+					<c:forEach items="${cet_list}" var="list" varStatus="count">
 						<div class="item">
 							<div class="row">
 								<div class="col-md-2">
-									<img src="/file/Images/cet4.jpg"
-										class="img-responsive img-circle" alt="Responsive image">
+									<c:choose>
+										<c:when test="${cet_Test_Type=='cet4' }">
+											<img src="/file/Images/cet4.jpg"
+												class="img-responsive img-circle" alt="Responsive image">
+										</c:when>
+										<c:otherwise>
+											<img src="/file/Images/cet6.jpg"
+												class="img-responsive img-circle" alt="Responsive image">
+										</c:otherwise>
+									</c:choose>
 								</div>
 								<div class="col-md-10">
 									<div class="item-heading">
 										<div class="pull-right">
-											<span class="text-muted">2013-11-11 16:14:37</span> &nbsp; <a
+											<span class="text-muted">${list.cetEntend1}</span> &nbsp; <a
 												href="#" class="text-muted "><i class="icon-comments"></i>
-												243</a>
+												${list.cetEntend2}</a>
 										</div>
 										<h4>
 											<a target="_blank"
-												href="<%=basePath%>cet4/cet4_test_item?question_title=${list.cet4Title}&question_cet4_id=${list.cet4TestId}">${list.cet4Title}</a>
+												href="<%=basePath%>cet4/cet4_test_item?cetid=${list.cetid}&cetInfo=${list.cetInfo}">${list.cetInfo}</a>
 										</h4>
 									</div>
 									<div class="item-content">
-										<div class="text">${list.cet4TestContent}......</div>
+										<div class="text">${list.cet4_Part1.cet4TestContent}......</div>
 									</div>
 								</div>
 							</div>
@@ -67,23 +81,10 @@
 					</c:forEach>
 				</c:if>
 			</div>
-			<footer>
-			<ul class="pager">
-				<li class="previous"><a href="#">« 上一页</a></li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">⋯</a></li>
-				<li><a href="#">6</a></li>
-				<li class="active"><a href="#">7</a></li>
-				<li><a href="#">8</a></li>
-				<li><a href="#">9</a></li>
-				<li><a href="#">⋯</a></li>
-				<li><a href="#">12</a></li>
-				<li class="next"><a href="#">下一页 »</a></li>
-			</ul>
-			</footer>
+
 		</div>
 	</div>
-
+	<jsp:include page="/Page/tail.jsp"></jsp:include>
 
 </body>
 </html>

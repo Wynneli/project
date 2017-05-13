@@ -18,11 +18,10 @@
 <link rel="stylesheet" href="<%=basePath%>CSS/Third_Party/zui.min.css">
 <link rel="stylesheet" href="<%=basePath%>CSS/Custom/index.css">
 <script type="text/javascript"
-	src="http://localhost:8080/English_System/JS/Third_Party/jquery-2.1.4.min.js"></script>
-
+	src="<%=basePath%>JS/Third_Party/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>JS/Custom/index.js"></script>
 </head>
 <body>
-	<form id="myform" action="<%=basePath%>index/returnIndexIfo"></form>
 	<jsp:include page="/Page/public/head.jsp"></jsp:include>
 	<div class="container">
 		<!-- 轮播 -->
@@ -299,123 +298,107 @@
 
 		</div>
 
-
-		<h1>这里：</h1>
-
-		<table>
-			<c:forEach items="${user_list}" var="list">
-				<td>${list.userid}</td>
-				<td>${list.username}</td>
-				<td>${list.userpassword}</td>
-				<td>${list.userphone}</td>
-			</c:forEach>
-		</table>
-		<!-- 最新资讯展现 -->
-
-		<div class="cards">
-
-			<div class="col-md-4  ">
-				<a class="card" href="<%=basePath%>Page/login/Register.jsp"> <img
-					src="<%=basePath%>Images/Slide/slide2.jpg" alt="">
-					<div class="caption">“良辰美景” 出自《牡丹亭》</div>
-					<div class="card-heading">
-						<strong>良辰美景</strong>
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-md-2">精美句子推荐</div>
+					<div class="col-md-9"></div>
+					<div class="col-md-1">
+						<a href="#" class="asetting"> <i class="icon icon-th-list"></i>
+							加载更多
+						</a>
 					</div>
-					<div class="card-content text-muted">良辰美景奈何天，赏心乐事谁家院。</div>
-					<div class="card-actions">
-						<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-						<button type="button" class="btn btn-danger">
-							<i class=" icon-thumbs-up"></i> 喜欢
-						</button>
-						<div class="pull-right text-danger">
-							<i class="icon-heart-empty"></i> 520 人喜欢
+				</div>
+			</div>
+			<div class="panel-body">
+				<!-- 最新资讯展现 -->
+				<div class="cards">
+					<c:if test="${not empty sentence_list}">
+						<c:forEach items="${sentence_list }" var="sentence_list"
+							varStatus="count">
+							<div class="col-md-4 ">
+								<a class="card" href="#"> <img
+									src="<%=basePath%>Images/Slide/slide2.jpg" alt="">
+									<div class="caption">“良辰美景” 出自《牡丹亭》</div>
+									<div class="card-heading">
+										<strong>${sentence_list.sentenceChinese}</strong>
+									</div>
+									<div class="card-content text-muted">${sentence_list.sentenceEnglish}</div>
+									<div class="card-actions">
+										<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+										<button type="button" class="btn btn-danger"
+											onclick="sentenceupvate(${sentence_list.sentenceId});return false;">
+											<i class=" icon-thumbs-up"></i>喜欢
+										</button>
+										<div class="pull-right text-danger">
+											<i class="icon-heart-empty"></i> <span
+												id="s${sentence_list.sentenceId}">${sentence_list.sentenceUpvote}人喜欢</span>
+										</div>
+									</div>
+								</a>
+							</div>
+						</c:forEach>
+					</c:if>
+				</div>
+
+			</div>
+		</div>
+
+
+
+
+		<!-- 美文推荐 -->
+		<div class="panel panel-info">
+			<div class="panel-body">
+				<div class="list list-condensed">
+					<header>
+					<div class="row">
+						<div class="col-md-3">
+							<h3>
+								<i class="icon-list-ul"></i> 美文推荐 <small
+									style="font-size: 13px; color: black;">&nbsp;&nbsp;共${articlecount}条</small>
+							</h3>
+						</div>
+						<div class="col-md-7"></div>
+						<div class="col-md-1">
+							<a href="#" class="asetting" style="line-height: 30px;"> <i
+								class="icon icon-th-list"></i> 加载更多
+							</a>
 						</div>
 					</div>
-				</a>
-			</div>
-		</div>
-
-
-		<div class="span9">
-			<div class="leaderboard">
-				<h1>Learn. Practice. Develop.</h1>
-				<p>w3cschool offers web development tutorials. We believe in
-					Open Source. Love standards. And prioritize simplicity and
-					readability while serving content.</p>
-				<p>
-					<a class="btn btn-success btn-large">Join w3cschool now</a>
-				</p>
-			</div>
-			<div class="row-fluid">
-				<div class="span4">
-					<h2>Learn</h2>
-					<p>Donec id elit non mi porta gravida at eget metus. Fusce
-						dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-						ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-						magna mollis euismod. Donec sed odio dui.</p>
-					<p>
-						<a class="btn btn-success btn-large" href="#">Start Learning
-							now</a>
-					</p>
-				</div>
-			</div>
-		</div>
-
-
-
-
-
-
-
-		<!-- 用户学习方法分享 -->
-		<div class="list list-condensed">
-			<header>
-			<h3>
-				<i class="icon-list-ul"></i> 美文推荐 <small>共 123 条</small>
-			</h3>
-			</header>
-			<div class="items items-hover">
-				<div class="item">
-					<div class="item-heading">
-						<div class="pull-right">
-							<span class="text-muted">2013-11-11 16:14:37</span> &nbsp; <a
-								href="#" class="text-muted"><i class="icon-comments"></i>
-								243</a>
-						</div>
-						<h4>
-							<a href="###">HTML5 发展历史</a>
-						</h4>
-					</div>
-					<div class="item-content">
-						<div class="text">HTML 5草案的前身名为Web Applications
-							1.0，是在2004年由WHATWG提出。2008年1月22日，第一份正式草案发布。WHATWG表示该规范是目前仍在进行的工作，仍须多年的努力。[8]目前Mozilla
-							Firefox、Google Chrome、Opera、Safari（版本4以上）、Internet
-							Explorer（版本9以上）已支持HTML5技术。</div>
-					</div>
-				</div>
-
-				<br /> <br />
-				<div class="item">
-					<div class="item-heading">
-						<div class="pull-right label label-success">维基</div>
-						<h4>
-							<a href="###">HTML5 发展历史</a>
-						</h4>
-					</div>
-					<div class="item-content">
-						<div class="text">HTML 5草案的前身名为Web Applications
-							1.0，是在2004年由WHATWG提出。2008年1月22日，第一份正式草案发布。WHATWG表示该规范是目前仍在进行的工作，仍须多年的努力。[8]目前Mozilla
-							Firefox、Google Chrome、Opera、Safari（版本4以上）、Internet
-							Explorer（版本9以上）已支持HTML5技术。</div>
-					</div>
-					<div class="item-footer">
-						<a href="#" class="text-muted"><i class="icon-comments"></i>
-							243</a> &nbsp; <span class="text-muted">2013-11-11 16:14:37</span>
+					</header>
+					<div class="items items-hover">
+						<c:if test="${ not empty article_list}">
+							<c:forEach items="${article_list}" var="list" varStatus="count">
+								<div class="item">
+									<div class="item-heading">
+										<div class="pull-right">
+											<span class="text-muted">${list.articleTime}</span> &nbsp; <a
+												href="#" onclick="upvote(${list.articleId});return false;"
+												class="text-muted"><i style="color: red"
+												class="icon icon-thumbs-o-up"></i></a> &nbsp;<span
+												id="${list.articleId}">${list.articleLike}</span>
+										</div>
+										<h4>
+											<a href="###">${list.articleChinese}</a>
+										</h4>
+									</div>
+									<div class="item-content">
+										<div class="text" style="font-size: 15px;">${list.articleEnglish}</div>
+									</div>
+								</div>
+								<br />
+							</c:forEach>
+						</c:if>
 					</div>
 				</div>
 			</div>
 		</div>
+
 	</div>
+
+
+
 	<!--  container结束-->
 
 
