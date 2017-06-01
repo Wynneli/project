@@ -22,4 +22,6 @@ public interface CommentMapper {
     List<CommentCustom> selectAllComment(int pageOffset);
     
     public int countComment();
+    
+    public List<CommentCustom> selectOption(String username);
 }	

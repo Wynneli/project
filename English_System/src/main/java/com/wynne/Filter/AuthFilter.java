@@ -11,9 +11,11 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.wynne.Entity.Admin;
 import com.wynne.Entity.UserCustom;
 import com.wynne.Serivce.IUserService;
 public class AuthFilter implements Filter{
@@ -29,6 +31,8 @@ public class AuthFilter implements Filter{
 
 	private static final String REGISTERJSP="/English_System/Page/login/register.jsp";
 
+	private static final String ADMINMANIGE="/English_System/Page/admin4/admin.jsp";
+
 	public void init(FilterConfig filterConfig) throws ServletException {
 
 	}
@@ -37,17 +41,17 @@ public class AuthFilter implements Filter{
 			throws IOException, ServletException {
 		HttpServletRequest request2=(HttpServletRequest)request;
 		HttpServletResponse response2=(HttpServletResponse)response;
+		HttpSession session=request2.getSession();
 		String currentURL=request2.getRequestURI();
-		System.out.println(currentURL);
-		//		if(currentURL.equals(LOGINJSP)||currentURL.equals(REGISTERJSP)){
-		//		}else{
-		//			System.out.println("不能继续往下执行！，您好没有登录");
-		//		    response2.sendRedirect(request2.getContextPath() + "/Page/login/Login2.jsp");  
-		//			return ;
-//		//		}
 		if(currentURL.equals(INDEXJSP)||currentURL.equals(INDEXJSP2)){
-			System.out.println("filert");
 			request2.getRequestDispatcher("/Page/Return.jsp").forward(request2,response2);
+		}
+		Admin admin=(Admin)session.getAttribute("admin");
+		
+		if(admin==null){
+			if(currentURL.equals(ADMINMANIGE)){
+				request2.getRequestDispatcher("/Page/admin4/adminLogin.jsp").forward(request2,response2);
+			}
 		}
 		chain.doFilter(request2, response2);
 

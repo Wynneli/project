@@ -16,4 +16,6 @@ public interface IFeedbackService {
     public int updataFeedBack(Feedback record);
 
     public Feedback findByPrimaryKey(int feedbackId);
+    
+    public List<Feedback> findfeedbackOption(String username);
 }

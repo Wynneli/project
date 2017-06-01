@@ -30,4 +30,24 @@ public class ArticleServiceImpl implements IArticleService{
 		return articleMapper.selectArticleLike(articleId);
 	}
 
+	public List<Article> findAll() {
+		return articleMapper.selectAll();
+	}
+
+	public Article findByPrimaryKey(int articleId) {
+		return articleMapper.selectByPrimaryKey(articleId);
+	}
+
+	public int deleteByPrimatyKey(int articleId) {
+		return articleMapper.deleteByPrimaryKey(articleId);
+	}
+
+	public int updateByPrimary(Article article) {
+		return articleMapper.updateByPrimaryKeySelective(article);
+	}
+
+	public int insert(Article article) {
+		return articleMapper.insertSelective(article);
+	}
+
 }

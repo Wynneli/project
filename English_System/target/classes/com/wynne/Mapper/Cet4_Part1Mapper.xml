@@ -27,6 +27,31 @@
 		where cet4_test_id like CONCAT(#{cet4TestId},'%')
 	</select>
 
+<insert id="insertSelective" parameterType="com.wynne.Entity.Cet4_Part1" >
+    insert into cet4_part1
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cet4TestId != null" >
+        cet4_test_id,
+      </if>
+      <if test="cet4TestContent != null" >
+        cet4_test_content,
+      </if>
+      <if test="cet4Title != null" >
+        cet4_title,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cet4TestId != null" >
+        #{cet4TestId,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4TestContent != null" >
+        #{cet4TestContent,jdbcType=VARCHAR},
+      </if>
+      <if test="cet4Title != null" >
+        #{cet4Title,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
 	<update id="updateByPrimaryKeySelective" parameterType="com.wynne.Entity.Cet4_Part1Custom">
 		update cet4_part1
 		<set>

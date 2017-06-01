@@ -4,16 +4,17 @@ import java.io.File;
 
 public class fileRename {
 
-	private static final String realpath="G:/毕设/";
+	private static final String realpath="G:/毕设/temp/";
 
-	public static Boolean rename(String path,String renamepath){
+	public static Boolean rename(String path,String filepath){
+		System.out.println(path);
 		Boolean b=true;
 		File file=new File(realpath+path.substring(6,path.length()));
-		int repath=renamepath.lastIndexOf("/")+1;
 		String name=file.getAbsolutePath();
-		String repathname=name.substring(0,repath)+renamepath.substring(repath, renamepath.length());
-		System.out.println(name.substring(0,repath));
-		System.out.println(renamepath.substring(repath, renamepath.length()));
+		int index=name.lastIndexOf("\\");
+		String rename=name.substring(0, index+1);
+		System.out.println(name);
+		String repathname=rename+filepath;
 		System.out.println(repathname);
 		b= file.renameTo(new File(repathname));
 		return b;

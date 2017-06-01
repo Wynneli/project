@@ -25,115 +25,60 @@
 <script type="text/javascript"
 	src="<%=basePath%>JS/Third_Party/zui.min.js"></script>
 <script type="text/javascript"
-	src="<%=basePath%>JS/Admin/CommentManage.js"></script>
+	src="<%=basePath%>JS/admin4/comment.js"></script>
 </head>
 
 <body>
-	<div class="row">
-		<div class="col-md-2">
-			用户编号：<input type="text" class="form-control" name="userid"
-				placeholder="用户编号">
-		</div>
-		<div class="col-md-2">
-			昵称：<input type="text" class="form-control" name="username"
-				placeholder="昵称">
-		</div>
-		<div class="col-md-2">
-			<button class="btn btn-warning btn-lg  btn-block" onclick="search()"
-				style="margin-top: 10px;" type="button">查找</button>
-		</div>
-	</div>
+	<div class="panel panel-info">
+		<div class="panel-heading">评论管理</div>
+		<div class="panel-body">
+			<div class="row">
+				<form class="form-inline">
+					&nbsp;&nbsp;&nbsp;
+					<div class="form-group">
+						<label for="exampleInputEmail2">昵称</label> <input type="text"
+							class="form-control" name="username" placeholder="昵称">
+					</div>
 
-	<div class="row" style="height: 420px;">
-		<table class="table table-fixed  table-hover table-borderless"
-			id="show_userinfo">
-			<thead>
-				<tr>
-					<th style="padding-left: 20px;">评论编号</th>
-					<th>主题</th>
-					<th>评论内容</th>
-					<th>评论对象</th>
-					<th>回复对象</th>
-					
-					<th>操作</th>
-				</tr>
-			</thead>
-			<c:if test="${not empty allComment_list}">
-				<tbody>
-					<c:forEach items="${allComment_list}" var="list" varStatus="count"
-						begin="0" end="9">
-						<c:choose>
-							<c:when test="${count.count%2==1}">
-								<tr>
-									<td style="padding-left: 20px;">${list.commentId}</td>
+					<button type="button" class="btn btn-info" onclick="search()">
+						<i class=" icon-search"></i>查 找
+					</button>
+				</form>
+			</div>
+
+			<div class="row">
+				<table class="table table-fixed  table-hover "
+					id="show_userinfo">
+					<thead>
+						<tr id="${list.commentId}">
+							<th>评论编号</th>
+							<th>主题</th>
+							<th>评论内容</th>
+							<th>评论对象</th>
+							<th>回复对象</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<c:if test="${not empty allComment_list}">
+						<tbody id="mytbody">
+							<c:forEach items="${allComment_list}" var="list"
+								varStatus="count">
+								<tr id="${list.commentId}">
+									<td>${list.commentId}</td>
 									<td>${list.topicType}</td>
 									<td>${list.commentContent}</td>
 									<td>${list.commentFromUsername}</td>
 									<td>${list.commentToUsername}</td>
-									<td><a id="${list.commentId}" href="#"
-										onclick="deleteComment(${list.commentId})"> <i
-											class="icon icon-times i_color "></i>删除
-									</a></td>
+									<td><button class="btn btn-mini btn-danger"
+											onclick="deleteComment(${list.commentId})">
+											<i class="icon icon-trash"></i>删除
+										</button></td>
 								</tr>
-							</c:when>
-							<c:otherwise>
-								<tr class="active">
-									<td style="padding-left: 20px;">${list.commentId}</td>
-									<td>${list.topicType}</td>
-									<td>${list.commentContent}</td>
-									<td>${list.commentFromUsername}</td>
-									<td>${list.commentToUsername}</td>
-
-									<td><a id="${list.commentId}" href="#"
-										onclick="deleteComment${list.commentId})"> <i
-											class="icon icon-times i_color "></i>删除
-									</a></td>
-								</tr>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-				</tbody>
-			</c:if>
-		</table>
-	</div>
-	<div class="row" id="pagecontent">
-		<div class="container">
-			<ul class="pager pager-pills pager-loose" id="pagecontent2">
-				<c:forEach items="${commentlist}" varStatus="page_count">
-					<c:choose>
-						<c:when test="${page_count.count<=11}">
-								<c:choose>
-									<c:when test="${page_count.count==1}">
-										<li class="active"><a href="#"
-											onclick="page_comment(${page_count.count})">${page_count.count}</a></li>
-									</c:when>
-									<c:otherwise>
-										<li><a href="#"
-											onclick="page_comment(${page_count.count})">${page_count.count}</a></li>
-									</c:otherwise>
-								</c:choose>
-						</c:when>
-					</c:choose>
-				</c:forEach>
-				<c:choose>
-						<c:when test="${not empty commentpage }">
-							<li class="disabled "><a href="#"><span id="maxpage"
-									style="color: red;">共${commentpage}页</span></a></li>
-						</c:when>
-						<c:otherwise>
-							<li class="disabled "><a href="#"><span
-									style="color: red;">共 0 页</span></a></li>
-						</c:otherwise>
-					
-				</c:choose>
-				<span style="margin-left: 20px;">跳转到</span>
-					<input name="page" id="pages"
-						style="width: 50px; margin-left: 6px; text-align: center;"
-						type="text"/>
-					<span>页</span>
-				<button class="btn btn-warning " onclick="search_page()"
-						type="button">确认</button>
-			</ul>
+							</c:forEach>
+						</tbody>
+					</c:if>
+				</table>
+			</div>
 		</div>
 	</div>
 </body>

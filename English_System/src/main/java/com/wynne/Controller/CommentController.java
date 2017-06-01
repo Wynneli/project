@@ -1,11 +1,11 @@
 package com.wynne.Controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.junit.runner.notification.Failure;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSONObject;
 import com.wynne.Entity.CommentCustom;
 import com.wynne.Serivce.ICommentService;
+import com.wynne.Utils.HandleUserName;
 import com.wynne.Utils.JsonDateValueProcessor;
 
 import net.sf.json.JSONArray;
@@ -29,9 +30,9 @@ public class CommentController {
 	private final static String SUCCESS="success";
 
 	private final static String FAILURE="failure";
-	
+
 	private final static String cet4type="四级单词";
-	
+
 	private final static String cet6type="六级单词";
 
 	@SuppressWarnings("static-access")
@@ -54,7 +55,8 @@ public class CommentController {
 		int count=0;
 		CommentCustom commentCustom=new CommentCustom();
 		commentCustom.setCommentContent(request.getParameter("commentContent"));
-		commentCustom.setCommentFromUsername(request.getParameter("commentFromUsername"));
+		System.out.println(request.getParameter("commentFromUsername"));
+		commentCustom.setCommentFromUsername(HandleUserName.handle(request.getParameter("commentFromUsername")));
 		commentCustom.setTopicId(request.getParameter("cet4Id"));
 		if(request.getParameter("cet4Id").contains("cet4_")){
 			commentCustom.setTopicType(cet4type);
@@ -75,4 +77,36 @@ public class CommentController {
 		}
 		return jsonObject;
 	}
+
+	@RequestMapping("/deleteComment")
+	public @ResponseBody Object deleteComment( HttpServletRequest request){
+		JSONObject jsonObject=new JSONObject();
+		int count=0;
+		int commentId=Integer.parseInt(request.getParameter("commentId"));
+		count=commentService.deleteCommentByPrimaryKey(commentId);
+		List<CommentCustom> allComment_list =new ArrayList<CommentCustom>();
+		allComment_list=commentService.findAllComment(1);
+		if(count==1&&allComment_list!=null){
+			jsonObject.put("attr", SUCCESS);
+		}else{
+			jsonObject.put("attr", FAILURE);
+		}
+		return jsonObject;
+	}
+
+	@RequestMapping("/searchcomment")
+	public @ResponseBody Object searchcomment( HttpServletRequest request){
+		JSONObject jsonObject=new JSONObject();
+		String username=request.getParameter("username");
+		List<CommentCustom> list =new ArrayList<CommentCustom>();
+		list=commentService.findall(username);
+		if(list!=null){
+			jsonObject.put("attr", SUCCESS);
+			jsonObject.put("list", list);
+		}else{
+			jsonObject.put("attr", FAILURE);
+		}
+		return jsonObject;
+	}
+
 }

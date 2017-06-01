@@ -37,4 +37,7 @@ public class FeedbackServiceImpl implements IFeedbackService{
 		}
 		return feedback;
 	}
+	public List<Feedback> findfeedbackOption(String username) {
+		return feedbackMapper.selectfeedbackOption(username);
+	}
 }

@@ -13,4 +13,6 @@ public interface Cet4_Part2Mapper {
    
     
     int updateByPrimaryKeySelective(Cet4_Part2Custom record);
+    
+    public int insertSelective(Cet4_Part2Custom cet4_Part2Custom);
 }

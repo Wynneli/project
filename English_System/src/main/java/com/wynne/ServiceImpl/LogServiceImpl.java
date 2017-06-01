@@ -1,10 +1,13 @@
 package com.wynne.ServiceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.wynne.Dao.LogMapper;
+import com.wynne.Entity.Log;
 import com.wynne.Entity.LogCustom;
 import com.wynne.Serivce.ILogService;
 
@@ -24,6 +27,11 @@ public class LogServiceImpl implements ILogService {
 			flag=false;
 		}
 		return flag;
+	}
+
+
+	public List<Log> findAll() {
+		return logMapper.selectAll();
 	}
 	
 }

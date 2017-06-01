@@ -469,21 +469,11 @@
 					</div>
 					<a href="#" class="btn btn-primary btn-lg active" role="button"
 						onclick="save_part4();return false;">保存第IV部分内容</a>
-						<h2></h2>
+					<h2></h2>
 				</div>
-				<br/>
+				<br />
 				<div class="col-md-3">
 					<div class="setting">
-						<div class="clock">
-							<span><i class="icon-time icon-2x"></i></span> &nbsp;<span
-								style="font-size: 18px;">用时：</span> <span
-								style="font-size: 18px; color: red;" id="show_time"></span>
-						</div>
-						<div class="clock_button">
-							<button class="btn btn-info " type="button"
-								onclick="show_time();">开始计时</button>
-						</div>
-						<br />
 						<div>
 							<embed height="50px" width="300px" src="/file/Mp3/201561.mp3">
 						</div>
@@ -504,7 +494,7 @@
 			</div>
 		</fieldset>
 	</div>
-	<br/>
-	<jsp:include page="../../Page/tail.jsp" />
+	<br />
+	<jsp:include page="../public/tail.jsp"></jsp:include>
 </body>
 </html>

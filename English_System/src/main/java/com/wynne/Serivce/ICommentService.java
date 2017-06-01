@@ -14,4 +14,6 @@ public interface ICommentService {
 	public int deleteCommentByPrimaryKey(int commentId);
 	
 	public int countComment();
+	
+	public List<CommentCustom> findall(String username);
 }

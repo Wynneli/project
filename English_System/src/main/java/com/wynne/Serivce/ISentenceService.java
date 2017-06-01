@@ -12,4 +12,12 @@ public interface ISentenceService {
    
    public int update(Sentence record);
    
+   public List<Sentence> findAll();
+   
+   public  Sentence  findByPrimaryKey(Integer sentenceId);
+   
+   public int deleteByPrimaryKey(int sentenceId);
+   
+   public int insert(Sentence sentence);
+   
 }

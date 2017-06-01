@@ -34,6 +34,13 @@
 		order by article_like DESC limit 6
 	</select>
 
+
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from article order by article_like DESC
+	</select>
+
 	<select id="selectArticleLike" resultType="java.lang.Integer"
 		parameterType="java.lang.Integer">
 		select article_like
@@ -54,6 +61,7 @@
 		article
 		where article_id = #{articleId,jdbcType=INTEGER}
 	</delete>
+	
 	<insert id="insert" parameterType="com.wynne.Entity.Article">
 		insert into article
 		(article_id, article_chinese, article_english,

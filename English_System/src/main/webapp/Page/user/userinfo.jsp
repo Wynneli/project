@@ -49,13 +49,7 @@
 							<span id="email_tip" class="span_setting"></span>
 						</div>
 						<br />
-						<div class="form-group">
-							<label for="inputPassword" class="col-sm-2 control-label">选择上传图片</label>
-							<div class="col-sm-7">
-								<input type="file" class="form-control" id="file"
-									style="border: none;" disabled="disabled">
-							</div>
-						</div>
+						
 					</form>
 					<br />
 					<div class="setting">

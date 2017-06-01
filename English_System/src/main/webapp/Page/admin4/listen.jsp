@@ -42,12 +42,20 @@
 						<i class="icon icon-plus"></i> 新增
 					</button>
 				</div>
+				<div class="col-md-6"></div>
+				<div class="col-md-2">
+					<select class="form-control" id="first" onchange="select('mp3')">
+						<option value="">--筛选--</option>
+						<option>六级</option>
+						<option>四级</option>
+					</select>
+				</div>
 			</div>
 			<br />
 
 			<table
 				class="table table-striped table-bordered   table-responsive  table-hover"
-				id="answerinfo">
+				id="listeninfo">
 				<thead>
 					<tr>
 						<th><input type="checkbox" onclick="selectAll(this);" />
@@ -55,9 +63,10 @@
 						<th>文件编号</th>
 						<th>文件类型</th>
 						<th>文件名</th>
-						<th>原文件名</th>
+						<th>文件大小</th>
 						<th>上传时间</th>
 						<th>下载量</th>
+						<th>文件类别</th>
 						<th>操作</th>
 					</tr>
 				</thead>
@@ -70,10 +79,11 @@
 								</label></td>
 								<td>${list.fileid}</td>
 								<td>${list.filetype}</td>
-								<td>${list.filename}</td>
-								<td>${list.filername}</td>
+								<td>${list.filerealname}</td>
+								<td>${list.filesize}</td>
 								<td>${list.filetime}</td>
 								<td>${list.filedownloadsum}</td>
+								<td>${list.filetypes}</td>
 								<td><a id="${list.fileid}"
 									href="<%=basePath%>file/editListen/${list.fileid}"
 									target="myframe"><button class="btn btn-mini btn-info">

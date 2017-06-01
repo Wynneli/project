@@ -43,6 +43,13 @@
 		from sentence
 		order by sentence_Upvote DESC limit 9
 	</select>
+	
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from sentence
+		order by sentence_Upvote DESC 
+	</select>
 
 	<select id="count" resultType="java.lang.Integer" parameterType="java.lang.Integer">
 		select sentence_Upvote

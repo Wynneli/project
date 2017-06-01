@@ -20,6 +20,8 @@ public interface FeedbackMapper {
 	int updateByPrimaryKey(Feedback record);
 
 	List<Feedback> selectAllFeedBack();
+	
+	List<Feedback> selectfeedbackOption(String username);
 
 	List<Feedback> selectAllFeedBack2(@Param("feedbackState") String feedbackstate,@Param("feedbackAccept") String feedbackaccept);
 }

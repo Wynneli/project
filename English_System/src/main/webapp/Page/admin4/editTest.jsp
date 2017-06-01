@@ -25,7 +25,7 @@
 </head>
 <body>
 	<div class="panel panel-info">
-		<div class="panel-heading">参考答案详情</div>
+		<div class="panel-heading">试题信息</div>
 		<div class="panel-body">
 			<div class="panel-group" id="accordionPanels">
 				<div class="panel panel-success">

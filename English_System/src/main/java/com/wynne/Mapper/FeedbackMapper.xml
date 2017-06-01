@@ -32,23 +32,31 @@
 		from feedback
 		where feedback_id = #{feedbackId,jdbcType=INTEGER}
 	</select>
+
+	<select id="selectfeedbackOption" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from feedback
+		where  feedback_username=#{feedbackUsername}
+	</select>
+
 	<select id="selectAllFeedBack" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
-		from feedback order by  feedback_stime ASC
+		from feedback order by feedback_stime ASC
 	</select>
-	
+
 	<select id="selectAllFeedBack2" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
-		from feedback 
+		from feedback
 		<where>
-		   <if test="feedbackState!=null">
-		      feedback_state=#{feedbackState,jdbcType=VARCHAR}
-		   </if>
-		    <if test="feedbackAccept!=null">
-		      AND  feedback_accept=#{feedbackAccept,jdbcType=VARCHAR}
-		   </if>
+			<if test="feedbackState!=null">
+				feedback_state=#{feedbackState,jdbcType=VARCHAR}
+			</if>
+			<if test="feedbackAccept!=null">
+				AND feedback_accept=#{feedbackAccept,jdbcType=VARCHAR}
+			</if>
 		</where>
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

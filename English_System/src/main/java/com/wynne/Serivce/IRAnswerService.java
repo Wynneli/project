@@ -2,7 +2,6 @@ package com.wynne.Serivce;
 
 import java.util.List;
 
-import com.wynne.Entity.Answer;
 import com.wynne.Entity.Answer2;
 
 public interface IRAnswerService {

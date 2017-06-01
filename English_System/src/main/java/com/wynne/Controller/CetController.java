@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
+import javax.servlet.http.Part;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,14 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.wynne.Entity.Cet;
-import com.wynne.Entity.Cet4_Part1;
 import com.wynne.Entity.Cet4_Part1Custom;
 import com.wynne.Entity.Cet4_Part2Custom;
 import com.wynne.Entity.Cet4_Part3A;
 import com.wynne.Entity.Cet4_Part3B;
 import com.wynne.Entity.Cet4_Part3C;
 import com.wynne.Entity.Cet4_Part4;
-import com.wynne.Serivce.ICet4LoadingService;
 import com.wynne.Serivce.ICet4_partService;
 import com.wynne.Serivce.ICetService;
 import com.wynne.Serivce.ICet_Part1Service;
@@ -274,7 +271,54 @@ public class CetController {
 		}
 		return jsonObject;
 	}
+
+
+	@RequestMapping("/addinfo")
+	public ModelAndView addinfo() throws Exception{
+		ModelAndView modelAndView =new ModelAndView();
+		List<Integer>  Part2=new ArrayList<Integer>();
+		for(int i=0;i<25;i++){
+			Part2.add(i);
+		}
+		modelAndView.addObject("Part2", Part2);
+		modelAndView.addObject("test", "test");
+		modelAndView.setViewName("admin4/Add_Test");
+		return modelAndView;
+	}
+
+
+	@RequestMapping("/addPart1")
+	public @ResponseBody Object addPart1(@RequestBody Cet4_Part1Custom cet4_Part1) throws Exception{
+		JSONObject jsonObject=new JSONObject();
+		int count=0;
+		if(cet4_Part1!=null){
+			count=cet_Part1Service.insert(cet4_Part1);
+		}
+		if(count==1){
+			jsonObject.put("attr", SUCCESS);
+		}else{
+			jsonObject.put("attr", FAILURE);
+		}
+		return jsonObject;
+	}
 	
-	
+	@RequestMapping("/addPart2")
+	public @ResponseBody Object addPart2(@RequestBody List<Cet4_Part2Custom> list) throws Exception{
+		JSONObject jsonObject=new JSONObject();
+		int count=0;
+		int count2=0;
+		for(int i=0;i<list.size();i++){
+			count=cet_Part2Service.insert(list.get(i));
+			if(count==1){
+				count2=count2+1;
+			}
+		}
+		if(list.size()==count2){
+			jsonObject.put("attr", SUCCESS);
+		}else{
+			jsonObject.put("attr", FAILURE);
+		}
+		return jsonObject;
+	}
 
 }

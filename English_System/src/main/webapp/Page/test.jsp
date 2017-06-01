@@ -27,8 +27,8 @@
 		选择文件:<input type="file" name="file" width="120px"> <input
 			type="submit" value="上传">
 	</form>
-	<a href="<%=basePath%>file/downloadfile?filename=20170423194815新建文本文档.txt">20170423194815新建文本文档.txt下载</a>
+	<a href="<%=basePath%>file/downloadfile?filenames=2017042319481testusccess.txt">20170423194815新建文本文档.txt下载</a>
 	<br>
-	<a href="<%=basePath%>file/test/20170423194815新建文本文档.mp3">下载</a>
+	<a href="<%=basePath%>file/downloadfile?filenames=2013年12月六级考试真题 （第二套）.mp3">下载</a>
 </body>
 </html>

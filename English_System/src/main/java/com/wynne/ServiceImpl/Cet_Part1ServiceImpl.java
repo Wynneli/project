@@ -19,5 +19,8 @@ public class Cet_Part1ServiceImpl implements ICet_Part1Service{
 		}
 		return count;
 	}
+	public int insert(Cet4_Part1Custom cet4_Part1Custom) {
+		return cet4_Part1Mapper.insertSelective(cet4_Part1Custom);
+	}
 
 }

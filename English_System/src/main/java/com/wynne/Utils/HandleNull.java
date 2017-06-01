@@ -24,7 +24,7 @@ public class HandleNull {
 			cet.setCetEntend1("");
 		}
 		if(cet.getCetEntend2()==null){
-			cet.setCetEntend2("");
+			cet.setCetEntend2(0);
 		}
 		if(cet.getCetEntend3()==null){
 			cet.setCetEntend3("");

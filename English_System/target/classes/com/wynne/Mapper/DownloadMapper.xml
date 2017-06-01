@@ -8,12 +8,14 @@
 		<result column="Filedownloadsum" jdbcType="INTEGER" property="filedownloadsum" />
 		<result column="FileName" jdbcType="VARCHAR" property="filename" />
 		<result column="Filetime" jdbcType="VARCHAR" property="filetime" />
-		<result column="FileRName" jdbcType="VARCHAR" property="filername" />
-		<result column="filecetid" property="filecetid" jdbcType="VARCHAR" />
+		<result column="Filesize" jdbcType="VARCHAR" property="filesize" />
+		<result column="fileTypes" jdbcType="VARCHAR" property="filetypes" />
+		<result column="fileRealName" jdbcType="VARCHAR" property="filerealname" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		FileID, FileType, FilePath, Filedownloadsum, FileName,
-		Filetime, FileRName,filecetid
+		Filetime,
+		Filesize, fileTypes,fileRealName
 	</sql>
 	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
 		resultMap="BaseResultMap">
@@ -22,11 +24,31 @@
 		from download
 		where FileID = #{fileid,jdbcType=INTEGER}
 	</select>
+
+	<select id="selectAllOption" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from download where FileType=#{filetype}
+		order by
+		Filedownloadsum DESC
+	</select>
+
+	<select id="selectAllOption2" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from download where FileType=#{filetype,jdbcType=VARCHAR} and
+		fileTypes=#{filetypes,jdbcType=VARCHAR}
+		order by
+		Filedownloadsum DESC
+	</select>
+
 	<select id="selectAll" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from download
 	</select>
+
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from
 		download
@@ -36,13 +58,16 @@
 		insert into download (FileID,
 		FileType, FilePath,
 		Filedownloadsum, FileName, Filetime,
-		FileRName,filecetid)
+		Filesize,
+		fileTypes)
 		values (#{fileid,jdbcType=INTEGER},
 		#{filetype,jdbcType=VARCHAR},
 		#{filepath,jdbcType=VARCHAR},
 		#{filedownloadsum,jdbcType=INTEGER}, #{filename,jdbcType=VARCHAR},
 		#{filetime,jdbcType=VARCHAR},
-		#{filername,jdbcType=VARCHAR},filecetid=#{filecetid,jdbcType=VARCHAR})
+		#{filesize,jdbcType=VARCHAR},
+		#{filetypes,jdbcType=VARCHAR}),
+		#{filerealname,jdbcType=VARCHAR}),
 	</insert>
 	<insert id="insertSelective" parameterType="com.wynne.Entity.Download">
 		insert into download
@@ -54,7 +79,7 @@
 				FileType,
 			</if>
 			<if test="filepath != null">
-				FilePath,
+				Filepath,
 			</if>
 			<if test="filedownloadsum != null">
 				Filedownloadsum,
@@ -65,11 +90,11 @@
 			<if test="filetime != null">
 				Filetime,
 			</if>
-			<if test="filername != null">
-				FileRName,
+			<if test="filesize != null">
+				filesize,
 			</if>
-			<if test="filecetid != null">
-				filecetid,
+			<if test="filetypes != null">
+				fileTypes,
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -80,7 +105,7 @@
 				#{filetype,jdbcType=VARCHAR},
 			</if>
 			<if test="filepath != null">
-				#{filepath,jdbcType=VARCHAR},
+				#{Filepath,jdbcType=VARCHAR},
 			</if>
 			<if test="filedownloadsum != null">
 				#{filedownloadsum,jdbcType=INTEGER},
@@ -91,11 +116,14 @@
 			<if test="filetime != null">
 				#{filetime,jdbcType=VARCHAR},
 			</if>
-			<if test="filername != null">
-				#{filername,jdbcType=VARCHAR},
+			<if test="filesize != null">
+				#{filesize,jdbcType=VARCHAR},
 			</if>
-			<if test="filecetid != null">
-				#{filecetid,jdbcType=VARCHAR},
+			<if test="filetypes != null">
+				#{filetypes,jdbcType=VARCHAR},
+			</if>
+			<if test="filerealname != null">
+				#{filerealname,jdbcType=VARCHAR},
 			</if>
 		</trim>
 	</insert>
@@ -103,42 +131,48 @@
 		update download
 		<set>
 			<if test="filetype != null">
-				FileType=#{filetype,jdbcType=VARCHAR},
+				FileType = #{filetype,jdbcType=VARCHAR},
 			</if>
 			<if test="filepath != null">
-				FilePath =#{filepath,jdbcType=VARCHAR},
+				Filepath = #{filepath,jdbcType=VARCHAR},
 			</if>
 			<if test="filedownloadsum != null">
-				Filedownloadsum =#{filedownloadsum,jdbcType=INTEGER},
+				Filedownloadsum = #{filedownloadsum,jdbcType=INTEGER},
 			</if>
 			<if test="filename != null">
-				FileName =#{filename,jdbcType=VARCHAR},
+				FileName = #{filename,jdbcType=VARCHAR},
 			</if>
 			<if test="filetime != null">
-				Filetime =#{filetime,jdbcType=VARCHAR},
+				Filetime = #{filetime,jdbcType=VARCHAR},
 			</if>
-			<if test="filername != null">
-				FileRName =#{filername,jdbcType=VARCHAR},
+			<if test="filesize != null">
+				Filesize = #{filesize,jdbcType=VARCHAR},
 			</if>
-			<if test="filecetid != null">
-				filecetid =#{filecetid,jdbcType=VARCHAR}
+			<if test="filetypes != null">
+				fileTypes = #{filetypes,jdbcType=VARCHAR},
+			</if>
+			<if test="filerealname != null">
+				fileRealName = #{filerealname,jdbcType=VARCHAR},
 			</if>
 		</set>
-		where FileID=#{fileid}
+		where FileID = #{fileid,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.wynne.Entity.Download">
 		update download
 		set FileType = #{filetype,jdbcType=VARCHAR},
-		FilePath
-		=#{filepath,jdbcType=VARCHAR},
-		Filedownloadsum
-		=#{filedownloadsum,jdbcType=INTEGER},
-		FileName
-		=#{filename,jdbcType=VARCHAR},
+		Filepath =
+		#{filepath,jdbcType=VARCHAR},
+		Filedownloadsum =
+		#{filedownloadsum,jdbcType=INTEGER},
+		FileName =
+		#{filename,jdbcType=VARCHAR},
 		Filetime = #{filetime,jdbcType=VARCHAR},
-		FileRName = #{filername,jdbcType=VARCHAR},
-		filecetid =
-		#{filecetid,jdbcType=VARCHAR}
-		where FileID = #{fileid,jdbcType=INTEGER}
+		Filesize = #{filesize,jdbcType=VARCHAR},
+		fileTypes =
+		#{filetypes,jdbcType=VARCHAR},
+		fileRealName =
+		#{filerealname,jdbcType=VARCHAR}
+		where FileID =
+		#{fileid,jdbcType=INTEGER},
 	</update>
 </mapper>

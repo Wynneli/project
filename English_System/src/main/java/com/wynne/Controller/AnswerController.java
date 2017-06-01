@@ -15,9 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.wynne.Entity.Answer2;
-import com.wynne.Entity.Cet4Custom;
 import com.wynne.Serivce.IRAnswerService;
-import com.wynne.Utils.Handlepage;
 
 @Controller
 @RequestMapping("/answer")

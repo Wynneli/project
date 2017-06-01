@@ -28,44 +28,37 @@
 	<div class="panel panel-info">
 		<div class="panel-heading">信息编辑</div>
 		<div class="panel-body">
-			<form class="form-horizontal">
-				<c:if test="${not empty download}">
-					<div class="form-group" id="filecetid">
-						<label for="exampleInputAccount9" class="col-sm-1 required">录音编号</label>
-						<div class="col-md-6 col-sm-10 ">
-							<input type="text" class="form-control" name="filecetid"
-								value="${download.filecetid}"
-								placeholder="填写编号，格式：例如2016年6月四级第一套:cet4_2016_6_1,六级只需要把cet4换成cet6">
-							<br /> <span id="listenidinfo" style="color: red;"></span>
-						</div>
-					</div>
+
+			<c:if test="${not empty download}">
+				<form class="form-horizontal" id="uploadForm">
 					<div class="form-group" id="filername">
-						<label for="exampleInputPassword4" class="col-sm-1 required">原文件名</label>
+						<label for="exampleInputPassword4" class="col-sm-1 required">文件名</label>
 						<div class="col-md-6 col-sm-10">
-							<input type="text" class="form-control"
-								value="${download.filername}" name="filername">
+							<input type="text" class="form-control" id="filerealname"
+								value="${download.filerealname}" name="filerealname">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword4" class="col-sm-1 required">下载量</label>
 						<div class="col-md-6 col-sm-10">
 							<input type="text" class="form-control" disabled="disabled"
-								value="${download.filedownloadsum}" name="filedownloadsum">
+								value="${download.filedownloadsum}" id="filedownloadsum"
+								name="filedownloadsum">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword4" class="col-sm-1 required">下载路径</label>
 						<div class="col-md-6 col-sm-10">
 							<input type="text" class="form-control" disabled="disabled"
-								value="${download.filepath}" name="filepath">
+								id="filepath" value="${download.filepath}" name="filepath">
 						</div>
 					</div>
-					<div class="form-group" id="filename">
-						<label for="exampleInputPassword4" class="col-sm-1 required">文件名</label>
+					<div class="form-group">
+						<label for="exampleInputPassword4" class="col-sm-1 required">文件名(加扩展名)</label>
 						<div class="col-md-6 col-sm-10">
 							<input type="text" class="form-control" disabled="disabled"
-								value="${download.filename}" name="filename"> <br /> <span
-								id="filenameinfo" style="color: red;"></span>
+								id="filename" value="${download.filename}" name="filename">
+							<br /> <span style="color: red;"></span>
 						</div>
 					</div>
 
@@ -84,8 +77,21 @@
 							</select>
 						</div>
 					</div>
-				</c:if>
-			</form>
+				</form>
+				<form action="<%=basePath%>file/uploadfile/${download.fileid}" method="post"
+					enctype="multipart/form-data">
+					<div class="form-group">
+						<label for="exampleInputPassword4" class="col-sm-1 required">新的文件:</label>
+						<div class="col-md-3 col-sm-10">
+							<input type="file" name="file" width="180px">
+						</div>
+						<button class="btn btn-info" type="submit">
+							<i class="icon icon-save"></i>上传
+						</button>
+					</div>
+				</form>
+			</c:if>
+
 			<div class="row" style="margin-top: 100px;">
 				<div class="col-md-6">
 					<div class="row">
@@ -98,6 +104,7 @@
 						</div>
 					</div>
 				</div>
+				
 				<div class="row">
 					<div class="col-md-6">
 						<div class="row">

@@ -19,9 +19,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.wynne.Entity.Cet;
+import com.wynne.Entity.Cet4Custom;
 import com.wynne.Entity.Feedback;
 import com.wynne.Entity.UserCustom;
 import com.wynne.Exception.CustomException;
+import com.wynne.Serivce.ICet4LoadingService;
+import com.wynne.Serivce.ICetService;
 import com.wynne.Serivce.IFeedbackService;
 import com.wynne.Serivce.IUserService;
 import com.wynne.Utils.HandleNull;
@@ -43,6 +47,12 @@ public class UserController {
 
 	@Autowired
 	private IFeedbackService FeedbackService;
+
+	@Autowired
+	private ICet4LoadingService cet4LoadingService;
+	
+	@Autowired
+	private ICetService cetService;
 
 	private final String SUCCESS="success";
 	@RequestMapping("/login2")
@@ -181,5 +191,38 @@ public class UserController {
 			jsonObject.put("attr", "false");
 		}
 		return jsonObject;
+	}
+
+	@RequestMapping("/search")
+	public String search(HttpSession session,HttpServletRequest request){
+		Cet4Custom cet4Custom=null;
+		String searchString=request.getParameter("search");
+		if(searchString.contains("四级单词")){
+			cet4Custom=cet4LoadingService.Select_cet4_info_ByPrimary("cet4_0002");
+			session.setAttribute("cet", "四级词汇");
+			session.setAttribute("cet4Custom", cet4Custom);
+			return "redirect:/Page/cet4/cet4_vocabulary.jsp";
+		}else if(searchString.contains("六级单词")){
+			cet4Custom=cet4LoadingService.Select_cet4_info_ByPrimary("cet6_0003");
+			session.setAttribute("cet", "六级词汇");
+			session.setAttribute("cet4Custom", cet4Custom);
+			return "redirect:/Page/cet4/cet4_vocabulary.jsp";
+		}else if(searchString.contains("四级测试")){
+			List<Cet> cet_list=new ArrayList<Cet>();
+			cet_list=cetService.findAll("cet4");
+			session.setAttribute("cet_Test_Type", "cet4");
+			session.setAttribute("cet_list", cet_list);
+			session.setAttribute("cet_count", cet_list.size());
+			return "redirect:/Page/cet4/cet4_questions.jsp";
+		}else if(searchString.contains("六级测试")){
+			List<Cet> cet_list=new ArrayList<Cet>();
+			cet_list=cetService.findAll("cet6");
+			session.setAttribute("cet_Test_Type", "cet6");
+			session.setAttribute("cet_list", cet_list);
+			session.setAttribute("cet_count", cet_list.size());
+			return "redirect:/Page/cet4/cet4_questions.jsp";
+		}
+
+		return "redirect:/Page/error/error.jsp";
 	}
 }

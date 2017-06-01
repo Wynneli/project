@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wynne.Dao.Answer2Mapper;
-import com.wynne.Entity.Answer;
 import com.wynne.Entity.Answer2;
 import com.wynne.Serivce.IRAnswerService;
 @Service

@@ -29,6 +29,67 @@
     from cet4_part2
     where cet4_2_test_id = #{cet42TestId,jdbcType=INTEGER} order by cet4_2_id
   </select>
+  <insert id="insertSelective" parameterType="com.wynne.Entity.Cet4_Part2" >
+    insert into cet4_part2
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cet42Id != null" >
+        cet4_2_id,
+      </if>
+      <if test="cet42TestId != null" >
+        cet4_2_test_id,
+      </if>
+      <if test="cet42Section != null" >
+        cet4_2_section,
+      </if>
+      <if test="cet42Topic != null" >
+        cet4_2_topic,
+      </if>
+      <if test="cet42Title != null" >
+        cet4_2_title,
+      </if>
+      <if test="cet42A != null" >
+        cet4_2_A,
+      </if>
+      <if test="cet42B != null" >
+        cet4_2_B,
+      </if>
+      <if test="cet42C != null" >
+        cet4_2_C,
+      </if>
+      <if test="cet42D != null" >
+        cet4_2_D,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cet42Id != null" >
+        #{cet42Id,jdbcType=INTEGER},
+      </if>
+      <if test="cet42TestId != null" >
+        #{cet42TestId,jdbcType=VARCHAR},
+      </if>
+      <if test="cet42Section != null" >
+        #{cet42Section,jdbcType=VARCHAR},
+      </if>
+      <if test="cet42Topic != null" >
+        #{cet42Topic,jdbcType=VARCHAR},
+      </if>
+      <if test="cet42Title != null" >
+        #{cet42Title,jdbcType=VARCHAR},
+      </if>
+      <if test="cet42A != null" >
+        #{cet42A,jdbcType=VARCHAR},
+      </if>
+      <if test="cet42B != null" >
+        #{cet42B,jdbcType=VARCHAR},
+      </if>
+      <if test="cet42C != null" >
+        #{cet42C,jdbcType=VARCHAR},
+      </if>
+      <if test="cet42D != null" >
+        #{cet42D,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
    <update id="updateByPrimaryKeySelective" parameterType="com.wynne.Entity.Cet4_Part2Custom" >
     update cet4_part2
     <set >

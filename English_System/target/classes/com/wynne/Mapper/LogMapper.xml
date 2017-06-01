@@ -7,6 +7,11 @@
     <result column="UserOperate" property="useroperate" jdbcType="VARCHAR" />
     <result column="Time" property="time" jdbcType="VARCHAR" />
   </resultMap>
+  
+  <select id="selectAll" resultMap="BaseResultMap" >
+   select * from log
+  </select>
+  
   <insert id="insert" parameterType="com.wynne.Entity.LogCustom" >
     insert into log (UserId, UserName, UserOperate, 
       Time)

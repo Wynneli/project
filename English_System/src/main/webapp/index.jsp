@@ -420,5 +420,5 @@
 
 
 	<br />
-	<jsp:include page="/Page/tail.jsp" />
+	<jsp:include page="Page/public/tail.jsp"></jsp:include>
 </body>

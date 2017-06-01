@@ -26,7 +26,6 @@ import com.wynne.Entity.Cet4_Part4;
 import com.wynne.Entity.Chart;
 import com.wynne.Entity.Compare_Result;
 import com.wynne.Serivce.ICet4_partService;
-import com.wynne.Utils.HandleUserName;
 @Service("iCet4_part2Service")
 public class Cet4_partServiceImpl implements ICet4_partService{
 	@Autowired

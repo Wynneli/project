@@ -8,14 +8,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wynne.Dao.Answer2Mapper;
 import com.wynne.Dao.Cet4Mapper;
-import com.wynne.Dao.ProcessMapper;
-import com.wynne.Dao.Unknown_WordMapper;
-import com.wynne.Entity.Answer2;
 import com.wynne.Entity.Cet4Custom;
-import com.wynne.Entity.ProcessCustom;
-import com.wynne.Entity.Unknown_WordCustom;
 import com.wynne.Serivce.ICet4LoadingService;
 import com.wynne.Utils.HandleCet;
 
@@ -34,7 +28,7 @@ public class Cet4LoadingServiceImpl  implements ICet4LoadingService{
 	@Autowired
 	private Cet4Mapper cet4Mapper;
 	
-	private static  final String cet4="cet4_";
+//	private static  final String cet4="cet4_";
 	private static  final String cet6="cet6_"; 
 	private static  final String zero="0000";
 

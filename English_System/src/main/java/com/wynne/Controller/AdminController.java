@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.apache.taglibs.standard.lang.jstl.test.beans.PublicBean1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,15 +16,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.wynne.Entity.Admin;
 import com.wynne.Entity.Cet4Custom;
 import com.wynne.Entity.CommentCustom;
 import com.wynne.Entity.UserCustom;
+import com.wynne.Serivce.IAdminService;
 import com.wynne.Serivce.ICet4LoadingService;
 import com.wynne.Serivce.ICommentService;
 import com.wynne.Serivce.IUserService;
 import com.wynne.Utils.HandleCet;
 import com.wynne.Utils.HandleNull;
 import com.wynne.Utils.Handlepage;
+import com.wynne.test.readfile;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -35,10 +40,43 @@ public class AdminController {
 	@Autowired
 	private ICet4LoadingService cet4LoadingService;
 
+	@Autowired
+	private IAdminService adminService;
+
 	private final static String SUCCESS="success";
 
 	private final static String FAILURE="failure";
 
+
+	@RequestMapping("/checkadmin")
+	public @ResponseBody Object checkadmin(@RequestBody Admin admin2 ){
+		JSONObject jsonObject=new JSONObject();
+		Admin admin=new Admin();
+		admin=adminService.checkadmin(admin2.getAdminname(), admin2.getAdminpassword());
+		if(admin!=null){
+			jsonObject.put("attr", "success");
+		}else{
+			jsonObject.put("attr", "false");
+			jsonObject.put("message", "账号或者密码错误");
+		}
+
+		return jsonObject;
+	}
+
+
+	@RequestMapping("/login")
+	public String  login( HttpServletRequest request,HttpSession session ){
+		Admin admin=new Admin();
+		admin=adminService.checkadmin(request.getParameter("username"), request.getParameter("userpassword"));
+		session.setAttribute("admin", admin);
+		return "redirect:/Page/admin4/admin.jsp";
+	}
+	
+	@RequestMapping("/loginout")
+	public String login_out(HttpSession session){
+		session.invalidate();
+		return "redirect:/Page/admin4/adminLogin.jsp";
+	}
 
 	@RequestMapping("/show_userinfo")
 	public ModelAndView show_userinfo(){
@@ -199,22 +237,7 @@ public class AdminController {
 	}
 
 
-	@RequestMapping("/deleteComment")
-	public @ResponseBody Object deleteComment( HttpServletRequest request){
-		JSONObject jsonObject=new JSONObject();
-		int count=0;
-		int commentId=Integer.parseInt(request.getParameter("commentId"));
-		count=commentService.deleteCommentByPrimaryKey(commentId);
-		List<CommentCustom> allComment_list =new ArrayList<CommentCustom>();
-		allComment_list=commentService.findAllComment(1);
-		if(count==1&&allComment_list!=null){
-			jsonObject.put("attr", SUCCESS);
-			jsonObject.put("allComment_list", allComment_list);
-		}else{
-			jsonObject.put("attr", FAILURE);
-		}
-		return jsonObject;
-	}
+
 
 	@RequestMapping("/uniquepage")
 	public @ResponseBody Object uniquepage(HttpServletRequest request){

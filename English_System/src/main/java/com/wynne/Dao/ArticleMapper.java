@@ -19,6 +19,8 @@ public interface ArticleMapper {
     
     List<Article> selectByarticleLike();
     
+    List<Article> selectAll();
+    
     int Count();
     
     int updateArticleLike(Article article);

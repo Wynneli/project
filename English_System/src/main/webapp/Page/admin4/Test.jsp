@@ -47,7 +47,7 @@
 						<div class="modal-dialog modal-lg">
 							<div class="modal-content">
 								<div class="panel panel-info">
-									<div class="panel-heading">新增用户信息</div>
+									<div class="panel-heading">新增试题信息</div>
 									<div class="panel-body">
 										<form class="form-horizontal" id="userform">
 											<div class="row">
@@ -63,7 +63,8 @@
 													</div>
 												</div>
 											</div>
-											<br /> <span id="checkcetid" class="span" style="color:red;padding-left:100px;"></span> <br /> <br />
+											<br /> <span id="checkcetid" class="span"
+												style="color: red; padding-left: 100px;"></span> <br /> <br />
 											<div class="row">
 												<div class="col-md-1"></div>
 												<div class="col-md-8">
@@ -76,8 +77,8 @@
 													</div>
 												</div>
 											</div>
-											<br /> <span id="checkcetinfo" class="span" style="color:red;padding-left:100px;"> </span> <br />
-											<br />
+											<br /> <span id="checkcetinfo" class="span"
+												style="color: red; padding-left: 100px;"> </span> <br /> <br />
 											<button type="button" class="btn btn-success btn-block"
 												onclick="addcet()">确认</button>
 
@@ -89,10 +90,11 @@
 					</div>
 				</div>
 				<div class="col-md-2">
-					<button class="btn btn-success btn-block" type="button"
-						onclick="AddCet()">
-						<i class="icon icon-plus"></i> 新增试题
-					</button>
+					<a href="<%=basePath%>cet/addinfo" target="myframe">
+						<button class="btn btn-success btn-block" type="button">
+							<i class="icon icon-plus"></i> 新增试题
+						</button>
+					</a>
 				</div>
 			</div>
 			<br />
@@ -122,8 +124,7 @@
 								<td>${list.cetid}</td>
 								<td>${list.cetInfo}</td>
 								<td>${list.cetEntend1}</td>
-								<td><a
-									href="<%=basePath%>cet/editCet/${list.cetid}"
+								<td><a href="<%=basePath%>cet/editCet/${list.cetid}"
 									target="myframe"><button class="btn btn-mini btn-info">
 											<i class="icon icon-edit"></i> 编辑试题信息
 										</button></a> &nbsp;&nbsp;&nbsp;

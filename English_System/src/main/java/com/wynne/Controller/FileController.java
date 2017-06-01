@@ -1,7 +1,6 @@
 package com.wynne.Controller;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,18 +8,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.ServletOutputStream;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+
 import org.apache.commons.fileupload.util.Streams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,10 +29,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
-import com.wynne.Entity.Answer2;
 import com.wynne.Entity.Download;
 import com.wynne.Serivce.IDownloadService;
-import com.wynne.Utils.SystemTime;
+import com.wynne.Utils.HandleSize;
 
 @Controller
 @RequestMapping("/file")
@@ -46,20 +44,58 @@ public class FileController {
 
 	private final static String FAILURE="failure";
 
-	private final static String Path="G:\\毕设\\temp\\Download\\file\\";
+	private final static String file_Path="G:\\毕设\\temp\\Download\\test\\";
+
+	private final static String mp3_Path="G:\\毕设\\temp\\Download\\MP3\\";
 
 	@RequestMapping("/show_listeninfo")
 	public ModelAndView show_listeninfo(){
 		ModelAndView modelAndView=new ModelAndView();
 		List<Download> list=new ArrayList<Download>();
-		list=downloadService.findAll();
+		list=downloadService.findAll2("mp3");
 		modelAndView.addObject("listen_list",list);
 		modelAndView.setViewName("admin4/listen");
 		return modelAndView;
 	}
 
+	@RequestMapping("/show_testinfo")
+	public ModelAndView show_testinfo(){
+		ModelAndView modelAndView=new ModelAndView();
+		List<Download> list=new ArrayList<Download>();
+		list=downloadService.findAll2("doc");
+		modelAndView.addObject("listen_list",list);
+		modelAndView.setViewName("admin4/test2");
+		return modelAndView;
+	}
+
+	@RequestMapping("/show_docinfo")
+	public ModelAndView show_docinfo(){
+		ModelAndView modelAndView=new ModelAndView();
+		List<Download> list=new ArrayList<Download>();
+		list=downloadService.findAll2("docx");
+		modelAndView.addObject("listen_list",list);
+		modelAndView.setViewName("admin4/doc");
+		return modelAndView;
+	}
+
+
+	@RequestMapping("/show_Allfile")
+	public String show_Allfile(HttpSession session){
+		List<Download> download_list=new ArrayList<Download>();
+		List<Download> download_list2=new ArrayList<Download>();
+		List<Download> download_list3=new ArrayList<Download>();
+		download_list=downloadService.findAll2("mp3");
+		download_list2=downloadService.findAll2("doc");
+		download_list3=downloadService.findAll2("docx");
+		session.setAttribute("download_list", download_list);
+		session.setAttribute("download_list2", download_list2);
+		session.setAttribute("download_list3", download_list3);
+		return "redirect:/Page/more/download.jsp";
+	}
+
 	@RequestMapping("/editListen/{downloadId}")
 	public ModelAndView editListen(@PathVariable("downloadId") int fileid){
+		System.err.println("editListen");
 		ModelAndView modelAndView=new ModelAndView();
 		Download download=new Download();
 		download=downloadService.findDownloadByPrimaryKey(fileid);
@@ -92,12 +128,29 @@ public class FileController {
 	public @ResponseBody Object editAndsave(@RequestBody Download download ){
 		JSONObject jsonObject=new JSONObject();
 		int count=0;
-		System.out.println(download);
 		if(download!=null){
-			count=downloadService.Update(download);
+			count=downloadService.Update2(download);
 		}
 		if(count==1){
+			download=downloadService.findDownloadByPrimaryKey(download.getFileid());
 			jsonObject.put("attr", SUCCESS);
+			jsonObject.put("download", download);
+		}else{
+			jsonObject.put("attr", FAILURE);
+		}
+		return jsonObject;
+	}
+
+	@RequestMapping("/Brushlisten")
+	public @ResponseBody Object Brushlisten(@RequestBody Download download ){
+		JSONObject jsonObject=new JSONObject();
+		List<Download> list=new ArrayList<Download>();
+		if(download!=null){
+			list=downloadService.findAllOption2(download.getFiletype(), download.getFiletypes());
+		}
+		if(list.size()!=0){
+			jsonObject.put("attr", SUCCESS);
+			jsonObject.put("list", list);
 		}else{
 			jsonObject.put("attr", FAILURE);
 		}
@@ -107,7 +160,7 @@ public class FileController {
 	@RequestMapping("/BatchdeleteDownload")
 	public @ResponseBody Object BatchdeleteAnswer(HttpServletRequest request){
 		JSONObject jsonObject=new JSONObject();
-		List<Download> list=new ArrayList<Download>();
+//		List<Download> list=new ArrayList<Download>();
 		int counts=0;
 		String FileIdList=request.getParameter("FileIdList");
 		String[] items=FileIdList.split(",");
@@ -125,54 +178,59 @@ public class FileController {
 		return jsonObject;
 	}
 
-	@RequestMapping("uploadfile")
-	public String uploadfile(@RequestParam("file") MultipartFile file,HttpSession session){
-		Download download=new Download();
-		String name=SystemTime.getTimeToFile();
+	@RequestMapping("/uploadfile/{fileid}" )
+	public ModelAndView uploadfile(@RequestParam(value="file") MultipartFile file,HttpServletRequest request,@PathVariable("fileid") int fileid){
+		ModelAndView modelAndView=new ModelAndView();
+		Download download=downloadService.findDownloadByPrimaryKey(fileid);
+		String file_Path=download.getFilepath();
+		file_Path=file_Path.substring(5,file_Path.length());
+		System.out.println("G:/毕设/temp"+file_Path);
+		System.out.println(fileid);
 		String originalname=file.getOriginalFilename();
-		download.setFilepath("/file/temp/Download/file/"+SystemTime.getTimeToFile()+originalname);
-		download.setFilename(SystemTime.getTimeToFile()+originalname);
-		download.setFiletype("文本");
-		download.setFiledownloadsum(0);
+		System.out.println(originalname);
 		long size=file.getSize();
-		int count=downloadService.insertrecord(download);
-		if(count==1){
-			session.setAttribute("attr", "上传成功!");
-			if(!file.isEmpty()){
-				//			System.out.println("here");
-				try {
-					Streams.copy(file.getInputStream(),new FileOutputStream("G:\\毕设\\temp\\Download\\file\\"+name+file.getOriginalFilename()),true);
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+		String filesize=HandleSize.getPrintSize(size);
+		download.setFilesize(filesize);
+		System.out.println(filesize);
+		if(!file.isEmpty()){
+			try {
+				Streams.copy(file.getInputStream(),new FileOutputStream("G:/毕设/temp"+file_Path),true);
+				downloadService.Update(download);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-		}else{
-			session.setAttribute("attr", "上传失败！");
 		}
-		return  "redirect:/Page/other/info.jsp";
+		modelAndView.setViewName("admin4/admin");
+		return modelAndView;
 	}
 
-	@RequestMapping("/downloadfile/{filename}")
-	public void downloadfile(@PathVariable("filename") String filename,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		//下载的文件  
-		System.out.println(filename);
-		String file = new String(filename.getBytes("iso-8859-1"),"utf-8");//用request获取URL传递的中文参数
-		System.out.println(file);
-		String FileName=file.substring(14, file.length());
-		System.out.println(FileName);
-		System.out.println(file);
-		String fileNamePath =Path+file;
-		//转码，免得文件名中文乱码  
-		System.out.println(fileNamePath);
-		// 设置响应头，控制浏览器下载该文件  
-		response.addHeader("Content-Disposition", "attachment;filename="+FileName);
-		response.setContentType("application/x-download");
+	@RequestMapping("/downloadfile")
+	public void downloadfile(@RequestParam("filenames") String filenames,@RequestParam("fileid") int fileid,@RequestParam("file3") int filesum,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		String fileNamePath=null;
+		String file = new String(filenames.getBytes("iso-8859-1"),"utf-8");//用request获取URL传递的中文参数
+		Download download=new Download();
+		download.setFiledownloadsum(filesum+1);
+		download.setFileid(fileid);
+		if(file.substring(file.lastIndexOf("."),file.length()).equals(".mp3")){
+			fileNamePath =mp3_Path+file;
+			response.setContentType("audio/mp3"); 
+		}else{
+			fileNamePath =file_Path+file;
+			response.setContentType("application/msword"); 
+		}
+
+
 		// 读取要下载的文件，保存到文件输入流  
 		InputStream bis = new BufferedInputStream(new FileInputStream(new File(fileNamePath)));  
+		// 设置响应头，控制浏览器下载该文件  
+
+		response.setHeader("Content-disposition", "attachment;filename="+new String(file.getBytes("utf-8"),"ISO-8859-1"));
+
 		// 创建输出流  
-		BufferedOutputStream out2 = new BufferedOutputStream(response.getOutputStream());  
+		//		BufferedOutputStream out2 = new BufferedOutputStream(response.getOutputStream());  
+		OutputStream out2 = response.getOutputStream();  
 		// 创建缓冲区  
 		int len = 0;  
 		// 循环将输入流中的内容读取到缓冲区当中  
@@ -184,33 +242,19 @@ public class FileController {
 		// 关闭文件输入流  
 		bis.close();  
 		// 关闭输出流  
-		out2.close();  
+		out2.close();
+		downloadService.Update(download);
 	} 
 
-	@RequestMapping("/downloadfile2")
-	public void downloadfile(HttpServletRequest request,HttpServletResponse response) throws Exception{
-		//下载的文件  
 
-		String file = new String(request.getParameter("filename").getBytes("iso-8859-1"),"utf-8");//用request获取URL传递的中文参数
-		System.out.println(file);
-		String FileName=file.substring(14, file.length());
-		System.out.println(FileName);
-		System.out.println(file);
-		String fileNamePath =Path+file;
-		//转码，免得文件名中文乱码  
-		System.out.println(fileNamePath);
-		// 设置响应头，控制浏览器下载该文件  
-
-		FileInputStream fis=new FileInputStream(file);
-		response.setHeader("Content-Disposition", "attachment;filename="+FileName);
-		ServletOutputStream out=response.getOutputStream();
-
-
+	@RequestMapping("/test")
+	public @ResponseBody Object test(HttpServletRequest request) throws IOException, ServletException{
+		JSONObject jsonObject=new JSONObject();
+		//		String teString=request.getParameter("filetime");
+		//		String file=request.getParameter("file");
+		System.out.println(request.getParameter("filename"));
+		Part part=request.getPart("file");
+		System.out.println(part.getName());
+		return jsonObject;
 	}
-
-	@RequestMapping("/test/{name}")
-	public void test(@PathVariable("name") String name,HttpServletRequest request,HttpServletResponse response) throws Exception{
-
-		System.out.println(name);
-	} 
 }

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mysql.fabric.xmlrpc.base.Array;
 import com.wynne.Entity.Feedback;
+import com.wynne.Entity.User;
+import com.wynne.Entity.UserCustom;
 import com.wynne.Serivce.IFeedbackService;
 import com.wynne.Utils.SystemTime;
 
@@ -46,7 +47,7 @@ public class FeedBackController {
 		JSONObject jsonObject=new JSONObject();
 		int feedbackId=0;
 		int count=0;
-		List<Feedback> list=new ArrayList<Feedback>();
+//		List<Feedback> list=new ArrayList<Feedback>();
 		String feedback=request.getParameter("feedback_id");
 		if(!feedback.equals("")){
 			feedbackId=Integer.parseInt(feedback);
@@ -127,6 +128,19 @@ public class FeedBackController {
 		list=feedbackService.FindAllFeedBack();
 		modelAndView.addObject("feedback_list", list);
 		modelAndView.setViewName("admin4/feedback");
+		return modelAndView;
+	}
+	
+	
+	@RequestMapping("/loadingfeedback")
+	public ModelAndView loadingfeedback(HttpSession session){
+		ModelAndView modelAndView=new ModelAndView();
+		UserCustom user=(UserCustom)session.getAttribute("user");
+		String username=user.getUsername();
+		List<Feedback> list=new ArrayList<Feedback>();
+		list=feedbackService.findfeedbackOption(username);
+		modelAndView.addObject("feedback_list2", list);
+		modelAndView.setViewName("user/feedback");
 		return modelAndView;
 	}
 

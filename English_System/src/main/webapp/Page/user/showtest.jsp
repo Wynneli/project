@@ -22,7 +22,7 @@
 <script type="text/javascript"
 	src="<%=basePath%>JS/Third_Party/zui.chart.min.js"></script>
 
-<script type="text/javascript" src="<%=basePath%>JS/User/showtest.js"></script>
+<script type="text/javascript" src="<%=basePath%>JS/User/showtest3.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
@@ -45,7 +45,6 @@
 									<th>选择题数量</th>
 									<th>正确数量</th>
 									<th>错误数量</th>
-									<th>正确率</th>
 									<th>操作</th>
 								</tr>
 							</thead>
@@ -55,11 +54,11 @@
 										<tr>
 											<td>${count.count}</td>
 											<td>${list.chartCetTitle}</td>
-											<td>${list.chartSum}</td>
+											<td>55</td>
 											<td>${list.chartCorrect}</td>
 											<td>${list.chartError}</td>
-											<td>${list.chartPec}</td>
-											<td><a target="_blank" href="<%=basePath%>cet4/cet4_test_info?cet42TestId=${list.chartCetId}"><i
+											<td><a target="_blank"
+												href="<%=basePath%>cet4/cet4_test_info?cet42TestId=${list.chartCetId}"><i
 													class="icon icon-zoom-in"></i>查看试题</a>
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
 												href="<%=basePath%>cet4/showanswer()"><i
@@ -73,10 +72,6 @@
 						<div style="display: none;" id="chartcet4">
 							<div class="col-md-6">
 								<canvas id="myChart" width="500" height="280"></canvas>
-								<div class="text">最近10套试题分析</div>
-							</div>
-							<div class="col-md-6">
-								<canvas id="myLineChart" width="400" height="250"></canvas>
 								<div class="text">最近10套试题分析</div>
 							</div>
 						</div>

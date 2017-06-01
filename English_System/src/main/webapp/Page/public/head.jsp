@@ -51,9 +51,11 @@
 					class="dropdown-toggle" data-toggle="dropdown">课程学习<b
 						class="caret"></b></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="<%=basePath%>cet4/loading_cet4_word?cetid=cet4_">4级英语学习</a></li>
+						<li><a href="<%=basePath%>cet4/loading_cet4_word?cetid=cet4_"
+							target="_blank">4级英语学习</a></li>
 						<li role="separator" class="divider"></li>
-						<li><a href="<%=basePath%>cet4/loading_cet4_word?cetid=cet6_">6级英语学习</a></li>
+						<li><a href="<%=basePath%>cet4/loading_cet4_word?cetid=cet6_"
+							target="_blank">6级英语学习</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a href="#">大学英语学习</a></li>
 						<li role="separator" class="divider"></li>
@@ -64,41 +66,59 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">在线测试 <b class="caret"></b></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="<%=basePath%>cet4/show_item?cet4id=cet4">四级真题</a></li>
+						<li><a href="<%=basePath%>cet4/show_item?cet4id=cet4"
+							target="_blank">四级真题</a></li>
 						<li class="divider"></li>
-						<li><a href="<%=basePath%>cet4/show_item?cet4id=cet6">六级真题</a></li>
+						<li><a href="<%=basePath%>cet4/show_item?cet4id=cet6"
+							target="_blank">六级真题</a></li>
 						<li class="divider"></li>
 						<li><a href="#">试题测试</a></li>
 						<li class="divider"></li>
 						<li><a href="#">试题测试</a></li>
 					</ul></li>
+				<!-- 
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" role="menu" href="#">资讯动态<b
 						class="caret"></b></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">考试动态</a></li>
+						<li><a href="#" target="_blank">考试动态</a></li>
 						<li class="divider"></li>
-						<li><a href="#">报名动态</a></li>
+						<li><a href="#" target="_blank">考试报名</a></li>
 						<li class="divider"></li>
-						<li><a href="#">政策大纲</a></li>
+						<li><a href="#" target="_blank">成绩查询</a></li>
+						<li class="divider"></li>
+						<li><a href="#" target="_blank">准考证</a></li>
+					</ul></li> -->
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" role="menu" href="#">其他<b class="caret"></b></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="<%=basePath%>
+								article/showAllArticle"
+							target="_blank">美文推荐</a></li>
+						<li class="divider"></li>
+						<li><a href="<%=basePath%>sentence/showAllSentence"
+							target="_blank">精美句子</a></li>
+						<li class="divider"></li>
 					</ul></li>
 			</ul>
 
 
-			<form name="submit" class="navbar-form navbar-left" role="search">
+			<form action="<%=basePath%>user/search" method="post" class="navbar-form navbar-left" role="search">
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="搜索">
+					<input type="text" class="form-control" name="search" placeholder="搜索">
 				</div>
-				<button type="submit" class="btn btn-default">
-					<i class=" icon-search"></i>&nbsp;搜索
-				</button>
+					<button type="submit" class="btn btn-default">
+						<i class=" icon-search"></i>&nbsp;搜索
+					</button>
 			</form>
 
 			<!-- 右侧的导航项目 -->
 			<ul class="nav navbar-nav navbar-right">
 				<c:if test="${empty user}">
-					<li><a href="<%=basePath%>Page/login/Login2.jsp">登录</a></li>
-					<li><a href="<%=basePath%>Page/login/register2.jsp">注册</a></li>
+					<li><a href="<%=basePath%>Page/login/Login2.jsp"
+						target="_blank">登录</a></li>
+					<li><a href="<%=basePath%>Page/login/register2.jsp"
+						target="_blank">注册</a></li>
 				</c:if>
 
 				<c:if test="${not empty user}">
@@ -108,17 +128,13 @@
 							<li><a href="<%=basePath%>Page/user/user.jsp">个人中心</a></li>
 						</ul></li>
 				</c:if>
-
-
 				<li><a href="<%=basePath%>Page/Login.jsp">帮助</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">更多 <b class="caret"></b></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="<%=basePath%>Page/more/feedback.jsp">用户信息反馈</a></li>
-						<li><a href="#">HTML5</a></li>
-						<li><a href="#">Javascript</a></li>
-						<li class="divider"></li>
-						<li><a href="#">探索宇宙</a></li>
+						<li><a href="<%=basePath%>Page/more/feedback.jsp"
+							target="_blank">用户信息反馈</a></li>
+						<li><a href="<%=basePath%>/file/show_Allfile" target="_blank">网站资源下载</a></li>
 					</ul></li>
 			</ul>
 		</div>

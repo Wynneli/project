@@ -272,6 +272,6 @@
 		</div>
 	</div>
 	<br/>
-	<jsp:include page="../tail.jsp"/>
+	<jsp:include page="../public/tail.jsp"></jsp:include>
 </body>
 </html>

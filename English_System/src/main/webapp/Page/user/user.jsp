@@ -11,7 +11,8 @@
 
 <link rel="stylesheet" href="<%=basePath%>CSS/user/user.css">
 <link rel="stylesheet" href="<%=basePath%>CSS/user/pintuer.css">
-<link rel="stylesheet" href="<%=basePath%>CSS/fonts/font-awesome.min.css">
+<link rel="stylesheet"
+	href="<%=basePath%>CSS/fonts/font-awesome.min.css">
 
 <script type="text/javascript"
 	src="<%=basePath%>JS/Third_Party/jquery-2.1.4.min.js"></script>
@@ -28,14 +29,14 @@
 			</h1>
 		</div>
 		<div class="head-l">
-			<a class="button button-little bg-green" href="<%=basePath%>" ><span
-				class="icon-home"></span> 前台首页</a> &nbsp;&nbsp;&nbsp;&nbsp;<a class="button button-little bg-red"
+			<a class="button button-little bg-green" href="<%=basePath%>"><span
+				class="icon-home"></span> 前台首页</a> &nbsp;&nbsp;&nbsp;&nbsp;<a
+				class="button button-little bg-red"
 				href="<%=basePath%>/user/loginout"><i class="icon-off"></i> 退出登录</a>
 		</div>
 	</div>
 	<div class="leftnav">
-		<div class="leftnav-title">
-		</div>
+		<div class="leftnav-title"></div>
 		<h2>
 			<span class="icon-user"></span>基本设置
 		</h2>
@@ -46,19 +47,10 @@
 					class="icon-caret-right"></span>个人信息管理</a></li>
 			<li><a href="<%=basePath%>cet4/loadingCetInfo" target="right"><span
 					class="icon-caret-right"></span>词汇学习情况</a></li>
-			<li><a href="<%=basePath%>cet4/loadingCetTestinfo" target="right"><span
-					class="icon-caret-right"></span>测试情况</a></li>
-		</ul>
-		<h2>
-			<span class="icon-pencil-square-o"></span>栏目管理
-		</h2>
-		<ul>
-			<li><a href="list.html" target="right"><span
-					class="icon-caret-right"></span>内容管理</a></li>
-			<li><a href="add.html" target="right"><span
-					class="icon-caret-right"></span>添加内容</a></li>
-			<li><a href="cate.html" target="right"><span
-					class="icon-caret-right"></span>分类管理</a></li>
+			<li><a href="<%=basePath%>cet4/loadingCetTestinfo"
+				target="right"><span class="icon-caret-right"></span>测试情况</a></li>
+			<li><a href="<%=basePath%>feedback/loadingfeedback"
+				target="right"><span class="icon-caret-right"></span>反馈信息</a></li>
 		</ul>
 	</div>
 
@@ -71,9 +63,9 @@
 			href="##">英文</a></li>
 	</ul>
 	<div class="admin">
-		<iframe scrolling="auto" rameborder="0" src="show.jsp" name="right"
-			width="100%" height="100%"></iframe>
+		<iframe scrolling="auto" rameborder="0" src="Change_Password.jsp"
+			name="right" width="100%" height="100%"></iframe>
 	</div>
-	
+
 </body>
 </html>

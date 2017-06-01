@@ -36,7 +36,8 @@
 		<div class="col-md-8"></div>
 		<div class="col-md-2">
 			<img src="/file/Images/piki.jpg" class="img-circle img_setting"></img>
-			<span class="span_setting">Tonny</span>&nbsp;&nbsp;&nbsp; <a href="#"><i
+			<span class="span_setting">${admin.adminname}</span>&nbsp;&nbsp;&nbsp;
+			<a href="<%=basePath%>admin/loginout"><i
 				class="icon icon-signout i_icon_color icon-2x"></i></a>
 		</div>
 		<div class="col-md-1"></div>
@@ -62,8 +63,9 @@
 			<li class="nav-parent"><a href="#"><i
 					class="icon icon-file-text" style="color: blue;"></i>试题管理</a>
 				<ul class="nav" id="second_ul">
-					<li><a href="<%=basePath%>cet/showcetinfo/cet4_" target="myframe"><i
-							class="icon icon-user" style="color: blue;"></i>四级试题</a></li>
+					<li><a href="<%=basePath%>cet/showcetinfo/cet4_"
+						target="myframe"><i class="icon icon-user"
+							style="color: blue;"></i>四级试题</a></li>
 					<li><a href="<%=basePath%>cet/showcetinfo/cet6_"
 						target="myframe"><i class="icon icon-user"
 							style="color: blue;"></i>六级试题</a></li>
@@ -74,21 +76,25 @@
 					<li><a href="<%=basePath%>file/show_listeninfo"
 						target="myframe"><i class="icon icon-music"
 							style="color: blue;"></i>听力录音</a></li>
-					<li><a href="<%=basePath%>download/show_cet4info/cet6_"
-						target="myframe"><i class="icon icon-file-text-o"
-							style="color: blue;"></i>试题</a></li>
-					<li><a href="<%=basePath%>download/show_cet4info/cet6_"
-						target="myframe"><i class="icon icon-expand"
-							style="color: blue;"></i>视频</a></li>
-					<li><a href="<%=basePath%>download/show_cet4info/cet6_"
-						target="myframe"><i class="icon icon-file-word" 
-							style="color: blue;"></i>词汇表</a></li>
+					<li><a href="<%=basePath%>file/show_testinfo" target="myframe"><i
+							class="icon icon-file-text-o" style="color: blue;"></i>试题</a></li>
+					<li><a href="<%=basePath%>file/show_docinfo" target="myframe"><i
+							class="icon icon-file-word" style="color: blue;"></i>词汇表</a></li>
 				</ul></li>
 			<li><a href="<%=basePath%>answer/showAnswerinfo"
 				target="myframe"><i class="icon icon-time" style="color: blue;"></i>参考答案管理</a></li>
 			<li><a href="<%=basePath%>feedback/showfeedbackinfo"
 				target="myframe"><i class="icon icon-reply" style="color: blue;">
 				</i>用户反馈信息管理</a></li>
+			<li><a href="<%=basePath%>article/showAllArticles"
+				target="myframe"><i class="icon icon-file-text-o"
+					style="color: blue;"> </i>文章管理</a></li>
+			<li><a href="<%=basePath%>sentence/AshowAllSentence"
+				target="myframe"><i class="icon icon-file-text-o"
+					style="color: blue;"> </i>句子管理</a></li>
+			<li><a href="<%=basePath%>log/showlog" target="myframe"><i
+					class="icon icon-file-text-o" style="color: blue;"> </i>日志管理</a></li>
+
 		</ul>
 		</nav>
 	</div>

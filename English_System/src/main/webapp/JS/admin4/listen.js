@@ -33,6 +33,71 @@ function deleteListen(fileid){
 	}
 }
 
+
+function select(a){
+	var f="--状态筛选--";
+	var s="--是否接受--";
+	var sltfirst=$('#first option:selected').text();
+	if(sltfirst==f){
+		sltfirst="";
+	}
+	var data={
+			filetypes:sltfirst,
+			filetype:a,
+	}
+	if(sltfirst!=""){
+		$.ajax({
+			type:'post',
+			url:"http://localhost:8080/English_System/file/Brushlisten",
+			data:JSON.stringify(data),
+			contentType: "application/json;charset=utf-8",
+			success:function(data){
+				if(data.attr=="success"){
+					if(data.list.length!=0){
+						$("#listeninfo tbody").html("");
+						for(var i=0;i<data.list.length;i++){
+							var temp='<tr id="'+data.list[i].fileid+'">'+
+							'<td><label> <input type="checkbox" name="checkbox"'+
+							'value="'+data.list[i].fileid+'"></label></td>'+
+							'<td>'+data.list[i].fileid+'</td>'+
+							'<td>'+data.list[i].filetype+'</td>'+
+							'<td>'+data.list[i].filerealname+'</td>'+
+							'<td>'+data.list[i].filesize+'</td>'+
+							'<td>'+data.list[i].filetime+'</td>'+
+							'<td>'+data.list[i].filedownloadsum+'</td>'+
+							'<td>'+data.list[i].filetypes+'</td>'+
+							'<td><a id="'+data.list[i].fileid+'"'+
+							'href="http://localhost:8080/English_System/file/editListen/'+data.list[i].fileid+'"'+
+							'target="myframe"><button class="btn btn-mini btn-info">'+
+							'<i class="icon icon-edit"></i> 编辑'+
+							' </button></a> &nbsp;&nbsp;&nbsp;'+
+							' <button class="btn btn-mini btn-danger"'+
+							'  onclick="deleteListen('+data.list[i].fileid+')" type="button">'+
+							' <i class="icon icon-trash"></i> 删除'+
+							'</button></td></tr>';
+							$("#listeninfo tbody").append(temp);
+						}
+
+					} 
+					new $.zui.Messager('数据加载成功！', {
+						time:'4000',
+						icon: 'check',
+						type: 'success' ,
+						placement: 'top' // 定义显示位置
+					}).show();
+				}else{
+					new $.zui.Messager('对不起，没有相关数据', {
+						time:'4000',
+						icon: 'info',
+						type: 'danger' ,
+						placement: 'top' // 定义显示位置
+					}).show();
+				}
+			}
+		});
+	}
+}
+
 function deleteListen2(fileid){
 	if(confirm( "确定要删除这条记录吗?" )){
 		$.ajax({
@@ -69,85 +134,45 @@ function deleteListen2(fileid){
 
 
 function editAndsave(fileid){
-	var filecetid=$("input[name='filecetid']").val().trim();
+	var filerealname=$("input[name='filerealname']").val();
 	var filename=$("input[name='filename']").val();
-	var filername=$("input[name='filername']").val();
 	var filepath=$("input[name='filepath']").val();
-	var acetIdValidate="success";
-	var filenameValidate="success";
-	var font=filecetid.substring(0,8);
-	var parttern=/^[0-9]*$/;
-	var back=filecetid.substring(9,filecetid.length);
 	var data={
 			fileid:fileid,
-			filecetid:filecetid,
 			filename:filename,
-			filername:filername,
+			filerealname:filerealname,
 			filepath:filepath
 	}
-	if(filecetid.length==14||filecetid.length==13){
-		if(font=="cet4_201"||font=="cet6_201"){
-			if(parttern.test(filecetid.substring(8,9))){
-				if(back=="_12_1"||back=="_12_2"||back=="_12_3"||back=="_6_1"||back=="_6_2"||back=="_6_3"){
-					$("#listenidinfo").html("");
-					$("#filecetid").removeClass("has-error");
-					$("#filecetid").addClass("has-success");
-					acetIdValidate="success";
-				}else{
-					acetIdValidate="false";
-					$("#listenidinfo").html("格式不正确,正确格式：“例如：2016年6月四级第一套:cet4_2016_6_1,六级只需要把cet4换成cet6”");
-					$("#filecetid").addClass("has-error");
+
+	$.ajax({
+		type:'post',
+		url:"http://localhost:8080/English_System/file/editAndsave",
+		data:JSON.stringify(data),
+		contentType:'application/json;charset=utf-8',
+		success:function(data){
+			if(data.attr=="success"){
+				alert("success4");
+				if(data.download!=null){
+					document.getElementById("filename").value=data.download.filename;
+					document.getElementById("filedownloadsum").value=data.download.filedownloadsum;
+					document.getElementById("filepath").value=data.download.filepath;
 				}
+				new $.zui.Messager('修改成功！', {
+					time:'4000',
+					icon: 'check',
+					type: 'success' ,
+					placement: 'top' // 定义显示位置
+				}).show();
 			}else{
-				acetIdValidate="false";
-				$("#listenidinfo").html("格式不正确,正确格式：“例如：2016年6月四级第一套:cet4_2016_6_1,六级只需要把cet4换成cet6”");
-				$("#filecetid").addClass("has-error");
+				new $.zui.Messager('对不起，修改信息失败！', {
+					time:'4000',
+					icon: 'info',
+					type: 'danger' ,
+					placement: 'top' // 定义显示位置
+				}).show();
 			}
-		}else{
-			acetIdValidate="false";
-			$("#listenidinfo").html("格式不正确,正确格式：“例如：2016年6月四级第一套:cet4_2016_6_1,六级只需要把cet4换成cet6”");
-			$("#filecetid").addClass("has-error");
 		}
-	}else{
-		$("#listenidinfo").html("格式不正确,正确格式：“例如：2016年6月四级第一套:cet4_2016_6_1,六级只需要把cet4换成cet6”");
-		$("#filecetid").addClass("has-error");
-		acetIdValidate="false";
-	}
-	if(filername==""){
-		$("#filenameinfo").html("原文件名不能为空!");
-		$("#filername").addClass("has-error");
-		filenameValidate="false";
-	}
-	if(acetIdValidate=="success"&&filenameValidate=="success"){
-		$.ajax({
-			type:'post',
-			url:"http://localhost:8080/English_System/file/editAndsave",
-			data:JSON.stringify(data),
-			contentType:'application/json;charset=utf-8',
-			success:function(data){
-				if(data.attr=="success"){
-					new $.zui.Messager('修改成功！', {
-						time:'4000',
-						icon: 'check',
-						type: 'success' ,
-						placement: 'top' // 定义显示位置
-					}).show();
-				}else{
-					if(data.info=="exist"){
-						$("#listenidinfo").html("录音编号已经存在，请输入其他的命名！");
-						$("#filecetid").removeClass("has-success");
-						$("#filecetid").addClass("has-error");
-					}
-					new $.zui.Messager('对不起，修改信息失败！', {
-						time:'4000',
-						icon: 'info',
-						type: 'danger' ,
-						placement: 'top' // 定义显示位置
-					}).show();
-				}
-			}
-		});
-	}
+	});
 }
 
 function Batchdelete(){
@@ -203,4 +228,23 @@ function Batchdelete(){
 			});
 		}
 	}
+}
+
+function test(){
+//	var formElement = document.querySelector("form");
+	var formData = new FormData();
+	alert($("input[name='filename']").val());
+	formData.append("filename", $("input[name='filename']").val());
+	formData.append('file',$('#file')[0].files[0]);
+
+	$.ajax({
+		type:'post',
+		url:'http://localhost:8080/English_System/file/test',
+		data:formData,
+		processData : false,  //必须false才会避开jQuery对 formdata 的默认处理   
+		contentType : false,  //必须false才会自动加上正确的Content-Type 
+		success:function(data){
+			alert(1234);
+		}
+	});
 }

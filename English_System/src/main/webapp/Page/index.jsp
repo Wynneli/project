@@ -106,7 +106,7 @@
 					<div class="panel">
 						<div class="panel-heading">
 							<div class="row">
-								<div class="col-md-3">考试动态</div>
+								<div class="col-md-3">考试报名</div>
 								<div class="col-md-6"></div>
 								<div class="col-md-3">
 									<a href="#" class="asetting">更多<i
@@ -146,7 +146,7 @@
 					<div class="panel">
 						<div class="panel-heading">
 							<div class="row">
-								<div class="col-md-3">考试动态</div>
+								<div class="col-md-3">成绩查询</div>
 								<div class="col-md-6"></div>
 								<div class="col-md-3">
 									<a href="#" class="asetting">更多<i
@@ -188,7 +188,7 @@
 					<div class="panel">
 						<div class="panel-heading">
 							<div class="row">
-								<div class="col-md-3">考试动态</div>
+								<div class="col-md-3">准考证</div>
 								<div class="col-md-6"></div>
 								<div class="col-md-3">
 									<a href="#" class="asetting">更多<i
@@ -232,7 +232,7 @@
 						<h3 class="h3_setting">&nbsp;&nbsp;&nbsp;&nbsp;考试提醒</h3>
 					</div>
 					<div class="col-md-8 " style="padding-top: 18px;">
-						距离6月考试还有<span class="span_setting">80</span>天
+						距离6月考试还有<span class="span_setting">30</span>天
 					</div>
 				</div>
 				<div class="row exam-guide1">
@@ -304,22 +304,22 @@
 					<div class="col-md-2">精美句子推荐</div>
 					<div class="col-md-9"></div>
 					<div class="col-md-1">
-						<a href="#" class="asetting"> <i class="icon icon-th-list"></i>
-							加载更多
+						<a href="<%=basePath%>sentence/showAllSentence" target="_blank"
+							class="asetting"> <i class="icon icon-th-list"></i> 加载更多
 						</a>
 					</div>
 				</div>
 			</div>
 			<div class="panel-body">
 				<!-- 最新资讯展现 -->
-				<div class="cards">
+				<div class="cards" >
 					<c:if test="${not empty sentence_list}">
-						<c:forEach items="${sentence_list }" var="sentence_list"
-							varStatus="count">
-							<div class="col-md-4 ">
-								<a class="card" href="#"> <img
-									src="<%=basePath%>Images/Slide/slide2.jpg" alt="">
-									<div class="caption">“良辰美景” 出自《牡丹亭》</div>
+						<c:forEach items="${sentence_list }" var="sentence_list" 
+							 varStatus="count">
+							<div class="col-md-4 " style="height:400px;">
+								<a class="card" href="#"> <img 
+									src="/file/Images/${count.count}.jpg" alt="">
+									<div class="caption">${sentence_list.sentenceChinese}</div>
 									<div class="card-heading">
 										<strong>${sentence_list.sentenceChinese}</strong>
 									</div>
@@ -361,7 +361,8 @@
 						</div>
 						<div class="col-md-7"></div>
 						<div class="col-md-1">
-							<a href="#" class="asetting" style="line-height: 30px;"> <i
+							<a href="<%=basePath%>article/showAllArticle" target="_blank"
+								class="asetting" style="line-height: 30px;"> <i
 								class="icon icon-th-list"></i> 加载更多
 							</a>
 						</div>
@@ -403,5 +404,5 @@
 
 
 	<br />
-	<jsp:include page="/Page/tail.jsp" />
+	<jsp:include page="public/tail.jsp"></jsp:include>
 </body>

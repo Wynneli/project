@@ -30,8 +30,11 @@ public class CommentServiceImpl implements ICommentService{
 	}
 
 	public int countComment() {
-		// TODO Auto-generated method stub
 		return commentMapper.countComment();
+	}
+
+	public List<CommentCustom> findall(String username) {
+		return commentMapper.selectOption(username);
 	}
 
 	

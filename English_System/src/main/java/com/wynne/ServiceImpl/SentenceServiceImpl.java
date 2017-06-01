@@ -25,5 +25,21 @@ public class SentenceServiceImpl implements ISentenceService{
 	public int update(Sentence record) {
 		return sentenceMapper.update(record);
 	}
+
+	public List<Sentence> findAll() {
+		return sentenceMapper.selectAll();
+	}
+
+	public Sentence findByPrimaryKey(Integer sentenceId) {
+		return sentenceMapper.selectByPrimaryKey(sentenceId);
+	}
+
+	public int deleteByPrimaryKey(int sentenceId) {
+		return sentenceMapper.deleteByPrimaryKey(sentenceId);
+	}
+
+	public int insert(Sentence sentence) {
+		return sentenceMapper.insertSelective(sentence);
+	}
    
 }

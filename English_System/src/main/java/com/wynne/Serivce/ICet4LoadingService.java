@@ -2,10 +2,7 @@ package com.wynne.Serivce;
 
 import java.util.List;
 
-import com.wynne.Entity.Answer2;
 import com.wynne.Entity.Cet4Custom;
-import com.wynne.Entity.ProcessCustom;
-import com.wynne.Entity.Unknown_WordCustom;
 
 /**
  *<p>Title: </p>

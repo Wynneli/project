@@ -19,6 +19,8 @@ public interface SentenceMapper {
     
     List<Sentence> selectOption();
     
+    List<Sentence> selectAll();
+    
     int count(Integer sentenceId);
     
     int update(Sentence record);

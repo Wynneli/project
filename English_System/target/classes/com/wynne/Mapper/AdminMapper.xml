@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wynne.Dao.AdminMapper">
+  <resultMap id="BaseResultMap" type="com.wynne.Entity.Admin">
+    <id column="adminid" jdbcType="INTEGER" property="adminid" />
+    <result column="adminname" jdbcType="VARCHAR" property="adminname" />
+    <result column="adminauthod" jdbcType="VARCHAR" property="adminauthod" />
+    <result column="adminpassword" jdbcType="VARCHAR" property="adminpassword" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    adminid, adminname, adminauthod, adminpassword
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from admin
+    where adminid = #{adminid,jdbcType=INTEGER}
+  </select>
+  
+  
+  
+  <select id="selectByName" resultMap="BaseResultMap">
+    select * from admin
+    where adminname = #{adminname} and adminpassword=#{adminpassword}
+  </select>
+  <insert id="insert" parameterType="com.wynne.Entity.Admin">
+    insert into admin (adminid, adminname, adminauthod, 
+      adminpassword)
+    values (#{adminid,jdbcType=INTEGER}, #{adminname,jdbcType=VARCHAR}, #{adminauthod,jdbcType=VARCHAR}, 
+      #{adminpassword,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wynne.Entity.Admin">
+    insert into admin
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adminid != null">
+        adminid,
+      </if>
+      <if test="adminname != null">
+        adminname,
+      </if>
+      <if test="adminauthod != null">
+        adminauthod,
+      </if>
+      <if test="adminpassword != null">
+        adminpassword,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="adminid != null">
+        #{adminid,jdbcType=INTEGER},
+      </if>
+      <if test="adminname != null">
+        #{adminname,jdbcType=VARCHAR},
+      </if>
+      <if test="adminauthod != null">
+        #{adminauthod,jdbcType=VARCHAR},
+      </if>
+      <if test="adminpassword != null">
+        #{adminpassword,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wynne.Entity.Admin">
+    update admin
+    <set>
+      <if test="adminname != null">
+        adminname = #{adminname,jdbcType=VARCHAR},
+      </if>
+      <if test="adminauthod != null">
+        adminauthod = #{adminauthod,jdbcType=VARCHAR},
+      </if>
+      <if test="adminpassword != null">
+        adminpassword = #{adminpassword,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where adminid = #{adminid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wynne.Entity.Admin">
+    update admin
+    set adminname = #{adminname,jdbcType=VARCHAR},
+      adminauthod = #{adminauthod,jdbcType=VARCHAR},
+      adminpassword = #{adminpassword,jdbcType=VARCHAR}
+    where adminid = #{adminid,jdbcType=INTEGER}
+  </update>
+  
+</mapper>

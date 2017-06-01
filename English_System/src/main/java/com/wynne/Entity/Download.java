@@ -1,7 +1,14 @@
 package com.wynne.Entity;
 
 public class Download {
-    private Integer fileid;
+    @Override
+	public String toString() {
+		return "Download [fileid=" + fileid + ", filetype=" + filetype + ", filepath=" + filepath + ", filedownloadsum="
+				+ filedownloadsum + ", filename=" + filename + ", filetime=" + filetime + ", filesize=" + filesize
+				+ ", filetypes=" + filetypes + ", filerealname=" + filerealname + "]";
+	}
+
+	private Integer fileid;
 
     private String filetype;
 
@@ -9,15 +16,25 @@ public class Download {
 
     private Integer filedownloadsum;
 
-	private String filename;
+    private String filename;
 
     private String filetime;
 
-    private String filername;
+    private String filesize;
 
-    private String filecetid;
+    private String filetypes;
+    
+    private String filerealname;
 
-    public Integer getFileid() {
+    public String getFilerealname() {
+		return filerealname;
+	}
+
+	public void setFilerealname(String filerealname) {
+		this.filerealname = filerealname;
+	}
+
+	public Integer getFileid() {
         return fileid;
     }
 
@@ -33,15 +50,16 @@ public class Download {
         this.filetype = filetype == null ? null : filetype.trim();
     }
 
+    
     public String getFilepath() {
-        return filepath;
-    }
+		return filepath;
+	}
 
-    public void setFilepath(String filepath) {
-        this.filepath = filepath == null ? null : filepath.trim();
-    }
+	public void setFilepath(String filepath) {
+		this.filepath = filepath;
+	}
 
-    public Integer getFiledownloadsum() {
+	public Integer getFiledownloadsum() {
         return filedownloadsum;
     }
 
@@ -65,28 +83,21 @@ public class Download {
         this.filetime = filetime == null ? null : filetime.trim();
     }
 
-    public String getFilername() {
-        return filername;
-    }
+   
 
-    public void setFilername(String filername) {
-        this.filername = filername == null ? null : filername.trim();
-    }
-
-    public String getFilecetid() {
-        return filecetid;
-    }
-
-    public void setFilecetid(String filecetid) {
-        this.filecetid = filecetid == null ? null : filecetid.trim();
-    }
-    
-
-    @Override
-	public String toString() {
-		return "Download [fileid=" + fileid + ", filetype=" + filetype + ", filepath=" + filepath + ", filedownloadsum="
-				+ filedownloadsum + ", filename=" + filename + ", filetime=" + filetime + ", filername=" + filername
-				+ ", filecetid=" + filecetid + "]";
+    public String getFilesize() {
+		return filesize;
 	}
 
+	public void setFilesize(String filesize) {
+		this.filesize = filesize;
+	}
+
+	public String getFiletypes() {
+        return filetypes;
+    }
+
+    public void setFiletypes(String filetypes) {
+        this.filetypes = filetypes == null ? null : filetypes.trim();
+    }
 }

@@ -27,7 +27,7 @@
 	src="<%=basePath%>JS/Third_Party/zui.min.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>JS/Third_Party/zui.datatable.min.js"></script>
-<script type="text/javascript" src="<%=basePath%>JS/admin4/feedback2.js"></script>
+<script type="text/javascript" src="<%=basePath%>JS/admin4/feedback.js"></script>
 <script type="text/javascript" src="<%=basePath%>JS/admin4/common.js"></script>
 </head>
 
@@ -50,22 +50,6 @@
 						<option>是</option>
 						<option>否</option>
 					</select>
-				</div>
-				<div class="col-md-7">
-					<form class="form-inline">
-						<div class="form-group">
-							<label for="exampleInputName1">用户编号</label> <input type="text"
-								class="form-control" name="userid" placeholder="用户编号">
-						</div>
-						&nbsp;&nbsp;&nbsp;
-						<div class="form-group">
-							<label for="exampleInputEmail2">昵称</label> <input type="text"
-								class="form-control" name="username" placeholder="昵称">
-						</div>
-						<button type="button" class="btn btn-info" onclick="search()">
-							<i class=" icon-search"></i>查 找
-						</button>
-					</form>
 				</div>
 			</div>
 			<br />

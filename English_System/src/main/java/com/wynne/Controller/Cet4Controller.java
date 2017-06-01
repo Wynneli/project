@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
-import com.wynne.Dao.CetMapper;
 import com.wynne.Entity.Answer;
 import com.wynne.Entity.Answer2;
 import com.wynne.Entity.Cet;
@@ -35,7 +33,6 @@ import com.wynne.Entity.Compare_Result;
 import com.wynne.Entity.ProcessCustom;
 import com.wynne.Entity.Unknown_WordCustom;
 import com.wynne.Entity.UserCustom;
-import com.wynne.Serivce.IArticleService;
 import com.wynne.Serivce.ICet4LoadingService;
 import com.wynne.Serivce.ICet4_partService;
 import com.wynne.Serivce.ICetService;
@@ -58,7 +55,7 @@ public class Cet4Controller {
 
 	private final static String FAILURE="failure";
 
-	private static final String cet4_id_init="cet4_0001";
+	private static final String cet4_id_init="cet4_0002";
 
 	private static final String cet6_id_init="cet6_0003";
 
@@ -121,7 +118,7 @@ public class Cet4Controller {
 		//		System.out.println(cet4_id+username);
 		if(cet4_id.trim().equals("")){
 			if(cet4_id.contains(CET4_)){
-				cet4_id="cet4_0001";
+				cet4_id="cet4_0002";
 			}else{
 				cet4_id="cet6_0003";
 			}
@@ -237,7 +234,7 @@ public class Cet4Controller {
 		}
 		cet4Custom=cet4LoadingService.Select_cet4_info_ByPrimary(cet4_id_init);
 		session.setAttribute("cet4Custom", cet4Custom);
-		System.out.println(cet4Custom.getCet4Vocabulary()+"\t"+cet4Custom.getCet4Pronunciation()+"\t"+cet4Custom.getCet4Meaning());
+		//		System.out.println(cet4Custom.getCet4Vocabulary()+"\t"+cet4Custom.getCet4Pronunciation()+"\t"+cet4Custom.getCet4Meaning());
 		return "redirect:/Page/cet4/cet4_vocabulary.jsp";
 	}
 
@@ -595,6 +592,7 @@ public class Cet4Controller {
 		String  pCetId =request.getParameter("cet4Id");
 
 		String username=HandleUserName.handle(request.getParameter("username"));
+		System.out.println(username);
 		userCustom=userService.findUserByUserName(username);
 		if(pCetId.contains(CET4_)){
 			processCustom.setpCet4Id(pCetId);
@@ -613,6 +611,7 @@ public class Cet4Controller {
 		}
 		if(num>0){
 			processCustom.setProcessId(processCustom2.getProcessId());
+			System.out.println(processCustom.getpCet4Id());
 			count=processService.updateProcess(processCustom);
 		}else{
 			count=processService.insertProcess(processCustom);
@@ -662,7 +661,6 @@ public class Cet4Controller {
 		String cet6=null;
 		int num=0;
 		int num2=0;
-
 		int count=cet4LoadingService.countCet4("cet4_");
 		int count2=cet4LoadingService.countCet4("cet6_");
 		UserCustom userCustom=new UserCustom();
@@ -684,17 +682,23 @@ public class Cet4Controller {
 
 		String cet4pec= new DecimalFormat("0.0000").format((double)num/(double)count*100);
 		String cet6pec= new DecimalFormat("0.0000").format((double)num2/(double)count2*100);
+		
 		System.out.println(cet4pec);
 		modelAndView.addObject("cet4", num);
 		modelAndView.addObject("cet6", num2);
 		int count3=unknownWordService.countUnWord("cet4_",userCustom.getUsername());
 		int count4=unknownWordService.countUnWord("cet6_",userCustom.getUsername());
+		String cet4unpec= new DecimalFormat("0.0000").format((double)count3/(double)count*100);
+		String cet6unpec= new DecimalFormat("0.0000").format((double)count4/(double)count2*100);
+		System.out.println(cet4unpec+cet6unpec);
 		modelAndView.addObject("countcet4", count);
 		modelAndView.addObject("countcet6", count2);
 		modelAndView.addObject("uncet4", count3);
 		modelAndView.addObject("uncet6", count4);
 		modelAndView.addObject("cet4pec", cet4pec);
 		modelAndView.addObject("cet6pec", cet6pec);
+		modelAndView.addObject("cet4unpec", cet4unpec);
+		modelAndView.addObject("cet6unpec", cet6unpec);
 		modelAndView.setViewName("user/showcet");
 		return modelAndView;
 	}
@@ -705,7 +709,11 @@ public class Cet4Controller {
 	public  ModelAndView loadingCetTestinfo(HttpSession session){
 		ModelAndView modelAndView=new ModelAndView();
 		List<Chart> chart=charService.findAll();
-		System.out.println(chart.toString());
+		for(int i=0;i<chart.size();i++){
+			int count=chart.get(i).getChartPart1()+chart.get(i).getChartPart2()+chart.get(i).getChartPart3()+chart.get(i).getChartPart4();
+			chart.get(i).setChartCorrect(count);
+			chart.get(i).setChartError(55-count);
+		}
 		modelAndView.addObject("chartlist", chart);
 		modelAndView.setViewName("user/showtest");
 		return modelAndView;
